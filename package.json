@@ -1,0 +1,105 @@
+{
+  "name": "template-fb-auth-with-nextjs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "export": "npm run build && next export",
+    "typecheck": "tsc -p . --noEmit",
+    "lint": "npm run lint:eslint && npm run lint:prettier && npm run lint:stylelint",
+    "lint:eslint": "eslint --fix './src/**/*.{ts,tsx}'",
+    "lint:prettier": "prettier --write './src/**/*.{ts,tsx}'",
+    "lint:stylelint": "stylelint --fix './src/**/*.{css,scss}'",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "deploy": "firebase deploy"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx}": [
+      "eslint --fix './src/**/*.{ts,tsx}'",
+      "prettier --write './src/**/*.{ts,tsx}'"
+    ],
+    "src/**/*.{css,scss}": [
+      "stylelint --fix './src/**/*.{css,scss}'"
+    ]
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.13.15",
+    "@types/jest": "^26.0.22",
+    "@types/next": "^9.0.0",
+    "@types/node": "^14.14.14",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "@types/react-infinite-scroller": "^1.2.1",
+    "@types/react-paginate": "^6.2.1",
+    "@types/react-redux": "^7.1.12",
+    "@types/redux-mock-store": "^1.0.2",
+    "@typescript-eslint/eslint-plugin": "^4.10.0",
+    "@typescript-eslint/parser": "^4.10.0",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^5.0.2",
+    "eslint": "^7.15.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^7.0.0",
+    "eslint-plugin-immutable": "^1.0.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "husky": "^4.3.6",
+    "jest": "^26.6.3",
+    "lint-staged": "^10.5.3",
+    "prettier": "^2.2.1",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-mock-store": "^1.5.4",
+    "sass": "^1.30.0",
+    "sass-loader": "^10.0.1",
+    "style-loader": "^2.0.0",
+    "stylelint": "^13.8.0",
+    "stylelint-config-recess-order": "^2.3.0",
+    "stylelint-config-recommended": "^3.0.0",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-order": "^4.1.0",
+    "ts-jest": "^26.5.5",
+    "typescript": "^4.1.3",
+    "vercel": "^21.0.1"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "clsx": "^1.1.1",
+    "dayjs": "^1.10.5",
+    "firebase": "^8.6.5",
+    "firebase-admin": "^9.9.0",
+    "next": "^10.2.3",
+    "next-pwa": "^5.2.21",
+    "next-redux-wrapper": "^7.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.4",
+    "redux": "^4.1.0",
+    "redux-thunk": "^2.3.0",
+    "reselect": "^4.0.0",
+    "typescript-fsa": "^3.0.0",
+    "typescript-fsa-reducers": "^1.2.2",
+    "typescript-fsa-redux-thunk": "^2.10.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hakushun/dev_attendance-list.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hakushun/dev_attendance-list/issues"
+  },
+  "homepage": "https://github.com/hakushun/dev_attendance-list#readme",
+  "description": ""
+}
