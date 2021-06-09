@@ -1,70 +1,52 @@
 @use '../../styles/mixin' as mixin;
 
-.root {
-  max-width: 1200px;
-  padding: 20px 16px;
-  margin: 0 auto;
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
 
-  .form {
+  > fieldset {
     display: flex;
     flex-direction: column;
-    gap: 20px;
     align-items: center;
+    width: 100%;
+    max-width: 320px;
+    border: none;
 
-    > fieldset {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-      max-width: 320px;
-      border: none;
-
-      > legend {
-        margin: 0 auto;
-      }
-    }
-
-    .title {
-      display: inline-block;
-      padding: 0 8px;
-      font-size: mixin.rem(20);
-      font-weight: bold;
-      border-bottom: 3px solid mixin.$headingBorderColor;
-
-      @include mixin.mq() {
-        font-size: mixin.rem(18);
-      }
-    }
-
-    .inputWrapper {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      margin-top: 20px;
-    }
-
-    .label {
-      font-weight: bold;
-    }
-
-    .input {
-      min-width: 230px;
-      padding: 5px;
-      border: none;
-      border-radius: 3px;
-
-      &:disabled {
-        cursor: not-allowed;
-      }
+    > legend {
+      margin: 0 auto;
     }
   }
 
-  .wrapper {
+  .inputWrapper {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
     align-items: center;
-    margin-top: 30px;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
   }
+
+  .label {
+    font-weight: bold;
+  }
+
+  .input {
+    min-width: 230px;
+    padding: 5px;
+    border: none;
+    border-radius: 3px;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  margin-top: 30px;
 }

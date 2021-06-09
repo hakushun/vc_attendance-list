@@ -1,18 +1,20 @@
 import React from 'react';
 import { PrimaryButton } from '../uiParts/PrimaryButton';
 import { LinkButton } from '../uiParts/LinkButton';
-import styles from './index.module.scss';
 import { useSign } from '../../hooks/useSign';
+import styles from './index.module.scss';
+import { Heading } from '../uiParts/Heading';
+import { Sectioning } from '../uiParts/Sectioning';
 
 export const SignUp: React.VFC = () => {
   const { form, isLaoding, handleChange, handleSignUp } = useSign();
 
   return (
-    <section className={styles.root}>
+    <Sectioning id="signup_form">
       <form className={styles.form}>
         <fieldset>
           <legend>
-            <h2 className={styles.title}>Sign Upフォーム</h2>
+            <Heading level={2} label="Sign Upフォーム" />
           </legend>
           <div className={styles.inputWrapper}>
             <label htmlFor="email" className={styles.label}>
@@ -61,6 +63,6 @@ export const SignUp: React.VFC = () => {
         未登録の方は下記より利用登録をしてください
         <LinkButton href="/login" label="Loginフォームへ" />
       </div>
-    </section>
+    </Sectioning>
   );
 };
