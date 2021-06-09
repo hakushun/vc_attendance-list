@@ -5,7 +5,7 @@ import { PrimaryButton } from '../uiParts/PrimaryButton';
 import styles from './index.module.scss';
 
 export const SignIn: React.VFC = () => {
-  const { form, handleChange, handleSignIn } = useSign();
+  const { form, isLaoding, handleChange, handleSignIn } = useSign();
 
   return (
     <section className={styles.root}>
@@ -25,6 +25,7 @@ export const SignIn: React.VFC = () => {
               aria-required
               name="email"
               placeholder="Email Address"
+              disabled={isLaoding}
               className={styles.input}
               value={form.email}
               onChange={handleChange}
@@ -42,13 +43,19 @@ export const SignIn: React.VFC = () => {
               name="current-password"
               autoComplete="current-password"
               placeholder="Password"
+              disabled={isLaoding}
               className={styles.input}
               value={form.password}
               onChange={handleChange}
             />
           </div>
         </fieldset>
-        <PrimaryButton type="submit" label="Login" handleClick={handleSignIn} />
+        <PrimaryButton
+          type="submit"
+          label="Login"
+          disabled={isLaoding}
+          handleClick={handleSignIn}
+        />
       </form>
       <div className={styles.wrapper}>
         既に登録済みの方は下記よりログインください

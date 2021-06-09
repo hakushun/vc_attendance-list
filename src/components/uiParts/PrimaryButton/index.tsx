@@ -4,11 +4,12 @@ import styles from './index.module.scss';
 type Props = {
   type: 'button' | 'submit';
   label: string;
+  disabled: boolean;
   handleClick: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
-export const PrimaryButton: React.VFC<Props> = ({ type, label, handleClick }) => {
+export const PrimaryButton: React.VFC<Props> = ({ type, label, disabled, handleClick }) => {
   return (
-    <button type={type} className={styles.root} onClick={handleClick}>
+    <button type={type} className={styles.root} disabled={disabled} onClick={handleClick}>
       {label}
     </button>
   );

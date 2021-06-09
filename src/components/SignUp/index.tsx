@@ -5,7 +5,7 @@ import styles from './index.module.scss';
 import { useSign } from '../../hooks/useSign';
 
 export const SignUp: React.VFC = () => {
-  const { form, handleChange, handleSignUp } = useSign();
+  const { form, isLaoding, handleChange, handleSignUp } = useSign();
 
   return (
     <section className={styles.root}>
@@ -25,6 +25,7 @@ export const SignUp: React.VFC = () => {
               aria-required
               name="email"
               placeholder="Email Address"
+              disabled={isLaoding}
               className={styles.input}
               value={form.email}
               onChange={handleChange}
@@ -42,13 +43,19 @@ export const SignUp: React.VFC = () => {
               minLength={6}
               name="new-password"
               placeholder="Password"
+              disabled={isLaoding}
               className={styles.input}
               value={form.password}
               onChange={handleChange}
             />
           </div>
         </fieldset>
-        <PrimaryButton type="submit" label="Sign Up" handleClick={handleSignUp} />
+        <PrimaryButton
+          type="submit"
+          label="Sign Up"
+          disabled={isLaoding}
+          handleClick={handleSignUp}
+        />
       </form>
       <div className={styles.wrapper}>
         未登録の方は下記より利用登録をしてください
