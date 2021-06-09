@@ -1,6 +1,7 @@
 @use '../../../styles/mixin' as mixin;
 
 .root {
+  min-width: 100px;
   padding: 2px 10px;
   font-weight: bold;
   color: mixin.$whiteColor;
