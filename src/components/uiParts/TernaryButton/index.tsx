@@ -3,10 +3,11 @@ import styles from './index.module.scss';
 
 type Props = {
   label: string;
+  handleClick: () => void;
 };
-export const TernaryButton: React.VFC<Props> = ({ label }) => {
+export const TernaryButton: React.VFC<Props> = ({ label, handleClick }) => {
   return (
-    <button type="button" className={styles.root}>
+    <button type="button" onClick={handleClick} className={styles.root}>
       {label}
     </button>
   );
