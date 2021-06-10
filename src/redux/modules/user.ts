@@ -50,11 +50,11 @@ export default reducer;
 
 // selector
 export const selectUser = createSelector(
-  [(state: RootState) => state.resources.user.user],
+  [(state: RootState) => state.app.user.user],
   (user) => user,
 );
 
 export const selectIsLoading = createSelector(
-  [(state: RootState) => state.resources.user.isLoading],
+  [(state: RootState) => state.app.user.isLoading],
   (isLoading) => isLoading,
 );

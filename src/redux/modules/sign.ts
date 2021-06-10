@@ -82,11 +82,11 @@ export default reducer;
 
 // selector
 export const selectSignForm = createSelector(
-  [(state: RootState) => state.ui.sign.form],
+  [(state: RootState) => state.app.sign.form],
   (form) => form,
 );
 
 export const selectIsLoading = createSelector(
-  [(state: RootState) => state.ui.sign.isLoading],
+  [(state: RootState) => state.app.sign.isLoading],
   (isLoading) => isLoading,
 );
