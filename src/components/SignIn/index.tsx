@@ -7,7 +7,7 @@ import { Sectioning } from '../uiParts/Sectioning';
 import styles from './index.module.scss';
 
 export const SignIn: React.VFC = () => {
-  const { form, isLaoding, handleChange, handleSignIn } = useSign();
+  const { form, isLoading, handleChange, handleSignIn } = useSign();
 
   return (
     <Sectioning id="signin_form">
@@ -27,7 +27,7 @@ export const SignIn: React.VFC = () => {
               aria-required
               name="email"
               placeholder="Email Address"
-              disabled={isLaoding}
+              disabled={isLoading}
               className={styles.input}
               value={form.email}
               onChange={handleChange}
@@ -45,7 +45,7 @@ export const SignIn: React.VFC = () => {
               name="current-password"
               autoComplete="current-password"
               placeholder="Password"
-              disabled={isLaoding}
+              disabled={isLoading}
               className={styles.input}
               value={form.password}
               onChange={handleChange}
@@ -55,7 +55,7 @@ export const SignIn: React.VFC = () => {
         <PrimaryButton
           type="submit"
           label="Login"
-          disabled={isLaoding}
+          disabled={isLoading}
           handleClick={handleSignIn}
         />
       </form>

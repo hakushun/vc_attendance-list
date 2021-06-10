@@ -7,7 +7,7 @@ import { Heading } from '../uiParts/Heading';
 import { Sectioning } from '../uiParts/Sectioning';
 
 export const SignUp: React.VFC = () => {
-  const { form, isLaoding, handleChange, handleSignUp } = useSign();
+  const { form, isLoading, handleChange, handleSignUp } = useSign();
 
   return (
     <Sectioning id="signup_form">
@@ -27,7 +27,7 @@ export const SignUp: React.VFC = () => {
               aria-required
               name="email"
               placeholder="Email Address"
-              disabled={isLaoding}
+              disabled={isLoading}
               className={styles.input}
               value={form.email}
               onChange={handleChange}
@@ -45,7 +45,7 @@ export const SignUp: React.VFC = () => {
               minLength={6}
               name="new-password"
               placeholder="Password"
-              disabled={isLaoding}
+              disabled={isLoading}
               className={styles.input}
               value={form.password}
               onChange={handleChange}
@@ -55,7 +55,7 @@ export const SignUp: React.VFC = () => {
         <PrimaryButton
           type="submit"
           label="Sign Up"
-          disabled={isLaoding}
+          disabled={isLoading}
           handleClick={handleSignUp}
         />
       </form>

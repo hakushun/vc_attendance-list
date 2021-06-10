@@ -5,7 +5,7 @@ import { useUser } from '../../../hooks/useUser';
 import { QuaternaryButton } from '../../uiParts/QuaternaryButton';
 import styles from './index.module.scss';
 
-export const Header: React.VFC= () => {
+export const Header: React.VFC = () => {
   const { user } = useUser();
   const { handleSignOut } = useSign();
   const { handleToggleEventForm, handleToggleSetting } = useShow();
