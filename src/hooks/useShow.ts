@@ -5,7 +5,11 @@ import {
   selectAttendanceFormIsShown,
   selectCovidResultIsShown,
   selectSettingIsShown,
-  toggle,
+  toggleEventForm,
+  toggleAttendanceForm,
+  toggleCovidForm,
+  toggleCovidResult,
+  toggleSetting,
 } from '../redux/modules/show';
 
 type Hooks = {
@@ -29,19 +33,19 @@ export const useShow = (): Hooks => {
   const settingIsShown = useSelector(selectSettingIsShown);
 
   const handleToggleEventForm = () => {
-    dispatch(toggle({ eventForm: !eventFormIsShown }));
+    dispatch(toggleEventForm(!eventFormIsShown));
   };
   const handleToggleCovidForm = () => {
-    dispatch(toggle({ covidForm: !covidFormIsShown }));
+    dispatch(toggleCovidForm(!covidFormIsShown));
   };
   const handleToggleAttendanceForm = () => {
-    dispatch(toggle({ attendanceForm: !attendanceFormIsShown }));
+    dispatch(toggleAttendanceForm(!attendanceFormIsShown));
   };
   const handleToggleCovidResult = () => {
-    dispatch(toggle({ covidResult: !covidResultIsShown }));
+    dispatch(toggleCovidResult(!covidResultIsShown));
   };
   const handleToggleSetting = () => {
-    dispatch(toggle({ setting: !settingIsShown }));
+    dispatch(toggleSetting(!settingIsShown));
   };
 
   return {

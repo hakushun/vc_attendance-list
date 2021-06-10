@@ -9,7 +9,11 @@ export type TogglePayload = Partial<Show>;
 
 // action
 const actionCreator = actionCreatorFactory();
-export const toggle = actionCreator<TogglePayload>('TOGGLE_SHOW');
+export const toggleEventForm = actionCreator<boolean>('TOGGLE_EVENT_FORM');
+export const toggleCovidForm = actionCreator<boolean>('TOGGLE_COVID_FORM');
+export const toggleAttendanceForm = actionCreator<boolean>('TOGGLE_ATTENDANCE_FORM');
+export const toggleCovidResult = actionCreator<boolean>('TOGGLE_COVID_RESULT');
+export const toggleSetting = actionCreator<boolean>('TOGGLE_SETTING');
 
 // initial state
 const INITIAL_STATE: Show = {
@@ -21,10 +25,27 @@ const INITIAL_STATE: Show = {
 };
 
 // reducer
-const reducer = reducerWithInitialState(INITIAL_STATE).case(toggle, (state, payload) => ({
-  ...state,
-  ...payload,
-}));
+const reducer = reducerWithInitialState(INITIAL_STATE)
+  .case(toggleEventForm, (state, payload) => ({
+    ...state,
+    eventForm: payload,
+  }))
+  .case(toggleCovidForm, (state, payload) => ({
+    ...state,
+    covidForm: payload,
+  }))
+  .case(toggleAttendanceForm, (state, payload) => ({
+    ...state,
+    attendanceForm: payload,
+  }))
+  .case(toggleCovidResult, (state, payload) => ({
+    ...state,
+    covidResult: payload,
+  }))
+  .case(toggleSetting, (state, payload) => ({
+    ...state,
+    setting: payload,
+  }));
 export default reducer;
 
 // selector
