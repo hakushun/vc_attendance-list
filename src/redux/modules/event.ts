@@ -38,6 +38,7 @@ export const changeTime = actionCreator<ChangeTimePayload>('CHANGE_TIME');
 export const addDateForm = actionCreator('ADD_DATE_FORM');
 export const deleteDateForm = actionCreator('DELETE_DATE_FORM');
 export const initiateEvent = actionCreator('INITIATE_EVENT');
+export const focusEvent = actionCreator<Event>('FOCUS_EVENT');
 
 const generateNewDate = (): Date => ({
   id: generateId(),
@@ -81,6 +82,9 @@ const reducer = reducerWithInitialState(INITIAL_STATE)
   .case(initiateEvent, () => ({
     ...INITIAL_STATE,
     dates: [generateNewDate()],
+  }))
+  .case(focusEvent, (_state, payload) => ({
+    ...payload,
   }))
   .case(createEvent.async.done, (state, { result }) => ({
     ...state,
