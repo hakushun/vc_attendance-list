@@ -19,6 +19,7 @@ type Hooks = {
   covidResultIsShown: boolean;
   settingIsShown: boolean;
   handleToggleEventForm: () => void;
+  handleToggleEventFormWithInitiate: () => void;
   handleToggleCovidForm: () => void;
   handleToggleAttendanceForm: () => void;
   handleToggleCovidResult: () => void;
@@ -33,7 +34,10 @@ export const useShow = (): Hooks => {
   const settingIsShown = useSelector(selectSettingIsShown);
 
   const handleToggleEventForm = () => {
-    dispatch(toggleEventForm(!eventFormIsShown));
+    dispatch(toggleEventForm({ toggle: !eventFormIsShown, initiate: false }));
+  };
+  const handleToggleEventFormWithInitiate = () => {
+    dispatch(toggleEventForm({ toggle: !eventFormIsShown, initiate: true }));
   };
   const handleToggleCovidForm = () => {
     dispatch(toggleCovidForm(!covidFormIsShown));
@@ -55,6 +59,7 @@ export const useShow = (): Hooks => {
     covidResultIsShown,
     settingIsShown,
     handleToggleEventForm,
+    handleToggleEventFormWithInitiate,
     handleToggleCovidForm,
     handleToggleAttendanceForm,
     handleToggleCovidResult,
