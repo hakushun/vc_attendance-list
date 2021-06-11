@@ -5,11 +5,14 @@ import { RootState } from './reducers';
 
 type KeyName = 'eventForm' | 'covidForm' | 'attendanceForm' | 'covidResult' | 'setting';
 export type Show = Record<KeyName, boolean>;
-export type TogglePayload = Partial<Show>;
+type EventFormPayload = {
+  toggle: boolean;
+  initiate: boolean;
+};
 
 // action
 const actionCreator = actionCreatorFactory();
-export const toggleEventForm = actionCreator<boolean>('TOGGLE_EVENT_FORM');
+export const toggleEventForm = actionCreator<EventFormPayload>('TOGGLE_EVENT_FORM');
 export const toggleCovidForm = actionCreator<boolean>('TOGGLE_COVID_FORM');
 export const toggleAttendanceForm = actionCreator<boolean>('TOGGLE_ATTENDANCE_FORM');
 export const toggleCovidResult = actionCreator<boolean>('TOGGLE_COVID_RESULT');
@@ -28,7 +31,7 @@ const INITIAL_STATE: Show = {
 const reducer = reducerWithInitialState(INITIAL_STATE)
   .case(toggleEventForm, (state, payload) => ({
     ...state,
-    eventForm: payload,
+    eventForm: payload.toggle,
   }))
   .case(toggleCovidForm, (state, payload) => ({
     ...state,
