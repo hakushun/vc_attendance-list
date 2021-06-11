@@ -23,7 +23,7 @@ export const EventForm: React.VFC = () => {
     handleAddDateForm,
     handleDeleteDateForm,
   } = useEvent();
-  const { isLoading, handleCreate } = useEvents();
+  const { isLoading, handleCreate, handleUpdate } = useEvents();
 
   return (
     <Sectioning id="event_form">
@@ -122,9 +122,9 @@ export const EventForm: React.VFC = () => {
           </fieldset>
           <PrimaryButton
             type="submit"
-            label="イベントの登録"
+            label={event.id ? `${event.title}の更新` : 'イベントの作成'}
             disabled={isLoading}
-            handleClick={handleCreate}
+            handleClick={event.id ? handleUpdate : handleCreate}
           />
           <SecondaryButton label="キャンセル" handleClick={handleToggleEventForm} />
         </form>
