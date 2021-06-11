@@ -5,6 +5,7 @@ import { useEvents } from '../../../hooks/useEvents';
 import { useShow } from '../../../hooks/useShow';
 import { Badge } from '../../uiParts/Badge';
 import { Heading } from '../../uiParts/Heading';
+import { OptionalButton } from '../../uiParts/OptionalButton';
 import { PrimaryButton } from '../../uiParts/PrimaryButton';
 import { SecondaryButton } from '../../uiParts/SecondaryButton';
 import { Sectioning } from '../../uiParts/Sectioning';
@@ -23,7 +24,7 @@ export const EventForm: React.VFC = () => {
     handleAddDateForm,
     handleDeleteDateForm,
   } = useEvent();
-  const { isLoading, handleCreate, handleUpdate } = useEvents();
+  const { isLoading, handleCreate, handleUpdate, handleRemove } = useEvents();
 
   return (
     <Sectioning id="event_form">
@@ -127,6 +128,7 @@ export const EventForm: React.VFC = () => {
             handleClick={event.id ? handleUpdate : handleCreate}
           />
           <SecondaryButton label="キャンセル" handleClick={handleToggleEventForm} />
+          {event.id && <OptionalButton label={`${event.title}の削除`} handleClick={handleRemove} />}
         </form>
       ) : (
         <PrimaryButton
