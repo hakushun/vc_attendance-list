@@ -17,3 +17,8 @@ export const createEvent = async (event: CreatePayload): Promise<Event> => {
     .set({ ...event, id });
   return fetchEvent(id);
 };
+
+export const updateEvent = async (event: Event): Promise<Event> => {
+  await db.collection('events').doc(event.id).set(event, { merge: true });
+  return fetchEvent(event.id!);
+}
