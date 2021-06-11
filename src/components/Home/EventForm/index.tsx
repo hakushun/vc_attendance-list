@@ -15,9 +15,7 @@ import styles from './index.module.scss';
 export const EventForm: React.VFC = () => {
   const { eventFormIsShown, handleToggleEventForm } = useShow();
   const {
-    eventTitle,
-    eventDetail,
-    eventDates,
+    event,
     handleChangeText,
     handleCangeDay,
     handleCangeTime,
@@ -49,7 +47,7 @@ export const EventForm: React.VFC = () => {
                 placeholder="イベント名を入力ください"
                 autoComplete="off"
                 disabled={isLoading}
-                value={eventTitle}
+                value={event.title}
                 onChange={handleChangeText}
                 className={clsx(styles.input, styles.text)}
               />
@@ -65,7 +63,7 @@ export const EventForm: React.VFC = () => {
                 maxLength={1000}
                 placeholder="イベント詳細を入力ください"
                 disabled={isLoading}
-                value={eventDetail}
+                value={event.detail}
                 onChange={handleChangeText}
                 className={clsx(styles.input, styles.textarea)}
               />
@@ -77,7 +75,7 @@ export const EventForm: React.VFC = () => {
                   <Badge type="required" />
                 </legend>
                 <ul className={styles.list}>
-                  {eventDates.map((date, index) => (
+                  {event.dates.map((date, index) => (
                     <li key={date.id} className={styles.item}>
                       <div className={styles.dateWrapper}>
                         <label htmlFor={`event_day-${index}`} className={styles.label}>
@@ -89,7 +87,7 @@ export const EventForm: React.VFC = () => {
                           required
                           aria-required
                           disabled={isLoading}
-                          value={eventDates[index].day}
+                          value={event.dates[index].day}
                           onChange={handleCangeDay}
                           className={clsx(styles.input, styles.date)}
                         />
@@ -106,7 +104,7 @@ export const EventForm: React.VFC = () => {
                           maxLength={15}
                           placeholder={`日付 ${index + 1}の練習時間を入力ください`}
                           disabled={isLoading}
-                          value={eventDates[index].time}
+                          value={event.dates[index].time}
                           onChange={handleCangeTime}
                           className={clsx(styles.input, styles.date)}
                         />
