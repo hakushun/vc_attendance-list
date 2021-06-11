@@ -5,7 +5,10 @@ import {
   changeDay,
   changeText,
   changeTime,
+  Date,
   deleteDateForm,
+  Event,
+  focusEvent,
   selectDates,
   selectDetail,
   selectTitle,
@@ -20,6 +23,7 @@ type Hooks = {
   handleCangeTime: (_e: React.ChangeEvent<HTMLInputElement>) => void;
   handleAddDateForm: () => void;
   handleDeleteDateForm: () => void;
+  handleFocusEvent: (_value: Event) => void;
 };
 export const useEvent = (): Hooks => {
   const dispatch = useDispatch();
@@ -49,6 +53,10 @@ export const useEvent = (): Hooks => {
     dispatch(deleteDateForm());
   };
 
+  const handleFocusEvent = (value: Event) => {
+    dispatch(focusEvent(value));
+  };
+
   return {
     eventTitle,
     eventDetail,
@@ -58,5 +66,6 @@ export const useEvent = (): Hooks => {
     handleCangeTime,
     handleAddDateForm,
     handleDeleteDateForm,
+    handleFocusEvent,
   };
 };
