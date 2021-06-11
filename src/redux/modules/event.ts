@@ -3,7 +3,7 @@ import actionCreatorFactory from 'typescript-fsa';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import { getStringDate } from '../../libs/dayjs/getStringDate';
 import { generateId } from '../../libs/ulid/generateId';
-import { create as createEvent, update as updateEvent } from './events';
+import { create as createEvent, remove as removeEvent, update as updateEvent } from './events';
 import { RootState } from './reducers';
 import { toggleEventForm } from './show';
 
@@ -89,6 +89,10 @@ const reducer = reducerWithInitialState(INITIAL_STATE)
   .cases([createEvent.async.done, updateEvent.async.done], (state, { result }) => ({
     ...state,
     ...result,
+  }))
+  .case(removeEvent.async.done, () => ({
+    ...INITIAL_STATE,
+    dates: [generateNewDate()],
   }))
   .case(toggleEventForm, (state, payload) => {
     if (payload.initiate) {
