@@ -129,12 +129,16 @@ export const EventForm: React.VFC = () => {
           {event.id && <OptionalButton label={`${event.title}の削除`} handleClick={handleRemove} />}
         </form>
       ) : (
-        <PrimaryButton
-          type="button"
-          label="ボタン"
-          disabled={false}
-          handleClick={handleToggleEventForm}
-        />
+        <>
+          {event.id && (
+            <PrimaryButton
+              type="button"
+              label={`${event.title}の更新`}
+              disabled={false}
+              handleClick={handleToggleEventForm}
+            />
+          )}
+        </>
       )}
     </Sectioning>
   );
