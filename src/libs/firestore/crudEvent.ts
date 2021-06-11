@@ -21,4 +21,8 @@ export const createEvent = async (event: CreatePayload): Promise<Event> => {
 export const updateEvent = async (event: Event): Promise<Event> => {
   await db.collection('events').doc(event.id).set(event, { merge: true });
   return fetchEvent(event.id!);
-}
+};
+
+export const removeEvent = async (event: Event): Promise<void> => {
+  await db.collection('events').doc(event.id).delete();
+};
