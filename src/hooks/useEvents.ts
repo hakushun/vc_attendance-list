@@ -4,6 +4,7 @@ import { getInstance } from '../libs/firestore/getInstance';
 import { Event, selectEvent } from '../redux/modules/event';
 import {
   create,
+  remove,
   selectEvents,
   selectIsLoading,
   subscribeEvents,
@@ -15,6 +16,7 @@ type Hooks = {
   isLoading: boolean;
   handleCreate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   handleUpdate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  handleRemove: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
 export const useEvents = (): Hooks => {
   const db = getInstance();
@@ -39,12 +41,19 @@ export const useEvents = (): Hooks => {
     e.preventDefault();
     // TODO: validation
     if (
+      !event.id ||
       !event.title ||
       event.dates.some((date) => date.day === 'NaN-aN-aN') ||
       event.dates.some((date) => date.time === '')
     )
       return;
     dispatch(update(event));
+  };
+
+  const handleRemove = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    if (!event.id) return;
+    dispatch(remove(event));
   };
 
   useEffect(() => {
@@ -56,5 +65,5 @@ export const useEvents = (): Hooks => {
     return () => unsubscribe();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  return { events, isLoading, handleCreate, handleUpdate };
+  return { events, isLoading, handleCreate, handleUpdate, handleRemove };
 };
