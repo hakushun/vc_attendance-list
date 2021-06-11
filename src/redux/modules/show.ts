@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect';
 import actionCreatorFactory from 'typescript-fsa';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
+import { create as createEvent, update as updateEvent } from './events';
 import { RootState } from './reducers';
 
 type KeyName = 'eventForm' | 'covidForm' | 'attendanceForm' | 'covidResult' | 'setting';
@@ -48,6 +49,10 @@ const reducer = reducerWithInitialState(INITIAL_STATE)
   .case(toggleSetting, (state, payload) => ({
     ...state,
     setting: payload,
+  }))
+  .cases([createEvent.async.done, updateEvent.async.done], (state) => ({
+    ...state,
+    eventForm: false,
   }));
 export default reducer;
 
