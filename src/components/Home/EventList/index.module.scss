@@ -1,0 +1,25 @@
+@use '../../../styles/mixin' as mixin;
+
+.list {
+  min-width: 340px;
+  max-width: 500px;
+  margin-top: 20px;
+
+  .button {
+    max-width: 100%;
+    padding: 0 5px;
+    overflow: hidden;
+    text-align: left;
+    text-decoration: underline;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border: 2px solid mixin.$bgColor;
+
+    &:hover,
+    &:focus-visible {
+      background-color: darken(mixin.$bgColor, 20%);
+      border: 2px solid mixin.$mainTextColor;
+      border-radius: 3px;
+    }
+  }
+}
