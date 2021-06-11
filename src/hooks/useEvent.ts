@@ -5,19 +5,14 @@ import {
   changeDay,
   changeText,
   changeTime,
-  Date,
   deleteDateForm,
   Event,
   focusEvent,
-  selectDates,
-  selectDetail,
-  selectTitle,
+  selectEvent,
 } from '../redux/modules/event';
 
 type Hooks = {
-  eventTitle: string;
-  eventDetail: string;
-  eventDates: Date[];
+  event: Event;
   handleChangeText: (_e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   handleCangeDay: (_e: React.ChangeEvent<HTMLInputElement>) => void;
   handleCangeTime: (_e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -27,9 +22,7 @@ type Hooks = {
 };
 export const useEvent = (): Hooks => {
   const dispatch = useDispatch();
-  const eventTitle = useSelector(selectTitle);
-  const eventDetail = useSelector(selectDetail);
-  const eventDates = useSelector(selectDates);
+  const event = useSelector(selectEvent);
 
   const handleChangeText = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     dispatch(changeText({ [e.target.name]: e.target.value }));
@@ -58,9 +51,7 @@ export const useEvent = (): Hooks => {
   };
 
   return {
-    eventTitle,
-    eventDetail,
-    eventDates,
+    event,
     handleChangeText,
     handleCangeDay,
     handleCangeTime,
