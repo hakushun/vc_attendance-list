@@ -4,7 +4,7 @@ import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import { asyncFactory } from 'typescript-fsa-redux-thunk';
 import { RootState } from './reducers';
 import { Event, Date } from './event';
-import { createEvent, updateEvent } from '../../libs/firestore/crudEvent';
+import { createEvent, removeEvent, updateEvent } from '../../libs/firestore/crudEvent';
 
 export type Events = {
   events: Event[];
@@ -38,7 +38,12 @@ export const update = asyncActionCreator<Event, Event, CustomError>(
     return result;
   },
 );
-
+export const remove = asyncActionCreator<Event, void, CustomError>(
+  'REMOVE_EVENT',
+  async (payload) => {
+    await removeEvent(payload);
+  },
+);
 // initial state
 const INITIAL_STATE: Events = {
   events: [],
@@ -51,15 +56,15 @@ const reducer = reducerWithInitialState(INITIAL_STATE)
     ...state,
     events: payload,
   }))
-  .cases([create.async.started, update.async.started], (state) => ({
+  .cases([create.async.started, update.async.started, remove.async.started], (state) => ({
     ...state,
     isLoading: true,
   }))
-  .cases([create.async.done, update.async.done], (state) => ({
+  .cases([create.async.done, update.async.done, remove.async.done], (state) => ({
     ...state,
     isLoading: false,
   }))
-  .cases([create.async.failed, update.async.failed], (state) => ({
+  .cases([create.async.failed, update.async.failed, remove.async.failed], (state) => ({
     ...state,
     isLoading: false,
   }));
