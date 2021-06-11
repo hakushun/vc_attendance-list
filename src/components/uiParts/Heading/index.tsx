@@ -7,10 +7,10 @@ type Props = {
 };
 export const Heading: React.VFC<Props> = ({ level, label }) => {
   if (level === 2) {
-    return <h2 className={styles.root}>{label}</h2>;
+    return <h2 className={styles.root}><span>{label}</span></h2>;
   }
   if (level === 3) {
-    return <h3 className={styles.root}>{label}</h3>;
+    return <h3 className={styles.root}><span>{label}</span></h3>;
   }
   return null;
 };
