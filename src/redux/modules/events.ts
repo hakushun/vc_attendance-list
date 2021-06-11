@@ -4,7 +4,6 @@ import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import { asyncFactory } from 'typescript-fsa-redux-thunk';
 import { RootState } from './reducers';
 import { Event, Date } from './event';
-import { createBook } from '../../libs/firestore/crudEvent';
 
 export type Events = {
   events: Event[];
@@ -27,7 +26,7 @@ export const subscribeEvents = actionCreator<Event[]>('SUBSCRIBE_EVENTS');
 export const createEvent = asyncActionCreator<CreatePayload, Event, CustomError>(
   'CREATE_EVENT',
   async (payload) => {
-    const result = await createBook(payload);
+    const result = await createEvent(payload);
     return result;
   },
 );

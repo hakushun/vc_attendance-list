@@ -9,7 +9,7 @@ export const fetchEvent = async (id: string): Promise<Event> => {
   return doc.data() as Event;
 };
 
-export const createBook = async (event: CreatePayload): Promise<Event> => {
+export const createEvent = async (event: CreatePayload): Promise<Event> => {
   const id = await db.collection('events').doc().id;
   await db
     .collection('events')
