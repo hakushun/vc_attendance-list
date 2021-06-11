@@ -86,7 +86,13 @@ const reducer = reducerWithInitialState(INITIAL_STATE)
     ...state,
     ...result,
   }))
-  .case(toggleEventForm, (state) => {
+  .case(toggleEventForm, (state, payload) => {
+    if (payload.initiate) {
+      return {
+        ...INITIAL_STATE,
+        dates: [generateNewDate()],
+      };
+    }
     if (state.id) {
       return { ...state };
     }
