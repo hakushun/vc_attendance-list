@@ -8,7 +8,7 @@ import styles from './index.module.scss';
 export const Header: React.VFC = () => {
   const { user } = useUser();
   const { handleSignOut } = useSign();
-  const { handleToggleEventForm, handleToggleSetting } = useShow();
+  const { handleToggleEventFormWithInitiate, handleToggleSetting } = useShow();
 
   return (
     <header className={styles.root}>
@@ -18,7 +18,10 @@ export const Header: React.VFC = () => {
           <nav className={styles.nav}>
             <ul className={styles.list}>
               <li>
-                <QuaternaryButton label="イベント作成" handleClick={handleToggleEventForm} />
+                <QuaternaryButton
+                  label="イベント作成"
+                  handleClick={handleToggleEventFormWithInitiate}
+                />
               </li>
               <li>
                 <QuaternaryButton label="設定" handleClick={handleToggleSetting} />
