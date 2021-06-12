@@ -13,7 +13,7 @@ export type Date = {
   time: string;
 };
 export type Event = {
-  id?: string;
+  id: string;
   title: string;
   detail: string;
   dates: Date[];
@@ -47,6 +47,7 @@ const generateNewDate = (): Date => ({
 });
 // initial state
 const INITIAL_STATE: Event = {
+  id: '',
   title: '',
   detail: '',
   dates: [generateNewDate()],
@@ -94,15 +95,9 @@ const reducer = reducerWithInitialState(INITIAL_STATE)
     ...INITIAL_STATE,
     dates: [generateNewDate()],
   }))
-  .case(toggleEventForm, (state, payload) => {
-    if (payload.initiate) {
-      return {
-        ...INITIAL_STATE,
-        dates: [generateNewDate()],
-      };
-    }
-    if (state.id) {
-      return { ...state };
+  .case(toggleEventForm, (_state, payload) => {
+    if (payload) {
+      return { ...payload };
     }
     return {
       ...INITIAL_STATE,

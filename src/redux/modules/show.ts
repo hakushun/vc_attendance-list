@@ -1,19 +1,16 @@
 import { createSelector } from 'reselect';
 import actionCreatorFactory from 'typescript-fsa';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
+import { Event } from './event';
 import { create as createEvent, remove as removeEvent, update as updateEvent } from './events';
 import { RootState } from './reducers';
 
 type KeyName = 'eventForm' | 'covidForm' | 'attendanceForm' | 'covidResult' | 'setting';
 export type Show = Record<KeyName, boolean>;
-type EventFormPayload = {
-  toggle: boolean;
-  initiate: boolean;
-};
 
 // action
 const actionCreator = actionCreatorFactory();
-export const toggleEventForm = actionCreator<EventFormPayload>('TOGGLE_EVENT_FORM');
+export const toggleEventForm = actionCreator<void | Event>('TOGGLE_EVENT_FORM');
 export const toggleCovidForm = actionCreator<boolean>('TOGGLE_COVID_FORM');
 export const toggleAttendanceForm = actionCreator<boolean>('TOGGLE_ATTENDANCE_FORM');
 export const toggleCovidResult = actionCreator<boolean>('TOGGLE_COVID_RESULT');
@@ -30,9 +27,9 @@ const INITIAL_STATE: Show = {
 
 // reducer
 const reducer = reducerWithInitialState(INITIAL_STATE)
-  .case(toggleEventForm, (state, payload) => ({
+  .case(toggleEventForm, (state) => ({
     ...state,
-    eventForm: payload.toggle,
+    eventForm: !state.eventForm,
   }))
   .case(toggleCovidForm, (state, payload) => ({
     ...state,
