@@ -113,8 +113,8 @@ export const EventForm: React.VFC = () => {
                   ))}
                 </ul>
                 <div className={styles.action}>
-                  <TernaryButton label="追加" handleClick={handleAddDateForm} />
-                  <TernaryButton label="削除" handleClick={handleDeleteDateForm} />
+                  <TernaryButton label="追加" disabled={isLoading} handleClick={handleAddDateForm} />
+                  <TernaryButton label="削除" disabled={isLoading} handleClick={handleDeleteDateForm} />
                 </div>
               </fieldset>
             </div>
@@ -125,8 +125,8 @@ export const EventForm: React.VFC = () => {
             disabled={isLoading}
             handleClick={event.id ? handleUpdate : handleCreate}
           />
-          <SecondaryButton label="キャンセル" handleClick={handleToggleEventForm} />
-          {event.id && <OptionalButton label={`${event.title}の削除`} handleClick={handleRemove} />}
+          <SecondaryButton label="キャンセル" disabled={isLoading} handleClick={handleToggleEventForm} />
+          {event.id && <OptionalButton label={`${event.title}の削除`} disabled={isLoading} handleClick={handleRemove} />}
         </form>
       ) : (
         <>

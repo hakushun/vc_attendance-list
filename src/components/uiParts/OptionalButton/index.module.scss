@@ -21,6 +21,13 @@
     transform: translateY(3px);
   }
 
+  &:disabled {
+    color: mixin.$mainTextColor;
+    cursor: not-allowed;
+    background-color: mixin.$disabledColor;
+    border: 3px solid mixin.$disabledColor;
+  }
+
   @include mixin.mq() {
     padding: 2px 5px;
     font-size: mixin.rem(14);

@@ -3,11 +3,12 @@ import styles from './index.module.scss';
 
 type Props = {
   label: string;
+  disabled: boolean;
   handleClick: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
-export const OptionalButton: React.VFC<Props> = ({ label, handleClick }) => {
+export const OptionalButton: React.VFC<Props> = ({ label, disabled, handleClick }) => {
   return (
-    <button type="button" className={styles.root} onClick={handleClick}>
+    <button type="button" disabled={disabled} className={styles.root} onClick={handleClick}>
       {label}
     </button>
   );

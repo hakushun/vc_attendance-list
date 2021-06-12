@@ -3,11 +3,12 @@ import styles from './index.module.scss';
 
 type Props = {
   label: string;
+  disabled: boolean;
   handleClick: () => void;
 };
-export const SecondaryButton: React.VFC<Props> = ({ label, handleClick }) => {
+export const SecondaryButton: React.VFC<Props> = ({ label, disabled, handleClick }) => {
   return (
-    <button type="button" onClick={handleClick} className={styles.root}>
+    <button type="button" disabled={disabled} onClick={handleClick} className={styles.root}>
       {label}
     </button>
   );
