@@ -1,12 +1,15 @@
 import clsx from 'clsx';
 import React from 'react';
 import { useTab } from '../../../hooks/useTab';
+import { Practice } from './Practice';
 import { Sectioning } from '../../uiParts/Sectioning';
 import { Heading } from '../../uiParts/Heading';
 import styles from './index.module.scss';
 import { useEvent } from '../../../hooks/useEvent';
+import { useShow } from '../../../hooks/useShow';
 
 export const Setting: React.VFC = () => {
+  const { handleToggleSetting } = useShow();
   const { tab, handleChangeSettingTab } = useTab();
   const { event } = useEvent();
   return (
@@ -52,6 +55,9 @@ export const Setting: React.VFC = () => {
           </button>
         </div>
         <div role="tabpanel" id={tab.setting} className={styles.tabpanel}>
+          {tab.setting === 'practice' && (
+            <Practice event={event} handleToggleSetting={handleToggleSetting} />
+          )}
         </div>
       </div>
     </Sectioning>
