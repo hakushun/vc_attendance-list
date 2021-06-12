@@ -145,7 +145,7 @@ export const Practice: React.VFC<Props> = ({ event, handleToggleSetting }) => {
           disabled={isLoading}
           handleClick={handleUpdate}
         />
-        <SecondaryButton label="キャンセル" handleClick={handleToggleSetting} />
+        <SecondaryButton label="キャンセル" disabled={isLoading} handleClick={handleToggleSetting} />
       </form>
     </>
   );
