@@ -36,6 +36,9 @@
 }
 
 .tabpanel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   padding: 20px 10px;
   background-color: darken(mixin.$bgColor, 10%);
   border-radius: 3px;
