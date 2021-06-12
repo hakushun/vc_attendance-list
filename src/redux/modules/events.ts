@@ -5,6 +5,7 @@ import { asyncFactory } from 'typescript-fsa-redux-thunk';
 import { RootState } from './reducers';
 import { Event, Date } from './event';
 import { createEvent, removeEvent, updateEvent } from '../../libs/firestore/crudEvent';
+import { createPractice } from '../../libs/firestore/crudPractice';
 
 export type Events = {
   events: Event[];
@@ -28,6 +29,7 @@ export const create = asyncActionCreator<CreatePayload, Event, CustomError>(
   'CREATE_EVENT',
   async (payload) => {
     const result = await createEvent(payload);
+    await createPractice(result);
     return result;
   },
 );
