@@ -7,6 +7,7 @@ import { Heading } from '../../uiParts/Heading';
 import styles from './index.module.scss';
 import { useEvent } from '../../../hooks/useEvent';
 import { useShow } from '../../../hooks/useShow';
+import { Program } from './Program';
 
 export const Setting: React.VFC = () => {
   const { handleToggleSetting } = useShow();
@@ -57,6 +58,9 @@ export const Setting: React.VFC = () => {
         <div role="tabpanel" id={tab.setting} className={styles.tabpanel}>
           {tab.setting === 'practice' && (
             <Practice event={event} handleToggleSetting={handleToggleSetting} />
+          )}
+          {tab.setting === 'program' && (
+            <Program event={event} handleToggleSetting={handleToggleSetting} />
           )}
         </div>
       </div>
