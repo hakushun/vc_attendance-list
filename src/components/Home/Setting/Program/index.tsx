@@ -4,6 +4,7 @@ import { usePrograms } from '../../../../hooks/usePrograms';
 import { Event } from '../../../../redux/modules/event';
 import { Badge } from '../../../uiParts/Badge';
 import { Heading } from '../../../uiParts/Heading';
+import { Loading } from '../../../uiParts/Loading';
 import { PrimaryButton } from '../../../uiParts/PrimaryButton';
 import { SecondaryButton } from '../../../uiParts/SecondaryButton';
 import { TernaryButton } from '../../../uiParts/TernaryButton';
@@ -16,6 +17,8 @@ type Props = {
 export const Program: React.VFC<Props> = ({ event, handleToggleSetting }) => {
   const { program, handleChange, handleAddProgramForm, handleDeleteProgramForm } = useProgram();
   const { isLoading, handleUpdate } = usePrograms(event.id);
+
+  if (isLoading) return <Loading />;
 
   return (
     <>
