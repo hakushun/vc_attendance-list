@@ -72,5 +72,10 @@
       max-height: 300px;
       resize: vertical;
     }
+
+    &:invalid {
+      background-color: lighten(mixin.$vividColor, 40%);
+      border: 1px solid mixin.$vividColor;
+    }
   }
 }

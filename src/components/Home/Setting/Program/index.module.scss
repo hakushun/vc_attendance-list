@@ -46,6 +46,11 @@
     padding: 5px 8px;
     border: 1px solid mixin.$mainTextColor;
     border-radius: 3px;
+
+    &:invalid {
+      background-color: lighten(mixin.$vividColor, 40%);
+      border: 1px solid mixin.$vividColor;
+    }
   }
 
   .action {

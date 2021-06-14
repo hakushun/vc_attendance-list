@@ -54,6 +54,11 @@
     &.date {
       flex: 1 1 auto;
     }
+
+    &:invalid {
+      background-color: lighten(mixin.$vividColor, 40%);
+      border: 1px solid mixin.$vividColor;
+    }
   }
 
   .list {
