@@ -25,4 +25,5 @@ export const updateEvent = async (event: Event): Promise<Event> => {
 
 export const removeEvent = async (event: Event): Promise<void> => {
   await db.collection('events').doc(event.id).delete();
+  // TODO: eventに紐づいたdataもdeleteする
 };
