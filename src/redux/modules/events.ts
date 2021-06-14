@@ -6,6 +6,7 @@ import { RootState } from './reducers';
 import { Event, Date } from './event';
 import { createEvent, removeEvent, updateEvent } from '../../libs/firestore/crudEvent';
 import { createPractice } from '../../libs/firestore/crudPractice';
+import { createProgram } from '../../libs/firestore/crudProgram';
 
 export type Events = {
   events: Event[];
@@ -30,6 +31,7 @@ export const create = asyncActionCreator<CreatePayload, Event, CustomError>(
   async (payload) => {
     const result = await createEvent(payload);
     await createPractice(result);
+    await createProgram(result);
     return result;
   },
 );
