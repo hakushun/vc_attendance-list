@@ -112,18 +112,20 @@ export const EventForm: React.VFC = () => {
                     </li>
                   ))}
                 </ul>
-                <div className={styles.action}>
-                  <TernaryButton
-                    label="追加"
-                    disabled={isLoading}
-                    handleClick={handleAddDateForm}
-                  />
-                  <TernaryButton
-                    label="削除"
-                    disabled={isLoading}
-                    handleClick={handleDeleteDateForm}
-                  />
-                </div>
+                {!event.id && (
+                  <div className={styles.action}>
+                    <TernaryButton
+                      label="追加"
+                      disabled={isLoading}
+                      handleClick={handleAddDateForm}
+                    />
+                    <TernaryButton
+                      label="削除"
+                      disabled={isLoading}
+                      handleClick={handleDeleteDateForm}
+                    />
+                  </div>
+                )}
               </fieldset>
             </div>
           </fieldset>
