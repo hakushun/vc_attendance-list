@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { initiateAttendance } from '../redux/modules/attendance';
 import { selectEvent } from '../redux/modules/event';
 import { selectEvents } from '../redux/modules/events';
 import {
@@ -8,7 +9,6 @@ import {
   selectCovidResultIsShown,
   selectSettingIsShown,
   toggleEventForm,
-  toggleAttendanceForm,
   toggleCovidForm,
   toggleCovidResult,
   toggleSetting,
@@ -52,7 +52,7 @@ export const useShow = (): Hooks => {
     dispatch(toggleCovidForm(!covidFormIsShown));
   };
   const handleToggleAttendanceForm = () => {
-    dispatch(toggleAttendanceForm(!attendanceFormIsShown));
+    dispatch(initiateAttendance(event));
   };
   const handleToggleCovidResult = () => {
     dispatch(toggleCovidResult(!covidResultIsShown));
