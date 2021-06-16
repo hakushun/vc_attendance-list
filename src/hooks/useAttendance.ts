@@ -6,11 +6,21 @@ import {
   changeAttendanceItem,
   generateAttendance,
   AttendanceType,
+  Attendance,
 } from '../redux/modules/attendance';
 import { selectEvent } from '../redux/modules/event';
 import { selectUser } from '../redux/modules/user';
 
-export const useAttendance = () => {
+type Hooks = {
+  attendance: Attendance;
+  handleChangeAttendance: (
+    _e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement | HTMLTextAreaElement>,
+  ) => void;
+  handleChangeRemark: (_e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleClickRadio: (_e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => void;
+  handleKeyDownRadio: (_e: React.KeyboardEvent<HTMLSpanElement>) => void;
+};
+export const useAttendance = (): Hooks => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const event = useSelector(selectEvent);
@@ -34,7 +44,41 @@ export const useAttendance = () => {
   };
 
   const handleKeyDownRadio = (e: React.KeyboardEvent<HTMLSpanElement>) => {
-    console.log(e);
+    const dateId = e.currentTarget.id.split('-')[1];
+    const radiogroup = e.currentTarget.parentElement as HTMLDivElement;
+    const radioes = Array.from(radiogroup.querySelectorAll('[role="radio"]')) as HTMLElement[];
+    const checkedIndex = radioes.findIndex(
+      (radio) => radio.getAttribute('aria-checked') === 'true',
+    );
+
+    switch (e.key) {
+      case 'ArrowRight':
+      case 'ArrowDown':
+        e.preventDefault();
+        if (checkedIndex >= radioes.length - 1) break;
+        radioes[checkedIndex + 1].focus();
+        dispatch(
+          changeAttendanceItem({
+            dateId,
+            attendance: radioes[checkedIndex + 1].id.split('-')[0] as AttendanceType,
+          }),
+        );
+        break;
+      case 'ArrowLeft':
+      case 'ArrowUp':
+        e.preventDefault();
+        if (checkedIndex <= 0) break;
+        radioes[checkedIndex - 1].focus();
+        dispatch(
+          changeAttendanceItem({
+            dateId,
+            attendance: radioes[checkedIndex - 1].id.split('-')[0] as AttendanceType,
+          }),
+        );
+        break;
+      default:
+        break;
+    }
   };
   useEffect(() => {
     const itmes = event.dates.map((date) => ({
