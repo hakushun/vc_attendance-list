@@ -9,6 +9,7 @@ import {
 } from './attendances';
 import { create as createEvent, remove as removeEvent, update as updateEvent } from './events';
 import { RootState } from './reducers';
+import { focusAttendance, initiateAttendance } from './attendance';
 
 type KeyName = 'eventForm' | 'covidForm' | 'attendanceForm' | 'covidResult' | 'setting';
 export type Show = Record<KeyName, boolean>;
@@ -62,7 +63,15 @@ const reducer = reducerWithInitialState(INITIAL_STATE)
       ...state,
       attendanceForm: false,
     }),
-  );
+  )
+  .case(focusAttendance, (state) => ({
+    ...state,
+    attendanceForm: true,
+  }))
+  .case(initiateAttendance, (state) => ({
+    ...state,
+    attendanceForm: !state.attendanceForm,
+  }));
 export default reducer;
 
 // selector
