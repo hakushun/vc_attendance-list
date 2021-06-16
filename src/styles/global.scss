@@ -5,3 +5,7 @@ html {
   color: mixin.$mainTextColor;
   background-color: mixin.$bgColor;
 }
+
+.highlight {
+  background-color: mixin.$whiteColor;
+}
