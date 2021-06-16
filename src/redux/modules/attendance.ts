@@ -31,6 +31,7 @@ export const generateAttendance = actionCreator<AttendanceItem[]>('GENERATE_ATTE
 export const changeAttendance = actionCreator<ChangeAttendancePayload>('CHANGE_ATTENDANCE');
 export const changeAttendanceItem =
   actionCreator<ChangeAttendanceItemPayload>('CHANGE_ATTENDANCE_ITEM');
+export const focusAttendance = actionCreator<Attendance>('FOCUS_ATTENDANCE');
 
 // initial state
 const INITIAL_STATE: Attendance = {
@@ -59,6 +60,9 @@ const reducer = reducerWithInitialState(INITIAL_STATE)
         attend.dateId === payload.dateId ? { ...attend, ...payload } : attend,
       ),
     ],
+  }))
+  .case(focusAttendance, (_state, payload) => ({
+    ...payload,
   }));
 export default reducer;
 
