@@ -7,6 +7,7 @@ import {
   generateAttendance,
   AttendanceType,
   Attendance,
+  focusAttendance,
 } from '../redux/modules/attendance';
 import { selectEvent } from '../redux/modules/event';
 import { selectUser } from '../redux/modules/user';
@@ -19,6 +20,7 @@ type Hooks = {
   handleChangeRemark: (_e: React.ChangeEvent<HTMLInputElement>) => void;
   handleClickRadio: (_e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => void;
   handleKeyDownRadio: (_e: React.KeyboardEvent<HTMLSpanElement>) => void;
+  handleFocusAttendance: (_item: Attendance) => void;
 };
 export const useAttendance = (): Hooks => {
   const dispatch = useDispatch();
@@ -80,6 +82,11 @@ export const useAttendance = (): Hooks => {
         break;
     }
   };
+
+  const handleFocusAttendance = (item: Attendance) => {
+    dispatch(focusAttendance(item));
+  };
+
   useEffect(() => {
     const itmes = event.dates.map((date) => ({
       dateId: date.id,
@@ -96,5 +103,6 @@ export const useAttendance = (): Hooks => {
     handleChangeRemark,
     handleClickRadio,
     handleKeyDownRadio,
+    handleFocusAttendance,
   };
 };
