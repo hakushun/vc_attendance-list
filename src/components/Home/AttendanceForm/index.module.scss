@@ -32,6 +32,18 @@
     margin-top: 20px;
   }
 
+  .select {
+    width: 100%;
+    padding: 5px 8px;
+    border: 1px solid mixin.$mainTextColor;
+    border-radius: 3px;
+
+    &:invalid {
+      background-color: lighten(mixin.$vividColor, 40%);
+      border: 1px solid mixin.$vividColor;
+    }
+  }
+
   .inputWrapper {
     display: flex;
     flex-direction: column;
