@@ -2,6 +2,11 @@ import { createSelector } from 'reselect';
 import actionCreatorFactory from 'typescript-fsa';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import { Event } from './event';
+import {
+  create as createAttendance,
+  remove as removeAttendance,
+  update as updateAttendance,
+} from './attendances';
 import { create as createEvent, remove as removeEvent, update as updateEvent } from './events';
 import { RootState } from './reducers';
 
@@ -50,7 +55,14 @@ const reducer = reducerWithInitialState(INITIAL_STATE)
   .cases([createEvent.async.done, updateEvent.async.done, removeEvent.async.done], (state) => ({
     ...state,
     eventForm: false,
-  }));
+  }))
+  .cases(
+    [createAttendance.async.done, updateAttendance.async.done, removeAttendance.async.done],
+    (state) => ({
+      ...state,
+      attendanceForm: false,
+    }),
+  );
 export default reducer;
 
 // selector
