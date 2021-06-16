@@ -1,15 +1,12 @@
-import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   selectAttendance,
   changeAttendance,
   changeAttendanceItem,
-  generateAttendance,
   AttendanceType,
   Attendance,
   focusAttendance,
 } from '../redux/modules/attendance';
-import { selectEvent } from '../redux/modules/event';
 import { selectUser } from '../redux/modules/user';
 
 type Hooks = {
@@ -25,7 +22,6 @@ type Hooks = {
 export const useAttendance = (): Hooks => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
-  const event = useSelector(selectEvent);
   const attendance = useSelector(selectAttendance);
 
   const handleChangeAttendance = (
@@ -86,16 +82,6 @@ export const useAttendance = (): Hooks => {
   const handleFocusAttendance = (item: Attendance) => {
     dispatch(focusAttendance(item));
   };
-
-  useEffect(() => {
-    const itmes = event.dates.map((date) => ({
-      dateId: date.id,
-      attendance: 'presence' as AttendanceType,
-      remark: '',
-    }));
-    dispatch(generateAttendance(itmes));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [event.id]);
 
   return {
     attendance,
