@@ -23,6 +23,7 @@ const parts = [
 ];
 const INITIAL_PART = parts.map((part) => ({ id: generateId(), name: part }));
 
+// TODO: try/catch
 export const createPart = async (event: Event): Promise<void> => {
   await db.collection('parts').doc(event.id).set({ part: INITIAL_PART });
 };

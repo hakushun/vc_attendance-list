@@ -31,10 +31,12 @@ export const useSign = (): Hooks => {
 
   const handleSignUp = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
+    // TODO: validation
     await dispatch(signUp(form));
   };
   const handleSignIn = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
+    // TODO: validation
     await dispatch(signIn(form));
   };
   const handleSignOut = async () => {

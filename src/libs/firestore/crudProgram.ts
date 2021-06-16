@@ -4,6 +4,7 @@ import { UpdatePayload } from '../../redux/modules/programs';
 
 const db = getInstance();
 
+// TODO: try/catch
 export const createProgram = async (event: Event): Promise<void> => {
   await db.collection('programs').doc(event.id).set({ program: [] });
 };

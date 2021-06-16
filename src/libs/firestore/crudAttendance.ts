@@ -3,6 +3,7 @@ import { getInstance } from './getInstance';
 
 const db = getInstance();
 
+// TODO: try/catch
 export const createAttendance = async ({ eventId, attendance }: CrudPayload): Promise<void> => {
   await db
     .collection('attendances')

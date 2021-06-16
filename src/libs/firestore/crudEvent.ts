@@ -4,6 +4,7 @@ import { getInstance } from './getInstance';
 
 const db = getInstance();
 
+// TODO: try/catch
 export const fetchEvent = async (id: string): Promise<Event> => {
   const doc = await db.collection('events').doc(id).get();
   return doc.data() as Event;

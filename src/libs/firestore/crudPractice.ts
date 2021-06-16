@@ -4,6 +4,7 @@ import { UpdatePayload } from '../../redux/modules/practice';
 
 const db = getInstance();
 
+// TODO: try/catch
 export const createPractice = async (event: Event): Promise<void> => {
   const practice = {
     locations: event.dates.map((date) => ({ eventId: event.id, dateId: date.id })),

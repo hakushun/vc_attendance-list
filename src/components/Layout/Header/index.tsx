@@ -23,6 +23,7 @@ export const Header: React.VFC = () => {
                   handleClick={handleToggleEventFormWithInitiate}
                 />
               </li>
+              {/* TODO: useIdによる出し分け */}
               <li>
                 <QuaternaryButton label="設定" handleClick={handleToggleSetting} />
               </li>
