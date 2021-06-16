@@ -2,6 +2,7 @@ import { createSelector } from 'reselect';
 import actionCreatorFactory from 'typescript-fsa';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import { RootState } from './reducers';
+import { Event } from './event';
 
 export type AttendanceType = 'presence' | 'undecided' | 'absence';
 type AttendanceItem = {
@@ -27,7 +28,7 @@ type ChangeAttendanceItemPayload = {
 // action
 const actionCreator = actionCreatorFactory();
 
-export const generateAttendance = actionCreator<AttendanceItem[]>('GENERATE_ATTENDANCE');
+export const initiateAttendance = actionCreator<Event>('INITIATE_ATTENDANCE');
 export const changeAttendance = actionCreator<ChangeAttendancePayload>('CHANGE_ATTENDANCE');
 export const changeAttendanceItem =
   actionCreator<ChangeAttendanceItemPayload>('CHANGE_ATTENDANCE_ITEM');
@@ -45,9 +46,13 @@ const INITIAL_STATE: Attendance = {
 
 // reducer
 const reducer = reducerWithInitialState(INITIAL_STATE)
-  .case(generateAttendance, (state, payload) => ({
-    ...state,
-    attendances: payload,
+  .case(initiateAttendance, (_state, payload) => ({
+    ...INITIAL_STATE,
+    attendances: payload.dates.map((date) => ({
+      dateId: date.id,
+      attendance: 'presence' as AttendanceType,
+      remark: '',
+    })),
   }))
   .case(changeAttendance, (state, payload) => ({
     ...state,
