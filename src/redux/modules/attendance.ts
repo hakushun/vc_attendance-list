@@ -10,7 +10,7 @@ type AttendanceItem = {
   attendance: AttendanceType;
   remark: string;
 };
-type Occupation = 'student' | 'working';
+export type Occupation = 'student' | 'working';
 export type Attendance = {
   userId: string;
   occupation: Occupation;
