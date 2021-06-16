@@ -9,6 +9,7 @@
     max-width: 100%;
     padding: 0 5px;
     overflow: hidden;
+    color: mixin.$clickableColor;
     text-align: left;
     text-decoration: underline;
     text-overflow: ellipsis;
