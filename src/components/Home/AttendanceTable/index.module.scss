@@ -1,0 +1,67 @@
+@use '../../../styles/mixin' as mixin;
+
+.remarks {
+  margin-top: 20px;
+  font-size: mixin.rem(14);
+  text-align: center;
+}
+
+.wrapper {
+  max-width: min(1000px, 100%);
+  max-height: 60vh;
+  margin-top: 20px;
+  overflow: auto;
+}
+
+.table {
+  position: relative;
+  font-size: mixin.rem(14);
+
+  .thead {
+    position: sticky;
+    top: 0;
+  }
+
+  .cell {
+    min-width: 120px;
+    text-align: center;
+
+    &.head {
+      padding: 3px 5px;
+      font-weight: bold;
+      background-color: mixin.$primaryColor;
+      border: 1px solid mixin.$primaryColor;
+    }
+
+    &.body {
+      padding: 10px 5px;
+      border: 1px solid mixin.$mainTextColor;
+    }
+
+    &.narrow {
+      min-width: 80px;
+    }
+
+    &.midium {
+      min-width: 135px;
+    }
+
+    &.wide {
+      min-width: 250px;
+    }
+  }
+
+  .action {
+    font-weight: bold;
+    color: mixin.$clickableColor;
+    text-decoration: underline;
+    border: 2px solid transparent;
+
+    &:hover,
+    &:focus-visible {
+      background-color: darken(mixin.$bgColor, 20%);
+      border: 2px solid mixin.$mainTextColor;
+      border-radius: 3px;
+    }
+  }
+}
