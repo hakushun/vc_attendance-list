@@ -1,5 +1,5 @@
 import React from 'react';
-import { usePart } from '../../../../hooks/usePArt';
+import { usePart } from '../../../../hooks/usePart';
 import { useParts } from '../../../../hooks/useParts';
 import { Event } from '../../../../redux/modules/event';
 import { Heading } from '../../../uiParts/Heading';
