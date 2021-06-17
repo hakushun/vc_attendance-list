@@ -68,7 +68,7 @@ export const AttendanceTable: React.VFC = () => {
                     {date.day}
                     {getDayOfTheWeek(date.day)}
                   </button>
-                  <span>{date.time}</span>
+                  <div>{date.time}</div>
                 </th>
               ))}
               <th className={clsx(styles.cell, styles.head, styles.wide)}>コメント</th>
