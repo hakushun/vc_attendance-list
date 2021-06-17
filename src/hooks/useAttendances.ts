@@ -16,7 +16,7 @@ type Hooks = {
   isLoading: boolean;
   handleCreate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   handleUpdate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-  handleRemove: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  handleRemove: () => void;
 };
 export const useAttendances = (eventId: string): Hooks => {
   const db = getInstance();
@@ -35,8 +35,7 @@ export const useAttendances = (eventId: string): Hooks => {
     // TODO: validation
     dispatch(update({ eventId, attendance }));
   };
-  const handleRemove = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.preventDefault();
+  const handleRemove = () => {
     dispatch(remove({ eventId, attendance }));
   };
 

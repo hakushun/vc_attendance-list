@@ -16,7 +16,7 @@ type Hooks = {
   isLoading: boolean;
   handleCreate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   handleUpdate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-  handleRemove: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  handleRemove: () => void;
 };
 export const useEvents = (): Hooks => {
   const db = getInstance();
@@ -50,8 +50,7 @@ export const useEvents = (): Hooks => {
     dispatch(update(event));
   };
 
-  const handleRemove = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.preventDefault();
+  const handleRemove = () => {
     if (!event.id) return;
     dispatch(remove(event));
   };
