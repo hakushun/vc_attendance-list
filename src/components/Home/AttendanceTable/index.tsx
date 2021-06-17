@@ -8,6 +8,7 @@ import { convertAttendance } from '../../../libs/utils/convertAttendance';
 import { convertOccuoation } from '../../../libs/utils/convertOccupation';
 import { hideColumns } from '../../../libs/utils/hideColumns';
 import { showAllColumns } from '../../../libs/utils/showAllColumns';
+import { toggleAttendanceRemark } from '../../../libs/utils/toggleAttendanceRemark';
 import { exportToExcel } from '../../../libs/xlsx/exportToExcel';
 import { Heading } from '../../uiParts/Heading';
 import { Loading } from '../../uiParts/Loading';
@@ -89,9 +90,12 @@ export const AttendanceTable: React.VFC = () => {
                     className={clsx(styles.cell, styles.body, styles.medium)}
                     data-columns={`columns-${item.dateId}`}>
                     {item.remark ? (
-                      <button type="button" className={styles.action}>
-                        {convertAttendance(item.attendance)}
-                      </button>
+                      <>
+                        <button type="button" onClick={toggleAttendanceRemark} className={styles.action}>
+                          {convertAttendance(item.attendance)}
+                        </button>
+                        <div className={styles.remark} data-type="remark" data-is-shown="false">{item.remark}</div>
+                      </>
                     ) : (
                       convertAttendance(item.attendance)
                     )}
