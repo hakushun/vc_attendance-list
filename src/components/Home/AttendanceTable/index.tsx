@@ -91,10 +91,15 @@ export const AttendanceTable: React.VFC = () => {
                     data-columns={`columns-${item.dateId}`}>
                     {item.remark ? (
                       <>
-                        <button type="button" onClick={toggleAttendanceRemark} className={styles.action}>
+                        <button
+                          type="button"
+                          onClick={toggleAttendanceRemark}
+                          className={styles.action}>
                           {convertAttendance(item.attendance)}
                         </button>
-                        <div className={styles.remark} data-type="remark" data-is-shown="false">{item.remark}</div>
+                        <div className={styles.remark} data-type="remark" data-is-shown="false">
+                          {item.remark}
+                        </div>
                       </>
                     ) : (
                       convertAttendance(item.attendance)

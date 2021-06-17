@@ -78,12 +78,12 @@ export const selectAttendances = createSelector(
     (state: RootState) => state.domain.parts.parts,
   ],
   (attendances, parts) => {
-    const newArray: Attendance[] = []
-    parts.forEach(part => {
-      attendances.forEach(attendance => {
+    const newArray: Attendance[] = [];
+    parts.forEach((part) => {
+      attendances.forEach((attendance) => {
         part.name === attendance.part && newArray.push(attendance);
-      })
-    })
+      });
+    });
     return newArray;
   },
 );
