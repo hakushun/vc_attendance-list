@@ -6,9 +6,14 @@ import { useEvent } from '../../../hooks/useEvent';
 import { getDayOfTheWeek } from '../../../libs/dayjs/getDayOfTheWeek';
 import { convertAttendance } from '../../../libs/utils/convertAttendance';
 import { convertOccuoation } from '../../../libs/utils/convertOccupation';
+import { hideColumns } from '../../../libs/utils/hideColumns';
+import { showAllColumns } from '../../../libs/utils/showAllColumns';
+import { exportToExcel } from '../../../libs/xlsx/exportToExcel';
 import { Heading } from '../../uiParts/Heading';
 import { Loading } from '../../uiParts/Loading';
+import { OptionalButton } from '../../uiParts/OptionalButton';
 import { Sectioning } from '../../uiParts/Sectioning';
+import { TernaryButton } from '../../uiParts/TernaryButton';
 import styles from './index.module.scss';
 
 export const AttendanceTable: React.VFC = () => {
@@ -27,13 +32,32 @@ export const AttendanceTable: React.VFC = () => {
         <li>※遅刻早退コメントの確認は、〇△×を選択してください</li>
       </ul>
       <div className={styles.wrapper}>
-        <table className={styles.table}>
+        <table id="xlsx_table" className={styles.table}>
           <thead className={styles.thead}>
+            <tr>
+              <td className={clsx(styles.cell, styles.narrow, styles.button)}>
+                <OptionalButton label="export" disabled={false} handleClick={exportToExcel} />
+              </td>
+              <td className={clsx(styles.cell, styles.button)}>
+                <TernaryButton label="全列表示" disabled={false} handleClick={showAllColumns} />
+              </td>
+              {event.dates.map((date) => (
+                <td
+                  key={date.id}
+                  className={clsx(styles.cell, styles.button)}
+                  data-columns={`columns-${date.id}`}>
+                  <TernaryButton label="列の非表示" disabled={false} handleClick={hideColumns} />
+                </td>
+              ))}
+            </tr>
             <tr>
               <th className={clsx(styles.cell, styles.head, styles.narrow)}>パート</th>
               <th className={clsx(styles.cell, styles.head)}>名前</th>
               {event.dates.map((date) => (
-                <th key={date.id} className={clsx(styles.cell, styles.head, styles.midium)}>
+                <th
+                  key={date.id}
+                  className={clsx(styles.cell, styles.head, styles.midium)}
+                  data-columns={`columns-${date.id}`}>
                   <button type="button" className={styles.action} onClick={(e) => console.log(e)}>
                     {date.day}
                     {getDayOfTheWeek(date.day)}
@@ -60,7 +84,10 @@ export const AttendanceTable: React.VFC = () => {
                   </button>
                 </td>
                 {attendance.attendances.map((item) => (
-                  <td key={item.dateId} className={clsx(styles.cell, styles.body, styles.midium)}>
+                  <td
+                    key={item.dateId}
+                    className={clsx(styles.cell, styles.body, styles.midium)}
+                    data-columns={`columns-${item.dateId}`}>
                     {item.remark ? (
                       <button type="button" className={styles.action}>
                         {convertAttendance(item.attendance)}
