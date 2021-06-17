@@ -73,9 +73,19 @@ export default reducer;
 
 // selector
 export const selectAttendances = createSelector(
-  [(state: RootState) => state.domain.attendances.attendances],
-  // TODO: part順にsort
-  (attendances) => attendances,
+  [
+    (state: RootState) => state.domain.attendances.attendances,
+    (state: RootState) => state.domain.parts.parts,
+  ],
+  (attendances, parts) => {
+    const newArray: Attendance[] = []
+    parts.forEach(part => {
+      attendances.forEach(attendance => {
+        part.name === attendance.part && newArray.push(attendance);
+      })
+    })
+    return newArray;
+  },
 );
 export const selectIsLoading = createSelector(
   [(state: RootState) => state.domain.attendances.isLoading],
