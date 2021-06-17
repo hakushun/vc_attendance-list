@@ -55,7 +55,7 @@ export const AttendanceTable: React.VFC = () => {
                   <button
                     type="button"
                     className={styles.action}
-                    onClick={() => handleFocusAttendance(attendance)}>
+                    onClick={(e) => handleFocusAttendance(e, attendance)}>
                     {attendance.name}
                   </button>
                 </td>

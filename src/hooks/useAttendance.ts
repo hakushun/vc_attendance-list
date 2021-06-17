@@ -17,7 +17,10 @@ type Hooks = {
   handleChangeRemark: (_e: React.ChangeEvent<HTMLInputElement>) => void;
   handleClickRadio: (_e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => void;
   handleKeyDownRadio: (_e: React.KeyboardEvent<HTMLSpanElement>) => void;
-  handleFocusAttendance: (_item: Attendance) => void;
+  handleFocusAttendance: (
+    _e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    _item: Attendance,
+  ) => void;
 };
 export const useAttendance = (): Hooks => {
   const dispatch = useDispatch();
@@ -79,7 +82,11 @@ export const useAttendance = (): Hooks => {
     }
   };
 
-  const handleFocusAttendance = (item: Attendance) => {
+  const handleFocusAttendance = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    item: Attendance,
+  ) => {
+    e.stopPropagation();
     dispatch(focusAttendance(item));
   };
 
