@@ -4,7 +4,7 @@ import styles from './index.module.scss';
 type Props = {
   label: string;
   disabled: boolean;
-  handleClick: () => void;
+  handleClick: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
 export const TernaryButton: React.VFC<Props> = ({ label, disabled, handleClick }) => {
   return (
