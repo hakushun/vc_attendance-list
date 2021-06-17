@@ -35,6 +35,7 @@
     }
 
     &.body {
+      position: relative;
       padding: 10px 5px;
       border: 1px solid mixin.$mainTextColor;
     }
@@ -53,6 +54,39 @@
 
     &.button {
       padding: 5px 0;
+    }
+
+    .remark {
+      position: absolute;
+      bottom: 100%;
+      left: 0;
+      width: max-content;
+      min-width: 135px;
+      max-width: 300px;
+      padding: 5px;
+      background-color: mixin.$ternaryColor;
+      border-radius: 3px;
+
+      &::after {
+        position: absolute;
+        bottom: -8px;
+        left: 60px;
+        width: 15px;
+        height: 15px;
+        content: '';
+        background-color: mixin.$ternaryColor;
+        border-bottom: 3px solid mixin.$ternaryColor;
+        border-bottom: 3px solid mixin.$ternaryColor;
+        transform: rotate(45deg);
+      }
+
+      &[data-is-shown='ture'] {
+        display: block;
+      }
+
+      &[data-is-shown='false'] {
+        display: none;
+      }
     }
   }
 
