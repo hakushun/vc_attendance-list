@@ -56,7 +56,7 @@ export const AttendanceTable: React.VFC = () => {
               {event.dates.map((date) => (
                 <th
                   key={date.id}
-                  className={clsx(styles.cell, styles.head, styles.midium)}
+                  className={clsx(styles.cell, styles.head, styles.medium)}
                   data-columns={`columns-${date.id}`}>
                   <button type="button" className={styles.action} onClick={(e) => console.log(e)}>
                     {date.day}
@@ -86,7 +86,7 @@ export const AttendanceTable: React.VFC = () => {
                 {attendance.attendances.map((item) => (
                   <td
                     key={item.dateId}
-                    className={clsx(styles.cell, styles.body, styles.midium)}
+                    className={clsx(styles.cell, styles.body, styles.medium)}
                     data-columns={`columns-${item.dateId}`}>
                     {item.remark ? (
                       <button type="button" className={styles.action}>
