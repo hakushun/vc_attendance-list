@@ -3,6 +3,7 @@ import React from 'react';
 import { useAttendance } from '../../../hooks/useAttendance';
 import { useAttendances } from '../../../hooks/useAttendances';
 import { useEvent } from '../../../hooks/useEvent';
+import { useModal } from '../../../hooks/useModal';
 import { getDayOfTheWeek } from '../../../libs/dayjs/getDayOfTheWeek';
 import { convertAttendance } from '../../../libs/utils/convertAttendance';
 import { convertOccuoation } from '../../../libs/utils/convertOccupation';
@@ -21,6 +22,7 @@ export const AttendanceTable: React.VFC = () => {
   const { event } = useEvent();
   const { handleFocusAttendance } = useAttendance();
   const { attendances, isLoading } = useAttendances(event.id);
+  const { handleTogglePracticeModal } = useModal();
 
   if (isLoading) return <Loading />;
 
@@ -59,7 +61,10 @@ export const AttendanceTable: React.VFC = () => {
                   key={date.id}
                   className={clsx(styles.cell, styles.head, styles.medium)}
                   data-columns={`columns-${date.id}`}>
-                  <button type="button" className={styles.action} onClick={(e) => console.log(e)}>
+                  <button
+                    type="button"
+                    className={styles.action}
+                    onClick={handleTogglePracticeModal}>
                     {date.day}
                     {getDayOfTheWeek(date.day)}
                   </button>
