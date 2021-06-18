@@ -70,6 +70,7 @@ export const PracticeDetail: React.VFC = () => {
                 </dd>
               </div>
             </dl>
+            {/* TODO: escでも閉じられるように */}
             <SecondaryButton
               label="閉じる"
               disabled={false}
