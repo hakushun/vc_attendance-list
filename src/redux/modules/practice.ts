@@ -16,6 +16,7 @@ export type PracticeItem = {
 };
 type Practice = {
   practice: PracticeItem;
+  dateId: string;
   isLoading: boolean;
 };
 export type UpdatePayload = {
@@ -30,6 +31,7 @@ interface CustomError extends Error {
 const actionCreator = actionCreatorFactory();
 const asyncActionCreator = asyncFactory<Practice>(actionCreator);
 
+export const focusPractice = actionCreator<string>('FOCUS_PRACTICE');
 export const subscribePractice = actionCreator<PracticeItem>('SUBSCRIBE_PRACTICE');
 export const update = asyncActionCreator<UpdatePayload, void, CustomError>(
   'UPDATE_PRACTICE',
@@ -44,11 +46,16 @@ const INITIAL_STATE: Practice = {
     plans: [],
     remarks: [],
   },
+  dateId: '',
   isLoading: false,
 };
 
 // reducer
 const reducer = reducerWithInitialState(INITIAL_STATE)
+  .case(focusPractice, (state, payload) => ({
+    ...state,
+    dateId: payload,
+  }))
   .case(subscribePractice, (state, payload) => ({
     ...state,
     practice: { ...payload },
@@ -71,6 +78,10 @@ export default reducer;
 export const selectPractice = createSelector(
   [(state: RootState) => state.domain.practice.practice],
   (practice) => practice,
+);
+export const selectDateId = createSelector(
+  [(state: RootState) => state.domain.practice.dateId],
+  (dateId) => dateId,
 );
 export const selectIsLoading = createSelector(
   [(state: RootState) => state.domain.practice.isLoading],
