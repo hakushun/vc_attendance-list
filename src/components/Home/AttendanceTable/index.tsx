@@ -22,7 +22,7 @@ export const AttendanceTable: React.VFC = () => {
   const { event } = useEvent();
   const { handleFocusAttendance } = useAttendance();
   const { attendances, isLoading } = useAttendances(event.id);
-  const { handleFocusPractice } = usePractice();
+  const { handleFocusPractice } = usePractice(event.id);
 
   if (isLoading) return <Loading />;
 
