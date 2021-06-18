@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect';
 import actionCreatorFactory from 'typescript-fsa';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
+import { focusPractice } from './practice';
 import { RootState } from './reducers';
 
 type KeyName = 'practice';
@@ -17,13 +18,15 @@ const INITIAL_STATE: Modal = {
 };
 
 // reducer
-const reducer = reducerWithInitialState(INITIAL_STATE).case(
-  togglePracticeModal,
-  (state, payload) => ({
+const reducer = reducerWithInitialState(INITIAL_STATE)
+  .case(togglePracticeModal, (state, payload) => ({
     ...state,
     practice: payload,
-  }),
-);
+  }))
+  .case(focusPractice, (state) => ({
+    ...state,
+    practice: true,
+  }));
 export default reducer;
 
 // selector
