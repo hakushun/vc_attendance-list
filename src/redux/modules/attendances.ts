@@ -30,19 +30,19 @@ export const subscribeAtendances = actionCreator<Attendance[]>('SUBSCRIBE_ATTEND
 export const create = asyncActionCreator<CrudPayload, void, CustomError>(
   'CREATE_ATTENDANCE',
   async (payload) => {
-    createAttendance(payload);
+    await createAttendance(payload);
   },
 );
 export const update = asyncActionCreator<CrudPayload, void, CustomError>(
   'UPDATE_ATTENDANCE',
   async (payload) => {
-    updateAttendance(payload);
+    await updateAttendance(payload);
   },
 );
 export const remove = asyncActionCreator<CrudPayload, void, CustomError>(
   'REMOVE_ATTENDANCE',
   async (payload) => {
-    removeAttendance(payload);
+    await removeAttendance(payload);
   },
 );
 // initial state
