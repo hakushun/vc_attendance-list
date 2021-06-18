@@ -8,6 +8,7 @@ import { createEvent, removeEvent, updateEvent } from '../../libs/firestore/crud
 import { createPractice } from '../../libs/firestore/crudPractice';
 import { createProgram } from '../../libs/firestore/crudProgram';
 import { createPart } from '../../libs/firestore/crudPart';
+import { createRole } from '../../libs/firestore/crudRole';
 
 export type Events = {
   events: Event[];
@@ -34,6 +35,7 @@ export const create = asyncActionCreator<CreatePayload, Event, CustomError>(
     await createPractice(result);
     await createProgram(result);
     await createPart(result);
+    await createRole(result);
     return result;
   },
 );
