@@ -5,22 +5,7 @@ import { UpdatePayload } from '../../redux/modules/parts';
 
 const db = getInstance();
 
-const parts = [
-  '指揮者',
-  'Fl',
-  'Ob',
-  'Cl',
-  'Fg',
-  'Hr',
-  'Tp',
-  'Tb',
-  'Tuba',
-  'Perc',
-  'Vn',
-  'Va',
-  'Vc',
-  'Cb',
-];
+const parts = ['Fl', 'Ob', 'Cl', 'Fg', 'Hr', 'Tp', 'Tb', 'Tuba', 'Perc', 'Vn', 'Va', 'Vc', 'Cb'];
 const INITIAL_PART = parts.map((part) => ({ id: generateId(), name: part }));
 
 // TODO: try/catch
