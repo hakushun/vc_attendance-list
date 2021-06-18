@@ -115,6 +115,7 @@ export const Practice: React.VFC<Props> = ({ event, handleToggleSetting }) => {
                       <textarea
                         name="schedule"
                         id={`schedule-${date.id}`}
+                        maxLength={300}
                         value={plans.find((plan) => plan.dateId === date.id)?.schedule || ''}
                         onChange={handleChangePlans}
                         className={clsx(styles.input, styles.textarea)}
@@ -128,6 +129,7 @@ export const Practice: React.VFC<Props> = ({ event, handleToggleSetting }) => {
                       <textarea
                         name="content"
                         id={`content-${date.id}`}
+                        maxLength={500}
                         value={remarks.find((remark) => remark.dateId === date.id)?.content || ''}
                         onChange={handleChangeRemarks}
                         className={clsx(styles.input, styles.textarea)}
