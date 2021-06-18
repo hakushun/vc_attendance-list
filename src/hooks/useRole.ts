@@ -1,12 +1,18 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { changeRadio, changeRole, RoleItem, selectProgramId, selectRoles } from '../redux/modules/role';
+import {
+  changeRadio,
+  changeRole,
+  RoleItem,
+  selectProgramId,
+  selectRoles,
+} from '../redux/modules/role';
 
 type Hooks = {
   programId: string;
   roles: RoleItem[];
   handleChangeRadio: (_e: React.ChangeEvent<HTMLInputElement>) => void;
   handleChangeRole: (_e: React.ChangeEvent<HTMLInputElement>) => void;
-}
+};
 export const useRole = (): Hooks => {
   const dispatch = useDispatch();
   const programId = useSelector(selectProgramId);

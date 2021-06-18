@@ -8,7 +8,7 @@ type Hooks = {
   roles: RoleItem[];
   isLoading: boolean;
   handleUpdate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-}
+};
 export const useRoles = (eventId: string): Hooks => {
   const db = getInstance();
   const dispatch = useDispatch();
