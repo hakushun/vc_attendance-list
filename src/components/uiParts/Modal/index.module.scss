@@ -5,6 +5,7 @@
   width: min(90vw, 400px);
   max-height: 90vh;
   padding: 20px 16px;
+  overflow-y: auto;
   background-color: mixin.$bgColor;
   border: 3px solid mixin.$primaryColor;
   border-radius: 5px;
