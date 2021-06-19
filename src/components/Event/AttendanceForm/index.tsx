@@ -1,11 +1,9 @@
 import clsx from 'clsx';
 import React from 'react';
-import { useAttendance } from '../../../hooks/useAttendance';
-import { useAttendances } from '../../../hooks/useAttendances';
-import { useEvent } from '../../../hooks/useEvent';
-import { useParts } from '../../../hooks/useParts';
-import { useShow } from '../../../hooks/useShow';
 import { getDayOfTheWeek } from '../../../libs/dayjs/getDayOfTheWeek';
+import { Attendance } from '../../../redux/modules/attendance';
+import { Event } from '../../../redux/modules/event';
+import { Part } from '../../../redux/modules/part';
 import { Badge } from '../../uiParts/Badge';
 import { Heading } from '../../uiParts/Heading';
 import { OptionalButton } from '../../uiParts/OptionalButton';
@@ -14,21 +12,40 @@ import { SecondaryButton } from '../../uiParts/SecondaryButton';
 import { Sectioning } from '../../uiParts/Sectioning';
 import styles from './index.module.scss';
 
-export const AttendanceForm: React.VFC = () => {
-  const { attendanceFormIsShown, handleToggleAttendanceForm } = useShow();
-  const { event } = useEvent();
-  const { parts } = useParts(event.id);
-  const {
-    attendance,
-    handleChangeAttendance,
-    handleChangeRemark,
-    handleClickRadio,
-    handleKeyDownRadio,
-  } = useAttendance();
-  const { attendances, isLoading, handleCreate, handleUpdate, handleRemove } = useAttendances(
-    event.id,
-  );
-
+type Props = {
+  attendanceFormIsShown: boolean;
+  handleToggleAttendanceForm: () => void;
+  event: Event;
+  parts: Part[];
+  attendance: Attendance;
+  handleChangeAttendance: (
+    _e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement | HTMLTextAreaElement>,
+  ) => void;
+  handleChangeRemark: (_e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleClickRadio: (_e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => void;
+  handleKeyDownRadio: (_e: React.KeyboardEvent<HTMLSpanElement>) => void;
+  attendances: Attendance[];
+  AttendanceIsLoading: boolean;
+  handleCreate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  handleUpdate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  handleRemove: () => void;
+};
+export const AttendanceForm: React.VFC<Props> = ({
+  attendanceFormIsShown,
+  handleToggleAttendanceForm,
+  event,
+  parts,
+  attendance,
+  handleChangeAttendance,
+  handleChangeRemark,
+  handleClickRadio,
+  handleKeyDownRadio,
+  attendances,
+  AttendanceIsLoading,
+  handleCreate,
+  handleUpdate,
+  handleRemove,
+}) => {
   return (
     <Sectioning id="attendance_form">
       {attendanceFormIsShown ? (
@@ -52,7 +69,7 @@ export const AttendanceForm: React.VFC = () => {
                 name="occupation"
                 required
                 aria-required
-                disabled={isLoading}
+                disabled={AttendanceIsLoading}
                 value={attendance.occupation}
                 className={styles.select}
                 onChange={handleChangeAttendance}>
@@ -70,7 +87,7 @@ export const AttendanceForm: React.VFC = () => {
                 name="part"
                 required
                 aria-required
-                disabled={isLoading}
+                disabled={AttendanceIsLoading}
                 value={attendance.part}
                 className={styles.select}
                 onChange={handleChangeAttendance}>
@@ -96,7 +113,7 @@ export const AttendanceForm: React.VFC = () => {
                 maxLength={30}
                 placeholder="フルネームを入力下さい"
                 autoComplete="off"
-                disabled={isLoading}
+                disabled={AttendanceIsLoading}
                 value={attendance.name}
                 className={clsx(styles.input, styles.text)}
                 onChange={handleChangeAttendance}
@@ -183,7 +200,7 @@ export const AttendanceForm: React.VFC = () => {
                         id={`attendance_remark-${date.id}`}
                         name="remark"
                         maxLength={40}
-                        disabled={isLoading}
+                        disabled={AttendanceIsLoading}
                         value={
                           attendance.attendances.find((item) => item.dateId === date.id)?.remark ||
                           ''
@@ -205,7 +222,7 @@ export const AttendanceForm: React.VFC = () => {
                 name="comment"
                 id="attendance_comment"
                 maxLength={200}
-                disabled={isLoading}
+                disabled={AttendanceIsLoading}
                 value={attendance.comment}
                 className={clsx(styles.input, styles.textarea)}
                 onChange={handleChangeAttendance}
@@ -219,7 +236,7 @@ export const AttendanceForm: React.VFC = () => {
                 ? '出欠の更新'
                 : '出欠の作成'
             }
-            disabled={isLoading}
+            disabled={AttendanceIsLoading}
             handleClick={
               attendances.some((item) => item.userId === attendance.userId)
                 ? handleUpdate
@@ -228,18 +245,22 @@ export const AttendanceForm: React.VFC = () => {
           />
           <SecondaryButton
             label="キャンセル"
-            disabled={isLoading}
+            disabled={AttendanceIsLoading}
             handleClick={handleToggleAttendanceForm}
           />
           {attendances.some((item) => item.userId === attendance.userId) && (
-            <OptionalButton label="削除" disabled={isLoading} handleClick={handleRemove} />
+            <OptionalButton
+              label="削除"
+              disabled={AttendanceIsLoading}
+              handleClick={handleRemove}
+            />
           )}
         </form>
       ) : (
         <PrimaryButton
           type="button"
           label="出欠作成"
-          disabled={isLoading}
+          disabled={AttendanceIsLoading}
           handleClick={handleToggleAttendanceForm}
         />
       )}

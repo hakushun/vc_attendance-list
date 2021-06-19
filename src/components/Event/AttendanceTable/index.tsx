@@ -1,12 +1,5 @@
 import clsx from 'clsx';
 import React from 'react';
-import { useAttendance } from '../../../hooks/useAttendance';
-import { useAttendances } from '../../../hooks/useAttendances';
-import { useEvent } from '../../../hooks/useEvent';
-import { usePractice } from '../../../hooks/usePractice';
-import { useProgram } from '../../../hooks/useProgram';
-import { usePrograms } from '../../../hooks/usePrograms';
-import { useRoles } from '../../../hooks/useRoles';
 import { getDayOfTheWeek } from '../../../libs/dayjs/getDayOfTheWeek';
 import { convertAttendance } from '../../../libs/utils/convertAttendance';
 import { convertOccuoation } from '../../../libs/utils/convertOccupation';
@@ -15,6 +8,10 @@ import { hideColumns } from '../../../libs/utils/hideColumns';
 import { showAllColumns } from '../../../libs/utils/showAllColumns';
 import { toggleAttendanceRemark } from '../../../libs/utils/toggleAttendanceRemark';
 import { exportToExcel } from '../../../libs/xlsx/exportToExcel';
+import { Attendance } from '../../../redux/modules/attendance';
+import { Event } from '../../../redux/modules/event';
+import { ProgramItem } from '../../../redux/modules/program';
+import { RoleItem } from '../../../redux/modules/role';
 import { Heading } from '../../uiParts/Heading';
 import { Loading } from '../../uiParts/Loading';
 import { OptionalButton } from '../../uiParts/OptionalButton';
@@ -22,16 +19,32 @@ import { Sectioning } from '../../uiParts/Sectioning';
 import { TernaryButton } from '../../uiParts/TernaryButton';
 import styles from './index.module.scss';
 
-export const AttendanceTable: React.VFC = () => {
-  const { event } = useEvent();
-  const { handleFocusAttendance } = useAttendance();
-  const { attendances, isLoading } = useAttendances(event.id);
-  const { handleFocusPractice } = usePractice(event.id);
-  const { selectedId, handleFocusProgram } = useProgram();
-  const { programs } = usePrograms(event.id);
-  const { roles } = useRoles(event.id);
-
-  if (isLoading) return <Loading />;
+type Props = {
+  event: Event;
+  handleFocusAttendance: (
+    _e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    _item: Attendance,
+  ) => void;
+  attendances: Attendance[];
+  AttendanceIsLoading: boolean;
+  handleFocusPractice: (_id: string) => void;
+  selectedId: string;
+  handleFocusProgram: (_e: React.ChangeEvent<HTMLSelectElement>) => void;
+  programs: ProgramItem[];
+  roles: RoleItem[];
+};
+export const AttendanceTable: React.VFC<Props> = ({
+  event,
+  handleFocusAttendance,
+  attendances,
+  AttendanceIsLoading,
+  handleFocusPractice,
+  selectedId,
+  handleFocusProgram,
+  programs,
+  roles,
+}) => {
+  if (AttendanceIsLoading) return <Loading />;
 
   return (
     <Sectioning id="attendance_table">

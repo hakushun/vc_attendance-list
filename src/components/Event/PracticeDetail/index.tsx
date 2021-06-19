@@ -1,20 +1,28 @@
 import React from 'react';
-import { useEvent } from '../../../hooks/useEvent';
-import { useModal } from '../../../hooks/useModal';
-import { usePractice } from '../../../hooks/usePractice';
 import { getDayOfTheWeek } from '../../../libs/dayjs/getDayOfTheWeek';
 import { getStringDate } from '../../../libs/dayjs/getStringDate';
+import { Event } from '../../../redux/modules/event';
+import { PracticeItem } from '../../../redux/modules/practice';
 import { Heading } from '../../uiParts/Heading';
 import { Modal } from '../../uiParts/Modal';
 import { SecondaryButton } from '../../uiParts/SecondaryButton';
 import { StringWithUrl } from '../../uiParts/StringWithUrl';
 import styles from './index.module.scss';
 
-export const PracticeDetail: React.VFC = () => {
-  const { practiceModalIsShown, handleTogglePracticeModal } = useModal();
-  const { event } = useEvent();
-  const { practice, dateId } = usePractice(event.id);
-
+type Props = {
+  event: Event;
+  practiceModalIsShown: boolean;
+  handleTogglePracticeModal: () => void;
+  practice: PracticeItem;
+  dateId: string;
+};
+export const PracticeDetail: React.VFC<Props> = ({
+  event,
+  practiceModalIsShown,
+  handleTogglePracticeModal,
+  practice,
+  dateId,
+}) => {
   const titleDate = getStringDate(event.dates.find((date) => date.id === dateId)?.day);
   const titleDayOfTheWeek = getDayOfTheWeek(event.dates.find((date) => date.id === dateId)?.day);
   const url = practice.locations.find((loc) => loc.dateId === dateId)?.url;

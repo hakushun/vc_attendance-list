@@ -1,20 +1,27 @@
 import clsx from 'clsx';
 import React from 'react';
-import { useTab } from '../../../hooks/useTab';
 import { Practice } from './Practice';
 import { Sectioning } from '../../uiParts/Sectioning';
 import { Heading } from '../../uiParts/Heading';
-import styles from './index.module.scss';
-import { useEvent } from '../../../hooks/useEvent';
-import { useShow } from '../../../hooks/useShow';
 import { Program } from './Program';
 import { Part } from './Part';
 import { Role } from './Role';
+import { Event } from '../../../redux/modules/event';
+import { Tab } from '../../../redux/modules/tab';
+import styles from './index.module.scss';
 
-export const Setting: React.VFC = () => {
-  const { handleToggleSetting } = useShow();
-  const { tab, handleChangeSettingTab } = useTab();
-  const { event } = useEvent();
+type Props = {
+  event: Event;
+  handleToggleSetting: () => void;
+  tab: Tab;
+  handleChangeSettingTab: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+};
+export const Setting: React.VFC<Props> = ({
+  event,
+  handleToggleSetting,
+  tab,
+  handleChangeSettingTab,
+}) => {
   return (
     <Sectioning id="setting">
       <Heading level={2} label="各種設定" />

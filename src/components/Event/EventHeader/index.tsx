@@ -1,12 +1,13 @@
 import React from 'react';
-import { useEvent } from '../../../hooks/useEvent';
-import { Heading } from '../../uiParts/Heading';
 import { Sectioning } from '../../uiParts/Sectioning';
 import styles from './index.module.scss';
+import { Heading } from '../../uiParts/Heading';
+import { Event } from '../../../redux/modules/event';
 
-export const EventHeader: React.VFC = () => {
-  const { event } = useEvent();
-
+type Props = {
+  event: Event;
+};
+export const EventHeader: React.VFC<Props> = ({ event }) => {
   return (
     <Sectioning id="event_header">
       <Heading level={2} label={event.title} />
