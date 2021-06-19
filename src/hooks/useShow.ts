@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { initiateAttendance } from '../redux/modules/attendance';
 import { selectEvent } from '../redux/modules/event';
-import { selectEvents } from '../redux/modules/events';
 import {
   selectEventFormIsShown,
   selectCovidFormIsShown,
@@ -21,7 +20,6 @@ type Hooks = {
   covidResultIsShown: boolean;
   settingIsShown: boolean;
   handleToggleEventForm: () => void;
-  handleToggleEventFormWithInitiate: () => void;
   handleToggleCovidForm: () => void;
   handleToggleAttendanceForm: () => void;
   handleToggleCovidResult: () => void;
@@ -30,7 +28,6 @@ type Hooks = {
 export const useShow = (): Hooks => {
   const dispatch = useDispatch();
   const event = useSelector(selectEvent);
-  const events = useSelector(selectEvents);
   const eventFormIsShown = useSelector(selectEventFormIsShown);
   const covidFormIsShown = useSelector(selectCovidFormIsShown);
   const attendanceFormIsShown = useSelector(selectAttendanceFormIsShown);
@@ -38,14 +35,6 @@ export const useShow = (): Hooks => {
   const settingIsShown = useSelector(selectSettingIsShown);
 
   const handleToggleEventForm = () => {
-    if (event.id) {
-      const target = events.find((item) => item.id === event.id);
-      target && dispatch(toggleEventForm(target));
-      return;
-    }
-    dispatch(toggleEventForm());
-  };
-  const handleToggleEventFormWithInitiate = () => {
     dispatch(toggleEventForm());
   };
   const handleToggleCovidForm = () => {
@@ -68,7 +57,6 @@ export const useShow = (): Hooks => {
     covidResultIsShown,
     settingIsShown,
     handleToggleEventForm,
-    handleToggleEventFormWithInitiate,
     handleToggleCovidForm,
     handleToggleAttendanceForm,
     handleToggleCovidResult,
