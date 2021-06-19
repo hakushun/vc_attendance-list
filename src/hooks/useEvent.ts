@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getStringDate } from '../libs/dayjs/getStringDate';
 import {
@@ -8,8 +9,10 @@ import {
   deleteDateForm,
   Event,
   focusEvent,
+  initiateEvent,
   selectEvent,
 } from '../redux/modules/event';
+import { useRouter } from './useRouter';
 
 type Hooks = {
   event: Event;
@@ -20,8 +23,9 @@ type Hooks = {
   handleDeleteDateForm: () => void;
   handleFocusEvent: (_value: Event) => void;
 };
-export const useEvent = (): Hooks => {
+export const useEvent = (initialState?: Event): Hooks => {
   const dispatch = useDispatch();
+  const { router } = useRouter();
   const event = useSelector(selectEvent);
 
   const handleChangeText = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -49,6 +53,12 @@ export const useEvent = (): Hooks => {
   const handleFocusEvent = (value: Event) => {
     dispatch(focusEvent(value));
   };
+
+  useEffect(() => {
+    router.pathname === '/' && dispatch(initiateEvent());
+    initialState && dispatch(focusEvent(initialState));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [initialState]);
 
   return {
     event,
