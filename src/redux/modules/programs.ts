@@ -3,17 +3,17 @@ import actionCreatorFactory from 'typescript-fsa';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import { asyncFactory } from 'typescript-fsa-redux-thunk';
 import { RootState } from './reducers';
-import { Program } from './program';
+import { ProgramItem } from './program';
 import { updateProgram } from '../../libs/firestore/crudProgram';
 import { Event } from './event';
 
 export type Programs = {
-  programs: Program[];
+  programs: ProgramItem[];
   isLoading: boolean;
 };
 export type UpdatePayload = {
   event: Event;
-  program: Program[];
+  program: ProgramItem[];
 };
 interface CustomError extends Error {
   name: string;
@@ -23,7 +23,7 @@ interface CustomError extends Error {
 const actionCreator = actionCreatorFactory();
 const asyncActionCreator = asyncFactory<Programs>(actionCreator);
 
-export const subscribeProgram = actionCreator<Program[]>('SUBSCRIBE_PROGRAM');
+export const subscribeProgram = actionCreator<ProgramItem[]>('SUBSCRIBE_PROGRAM');
 export const update = asyncActionCreator<UpdatePayload, void, CustomError>(
   'UPDATE_PROGRAM',
   async (payload) => {

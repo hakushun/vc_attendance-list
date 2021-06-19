@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getInstance } from '../libs/firestore/getInstance';
 import { selectEvent } from '../redux/modules/event';
-import { Program, selectProgram } from '../redux/modules/program';
+import { ProgramItem, selectProgram } from '../redux/modules/program';
 import {
   selectIsLoading,
   selectPrograms,
@@ -11,7 +11,7 @@ import {
 } from '../redux/modules/programs';
 
 type Hooks = {
-  programs: Program[];
+  programs: ProgramItem[];
   isLoading: boolean;
   handleUpdate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
@@ -35,7 +35,7 @@ export const usePrograms = (eventId: string): Hooks => {
       .collection('programs')
       .doc(eventId)
       .onSnapshot((snapshot) => {
-        const data = snapshot.data() as { program: Program[] } | undefined;
+        const data = snapshot.data() as { program: ProgramItem[] } | undefined;
         data && dispatch(subscribeProgram(data.program));
       });
     return () => unsubscribe();

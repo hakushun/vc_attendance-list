@@ -3,12 +3,12 @@ import {
   addProgramForm,
   changeProgram,
   deleteProgramForm,
-  Program,
+  ProgramItem,
   selectProgram,
 } from '../redux/modules/program';
 
 type Hooks = {
-  program: Program[];
+  program: ProgramItem[];
   handleChange: (_e: React.ChangeEvent<HTMLInputElement>) => void;
   handleAddProgramForm: () => void;
   handleDeleteProgramForm: () => void;
