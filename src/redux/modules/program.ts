@@ -18,7 +18,8 @@ const actionCreator = actionCreatorFactory();
 
 export const addProgramForm = actionCreator('ADD_PROGRAM_FORM');
 export const deleteProgramForm = actionCreator('DELETE_PROGRAM_FORM');
-export const changeProgram = actionCreator<Program>('CHANGE_PROGRAM');
+export const changeProgram = actionCreator<ProgramItem>('CHANGE_PROGRAM');
+export const focusProgram = actionCreator<string>('FOCUS_PROGRAM');
 
 // initial state
 const INITIAL_STATE: Program = {
@@ -45,6 +46,10 @@ const reducer = reducerWithInitialState(INITIAL_STATE)
   .case(changeProgram, (state, payload) => ({
     ...state,
     program: state.program.map((item) => (item.id === payload.id ? payload : item)),
+  }))
+  .case(focusProgram, (state, payload) => ({
+    ...state,
+    selectedId: payload,
   }))
   .case(subscribeProgram, (state, payload) => ({
     ...state,
