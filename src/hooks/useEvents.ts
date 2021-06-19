@@ -14,16 +14,18 @@ import {
 type Hooks = {
   events: Event[];
   isLoading: boolean;
+  targetEvent: Event | undefined;
   handleCreate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   handleUpdate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   handleRemove: () => void;
 };
-export const useEvents = (): Hooks => {
+export const useEvents = (eventId?: string): Hooks => {
   const db = getInstance();
   const dispatch = useDispatch();
   const event = useSelector(selectEvent);
   const events = useSelector(selectEvents);
   const isLoading = useSelector(selectIsLoading);
+  const targetEvent = events.find((item) => item.id === eventId);
 
   const handleCreate = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
@@ -64,5 +66,5 @@ export const useEvents = (): Hooks => {
     return () => unsubscribe();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  return { events, isLoading, handleCreate, handleUpdate, handleRemove };
+  return { events, isLoading, targetEvent, handleCreate, handleUpdate, handleRemove };
 };
