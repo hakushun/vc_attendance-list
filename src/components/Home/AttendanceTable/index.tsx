@@ -4,9 +4,13 @@ import { useAttendance } from '../../../hooks/useAttendance';
 import { useAttendances } from '../../../hooks/useAttendances';
 import { useEvent } from '../../../hooks/useEvent';
 import { usePractice } from '../../../hooks/usePractice';
+import { useProgram } from '../../../hooks/useProgram';
+import { usePrograms } from '../../../hooks/usePrograms';
+import { useRoles } from '../../../hooks/useRoles';
 import { getDayOfTheWeek } from '../../../libs/dayjs/getDayOfTheWeek';
 import { convertAttendance } from '../../../libs/utils/convertAttendance';
 import { convertOccuoation } from '../../../libs/utils/convertOccupation';
+import { getRoleValue } from '../../../libs/utils/getRoleValue';
 import { hideColumns } from '../../../libs/utils/hideColumns';
 import { showAllColumns } from '../../../libs/utils/showAllColumns';
 import { toggleAttendanceRemark } from '../../../libs/utils/toggleAttendanceRemark';
@@ -23,6 +27,9 @@ export const AttendanceTable: React.VFC = () => {
   const { handleFocusAttendance } = useAttendance();
   const { attendances, isLoading } = useAttendances(event.id);
   const { handleFocusPractice } = usePractice(event.id);
+  const { selectedId, handleFocusProgram } = useProgram();
+  const { programs } = usePrograms(event.id);
+  const { roles } = useRoles(event.id);
 
   if (isLoading) return <Loading />;
 
@@ -44,6 +51,20 @@ export const AttendanceTable: React.VFC = () => {
               <td className={clsx(styles.cell, styles.button)}>
                 <TernaryButton label="全列表示" disabled={false} handleClick={showAllColumns} />
               </td>
+              <td className={styles.cell}>
+                <select
+                  name="role_program"
+                  value={selectedId}
+                  className={styles.select}
+                  onChange={handleFocusProgram}>
+                  <option value="">選択して下さい</option>
+                  {programs.map((program) => (
+                    <option key={program.id} value={program.id}>
+                      {program.name}
+                    </option>
+                  ))}
+                </select>
+              </td>
               {event.dates.map((date) => (
                 <td
                   key={date.id}
@@ -56,6 +77,7 @@ export const AttendanceTable: React.VFC = () => {
             <tr>
               <th className={clsx(styles.cell, styles.head, styles.narrow)}>パート</th>
               <th className={clsx(styles.cell, styles.head)}>名前</th>
+              <th className={clsx(styles.cell, styles.head)}>乗り番</th>
               {event.dates.map((date) => (
                 <th
                   key={date.id}
@@ -88,6 +110,9 @@ export const AttendanceTable: React.VFC = () => {
                     onClick={(e) => handleFocusAttendance(e, attendance)}>
                     {attendance.name}
                   </button>
+                </td>
+                <td className={clsx(styles.cell, styles.body)}>
+                  {getRoleValue(roles, attendance.userId, selectedId) || '未入力'}
                 </td>
                 {attendance.attendances.map((item) => (
                   <td
