@@ -22,7 +22,6 @@ export const useUser = (): Hooks => {
     const cancelAuthListener = firebase.auth().onIdTokenChanged(async (usr) => {
       if (usr) {
         dispatch(auth(mapUserData(usr)));
-        router.push('/');
       } else {
         dispatch(auth(null));
         router.pathname === '/' && router.push('/login');

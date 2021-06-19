@@ -9,6 +9,7 @@ import {
   SignForm,
   change,
 } from '../redux/modules/sign';
+import { useRouter } from './useRouter';
 
 initFirebase();
 
@@ -22,6 +23,7 @@ type Hooks = {
 };
 export const useSign = (): Hooks => {
   const dispatch = useDispatch();
+  const { router } = useRouter();
   const form = useSelector(selectSignForm);
   const isLoading = useSelector(selectIsLoading);
 
@@ -33,11 +35,13 @@ export const useSign = (): Hooks => {
     e.preventDefault();
     // TODO: validation
     await dispatch(signUp(form));
+    router.push('/');
   };
   const handleSignIn = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     // TODO: validation
     await dispatch(signIn(form));
+    router.push('/');
   };
   const handleSignOut = async () => {
     await dispatch(signOut());
