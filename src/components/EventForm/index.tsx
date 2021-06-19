@@ -1,15 +1,15 @@
 import clsx from 'clsx';
 import React from 'react';
-import { useEvent } from '../../../hooks/useEvent';
-import { useEvents } from '../../../hooks/useEvents';
-import { useShow } from '../../../hooks/useShow';
-import { Badge } from '../../uiParts/Badge';
-import { Heading } from '../../uiParts/Heading';
-import { OptionalButton } from '../../uiParts/OptionalButton';
-import { PrimaryButton } from '../../uiParts/PrimaryButton';
-import { SecondaryButton } from '../../uiParts/SecondaryButton';
-import { Sectioning } from '../../uiParts/Sectioning';
-import { TernaryButton } from '../../uiParts/TernaryButton';
+import { useEvent } from '../../hooks/useEvent';
+import { useEvents } from '../../hooks/useEvents';
+import { useShow } from '../../hooks/useShow';
+import { Badge } from '../uiParts/Badge';
+import { Heading } from '../uiParts/Heading';
+import { OptionalButton } from '../uiParts/OptionalButton';
+import { PrimaryButton } from '../uiParts/PrimaryButton';
+import { SecondaryButton } from '../uiParts/SecondaryButton';
+import { Sectioning } from '../uiParts/Sectioning';
+import { TernaryButton } from '../uiParts/TernaryButton';
 import styles from './index.module.scss';
 
 export const EventForm: React.VFC = () => {
@@ -26,7 +26,7 @@ export const EventForm: React.VFC = () => {
 
   return (
     <Sectioning id="event_form">
-      {eventFormIsShown ? (
+      {eventFormIsShown && (
         <form className={styles.form}>
           <fieldset className={styles.fieldset}>
             <legend>
@@ -148,17 +148,6 @@ export const EventForm: React.VFC = () => {
             />
           )}
         </form>
-      ) : (
-        <>
-          {event.id && (
-            <PrimaryButton
-              type="button"
-              label={`${event.title}の更新`}
-              disabled={false}
-              handleClick={handleToggleEventForm}
-            />
-          )}
-        </>
       )}
     </Sectioning>
   );
