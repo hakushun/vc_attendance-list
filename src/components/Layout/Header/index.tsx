@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 import { useShow } from '../../../hooks/useShow';
 import { useSign } from '../../../hooks/useSign';
@@ -13,7 +14,11 @@ export const Header: React.VFC = () => {
   return (
     <header className={styles.root}>
       <div className={styles.inner}>
-        <h1 className={styles.title}>出欠さん</h1>
+        <Link href="/">
+          <a>
+            <h1 className={styles.title}>出欠さん</h1>
+          </a>
+        </Link>
         {user && (
           <nav className={styles.nav}>
             <ul className={styles.list}>

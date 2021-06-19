@@ -15,6 +15,7 @@
     padding: 5px 0;
     font-size: mixin.rem(30);
     font-weight: bold;
+    color: mixin.$mainTextColor;
 
     @include mixin.mq() {
       font-size: mixin.rem(22);
