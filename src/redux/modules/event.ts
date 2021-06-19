@@ -5,7 +5,6 @@ import { getStringDate } from '../../libs/dayjs/getStringDate';
 import { generateId } from '../../libs/ulid/generateId';
 import { create as createEvent, remove as removeEvent, update as updateEvent } from './events';
 import { RootState } from './reducers';
-import { toggleEventForm } from './show';
 
 export type Date = {
   id: string;
@@ -94,16 +93,7 @@ const reducer = reducerWithInitialState(INITIAL_STATE)
   .case(removeEvent.async.done, () => ({
     ...INITIAL_STATE,
     dates: [generateNewDate()],
-  }))
-  .case(toggleEventForm, (_state, payload) => {
-    if (payload) {
-      return { ...payload };
-    }
-    return {
-      ...INITIAL_STATE,
-      dates: [generateNewDate()],
-    };
-  });
+  }));
 export default reducer;
 
 // selector
