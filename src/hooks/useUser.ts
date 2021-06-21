@@ -24,7 +24,7 @@ export const useUser = (): Hooks => {
         dispatch(auth(mapUserData(usr)));
       } else {
         dispatch(auth(null));
-        router.pathname === '/' && router.push('/login');
+        router.pathname !== '/signup' && router.push('/login');
       }
     });
     return () => {
