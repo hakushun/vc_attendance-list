@@ -25,6 +25,7 @@ export const toggleCovidForm = actionCreator<boolean>('TOGGLE_COVID_FORM');
 export const toggleAttendanceForm = actionCreator<boolean>('TOGGLE_ATTENDANCE_FORM');
 export const toggleCovidResult = actionCreator<boolean>('TOGGLE_COVID_RESULT');
 export const toggleSetting = actionCreator<boolean>('TOGGLE_SETTING');
+export const closeAll = actionCreator('CLOSE_ALL');
 
 // initial state
 const INITIAL_STATE: Show = {
@@ -57,6 +58,7 @@ const reducer = reducerWithInitialState(INITIAL_STATE)
     ...state,
     setting: payload,
   }))
+  .case(closeAll, () => ({ ...INITIAL_STATE }))
   .cases([createEvent.async.done, updateEvent.async.done, removeEvent.async.done], (state) => ({
     ...state,
     eventForm: false,
