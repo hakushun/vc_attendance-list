@@ -48,5 +48,4 @@ export const removeEvent = async (event: Event): Promise<void> => {
   } catch (err) {
     alert(err);
   }
-  // TODO: eventに紐づいたdataもdeleteする
 };
