@@ -11,6 +11,7 @@ export type Modal = Record<KeyName, boolean>;
 const actionCreator = actionCreatorFactory();
 
 export const togglePracticeModal = actionCreator<boolean>('TOGGLE_PRACTICE_MODAL');
+export const closeAllModal = actionCreator('CLOSE_ALL_MODAL');
 
 // initial state
 const INITIAL_STATE: Modal = {
@@ -23,6 +24,7 @@ const reducer = reducerWithInitialState(INITIAL_STATE)
     ...state,
     practice: payload,
   }))
+  .case(closeAllModal, () => ({ ...INITIAL_STATE }))
   .case(focusPractice, (state) => ({
     ...state,
     practice: true,
