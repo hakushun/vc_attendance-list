@@ -1,4 +1,5 @@
 import React from 'react';
+import { isPartInvalid } from '../../../../libs/utils/isPartInvalid';
 import { Part as typePart, ChangeOrderPayload } from '../../../../redux/modules/part';
 import { Heading } from '../../../uiParts/Heading';
 import { Loading } from '../../../uiParts/Loading';
@@ -86,7 +87,7 @@ export const Part: React.VFC<Props> = ({
       <PrimaryButton
         type="submit"
         label="パートの登録"
-        disabled={isLoading}
+        disabled={isLoading || isPartInvalid(part)}
         handleClick={handleUpdate}
       />
       <SecondaryButton label="キャンセル" disabled={isLoading} handleClick={handleToggleSetting} />

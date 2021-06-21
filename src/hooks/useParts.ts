@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getInstance } from '../libs/firestore/getInstance';
+import { isPartInvalid } from '../libs/utils/isPartInvalid';
 import { selectEvent } from '../redux/modules/event';
 import { Part, selectPart } from '../redux/modules/part';
 import { selectIsLoading, selectParts, subscribePart, update } from '../redux/modules/parts';
@@ -20,8 +21,7 @@ export const useParts = (eventId: string): Hooks => {
 
   const handleUpdate = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
-    // TODO:validation
-    if (part.some((item) => item.name.trim() === '')) return;
+    if (isPartInvalid(part)) return;
     dispatch(update({ event, part }));
   };
 
