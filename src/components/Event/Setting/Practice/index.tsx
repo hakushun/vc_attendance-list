@@ -1,10 +1,9 @@
 import clsx from 'clsx';
 import React from 'react';
-import { useLocations } from '../../../../hooks/useLocations';
-import { usePlans } from '../../../../hooks/usePlans';
-import { usePractice } from '../../../../hooks/usePractice';
-import { useRemarks } from '../../../../hooks/useRemarks';
 import { Event } from '../../../../redux/modules/event';
+import { Location } from '../../../../redux/modules/locations';
+import { Plan } from '../../../../redux/modules/plans';
+import { Remark } from '../../../../redux/modules/remarks';
 import { Badge } from '../../../uiParts/Badge';
 import { Heading } from '../../../uiParts/Heading';
 import { Loading } from '../../../uiParts/Loading';
@@ -15,15 +14,29 @@ import styles from './index.module.scss';
 type Props = {
   event: Event;
   handleToggleSetting: () => void;
+  locations: Location[];
+  handleChangeLocations: (_e: React.ChangeEvent<HTMLInputElement>) => void;
+  plans: Plan[];
+  handleChangePlans: (_e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  remarks: Remark[];
+  handleChangeRemarks: (_e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  isLoading: boolean;
+  handleUpdate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
-export const Practice: React.VFC<Props> = ({ event, handleToggleSetting }) => {
-  const { locations, handleChangeLocations } = useLocations();
-  const { plans, handleChangePlans } = usePlans();
-  const { remarks, handleChangeRemarks } = useRemarks();
-  const { isLoading, handleUpdate } = usePractice(event.id!);
-
+export const Practice: React.VFC<Props> = ({
+  event,
+  handleToggleSetting,
+  locations,
+  handleChangeLocations,
+  plans,
+  handleChangePlans,
+  remarks,
+  handleChangeRemarks,
+  isLoading,
+  handleUpdate,
+}) => {
   if (isLoading) return <Loading />;
-  // TODO:eventが選択されてないときはformを表示しないでeventを選択するように誘導
+
   return (
     <>
       <Heading level={3} label="練習予定 登録フォーム" />
