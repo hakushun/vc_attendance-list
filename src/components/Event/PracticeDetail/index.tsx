@@ -1,4 +1,5 @@
 import React from 'react';
+import { useModal } from '../../../hooks/useModal';
 import { getDayOfTheWeek } from '../../../libs/dayjs/getDayOfTheWeek';
 import { getStringDate } from '../../../libs/dayjs/getStringDate';
 import { Event } from '../../../redux/modules/event';
@@ -11,82 +12,68 @@ import styles from './index.module.scss';
 
 type Props = {
   event: Event;
-  practiceModalIsShown: boolean;
-  handleTogglePracticeModal: () => void;
   practice: PracticeItem;
   dateId: string;
 };
-export const PracticeDetail: React.VFC<Props> = ({
-  event,
-  practiceModalIsShown,
-  handleTogglePracticeModal,
-  practice,
-  dateId,
-}) => {
+export const PracticeDetail: React.VFC<Props> = ({ event, practice, dateId }) => {
+  const { modalRef, handleTogglePracticeModal } = useModal();
+
   const titleDate = getStringDate(event.dates.find((date) => date.id === dateId)?.day);
   const titleDayOfTheWeek = getDayOfTheWeek(event.dates.find((date) => date.id === dateId)?.day);
   const url = practice.locations.find((loc) => loc.dateId === dateId)?.url;
   const content = practice.remarks.find((rmrk) => rmrk.dateId === dateId)?.content;
 
   return (
-    <>
-      {practiceModalIsShown && (
-        <Modal>
-          <div className={styles.root}>
-            <Heading level={3} label={`${titleDate}${titleDayOfTheWeek}の詳細`} />
-            <dl className={styles.list}>
-              <div className={styles.item}>
-                <dt className={styles.term}>施設1</dt>
-                <dd className={styles.definition}>
-                  {practice.locations.find((loc) => loc.dateId === dateId)?.name1 || '未入力'}
-                </dd>
-              </div>
-              <div className={styles.item}>
-                <dt className={styles.term}>施設2</dt>
-                <dd className={styles.definition}>
-                  {practice.locations.find((loc) => loc.dateId === dateId)?.name2 || '未入力'}
-                </dd>
-              </div>
-              <div className={styles.item}>
-                <dt className={styles.term}>URL</dt>
-                <dd className={styles.definition}>
-                  {url ? (
-                    <a href={url} target="_blank" rel="noopener noreferrer">
-                      {url}
-                    </a>
-                  ) : (
-                    '未入力'
-                  )}
-                </dd>
-              </div>
-              <div className={styles.item}>
-                <dt className={styles.term}>区分</dt>
-                <dd className={styles.definition}>
-                  {practice.plans.find((pln) => pln.dateId === dateId)?.category || '未入力'}
-                </dd>
-              </div>
-              <div className={styles.item}>
-                <dt className={styles.term}>スケジュール</dt>
-                <dd className={styles.definition}>
-                  {practice.plans.find((pln) => pln.dateId === dateId)?.schedule || '未入力'}
-                </dd>
-              </div>
-              <div className={styles.item}>
-                <dt className={styles.term}>備考</dt>
-                <dd className={styles.definition}>
-                  {content ? <StringWithUrl content={content} /> : '未入力'}
-                </dd>
-              </div>
-            </dl>
-            {/* TODO: escでも閉じられるように */}
-            <SecondaryButton
-              label="閉じる"
-              disabled={false}
-              handleClick={handleTogglePracticeModal}
-            />
+    <Modal modalRef={modalRef}>
+      <div className={styles.root}>
+        <Heading level={3} label={`${titleDate}${titleDayOfTheWeek}の詳細`} />
+        <dl className={styles.list}>
+          <div className={styles.item}>
+            <dt className={styles.term}>施設1</dt>
+            <dd className={styles.definition}>
+              {practice.locations.find((loc) => loc.dateId === dateId)?.name1 || '未入力'}
+            </dd>
           </div>
-        </Modal>
-      )}
-    </>
+          <div className={styles.item}>
+            <dt className={styles.term}>施設2</dt>
+            <dd className={styles.definition}>
+              {practice.locations.find((loc) => loc.dateId === dateId)?.name2 || '未入力'}
+            </dd>
+          </div>
+          <div className={styles.item}>
+            <dt className={styles.term}>URL</dt>
+            <dd className={styles.definition}>
+              {url ? (
+                <a href={url} target="_blank" rel="noopener noreferrer">
+                  {url}
+                </a>
+              ) : (
+                '未入力'
+              )}
+            </dd>
+          </div>
+          <div className={styles.item}>
+            <dt className={styles.term}>区分</dt>
+            <dd className={styles.definition}>
+              {practice.plans.find((pln) => pln.dateId === dateId)?.category || '未入力'}
+            </dd>
+          </div>
+          <div className={styles.item}>
+            <dt className={styles.term}>スケジュール</dt>
+            <dd className={styles.definition}>
+              {practice.plans.find((pln) => pln.dateId === dateId)?.schedule || '未入力'}
+            </dd>
+          </div>
+          <div className={styles.item}>
+            <dt className={styles.term}>備考</dt>
+            <dd className={styles.definition}>
+              {content ? <StringWithUrl content={content} /> : '未入力'}
+            </dd>
+          </div>
+        </dl>
+        {/* TODO: escでも閉じられるように */}
+        <SecondaryButton label="閉じる" disabled={false} handleClick={handleTogglePracticeModal} />
+      </div>
+    </Modal>
   );
 };
