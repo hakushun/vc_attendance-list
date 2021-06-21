@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import initFirebase from '../libs/firebase/initFirebase';
+import { isSignFormInvalid } from '../libs/utils/isSignFormInvalid';
 import {
   signUp,
   signIn,
@@ -33,13 +34,13 @@ export const useSign = (): Hooks => {
 
   const handleSignUp = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
-    // TODO: validation
+    if (isSignFormInvalid(form)) return;
     await dispatch(signUp(form));
     router.push('/');
   };
   const handleSignIn = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
-    // TODO: validation
+    if (isSignFormInvalid(form)) return;
     await dispatch(signIn(form));
     router.push('/');
   };

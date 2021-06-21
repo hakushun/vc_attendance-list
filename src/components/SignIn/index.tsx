@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSign } from '../../hooks/useSign';
+import { isSignFormInvalid } from '../../libs/utils/isSignFormInvalid';
 import { Heading } from '../uiParts/Heading';
 import { LinkButton } from '../uiParts/LinkButton';
 import { PrimaryButton } from '../uiParts/PrimaryButton';
@@ -55,7 +56,7 @@ export const SignIn: React.VFC = () => {
         <PrimaryButton
           type="submit"
           label="Login"
-          disabled={isLoading}
+          disabled={isLoading || isSignFormInvalid(form)}
           handleClick={handleSignIn}
         />
       </form>
