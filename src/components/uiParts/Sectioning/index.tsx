@@ -6,7 +6,7 @@ type Props = {
 };
 export const Sectioning: React.FC<Props> = ({ id, children }) => {
   return (
-    <section id={id} className={styles.root}>
+    <section id={id} tabIndex={-1} className={styles.root}>
       {children}
     </section>
   );
