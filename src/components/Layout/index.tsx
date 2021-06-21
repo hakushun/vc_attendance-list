@@ -7,7 +7,9 @@ export const Layout: React.FC = ({ children }) => {
   return (
     <div id="app" className={styles.root}>
       <Header />
-      <main>{children}</main>
+      <main id="main" tabIndex={-1}>
+        {children}
+      </main>
       <Footer />
     </div>
   );
