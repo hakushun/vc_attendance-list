@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import React from 'react';
 import { getDayOfTheWeek } from '../../../libs/dayjs/getDayOfTheWeek';
+import { isAttendanceInvalid } from '../../../libs/utils/isAttendanceInvalid';
 import { Attendance } from '../../../redux/modules/attendance';
 import { Event } from '../../../redux/modules/event';
 import { Part } from '../../../redux/modules/part';
@@ -239,7 +240,7 @@ export const AttendanceForm: React.VFC<Props> = ({
                 ? '出欠の更新'
                 : '出欠の作成'
             }
-            disabled={AttendanceIsLoading}
+            disabled={AttendanceIsLoading || isAttendanceInvalid(attendance)}
             handleClick={
               attendances.some((item) => item.userId === attendance.userId)
                 ? handleUpdate

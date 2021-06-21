@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getInstance } from '../libs/firestore/getInstance';
+import { isAttendanceInvalid } from '../libs/utils/isAttendanceInvalid';
 import { Attendance, selectAttendance } from '../redux/modules/attendance';
 import {
   create,
@@ -27,16 +28,12 @@ export const useAttendances = (eventId: string): Hooks => {
 
   const handleCreate = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
-    // TODO: validation
-    if (!eventId || attendance.name.trim() === '' || attendance.part === '' || !attendance.userId)
-      return;
+    if (!eventId || isAttendanceInvalid(attendance)) return;
     dispatch(create({ eventId, attendance }));
   };
   const handleUpdate = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
-    // TODO: validation
-    if (!eventId || attendance.name.trim() === '' || attendance.part === '' || !attendance.userId)
-      return;
+    if (!eventId || isAttendanceInvalid(attendance)) return;
     dispatch(update({ eventId, attendance }));
   };
   const handleRemove = () => {
