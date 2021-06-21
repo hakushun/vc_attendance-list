@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getInstance } from '../libs/firestore/getInstance';
+import { isProgramInvalid } from '../libs/utils/isProgramInvalid';
 import { selectEvent } from '../redux/modules/event';
 import { ProgramItem, selectProgram } from '../redux/modules/program';
 import {
@@ -25,8 +26,7 @@ export const usePrograms = (eventId: string): Hooks => {
 
   const handleUpdate = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
-    // TODO:validation
-    if (program.some((item) => item.name.trim() === '')) return;
+    if (isProgramInvalid(program)) return;
     dispatch(update({ event, program }));
   };
 

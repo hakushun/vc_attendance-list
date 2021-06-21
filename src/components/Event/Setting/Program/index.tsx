@@ -1,4 +1,5 @@
 import React from 'react';
+import { isProgramInvalid } from '../../../../libs/utils/isProgramInvalid';
 import { Event } from '../../../../redux/modules/event';
 import { ProgramItem } from '../../../../redux/modules/program';
 import { Badge } from '../../../uiParts/Badge';
@@ -73,7 +74,7 @@ export const Program: React.VFC<Props> = ({
         <PrimaryButton
           type="submit"
           label="プログラムの登録"
-          disabled={isLoading}
+          disabled={isLoading || isProgramInvalid(program)}
           handleClick={handleUpdate}
         />
         <SecondaryButton
