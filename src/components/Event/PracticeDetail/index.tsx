@@ -2,6 +2,7 @@ import React from 'react';
 import { useModal } from '../../../hooks/useModal';
 import { getDayOfTheWeek } from '../../../libs/dayjs/getDayOfTheWeek';
 import { getStringDate } from '../../../libs/dayjs/getStringDate';
+import { Attendance } from '../../../redux/modules/attendance';
 import { Event } from '../../../redux/modules/event';
 import { PracticeItem } from '../../../redux/modules/practice';
 import { Heading } from '../../uiParts/Heading';
@@ -14,8 +15,18 @@ type Props = {
   event: Event;
   practice: PracticeItem;
   dateId: string;
+  breakdownAttendances: {
+    presence: Attendance[];
+    undecided: Attendance[];
+    absence: Attendance[];
+  };
 };
-export const PracticeDetail: React.VFC<Props> = ({ event, practice, dateId }) => {
+export const PracticeDetail: React.VFC<Props> = ({
+  event,
+  practice,
+  dateId,
+  breakdownAttendances,
+}) => {
   const { modalRef, handleTogglePracticeModal, handleKeydown } = useModal();
 
   const titleDate = getStringDate(event.dates.find((date) => date.id === dateId)?.day);
@@ -68,6 +79,14 @@ export const PracticeDetail: React.VFC<Props> = ({ event, practice, dateId }) =>
             <dt className={styles.term}>備考</dt>
             <dd className={styles.definition}>
               {content ? <StringWithUrl content={content} /> : '未入力'}
+            </dd>
+          </div>
+          <div className={styles.item}>
+            <dt className={styles.term}>出欠</dt>
+            <dd className={styles.definition}>
+              <div>○：{breakdownAttendances.presence.length}</div>
+              <div>△：{breakdownAttendances.undecided.length}</div>
+              <div>×：{breakdownAttendances.absence.length}</div>
             </dd>
           </div>
         </dl>

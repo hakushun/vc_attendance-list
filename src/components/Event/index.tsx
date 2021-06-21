@@ -40,6 +40,7 @@ export const Event: React.VFC<Props> = ({ eventId }) => {
   const {
     attendances,
     isLoading: AttendanceIsLoading,
+    breakdownAttendances,
     handleCreate,
     handleUpdate,
     handleRemove,
@@ -86,7 +87,14 @@ export const Event: React.VFC<Props> = ({ eventId }) => {
         programs={programs}
         roles={roles}
       />
-      {practiceModalIsShown && <PracticeDetail event={event} practice={practice} dateId={dateId} />}
+      {practiceModalIsShown && (
+        <PracticeDetail
+          event={event}
+          practice={practice}
+          dateId={dateId}
+          breakdownAttendances={breakdownAttendances}
+        />
+      )}
     </>
   );
 };
