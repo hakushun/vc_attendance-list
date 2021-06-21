@@ -40,6 +40,11 @@
     &:disabled {
       cursor: not-allowed;
     }
+
+    &:invalid {
+      background-color: lighten(mixin.$vividColor, 40%);
+      border: 1px solid mixin.$vividColor;
+    }
   }
 }
 
