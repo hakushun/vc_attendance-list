@@ -14,7 +14,8 @@
     "lint:stylelint": "stylelint --fix './src/**/*.{css,scss}'",
     "test": "jest",
     "test:watch": "jest --watch",
-    "deploy": "firebase deploy"
+    "deploy": "npx vercel",
+    "deploy:prod": "npx vercel --prod"
   },
   "husky": {
     "hooks": {
