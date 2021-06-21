@@ -4,6 +4,7 @@ import { useRouter } from '../../../hooks/useRouter';
 import { useShow } from '../../../hooks/useShow';
 import { useSign } from '../../../hooks/useSign';
 import { useUser } from '../../../hooks/useUser';
+import { isSuperuser } from '../../../libs/utils/isSuperuser';
 import { QuaternaryButton } from '../../uiParts/QuaternaryButton';
 import styles from './index.module.scss';
 
@@ -29,9 +30,8 @@ export const Header: React.VFC = () => {
                   <QuaternaryButton label="イベント作成" handleClick={handleToggleEventForm} />
                 </li>
               )}
-              {router.pathname === '/event/[id]' && (
+              {router.pathname === '/event/[id]' && isSuperuser(user) && (
                 <>
-                  {/* TODO: useIdによる出し分け */}
                   <li>
                     <QuaternaryButton label="イベント編集" handleClick={handleToggleEventForm} />
                   </li>
