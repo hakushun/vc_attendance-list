@@ -18,7 +18,6 @@ import { useProgram } from '../../hooks/useProgram';
 import { usePrograms } from '../../hooks/usePrograms';
 import { useRoles } from '../../hooks/useRoles';
 import { useModal } from '../../hooks/useModal';
-import { useTab } from '../../hooks/useTab';
 
 type Props = {
   eventId: string;
@@ -49,21 +48,13 @@ export const Event: React.VFC<Props> = ({ eventId }) => {
   const { selectedId, handleFocusProgram } = useProgram();
   const { programs } = usePrograms(eventId);
   const { roles } = useRoles(eventId);
-  const { practiceModalIsShown, handleTogglePracticeModal } = useModal();
-  const { tab, handleChangeSettingTab } = useTab();
+  const { practiceModalIsShown } = useModal();
 
   if (isLoading) return <Loading />;
 
   return (
     <>
-      {settingIsShown && (
-        <Setting
-          event={event}
-          handleToggleSetting={handleToggleSetting}
-          tab={tab}
-          handleChangeSettingTab={handleChangeSettingTab}
-        />
-      )}
+      {settingIsShown && <Setting event={event} handleToggleSetting={handleToggleSetting} />}
       <EventForm />
       <EventHeader event={event} />
       <AttendanceForm
@@ -93,13 +84,7 @@ export const Event: React.VFC<Props> = ({ eventId }) => {
         programs={programs}
         roles={roles}
       />
-      <PracticeDetail
-        event={event}
-        practiceModalIsShown={practiceModalIsShown}
-        handleTogglePracticeModal={handleTogglePracticeModal}
-        practice={practice}
-        dateId={dateId}
-      />
+      {practiceModalIsShown && <PracticeDetail event={event} practice={practice} dateId={dateId} />}
     </>
   );
 };
