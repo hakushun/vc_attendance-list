@@ -1,7 +1,5 @@
 import React from 'react';
-import { usePart } from '../../../../hooks/usePart';
-import { useParts } from '../../../../hooks/useParts';
-import { Event } from '../../../../redux/modules/event';
+import { Part as typePart, ChangeOrderPayload } from '../../../../redux/modules/part';
 import { Heading } from '../../../uiParts/Heading';
 import { Loading } from '../../../uiParts/Loading';
 import { MiniButton } from '../../../uiParts/MiniButton';
@@ -11,14 +9,25 @@ import { TernaryButton } from '../../../uiParts/TernaryButton';
 import styles from './index.module.scss';
 
 type Props = {
-  event: Event;
   handleToggleSetting: () => void;
+  part: typePart[];
+  handleChange: (_e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleAddPartForm: () => void;
+  handleDeletePartForm: () => void;
+  handleChangeOrder: (_: ChangeOrderPayload) => void;
+  isLoading: boolean;
+  handleUpdate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
-export const Part: React.VFC<Props> = ({ event, handleToggleSetting }) => {
-  const { part, handleChange, handleAddPartForm, handleDeletePartForm, handleChangeOrder } =
-    usePart();
-  const { isLoading, handleUpdate } = useParts(event.id);
-
+export const Part: React.VFC<Props> = ({
+  handleToggleSetting,
+  part,
+  handleChange,
+  handleAddPartForm,
+  handleDeletePartForm,
+  handleChangeOrder,
+  isLoading,
+  handleUpdate,
+}) => {
   if (isLoading) return <Loading />;
 
   return (
