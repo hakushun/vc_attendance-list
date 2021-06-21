@@ -41,6 +41,10 @@ export const updateEvent = async (event: Event): Promise<Event | null> => {
 export const removeEvent = async (event: Event): Promise<void> => {
   try {
     await db.collection('events').doc(event.id).delete();
+    await db.collection('parts').doc(event.id).delete();
+    await db.collection('practices').doc(event.id).delete();
+    await db.collection('programs').doc(event.id).delete();
+    await db.collection('roles').doc(event.id).delete();
   } catch (err) {
     alert(err);
   }
