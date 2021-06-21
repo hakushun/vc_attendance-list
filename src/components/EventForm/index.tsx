@@ -3,6 +3,7 @@ import React from 'react';
 import { useEvent } from '../../hooks/useEvent';
 import { useEvents } from '../../hooks/useEvents';
 import { useShow } from '../../hooks/useShow';
+import { isEventInvaild } from '../../libs/utils/isEventInvalid';
 import { Badge } from '../uiParts/Badge';
 import { Heading } from '../uiParts/Heading';
 import { OptionalButton } from '../uiParts/OptionalButton';
@@ -132,7 +133,7 @@ export const EventForm: React.VFC = () => {
           <PrimaryButton
             type="submit"
             label={event.id ? `${event.title}の更新` : 'イベントの作成'}
-            disabled={isLoading}
+            disabled={isLoading || isEventInvaild(event)}
             handleClick={event.id ? handleUpdate : handleCreate}
           />
           <SecondaryButton

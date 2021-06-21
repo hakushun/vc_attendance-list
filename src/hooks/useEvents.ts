@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getInstance } from '../libs/firestore/getInstance';
+import { isEventInvaild } from '../libs/utils/isEventInvalid';
 import { Event, selectEvent } from '../redux/modules/event';
 import {
   create,
@@ -29,26 +30,13 @@ export const useEvents = (eventId?: string): Hooks => {
 
   const handleCreate = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
-    // TODO: validation
-    if (
-      !event.title ||
-      event.dates.some((date) => date.day === 'NaN-aN-aN') ||
-      event.dates.some((date) => date.time === '')
-    )
-      return;
+    if (isEventInvaild(event)) return;
     dispatch(create(event));
   };
 
   const handleUpdate = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
-    // TODO: validation
-    if (
-      !event.id ||
-      !event.title ||
-      event.dates.some((date) => date.day === 'NaN-aN-aN') ||
-      event.dates.some((date) => date.time === '')
-    )
-      return;
+    if (!event.id || isEventInvaild(event)) return;
     dispatch(update(event));
   };
 
