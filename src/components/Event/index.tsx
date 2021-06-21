@@ -75,6 +75,7 @@ export const Event: React.VFC<Props> = ({ eventId }) => {
         handleRemove={handleRemove}
       />
       <AttendanceTable
+        user={user}
         event={event}
         handleFocusAttendance={handleFocusAttendance}
         attendances={attendances}

@@ -12,6 +12,7 @@ import { Attendance } from '../../../redux/modules/attendance';
 import { Event } from '../../../redux/modules/event';
 import { ProgramItem } from '../../../redux/modules/program';
 import { RoleItem } from '../../../redux/modules/role';
+import { Userdata } from '../../../redux/modules/user';
 import { Heading } from '../../uiParts/Heading';
 import { Loading } from '../../uiParts/Loading';
 import { OptionalButton } from '../../uiParts/OptionalButton';
@@ -20,6 +21,7 @@ import { TernaryButton } from '../../uiParts/TernaryButton';
 import styles from './index.module.scss';
 
 type Props = {
+  user: Userdata;
   event: Event;
   handleFocusAttendance: (
     _e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -34,6 +36,7 @@ type Props = {
   roles: RoleItem[];
 };
 export const AttendanceTable: React.VFC<Props> = ({
+  user,
   event,
   handleFocusAttendance,
   attendances,
@@ -117,12 +120,16 @@ export const AttendanceTable: React.VFC<Props> = ({
                 onClick={(e) => e.currentTarget.classList.toggle('highlight')}>
                 <td className={clsx(styles.cell, styles.body, styles.narrow)}>{attendance.part}</td>
                 <td className={clsx(styles.cell, styles.body)}>
-                  <button
-                    type="button"
-                    className={styles.action}
-                    onClick={(e) => handleFocusAttendance(e, attendance)}>
-                    {attendance.name}
-                  </button>
+                  {user?.id === attendance.userId ? (
+                    <button
+                      type="button"
+                      className={styles.action}
+                      onClick={(e) => handleFocusAttendance(e, attendance)}>
+                      {attendance.name}
+                    </button>
+                  ) : (
+                    attendance.name
+                  )}
                 </td>
                 <td className={clsx(styles.cell, styles.body)}>
                   {getRoleValue(roles, attendance.userId, selectedId) || '未入力'}
