@@ -11,6 +11,7 @@ import {
   subscribeEvents,
   update,
 } from '../redux/modules/events';
+import { useRouter } from './useRouter';
 
 type Hooks = {
   events: Event[];
@@ -23,6 +24,7 @@ type Hooks = {
 export const useEvents = (eventId?: string): Hooks => {
   const db = getInstance();
   const dispatch = useDispatch();
+  const { router } = useRouter();
   const event = useSelector(selectEvent);
   const events = useSelector(selectEvents);
   const isLoading = useSelector(selectIsLoading);
@@ -43,6 +45,7 @@ export const useEvents = (eventId?: string): Hooks => {
   const handleRemove = () => {
     if (!event.id) return;
     dispatch(remove(event));
+    router.push('/');
   };
 
   useEffect(() => {
