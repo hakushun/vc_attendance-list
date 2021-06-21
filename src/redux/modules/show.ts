@@ -10,6 +10,10 @@ import {
 import { create as createEvent, remove as removeEvent, update as updateEvent } from './events';
 import { RootState } from './reducers';
 import { focusAttendance, initiateAttendance } from './attendance';
+import { update as updatePractice } from './practice';
+import { update as updateRoles } from './roles';
+import { update as updateParts } from './parts';
+import { update as updatePrograms } from './programs';
 
 type KeyName = 'eventForm' | 'covidForm' | 'attendanceForm' | 'covidResult' | 'setting';
 export type Show = Record<KeyName, boolean>;
@@ -71,7 +75,19 @@ const reducer = reducerWithInitialState(INITIAL_STATE)
   .case(initiateAttendance, (state) => ({
     ...state,
     attendanceForm: !state.attendanceForm,
-  }));
+  }))
+  .cases(
+    [
+      updatePractice.async.done,
+      updateRoles.async.done,
+      updateParts.async.done,
+      updatePrograms.async.done,
+    ],
+    (state) => ({
+      ...state,
+      setting: false,
+    }),
+  );
 export default reducer;
 
 // selector
