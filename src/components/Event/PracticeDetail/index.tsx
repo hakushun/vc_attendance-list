@@ -16,7 +16,7 @@ type Props = {
   dateId: string;
 };
 export const PracticeDetail: React.VFC<Props> = ({ event, practice, dateId }) => {
-  const { modalRef, handleTogglePracticeModal } = useModal();
+  const { modalRef, handleTogglePracticeModal, handleKeydown } = useModal();
 
   const titleDate = getStringDate(event.dates.find((date) => date.id === dateId)?.day);
   const titleDayOfTheWeek = getDayOfTheWeek(event.dates.find((date) => date.id === dateId)?.day);
@@ -24,7 +24,7 @@ export const PracticeDetail: React.VFC<Props> = ({ event, practice, dateId }) =>
   const content = practice.remarks.find((rmrk) => rmrk.dateId === dateId)?.content;
 
   return (
-    <Modal modalRef={modalRef}>
+    <Modal modalRef={modalRef} handleKeydown={handleKeydown}>
       <div className={styles.root}>
         <Heading level={3} label={`${titleDate}${titleDayOfTheWeek}の詳細`} />
         <dl className={styles.list}>
@@ -71,7 +71,6 @@ export const PracticeDetail: React.VFC<Props> = ({ event, practice, dateId }) =>
             </dd>
           </div>
         </dl>
-        {/* TODO: escでも閉じられるように */}
         <SecondaryButton label="閉じる" disabled={false} handleClick={handleTogglePracticeModal} />
       </div>
     </Modal>
