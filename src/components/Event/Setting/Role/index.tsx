@@ -1,26 +1,40 @@
 import React from 'react';
-import { useAttendances } from '../../../../hooks/useAttendances';
-import { useParts } from '../../../../hooks/useParts';
-import { usePrograms } from '../../../../hooks/usePrograms';
-import { useRole } from '../../../../hooks/useRole';
-import { useRoles } from '../../../../hooks/useRoles';
 import { getRoleValue } from '../../../../libs/utils/getRoleValue';
-import { Event } from '../../../../redux/modules/event';
+import { Attendance } from '../../../../redux/modules/attendance';
+import { Part } from '../../../../redux/modules/part';
+import { ProgramItem } from '../../../../redux/modules/program';
+import { RoleItem } from '../../../../redux/modules/role';
 import { Heading } from '../../../uiParts/Heading';
+import { Loading } from '../../../uiParts/Loading';
 import { PrimaryButton } from '../../../uiParts/PrimaryButton';
 import { SecondaryButton } from '../../../uiParts/SecondaryButton';
 import styles from './index.module.scss';
 
 type Props = {
-  event: Event;
   handleToggleSetting: () => void;
+  programs: ProgramItem[];
+  parts: Part[];
+  attendances: Attendance[];
+  programId: string;
+  roles: RoleItem[];
+  handleChangeRadio: (_e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleChangeRole: (_e: React.ChangeEvent<HTMLInputElement>) => void;
+  isLoading: boolean;
+  handleUpdate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
-export const Role: React.VFC<Props> = ({ event, handleToggleSetting }) => {
-  const { programs } = usePrograms(event.id);
-  const { parts } = useParts(event.id);
-  const { attendances } = useAttendances(event.id);
-  const { programId, roles, handleChangeRadio, handleChangeRole } = useRole();
-  const { isLoading, handleUpdate } = useRoles(event.id);
+export const Role: React.VFC<Props> = ({
+  handleToggleSetting,
+  programs,
+  parts,
+  attendances,
+  programId,
+  roles,
+  handleChangeRadio,
+  handleChangeRole,
+  isLoading,
+  handleUpdate,
+}) => {
+  if (isLoading) return <Loading />;
 
   return (
     <>
