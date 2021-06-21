@@ -91,3 +91,27 @@ export const selectIsLoading = createSelector(
   [(state: RootState) => state.domain.attendances.isLoading],
   (isLoading) => isLoading,
 );
+export const selectBreakdownAttendances = createSelector(
+  [
+    (state: RootState) => state.domain.attendances.attendances,
+    (state: RootState) => state.domain.practice.dateId,
+  ],
+  (attendances, dateId) => {
+    const presence = attendances.filter((attendance) =>
+      attendance.attendances.some(
+        (item) => item.dateId === dateId && item.attendance === 'presence',
+      ),
+    );
+    const undecided = attendances.filter((attendance) =>
+      attendance.attendances.some(
+        (item) => item.dateId === dateId && item.attendance === 'undecided',
+      ),
+    );
+    const absence = attendances.filter((attendance) =>
+      attendance.attendances.some(
+        (item) => item.dateId === dateId && item.attendance === 'absence',
+      ),
+    );
+    return { presence, undecided, absence };
+  },
+);
