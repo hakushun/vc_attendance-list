@@ -23,7 +23,7 @@ type Props = {
   eventId: string;
 };
 export const Event: React.VFC<Props> = ({ eventId }) => {
-  const { isLoading } = useUser();
+  const { isLoading, user } = useUser();
   const { settingIsShown, attendanceFormIsShown, handleToggleSetting, handleToggleAttendanceForm } =
     useShow();
   const { targetEvent } = useEvents(eventId);
@@ -58,6 +58,7 @@ export const Event: React.VFC<Props> = ({ eventId }) => {
       <EventForm />
       <EventHeader event={event} />
       <AttendanceForm
+        user={user}
         attendanceFormIsShown={attendanceFormIsShown}
         handleToggleAttendanceForm={handleToggleAttendanceForm}
         event={event}

@@ -4,6 +4,7 @@ import { getDayOfTheWeek } from '../../../libs/dayjs/getDayOfTheWeek';
 import { Attendance } from '../../../redux/modules/attendance';
 import { Event } from '../../../redux/modules/event';
 import { Part } from '../../../redux/modules/part';
+import { Userdata } from '../../../redux/modules/user';
 import { Badge } from '../../uiParts/Badge';
 import { Heading } from '../../uiParts/Heading';
 import { OptionalButton } from '../../uiParts/OptionalButton';
@@ -13,6 +14,7 @@ import { Sectioning } from '../../uiParts/Sectioning';
 import styles from './index.module.scss';
 
 type Props = {
+  user: Userdata;
   attendanceFormIsShown: boolean;
   handleToggleAttendanceForm: () => void;
   event: Event;
@@ -31,6 +33,7 @@ type Props = {
   handleRemove: () => void;
 };
 export const AttendanceForm: React.VFC<Props> = ({
+  user,
   attendanceFormIsShown,
   handleToggleAttendanceForm,
   event,
@@ -48,7 +51,7 @@ export const AttendanceForm: React.VFC<Props> = ({
 }) => {
   return (
     <Sectioning id="attendance_form">
-      {attendanceFormIsShown ? (
+      {attendanceFormIsShown && (
         <form className={styles.form}>
           <fieldset className={styles.fieldset}>
             <legend>
@@ -256,7 +259,9 @@ export const AttendanceForm: React.VFC<Props> = ({
             />
           )}
         </form>
-      ) : (
+      )}
+      {/* すでに出欠作成済のユーザには表示しない */}
+      {!attendanceFormIsShown && !attendances.some((item) => item.userId === user?.id) && (
         <PrimaryButton
           type="button"
           label="出欠作成"
