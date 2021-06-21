@@ -30,14 +30,16 @@ export const Header: React.VFC = () => {
                 </li>
               )}
               {router.pathname === '/event/[id]' && (
-                <li>
-                  <QuaternaryButton label="イベント編集" handleClick={handleToggleEventForm} />
-                </li>
+                <>
+                  {/* TODO: useIdによる出し分け */}
+                  <li>
+                    <QuaternaryButton label="イベント編集" handleClick={handleToggleEventForm} />
+                  </li>
+                  <li>
+                    <QuaternaryButton label="設定" handleClick={handleToggleSetting} />
+                  </li>
+                </>
               )}
-              {/* TODO: useIdによる出し分け */}
-              <li>
-                <QuaternaryButton label="設定" handleClick={handleToggleSetting} />
-              </li>
               <li>
                 <QuaternaryButton label="Logout" handleClick={handleSignOut} />
               </li>
