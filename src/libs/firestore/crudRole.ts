@@ -4,11 +4,18 @@ import { getInstance } from './getInstance';
 
 const db = getInstance();
 
-// TODO: try/catch
 export const createRole = async (event: Event): Promise<void> => {
-  await db.collection('roles').doc(event.id).set({ roles: [] });
+  try {
+    await db.collection('roles').doc(event.id).set({ roles: [] });
+  } catch (err) {
+    alert(err);
+  }
 };
 
 export const updateRole = async ({ eventId, roles }: UpdatePayload): Promise<void> => {
-  await db.collection('roles').doc(eventId).set({ roles }, { merge: true });
+  try {
+    await db.collection('roles').doc(eventId).set({ roles }, { merge: true });
+  } catch (err) {
+    alert(err);
+  }
 };

@@ -28,18 +28,20 @@ const actionCreator = actionCreatorFactory();
 const asyncActionCreator = asyncFactory<Events>(actionCreator);
 
 export const subscribeEvents = actionCreator<Event[]>('SUBSCRIBE_EVENTS');
-export const create = asyncActionCreator<CreatePayload, Event, CustomError>(
+export const create = asyncActionCreator<CreatePayload, Event | null, CustomError>(
   'CREATE_EVENT',
   async (payload) => {
     const result = await createEvent(payload);
-    await createPractice(result);
-    await createProgram(result);
-    await createPart(result);
-    await createRole(result);
+    if (result) {
+      await createPractice(result);
+      await createProgram(result);
+      await createPart(result);
+      await createRole(result);
+    }
     return result;
   },
 );
-export const update = asyncActionCreator<Event, Event, CustomError>(
+export const update = asyncActionCreator<Event, Event | null, CustomError>(
   'UPDATE_EVENT',
   async (payload) => {
     const result = await updateEvent(payload);

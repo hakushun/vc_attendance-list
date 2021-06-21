@@ -8,11 +8,18 @@ const db = getInstance();
 const parts = ['Fl', 'Ob', 'Cl', 'Fg', 'Hr', 'Tp', 'Tb', 'Tuba', 'Perc', 'Vn', 'Va', 'Vc', 'Cb'];
 const INITIAL_PART = parts.map((part) => ({ id: generateId(), name: part }));
 
-// TODO: try/catch
 export const createPart = async (event: Event): Promise<void> => {
-  await db.collection('parts').doc(event.id).set({ part: INITIAL_PART });
+  try {
+    await db.collection('parts').doc(event.id).set({ part: INITIAL_PART });
+  } catch (err) {
+    alert(err);
+  }
 };
 
 export const updatePart = async ({ event, part }: UpdatePayload): Promise<void> => {
-  await db.collection('parts').doc(event.id).set({ part }, { merge: true });
+  try {
+    await db.collection('parts').doc(event.id).set({ part }, { merge: true });
+  } catch (err) {
+    alert(err);
+  }
 };

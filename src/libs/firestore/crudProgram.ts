@@ -4,11 +4,18 @@ import { UpdatePayload } from '../../redux/modules/programs';
 
 const db = getInstance();
 
-// TODO: try/catch
 export const createProgram = async (event: Event): Promise<void> => {
-  await db.collection('programs').doc(event.id).set({ program: [] });
+  try {
+    await db.collection('programs').doc(event.id).set({ program: [] });
+  } catch (err) {
+    alert(err);
+  }
 };
 
 export const updateProgram = async ({ event, program }: UpdatePayload): Promise<void> => {
-  await db.collection('programs').doc(event.id).set({ program }, { merge: true });
+  try {
+    await db.collection('programs').doc(event.id).set({ program }, { merge: true });
+  } catch (err) {
+    alert(err);
+  }
 };
