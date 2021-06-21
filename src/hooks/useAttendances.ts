@@ -28,11 +28,15 @@ export const useAttendances = (eventId: string): Hooks => {
   const handleCreate = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     // TODO: validation
+    if (!eventId || attendance.name.trim() === '' || attendance.part === '' || !attendance.userId)
+      return;
     dispatch(create({ eventId, attendance }));
   };
   const handleUpdate = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     // TODO: validation
+    if (!eventId || attendance.name.trim() === '' || attendance.part === '' || !attendance.userId)
+      return;
     dispatch(update({ eventId, attendance }));
   };
   const handleRemove = () => {
