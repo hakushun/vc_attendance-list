@@ -10,7 +10,7 @@ type AttendanceItem = {
   attendance: AttendanceType;
   remark: string;
 };
-export type Occupation = 'student' | 'working';
+export type Occupation = '' | 'student' | 'working' | 'extra';
 export type Attendance = {
   userId: string;
   occupation: Occupation;
@@ -37,7 +37,7 @@ export const focusAttendance = actionCreator<Attendance>('FOCUS_ATTENDANCE');
 // initial state
 const INITIAL_STATE: Attendance = {
   userId: '',
-  occupation: 'working',
+  occupation: '',
   name: '',
   part: '',
   attendances: [],

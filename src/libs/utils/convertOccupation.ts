@@ -1,5 +1,8 @@
 import { Occupation } from '../../redux/modules/attendance';
 
 export const convertOccuoation = (occupation: Occupation): string => {
-  return occupation === 'working' ? '社会人' : '学生';
+  if (occupation === 'working') return '社会人';
+  if (occupation === 'student') return '学生';
+  if (occupation === 'extra') return 'エキストラ';
+  return '';
 };

@@ -77,8 +77,10 @@ export const AttendanceForm: React.VFC<Props> = ({
                 value={attendance.occupation}
                 className={styles.select}
                 onChange={handleChangeAttendance}>
+                <option value="">選択して下さい</option>
                 <option value="working">社会人</option>
                 <option value="student">学生</option>
+                <option value="extra">エキストラ</option>
               </select>
             </div>
             <div className={styles.inputWrapper}>

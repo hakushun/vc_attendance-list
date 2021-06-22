@@ -35,7 +35,7 @@
     text-align: center;
 
     &.head {
-      padding: 3px 5px;
+      padding: 3px 4px;
       font-weight: bold;
       background-color: mixin.$primaryColor;
       border: 1px solid mixin.$primaryColor;
@@ -43,7 +43,7 @@
 
     &.body {
       position: relative;
-      padding: 10px 5px;
+      padding: 10px 4px;
       border: 1px solid mixin.$mainTextColor;
     }
 
