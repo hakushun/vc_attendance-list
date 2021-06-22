@@ -34,6 +34,7 @@ type Props = {
   handleFocusProgram: (_e: React.ChangeEvent<HTMLSelectElement>) => void;
   programs: ProgramItem[];
   roles: RoleItem[];
+  handleFetch: (_id: string) => void;
 };
 export const AttendanceTable: React.VFC<Props> = ({
   user,
@@ -46,6 +47,7 @@ export const AttendanceTable: React.VFC<Props> = ({
   handleFocusProgram,
   programs,
   roles,
+  handleFetch,
 }) => {
   if (AttendanceIsLoading) return <Loading />;
 
@@ -106,7 +108,12 @@ export const AttendanceTable: React.VFC<Props> = ({
                     {date.day}
                     {getDayOfTheWeek(date.day)}
                   </button>
-                  <div>{date.time}</div>
+                  <button
+                    type="button"
+                    className={styles.action}
+                    onClick={() => handleFetch(date.id)}>
+                    {date.time}
+                  </button>
                 </th>
               ))}
               <th className={clsx(styles.cell, styles.head, styles.wide)}>コメント</th>
