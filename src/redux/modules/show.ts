@@ -14,6 +14,7 @@ import { update as updatePractice } from './practice';
 import { update as updateRoles } from './roles';
 import { update as updateParts } from './parts';
 import { update as updatePrograms } from './programs';
+import { create as createCovids } from './covids';
 
 type KeyName = 'eventForm' | 'covidForm' | 'attendanceForm' | 'covidResult' | 'setting';
 export type Show = Record<KeyName, boolean>;
@@ -89,7 +90,11 @@ const reducer = reducerWithInitialState(INITIAL_STATE)
       ...state,
       setting: false,
     }),
-  );
+  )
+  .case(createCovids.async.done, (state) => ({
+    ...state,
+    covidForm: false,
+  }));
 export default reducer;
 
 // selector
