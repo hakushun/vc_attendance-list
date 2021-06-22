@@ -18,14 +18,23 @@ import { useProgram } from '../../hooks/useProgram';
 import { usePrograms } from '../../hooks/usePrograms';
 import { useRoles } from '../../hooks/useRoles';
 import { useModal } from '../../hooks/useModal';
+import { CovidForm } from './CovidForm';
+import { useCovid } from '../../hooks/useCovid';
+import { useCovids } from '../../hooks/useCovids';
 
 type Props = {
   eventId: string;
 };
 export const Event: React.VFC<Props> = ({ eventId }) => {
   const { isLoading, user } = useUser();
-  const { settingIsShown, attendanceFormIsShown, handleToggleSetting, handleToggleAttendanceForm } =
-    useShow();
+  const {
+    settingIsShown,
+    attendanceFormIsShown,
+    covidFormIsShown,
+    handleToggleSetting,
+    handleToggleAttendanceForm,
+    handleToggleCovidForm,
+  } = useShow();
   const { targetEvent } = useEvents(eventId);
   const { event } = useEvent(targetEvent);
   const { parts } = useParts(eventId);
@@ -50,6 +59,8 @@ export const Event: React.VFC<Props> = ({ eventId }) => {
   const { programs } = usePrograms(eventId);
   const { roles } = useRoles(eventId);
   const { practiceModalIsShown } = useModal();
+  const { covid, handleChangeCovidDate, handleChangeCovidAnswers } = useCovid();
+  const { handleFetch, handleCreate: handleCovidCreate } = useCovids(eventId);
 
   if (isLoading) return <Loading />;
 
@@ -75,6 +86,15 @@ export const Event: React.VFC<Props> = ({ eventId }) => {
         handleUpdate={handleUpdate}
         handleRemove={handleRemove}
       />
+      <CovidForm
+        event={event}
+        covidFormIsShown={covidFormIsShown}
+        handleToggleCovidForm={handleToggleCovidForm}
+        covid={covid}
+        handleChangeCovidDate={handleChangeCovidDate}
+        handleChangeCovidAnswers={handleChangeCovidAnswers}
+        handleCreate={handleCovidCreate}
+      />
       <AttendanceTable
         user={user}
         event={event}
@@ -86,6 +106,7 @@ export const Event: React.VFC<Props> = ({ eventId }) => {
         handleFocusProgram={handleFocusProgram}
         programs={programs}
         roles={roles}
+        handleFetch={handleFetch}
       />
       {practiceModalIsShown && (
         <PracticeDetail
