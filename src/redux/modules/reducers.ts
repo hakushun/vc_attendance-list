@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import attendance from './attendance';
 import attendances from './attendances';
 import covid from './covid';
+import covids from './covids';
 import event from './event';
 import events from './events';
 import locations from './locations';
@@ -23,6 +24,7 @@ import tab from './tab';
 const rootReducer = combineReducers({
   domain: combineReducers({
     attendances,
+    covids,
     events,
     parts,
     practice,
