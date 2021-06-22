@@ -21,6 +21,7 @@ import { useModal } from '../../hooks/useModal';
 import { CovidForm } from './CovidForm';
 import { useCovid } from '../../hooks/useCovid';
 import { useCovids } from '../../hooks/useCovids';
+import { CovidResult } from './CovidResult';
 
 type Props = {
   eventId: string;
@@ -58,9 +59,15 @@ export const Event: React.VFC<Props> = ({ eventId }) => {
   const { selectedId, handleFocusProgram } = useProgram();
   const { programs } = usePrograms(eventId);
   const { roles } = useRoles(eventId);
-  const { practiceModalIsShown } = useModal();
+  const { practiceModalIsShown, covidResultIsShown } = useModal();
   const { covid, handleChangeCovidDate, handleChangeCovidAnswers } = useCovid();
-  const { handleFetch, handleCreate: handleCovidCreate } = useCovids(eventId);
+  const {
+    isLoading: covidsIsLoading,
+    answerRuselt,
+    unasweredUsers,
+    handleFetch,
+    handleCreate: handleCovidCreate,
+  } = useCovids(eventId);
 
   if (isLoading) return <Loading />;
 
@@ -114,6 +121,13 @@ export const Event: React.VFC<Props> = ({ eventId }) => {
           practice={practice}
           dateId={dateId}
           breakdownAttendances={breakdownAttendances}
+        />
+      )}
+      {covidResultIsShown && (
+        <CovidResult
+          isLoading={covidsIsLoading}
+          answerRuselt={answerRuselt}
+          unasweredUsers={unasweredUsers}
         />
       )}
     </>
