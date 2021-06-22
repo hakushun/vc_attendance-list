@@ -83,3 +83,23 @@ export const selectIsLoading = createSelector(
   [(state: RootState) => state.domain.covids.isLoading],
   (isLoading) => isLoading,
 );
+export const selectAnswerResult = createSelector(
+  [
+    (state: RootState) => state.domain.covids.covids,
+    (state: RootState) => state.domain.attendances.attendances,
+  ],
+  (covids, attendances) =>
+    covids.map((covid) => ({
+      ...covid,
+      part: attendances.find((attendance) => attendance.userId === covid.userId)?.part,
+      name: attendances.find((attendance) => attendance.userId === covid.userId)?.name,
+    })),
+);
+export const selectUnansweredUsers = createSelector(
+  [
+    (state: RootState) => state.domain.covids.covids,
+    (state: RootState) => state.domain.attendances.attendances,
+  ],
+  (covids, attendances) =>
+    attendances.filter((attendance) => !covids.some((covid) => covid.userId === attendance.userId)),
+);
