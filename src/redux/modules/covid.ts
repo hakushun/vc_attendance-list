@@ -11,6 +11,7 @@ export type Covid = {
   answers: {
     [s: string]: 'yes' | 'no';
   };
+  timestamp?: number;
 };
 type ChangeDatePayload = {
   userId: string;
