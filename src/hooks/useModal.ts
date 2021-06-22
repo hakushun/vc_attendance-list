@@ -2,14 +2,18 @@ import { MutableRefObject, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   closeAllModal,
+  selectCovidResultIsShown,
   selectPracticeModalIsShown,
+  toggleCovidResult,
   togglePracticeModal,
 } from '../redux/modules/modal';
 
 type Hooks = {
   modalRef: MutableRefObject<HTMLElement | null>;
   practiceModalIsShown: boolean;
+  covidResultIsShown: boolean;
   handleTogglePracticeModal: () => void;
+  handleToggleCovidResult: () => void;
   handleKeydown: (_e: React.KeyboardEvent<HTMLElement>) => void;
 };
 
@@ -17,9 +21,14 @@ export const useModal = (): Hooks => {
   const dispatch = useDispatch();
   const modalRef = useRef<HTMLElement | null>(null);
   const practiceModalIsShown = useSelector(selectPracticeModalIsShown);
+  const covidResultIsShown = useSelector(selectCovidResultIsShown);
 
   const handleTogglePracticeModal = () => {
     dispatch(togglePracticeModal(!practiceModalIsShown));
+  };
+
+  const handleToggleCovidResult = () => {
+    dispatch(toggleCovidResult(!covidResultIsShown));
   };
 
   const getFocusableElements = (ref: React.MutableRefObject<HTMLElement | null>) => {
@@ -71,5 +80,12 @@ export const useModal = (): Hooks => {
       target?.focus();
     };
   }, []);
-  return { modalRef, practiceModalIsShown, handleTogglePracticeModal, handleKeydown };
+  return {
+    modalRef,
+    practiceModalIsShown,
+    covidResultIsShown,
+    handleTogglePracticeModal,
+    handleToggleCovidResult,
+    handleKeydown,
+  };
 };
