@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import attendance from './attendance';
 import attendances from './attendances';
+import covid from './covid';
 import event from './event';
 import events from './events';
 import locations from './locations';
@@ -30,6 +31,7 @@ const rootReducer = combineReducers({
   }),
   app: combineReducers({
     attendance,
+    covid,
     event,
     locations,
     part,
