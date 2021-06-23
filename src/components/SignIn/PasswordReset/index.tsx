@@ -1,4 +1,5 @@
 import React, { MutableRefObject } from 'react';
+import { isEmail } from '../../../libs/utils/isEmail';
 import { Badge } from '../../uiParts/Badge';
 import { Heading } from '../../uiParts/Heading';
 import { Modal } from '../../uiParts/Modal';
@@ -8,6 +9,7 @@ import styles from './index.module.scss';
 
 type Props = {
   resetForm: { email: string };
+  isLoading: boolean;
   handleChange: (_e: React.ChangeEvent<HTMLInputElement>) => void;
   modalRef: MutableRefObject<HTMLElement | null>;
   handleTogglePasswordReset: () => void;
@@ -16,6 +18,7 @@ type Props = {
 };
 export const PasswordReset: React.VFC<Props> = ({
   resetForm,
+  isLoading,
   handleChange,
   modalRef,
   handleTogglePasswordReset,
@@ -46,7 +49,7 @@ export const PasswordReset: React.VFC<Props> = ({
               aria-required
               name="email"
               placeholder="Email Address"
-              disabled={false}
+              disabled={isLoading}
               className={styles.input}
               value={resetForm.email}
               onChange={handleChange}
@@ -56,12 +59,12 @@ export const PasswordReset: React.VFC<Props> = ({
         <PrimaryButton
           type="submit"
           label="リセットメールの送信"
-          disabled={false}
+          disabled={isLoading || !isEmail(resetForm.email)}
           handleClick={handleResetPassword}
         />
         <SecondaryButton
           label="キャンセル"
-          disabled={false}
+          disabled={isLoading}
           handleClick={handleTogglePasswordReset}
         />
       </form>

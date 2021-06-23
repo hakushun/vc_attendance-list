@@ -87,6 +87,7 @@ export const SignIn: React.VFC = () => {
       {passwordResetIsShown && (
         <PasswordReset
           resetForm={resetForm}
+          isLoading={isLoading}
           handleChange={handleChangeResetForm}
           handleResetPassword={handleResetPassword}
           modalRef={modalRef}
