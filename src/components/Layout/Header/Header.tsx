@@ -13,46 +13,42 @@ type Props = {
   handleToggleEventForm: () => void;
   handleToggleSetting: () => void;
 };
-export const Header: React.VFC<Props> = ({
-  router,
-  user,
-  handleSignOut,
-  handleToggleEventForm,
-  handleToggleSetting,
-}) => {
-  return (
-    <header className={styles.root}>
-      <div className={styles.inner}>
-        <Link href="/">
-          <a>
-            <h1 className={styles.title}>出欠さん</h1>
-          </a>
-        </Link>
-        {user && (
-          <nav className={styles.nav}>
-            <ul className={styles.list}>
-              {router.pathname === '/' && (
+export const Header: React.VFC<Props> = React.memo(
+  ({ router, user, handleSignOut, handleToggleEventForm, handleToggleSetting }) => {
+    return (
+      <header className={styles.root}>
+        <div className={styles.inner}>
+          <Link href="/">
+            <a>
+              <h1 className={styles.title}>出欠さん</h1>
+            </a>
+          </Link>
+          {user && (
+            <nav className={styles.nav}>
+              <ul className={styles.list}>
+                {router.pathname === '/' && (
+                  <li>
+                    <QuaternaryButton label="イベント作成" handleClick={handleToggleEventForm} />
+                  </li>
+                )}
+                {router.pathname === '/event/[id]' && isSuperuser(user) && (
+                  <>
+                    <li>
+                      <QuaternaryButton label="イベント編集" handleClick={handleToggleEventForm} />
+                    </li>
+                    <li>
+                      <QuaternaryButton label="設定" handleClick={handleToggleSetting} />
+                    </li>
+                  </>
+                )}
                 <li>
-                  <QuaternaryButton label="イベント作成" handleClick={handleToggleEventForm} />
+                  <QuaternaryButton label="Logout" handleClick={handleSignOut} />
                 </li>
-              )}
-              {router.pathname === '/event/[id]' && isSuperuser(user) && (
-                <>
-                  <li>
-                    <QuaternaryButton label="イベント編集" handleClick={handleToggleEventForm} />
-                  </li>
-                  <li>
-                    <QuaternaryButton label="設定" handleClick={handleToggleSetting} />
-                  </li>
-                </>
-              )}
-              <li>
-                <QuaternaryButton label="Logout" handleClick={handleSignOut} />
-              </li>
-            </ul>
-          </nav>
-        )}
-      </div>
-    </header>
-  );
-};
+              </ul>
+            </nav>
+          )}
+        </div>
+      </header>
+    );
+  },
+);

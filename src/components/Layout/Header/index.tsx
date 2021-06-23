@@ -5,7 +5,7 @@ import { useSign } from '../../../hooks/useSign';
 import { useUser } from '../../../hooks/useUser';
 import { Header as Presentational } from './Header';
 
-export const Header: React.VFC = () => {
+export const Header: React.VFC = React.memo(() => {
   const { router } = useRouter();
   const { user } = useUser();
   const { handleSignOut } = useSign();
@@ -20,4 +20,4 @@ export const Header: React.VFC = () => {
       handleToggleSetting={handleToggleSetting}
     />
   );
-};
+});

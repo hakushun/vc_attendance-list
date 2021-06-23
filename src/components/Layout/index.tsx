@@ -3,7 +3,7 @@ import { Footer } from './Footer';
 import { Header } from './Header';
 import styles from './index.module.scss';
 
-export const Layout: React.FC = ({ children }) => {
+export const Layout: React.FC = React.memo(({ children }) => {
   return (
     <div id="app" className={styles.root}>
       <Header />
@@ -13,4 +13,4 @@ export const Layout: React.FC = ({ children }) => {
       <Footer />
     </div>
   );
-};
+});
