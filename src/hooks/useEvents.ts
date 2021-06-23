@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getInstance } from '../libs/firestore/getInstance';
 import { isEventInvaild } from '../libs/utils/isEventInvalid';
@@ -30,23 +30,29 @@ export const useEvents = (eventId?: string): Hooks => {
   const isLoading = useSelector(selectIsLoading);
   const targetEvent = events.find((item) => item.id === eventId);
 
-  const handleCreate = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.preventDefault();
-    if (isEventInvaild(event)) return;
-    dispatch(create(event));
-  };
+  const handleCreate = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+      e.preventDefault();
+      if (isEventInvaild(event)) return;
+      dispatch(create(event));
+    },
+    [dispatch, event],
+  );
 
-  const handleUpdate = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.preventDefault();
-    if (!event.id || isEventInvaild(event)) return;
-    dispatch(update(event));
-  };
+  const handleUpdate = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+      e.preventDefault();
+      if (!event.id || isEventInvaild(event)) return;
+      dispatch(update(event));
+    },
+    [dispatch, event],
+  );
 
-  const handleRemove = () => {
+  const handleRemove = useCallback(() => {
     if (!event.id) return;
     dispatch(remove(event));
     router.push('/');
-  };
+  }, [dispatch, event, router]);
 
   useEffect(() => {
     const unsubscribe = db.collection('events').onSnapshot((snapshot) => {

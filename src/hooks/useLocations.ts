@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeLocation, Location, selectLocations } from '../redux/modules/locations';
 
@@ -9,10 +10,13 @@ export const useLocations = (): Hooks => {
   const dispatch = useDispatch();
   const locations = useSelector(selectLocations);
 
-  const handleChangeLocations = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const dateId = e.target.id.split('-')[1];
-    dispatch(changeLocation({ dateId, [e.target.name]: e.target.value }));
-  };
+  const handleChangeLocations = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const dateId = e.target.id.split('-')[1];
+      dispatch(changeLocation({ dateId, [e.target.name]: e.target.value }));
+    },
+    [dispatch],
+  );
 
   return { locations, handleChangeLocations };
 };

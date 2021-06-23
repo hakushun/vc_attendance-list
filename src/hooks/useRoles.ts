@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getInstance } from '../libs/firestore/getInstance';
 import { RoleItem, selectRoles as selectAppRoles } from '../redux/modules/role';
@@ -16,10 +16,13 @@ export const useRoles = (eventId: string): Hooks => {
   const roles = useSelector(selectRoles);
   const isLoading = useSelector(selectIsLoading);
 
-  const handleUpdate = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.preventDefault();
-    dispatch(update({ eventId, roles: rolesValue }));
-  };
+  const handleUpdate = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+      e.preventDefault();
+      dispatch(update({ eventId, roles: rolesValue }));
+    },
+    [dispatch, eventId, rolesValue],
+  );
 
   useEffect(() => {
     const unsubscribe = db

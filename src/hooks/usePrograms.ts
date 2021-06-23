@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getInstance } from '../libs/firestore/getInstance';
 import { isProgramInvalid } from '../libs/utils/isProgramInvalid';
@@ -24,11 +24,14 @@ export const usePrograms = (eventId: string): Hooks => {
   const programs = useSelector(selectPrograms);
   const isLoading = useSelector(selectIsLoading);
 
-  const handleUpdate = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.preventDefault();
-    if (isProgramInvalid(program)) return;
-    dispatch(update({ event, program }));
-  };
+  const handleUpdate = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+      e.preventDefault();
+      if (isProgramInvalid(program)) return;
+      dispatch(update({ event, program }));
+    },
+    [dispatch, event, program],
+  );
 
   useEffect(() => {
     const unsubscribe = db

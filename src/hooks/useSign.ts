@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import initFirebase from '../libs/firebase/initFirebase';
 import { isEmail } from '../libs/utils/isEmail';
@@ -36,32 +37,47 @@ export const useSign = (): Hooks => {
   const resetForm = useSelector(selectResetForm);
   const isLoading = useSelector(selectIsLoading);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(change({ [e.target.id]: e.target.value }));
-  };
-  const handleChangeResetForm = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(changeResetForm({ email: e.target.value }));
-  };
-  const handleSignUp = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.preventDefault();
-    if (isSignFormInvalid(form)) return;
-    await dispatch(signUp(form));
-    router.push('/');
-  };
-  const handleSignIn = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.preventDefault();
-    if (isSignFormInvalid(form)) return;
-    await dispatch(signIn(form));
-    router.push('/');
-  };
-  const handleSignOut = async () => {
+  const handleChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      dispatch(change({ [e.target.id]: e.target.value }));
+    },
+    [dispatch],
+  );
+  const handleChangeResetForm = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      dispatch(changeResetForm({ email: e.target.value }));
+    },
+    [dispatch],
+  );
+  const handleSignUp = useCallback(
+    async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+      e.preventDefault();
+      if (isSignFormInvalid(form)) return;
+      await dispatch(signUp(form));
+      router.push('/');
+    },
+    [dispatch, form, router],
+  );
+  const handleSignIn = useCallback(
+    async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+      e.preventDefault();
+      if (isSignFormInvalid(form)) return;
+      await dispatch(signIn(form));
+      router.push('/');
+    },
+    [dispatch, form, router],
+  );
+  const handleSignOut = useCallback(async () => {
     await dispatch(signOut());
-  };
-  const handleResetPassword = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.preventDefault();
-    if (!isEmail(resetForm.email)) return;
-    await dispatch(resetPassword(resetForm));
-  };
+  }, [dispatch]);
+  const handleResetPassword = useCallback(
+    async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+      e.preventDefault();
+      if (!isEmail(resetForm.email)) return;
+      await dispatch(resetPassword(resetForm));
+    },
+    [dispatch, resetForm],
+  );
   return {
     form,
     resetForm,

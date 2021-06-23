@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getInstance } from '../libs/firestore/getInstance';
 import { isAttendanceInvalid } from '../libs/utils/isAttendanceInvalid';
@@ -33,19 +33,27 @@ export const useAttendances = (eventId: string): Hooks => {
   const isLoading = useSelector(selectIsLoading);
   const breakdownAttendances = useSelector(selectBreakdownAttendances);
 
-  const handleCreate = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.preventDefault();
-    if (!eventId || isAttendanceInvalid(attendance)) return;
-    dispatch(create({ eventId, attendance }));
-  };
-  const handleUpdate = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.preventDefault();
-    if (!eventId || isAttendanceInvalid(attendance)) return;
-    dispatch(update({ eventId, attendance }));
-  };
-  const handleRemove = () => {
+  const handleCreate = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+      e.preventDefault();
+      if (!eventId || isAttendanceInvalid(attendance)) return;
+      dispatch(create({ eventId, attendance }));
+    },
+    [attendance, dispatch, eventId],
+  );
+
+  const handleUpdate = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+      e.preventDefault();
+      if (!eventId || isAttendanceInvalid(attendance)) return;
+      dispatch(update({ eventId, attendance }));
+    },
+    [attendance, dispatch, eventId],
+  );
+
+  const handleRemove = useCallback(() => {
     dispatch(remove({ eventId, attendance }));
-  };
+  }, [attendance, dispatch, eventId]);
 
   useEffect(() => {
     const unsubscribe = db

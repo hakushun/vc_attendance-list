@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getInstance } from '../libs/firestore/getInstance';
 import { isPartInvalid } from '../libs/utils/isPartInvalid';
@@ -19,11 +19,14 @@ export const useParts = (eventId: string): Hooks => {
   const parts = useSelector(selectParts);
   const isLoading = useSelector(selectIsLoading);
 
-  const handleUpdate = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.preventDefault();
-    if (isPartInvalid(part)) return;
-    dispatch(update({ event, part }));
-  };
+  const handleUpdate = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+      e.preventDefault();
+      if (isPartInvalid(part)) return;
+      dispatch(update({ event, part }));
+    },
+    [dispatch, event, part],
+  );
 
   useEffect(() => {
     const unsubscribe = db

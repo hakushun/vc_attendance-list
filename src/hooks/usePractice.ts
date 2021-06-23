@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getInstance } from '../libs/firestore/getInstance';
 import { selectEvent } from '../redux/modules/event';
@@ -33,14 +33,20 @@ export const usePractice = (eventId: string): Hooks => {
   const dateId = useSelector(selectDateId);
   const isLoading = useSelector(selectIsLoading);
 
-  const handleFocusPractice = (id: string) => {
-    dispatch(focusPractice(id));
-  };
+  const handleFocusPractice = useCallback(
+    (id: string) => {
+      dispatch(focusPractice(id));
+    },
+    [dispatch],
+  );
 
-  const handleUpdate = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.preventDefault();
-    dispatch(update({ event, practice: { locations, plans, remarks } }));
-  };
+  const handleUpdate = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+      e.preventDefault();
+      dispatch(update({ event, practice: { locations, plans, remarks } }));
+    },
+    [dispatch, event, locations, plans, remarks],
+  );
 
   useEffect(() => {
     const unsubscribe = db

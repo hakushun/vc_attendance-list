@@ -1,4 +1,4 @@
-import { MutableRefObject, useEffect, useRef } from 'react';
+import { MutableRefObject, useCallback, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   closeAllModal,
@@ -28,59 +28,65 @@ export const useModal = (): Hooks => {
   const covidResultIsShown = useSelector(selectCovidResultIsShown);
   const passwordResetIsShown = useSelector(selectPasswordResetIsShown);
 
-  const handleTogglePracticeModal = () => {
+  const handleTogglePracticeModal = useCallback(() => {
     dispatch(togglePracticeModal(!practiceModalIsShown));
-  };
+  }, [dispatch, practiceModalIsShown]);
 
-  const handleToggleCovidResult = () => {
+  const handleToggleCovidResult = useCallback(() => {
     dispatch(toggleCovidResult(!covidResultIsShown));
-  };
+  }, [covidResultIsShown, dispatch]);
 
-  const handleTogglePasswordReset = () => {
+  const handleTogglePasswordReset = useCallback(() => {
     dispatch(togglePasswordReset(!passwordResetIsShown));
-  };
+  }, [dispatch, passwordResetIsShown]);
 
-  const getFocusableElements = (ref: React.MutableRefObject<HTMLElement | null>) => {
+  const getFocusableElements = useCallback((ref: React.MutableRefObject<HTMLElement | null>) => {
     const focusableElementsString =
       'a[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), [tabindex="0"], [contenteditable]';
     return Array.prototype.slice.call(
       ref?.current?.querySelectorAll(focusableElementsString),
     ) as HTMLElement[];
-  };
+  }, []);
 
-  const getNextFocusableElement = (
-    ref: React.MutableRefObject<HTMLElement | null>,
-    backward: boolean,
-  ) => {
-    const focusable = getFocusableElements(ref);
-    const first = focusable[0];
-    const last = focusable[focusable.length - 1];
-    if (backward && document.activeElement === first) return last;
-    if (!backward && document.activeElement === last) return first;
-    return null;
-  };
+  const getNextFocusableElement = useCallback(
+    (ref: React.MutableRefObject<HTMLElement | null>, backward: boolean) => {
+      const focusable = getFocusableElements(ref);
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (backward && document.activeElement === first) return last;
+      if (!backward && document.activeElement === last) return first;
+      return null;
+    },
+    [getFocusableElements],
+  );
 
-  const handleTabDown = (e: React.KeyboardEvent<HTMLElement>) => {
-    const backward = e.shiftKey;
-    const nextFocus = getNextFocusableElement(modalRef, backward);
-    if (nextFocus) {
-      e.preventDefault();
-      nextFocus.focus();
-    }
-  };
+  const handleTabDown = useCallback(
+    (e: React.KeyboardEvent<HTMLElement>) => {
+      const backward = e.shiftKey;
+      const nextFocus = getNextFocusableElement(modalRef, backward);
+      if (nextFocus) {
+        e.preventDefault();
+        nextFocus.focus();
+      }
+    },
+    [getNextFocusableElement],
+  );
 
-  const handleKeydown = (e: React.KeyboardEvent<HTMLElement>) => {
-    switch (e.key) {
-      case 'Escape':
-        dispatch(closeAllModal());
-        break;
-      case 'Tab':
-        handleTabDown(e);
-        break;
-      default:
-        break;
-    }
-  };
+  const handleKeydown = useCallback(
+    (e: React.KeyboardEvent<HTMLElement>) => {
+      switch (e.key) {
+        case 'Escape':
+          dispatch(closeAllModal());
+          break;
+        case 'Tab':
+          handleTabDown(e);
+          break;
+        default:
+          break;
+      }
+    },
+    [dispatch, handleTabDown],
+  );
 
   useEffect(() => {
     modalRef.current?.focus();

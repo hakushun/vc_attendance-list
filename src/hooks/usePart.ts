@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   selectPart,
@@ -20,24 +21,30 @@ export const usePart = (): Hooks => {
   const dispatch = useDispatch();
   const part = useSelector(selectPart);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const id = e.target.id.split('-')[1];
-    dispatch(changePart({ id, name: e.target.value }));
-  };
+  const handleChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const id = e.target.id.split('-')[1];
+      dispatch(changePart({ id, name: e.target.value }));
+    },
+    [dispatch],
+  );
 
-  const handleAddPartForm = () => {
+  const handleAddPartForm = useCallback(() => {
     dispatch(addPartForm());
-  };
+  }, [dispatch]);
 
-  const handleDeletePartForm = () => {
+  const handleDeletePartForm = useCallback(() => {
     dispatch(deletePartForm());
-  };
+  }, [dispatch]);
 
-  const handleChangeOrder = ({ index, order }: ChangeOrderPayload) => {
-    if (index === 0 && order < 0) return;
-    if (index === part.length - 1 && order > 0) return;
-    dispatch(changeOrder({ index, order }));
-  };
+  const handleChangeOrder = useCallback(
+    ({ index, order }: ChangeOrderPayload) => {
+      if (index === 0 && order < 0) return;
+      if (index === part.length - 1 && order > 0) return;
+      dispatch(changeOrder({ index, order }));
+    },
+    [dispatch, part.length],
+  );
 
   return { part, handleChange, handleAddPartForm, handleDeletePartForm, handleChangeOrder };
 };

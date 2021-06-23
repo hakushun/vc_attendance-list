@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Attendance } from '../redux/modules/attendance';
 import { Covid, selectCovid } from '../redux/modules/covid';
@@ -26,13 +27,19 @@ export const useCovids = (eventId: string): Hooks => {
   const answerRuselt = useSelector(selectAnswerResult);
   const unasweredUsers = useSelector(selectUnansweredUsers);
 
-  const handleFetch = (dateId: string) => {
-    dispatch(fetch({ eventId, dateId }));
-  };
+  const handleFetch = useCallback(
+    (dateId: string) => {
+      dispatch(fetch({ eventId, dateId }));
+    },
+    [dispatch, eventId],
+  );
 
-  const handleCreate = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.preventDefault();
-    dispatch(create({ eventId, covid }));
-  };
+  const handleCreate = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+      e.preventDefault();
+      dispatch(create({ eventId, covid }));
+    },
+    [covid, dispatch, eventId],
+  );
   return { covids, isLoading, answerRuselt, unasweredUsers, handleFetch, handleCreate };
 };

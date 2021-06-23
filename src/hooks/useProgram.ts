@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   addProgramForm,
@@ -22,22 +23,28 @@ export const useProgram = (): Hooks => {
   const program = useSelector(selectProgram);
   const selectedId = useSelector(selectSelectedId);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const id = e.target.id.split('-')[1];
-    dispatch(changeProgram({ id, name: e.target.value }));
-  };
+  const handleChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const id = e.target.id.split('-')[1];
+      dispatch(changeProgram({ id, name: e.target.value }));
+    },
+    [dispatch],
+  );
 
-  const handleAddProgramForm = () => {
+  const handleAddProgramForm = useCallback(() => {
     dispatch(addProgramForm());
-  };
+  }, [dispatch]);
 
-  const handleDeleteProgramForm = () => {
+  const handleDeleteProgramForm = useCallback(() => {
     dispatch(deleteProgramForm());
-  };
+  }, [dispatch]);
 
-  const handleFocusProgram = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    dispatch(focusProgram(e.target.value));
-  };
+  const handleFocusProgram = useCallback(
+    (e: React.ChangeEvent<HTMLSelectElement>) => {
+      dispatch(focusProgram(e.target.value));
+    },
+    [dispatch],
+  );
 
   return {
     program,

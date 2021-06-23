@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getStringDate } from '../libs/dayjs/getStringDate';
 import {
@@ -28,31 +28,43 @@ export const useEvent = (initialState?: Event): Hooks => {
   const { router } = useRouter();
   const event = useSelector(selectEvent);
 
-  const handleChangeText = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    dispatch(changeText({ [e.target.name]: e.target.value }));
-  };
+  const handleChangeText = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      dispatch(changeText({ [e.target.name]: e.target.value }));
+    },
+    [dispatch],
+  );
 
-  const handleCangeDay = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const index = parseInt(e.target.id.split('-')[1], 10);
-    dispatch(changeDay({ index, day: getStringDate(e.target.value) }));
-  };
+  const handleCangeDay = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const index = parseInt(e.target.id.split('-')[1], 10);
+      dispatch(changeDay({ index, day: getStringDate(e.target.value) }));
+    },
+    [dispatch],
+  );
 
-  const handleCangeTime = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const index = parseInt(e.target.id.split('-')[1], 10);
-    dispatch(changeTime({ index, time: e.target.value }));
-  };
+  const handleCangeTime = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const index = parseInt(e.target.id.split('-')[1], 10);
+      dispatch(changeTime({ index, time: e.target.value }));
+    },
+    [dispatch],
+  );
 
-  const handleAddDateForm = () => {
+  const handleAddDateForm = useCallback(() => {
     dispatch(addDateForm());
-  };
+  }, [dispatch]);
 
-  const handleDeleteDateForm = () => {
+  const handleDeleteDateForm = useCallback(() => {
     dispatch(deleteDateForm());
-  };
+  }, [dispatch]);
 
-  const handleFocusEvent = (value: Event) => {
-    dispatch(focusEvent(value));
-  };
+  const handleFocusEvent = useCallback(
+    (value: Event) => {
+      dispatch(focusEvent(value));
+    },
+    [dispatch],
+  );
 
   useEffect(() => {
     router.pathname === '/' && dispatch(initiateEvent());

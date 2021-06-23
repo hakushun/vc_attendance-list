@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   changeRadio,
@@ -18,14 +19,20 @@ export const useRole = (): Hooks => {
   const programId = useSelector(selectProgramId);
   const roles = useSelector(selectRoles);
 
-  const handleChangeRadio = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(changeRadio({ programId: e.target.value }));
-  };
+  const handleChangeRadio = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      dispatch(changeRadio({ programId: e.target.value }));
+    },
+    [dispatch],
+  );
 
-  const handleChangeRole = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const userId = e.target.id.split('-')[1];
-    dispatch(changeRole({ userId, [programId]: e.target.value }));
-  };
+  const handleChangeRole = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const userId = e.target.id.split('-')[1];
+      dispatch(changeRole({ userId, [programId]: e.target.value }));
+    },
+    [dispatch, programId],
+  );
 
   return { programId, roles, handleChangeRadio, handleChangeRole };
 };
