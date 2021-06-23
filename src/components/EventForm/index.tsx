@@ -9,36 +9,33 @@ type Props = {
   handleUpdate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   handleRemove: () => void;
 };
-export const EventForm: React.VFC<Props> = ({
-  isLoading,
-  handleCreate,
-  handleUpdate,
-  handleRemove,
-}) => {
-  const { eventFormIsShown, handleToggleEventForm } = useShow();
-  const {
-    event,
-    handleChangeText,
-    handleCangeDay,
-    handleCangeTime,
-    handleAddDateForm,
-    handleDeleteDateForm,
-  } = useEvent();
+export const EventForm: React.VFC<Props> = React.memo(
+  ({ isLoading, handleCreate, handleUpdate, handleRemove }) => {
+    const { eventFormIsShown, handleToggleEventForm } = useShow();
+    const {
+      event,
+      handleChangeText,
+      handleCangeDay,
+      handleCangeTime,
+      handleAddDateForm,
+      handleDeleteDateForm,
+    } = useEvent();
 
-  return (
-    <Presentational
-      eventFormIsShown={eventFormIsShown}
-      handleToggleEventForm={handleToggleEventForm}
-      event={event}
-      handleChangeText={handleChangeText}
-      handleCangeDay={handleCangeDay}
-      handleCangeTime={handleCangeTime}
-      handleAddDateForm={handleAddDateForm}
-      handleDeleteDateForm={handleDeleteDateForm}
-      isLoading={isLoading}
-      handleCreate={handleCreate}
-      handleUpdate={handleUpdate}
-      handleRemove={handleRemove}
-    />
-  );
-};
+    return (
+      <Presentational
+        eventFormIsShown={eventFormIsShown}
+        handleToggleEventForm={handleToggleEventForm}
+        event={event}
+        handleChangeText={handleChangeText}
+        handleCangeDay={handleCangeDay}
+        handleCangeTime={handleCangeTime}
+        handleAddDateForm={handleAddDateForm}
+        handleDeleteDateForm={handleDeleteDateForm}
+        isLoading={isLoading}
+        handleCreate={handleCreate}
+        handleUpdate={handleUpdate}
+        handleRemove={handleRemove}
+      />
+    );
+  },
+);
