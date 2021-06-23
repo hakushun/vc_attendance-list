@@ -1,7 +1,7 @@
 import React from 'react';
+import { useProgram } from '../../../../hooks/useProgram';
 import { isProgramInvalid } from '../../../../libs/utils/isProgramInvalid';
 import { Event } from '../../../../redux/modules/event';
-import { ProgramItem } from '../../../../redux/modules/program';
 import { Badge } from '../../../uiParts/Badge';
 import { Heading } from '../../../uiParts/Heading';
 import { Loading } from '../../../uiParts/Loading';
@@ -13,23 +13,17 @@ import styles from './index.module.scss';
 type Props = {
   event: Event;
   handleToggleSetting: () => void;
-  program: ProgramItem[];
-  handleChange: (_e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleAddProgramForm: () => void;
-  handleDeleteProgramForm: () => void;
   isLoading: boolean;
   handleUpdate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
 export const Program: React.VFC<Props> = ({
   event,
   handleToggleSetting,
-  program,
-  handleChange,
-  handleAddProgramForm,
-  handleDeleteProgramForm,
   isLoading,
   handleUpdate,
 }) => {
+  const { program, handleChange, handleAddProgramForm, handleDeleteProgramForm } = useProgram();
+
   if (isLoading) return <Loading />;
 
   return (
