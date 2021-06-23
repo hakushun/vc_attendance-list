@@ -2,6 +2,7 @@ import React from 'react';
 import { useModal } from '../../hooks/useModal';
 import { useSign } from '../../hooks/useSign';
 import { isSignFormInvalid } from '../../libs/utils/isSignFormInvalid';
+import { Badge } from '../uiParts/Badge';
 import { Heading } from '../uiParts/Heading';
 import { LinkButton } from '../uiParts/LinkButton';
 import { PrimaryButton } from '../uiParts/PrimaryButton';
@@ -31,6 +32,7 @@ export const SignIn: React.VFC = () => {
           <div className={styles.inputWrapper}>
             <label htmlFor="email" className={styles.label}>
               Email:
+              <Badge type="required" />
             </label>
             <input
               type="email"
@@ -48,6 +50,7 @@ export const SignIn: React.VFC = () => {
           <div className={styles.inputWrapper}>
             <label htmlFor="password" className={styles.label}>
               Password:
+              <Badge type="required" />
             </label>
             <input
               type="password"

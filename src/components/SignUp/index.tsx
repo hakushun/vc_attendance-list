@@ -6,6 +6,7 @@ import styles from './index.module.scss';
 import { Heading } from '../uiParts/Heading';
 import { Sectioning } from '../uiParts/Sectioning';
 import { isSignFormInvalid } from '../../libs/utils/isSignFormInvalid';
+import { Badge } from '../uiParts/Badge';
 
 export const SignUp: React.VFC = () => {
   const { form, isLoading, handleChange, handleSignUp } = useSign();
@@ -20,6 +21,7 @@ export const SignUp: React.VFC = () => {
           <div className={styles.inputWrapper}>
             <label htmlFor="email" className={styles.label}>
               Email:
+              <Badge type="required" />
             </label>
             <input
               type="email"
@@ -37,6 +39,7 @@ export const SignUp: React.VFC = () => {
           <div className={styles.inputWrapper}>
             <label htmlFor="password" className={styles.label}>
               Password:
+              <Badge type="required" />
             </label>
             <input
               type="password"
