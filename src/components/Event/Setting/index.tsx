@@ -7,53 +7,43 @@ import { Program } from './Program';
 import { Part } from './Part';
 import { Role } from './Role';
 import { Event } from '../../../redux/modules/event';
-import styles from './index.module.scss';
-import { usePart } from '../../../hooks/usePart';
-import { useParts } from '../../../hooks/useParts';
-import { useAttendances } from '../../../hooks/useAttendances';
-import { usePrograms } from '../../../hooks/usePrograms';
-import { useRole } from '../../../hooks/useRole';
-import { useRoles } from '../../../hooks/useRoles';
-import { useProgram } from '../../../hooks/useProgram';
-import { useLocations } from '../../../hooks/useLocations';
-import { usePlans } from '../../../hooks/usePlans';
-import { usePractice } from '../../../hooks/usePractice';
-import { useRemarks } from '../../../hooks/useRemarks';
 import { useTab } from '../../../hooks/useTab';
+import { Part as TypePart } from '../../../redux/modules/part';
+import { Attendance } from '../../../redux/modules/attendance';
+import { ProgramItem } from '../../../redux/modules/program';
+import styles from './index.module.scss';
 
 type Props = {
   event: Event;
   handleToggleSetting: () => void;
+  attendances: Attendance[];
+  parts: TypePart[];
+  partsIsLoading: boolean;
+  handlePartsUpdate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  practiceIsLoading: boolean;
+  handlePracticeUpdate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  programs: ProgramItem[];
+  programsIsLoading: boolean;
+  handleProgramsUpdate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  rolesIsLoading: boolean;
+  handleRolesUpdate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
-export const Setting: React.VFC<Props> = ({ event, handleToggleSetting }) => {
-  const {
-    part,
-    handleChange: handlePartChange,
-    handleAddPartForm,
-    handleDeletePartForm,
-    handleChangeOrder,
-  } = usePart();
-  const { attendances } = useAttendances(event.id);
-  const { parts, isLoading: PartsIsLoading, handleUpdate: handlePartsUpdate } = useParts(event.id);
-  const {
-    programs,
-    isLoading: ProgramsIsLoading,
-    handleUpdate: handleProgramsUpdate,
-  } = usePrograms(event.id);
-  const { programId, roles, handleChangeRadio, handleChangeRole } = useRole();
-  const { isLoading: RolesIsLoading, handleUpdate: handleRolesUpdate } = useRoles(event.id);
-  const {
-    program,
-    handleChange: handleProgramChange,
-    handleAddProgramForm,
-    handleDeleteProgramForm,
-  } = useProgram();
-  const { locations, handleChangeLocations } = useLocations();
-  const { plans, handleChangePlans } = usePlans();
-  const { remarks, handleChangeRemarks } = useRemarks();
-  const { isLoading: PracticeIsLoading, handleUpdate: handlePracticeUpdate } = usePractice(
-    event.id!,
-  );
+export const Setting: React.VFC<Props> = ({
+  event,
+  handleToggleSetting,
+  attendances,
+  parts,
+  partsIsLoading,
+  handlePartsUpdate,
+  practiceIsLoading,
+  handlePracticeUpdate,
+  programs,
+  programsIsLoading,
+  handleProgramsUpdate,
+  rolesIsLoading,
+  handleRolesUpdate,
+}) => {
+  // ui
   const { tab, handleChangeSettingTab } = useTab();
 
   return (
@@ -103,13 +93,7 @@ export const Setting: React.VFC<Props> = ({ event, handleToggleSetting }) => {
             <Practice
               event={event}
               handleToggleSetting={handleToggleSetting}
-              locations={locations}
-              handleChangeLocations={handleChangeLocations}
-              plans={plans}
-              handleChangePlans={handleChangePlans}
-              remarks={remarks}
-              handleChangeRemarks={handleChangeRemarks}
-              isLoading={PracticeIsLoading}
+              isLoading={practiceIsLoading}
               handleUpdate={handlePracticeUpdate}
             />
           )}
@@ -117,11 +101,7 @@ export const Setting: React.VFC<Props> = ({ event, handleToggleSetting }) => {
             <Program
               event={event}
               handleToggleSetting={handleToggleSetting}
-              program={program}
-              handleChange={handleProgramChange}
-              handleAddProgramForm={handleAddProgramForm}
-              handleDeleteProgramForm={handleDeleteProgramForm}
-              isLoading={ProgramsIsLoading}
+              isLoading={programsIsLoading}
               handleUpdate={handleProgramsUpdate}
             />
           )}
@@ -131,23 +111,14 @@ export const Setting: React.VFC<Props> = ({ event, handleToggleSetting }) => {
               programs={programs}
               parts={parts}
               attendances={attendances}
-              programId={programId}
-              roles={roles}
-              handleChangeRadio={handleChangeRadio}
-              handleChangeRole={handleChangeRole}
-              isLoading={RolesIsLoading}
+              isLoading={rolesIsLoading}
               handleUpdate={handleRolesUpdate}
             />
           )}
           {tab.setting === 'part' && (
             <Part
               handleToggleSetting={handleToggleSetting}
-              part={part}
-              handleChange={handlePartChange}
-              handleAddPartForm={handleAddPartForm}
-              handleDeletePartForm={handleDeletePartForm}
-              handleChangeOrder={handleChangeOrder}
-              isLoading={PartsIsLoading}
+              isLoading={partsIsLoading}
               handleUpdate={handlePartsUpdate}
             />
           )}
