@@ -205,6 +205,7 @@ export const AttendanceForm: React.VFC<Props> = ({
                         type="text"
                         id={`attendance_remark-${date.id}`}
                         name="remark"
+                        autoComplete="off"
                         maxLength={40}
                         disabled={AttendanceIsLoading}
                         value={

@@ -102,6 +102,7 @@ export const EventForm: React.VFC = () => {
                           id={`event_time-${index}`}
                           required
                           aria-required
+                          autoComplete="off"
                           maxLength={15}
                           placeholder={`日付 ${index + 1}の練習時間を入力ください`}
                           disabled={isLoading}
