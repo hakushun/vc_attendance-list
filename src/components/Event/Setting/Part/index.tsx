@@ -8,22 +8,24 @@ type Props = {
   isLoading: boolean;
   handleUpdate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
-export const Part: React.VFC<Props> = ({ handleToggleSetting, isLoading, handleUpdate }) => {
-  const { part, handleChange, handleAddPartForm, handleDeletePartForm, handleChangeOrder } =
-    usePart();
+export const Part: React.VFC<Props> = React.memo(
+  ({ handleToggleSetting, isLoading, handleUpdate }) => {
+    const { part, handleChange, handleAddPartForm, handleDeletePartForm, handleChangeOrder } =
+      usePart();
 
-  if (isLoading) return <Loading />;
+    if (isLoading) return <Loading />;
 
-  return (
-    <Presentational
-      handleToggleSetting={handleToggleSetting}
-      isLoading={isLoading}
-      handleUpdate={handleUpdate}
-      part={part}
-      handleChange={handleChange}
-      handleAddPartForm={handleAddPartForm}
-      handleDeletePartForm={handleDeletePartForm}
-      handleChangeOrder={handleChangeOrder}
-    />
-  );
-};
+    return (
+      <Presentational
+        handleToggleSetting={handleToggleSetting}
+        isLoading={isLoading}
+        handleUpdate={handleUpdate}
+        part={part}
+        handleChange={handleChange}
+        handleAddPartForm={handleAddPartForm}
+        handleDeletePartForm={handleDeletePartForm}
+        handleChangeOrder={handleChangeOrder}
+      />
+    );
+  },
+);

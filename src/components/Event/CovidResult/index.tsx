@@ -9,17 +9,19 @@ type Props = {
   answerRuselt: (Covid & { name: string | undefined; part: string | undefined })[];
   unasweredUsers: Attendance[];
 };
-export const CovidResult: React.VFC<Props> = ({ isLoading, answerRuselt, unasweredUsers }) => {
-  const { modalRef, handleToggleCovidResult, handleKeydown } = useModal();
+export const CovidResult: React.VFC<Props> = React.memo(
+  ({ isLoading, answerRuselt, unasweredUsers }) => {
+    const { modalRef, handleToggleCovidResult, handleKeydown } = useModal();
 
-  return (
-    <Presentational
-      isLoading={isLoading}
-      answerRuselt={answerRuselt}
-      unasweredUsers={unasweredUsers}
-      modalRef={modalRef}
-      handleToggleCovidResult={handleToggleCovidResult}
-      handleKeydown={handleKeydown}
-    />
-  );
-};
+    return (
+      <Presentational
+        isLoading={isLoading}
+        answerRuselt={answerRuselt}
+        unasweredUsers={unasweredUsers}
+        modalRef={modalRef}
+        handleToggleCovidResult={handleToggleCovidResult}
+        handleKeydown={handleKeydown}
+      />
+    );
+  },
+);

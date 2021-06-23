@@ -8,7 +8,7 @@ type Props = {
   event: Event;
   handleCreate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
-export const CovidForm: React.VFC<Props> = ({ event, handleCreate }) => {
+export const CovidForm: React.VFC<Props> = React.memo(({ event, handleCreate }) => {
   const { covid, handleChangeCovidDate, handleChangeCovidAnswers } = useCovid();
   const { covidFormIsShown, handleToggleCovidForm } = useShow();
 
@@ -23,4 +23,4 @@ export const CovidForm: React.VFC<Props> = ({ event, handleCreate }) => {
       handleToggleCovidForm={handleToggleCovidForm}
     />
   );
-};
+});

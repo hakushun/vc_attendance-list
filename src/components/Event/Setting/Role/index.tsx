@@ -14,30 +14,25 @@ type Props = {
   isLoading: boolean;
   handleUpdate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
-export const Role: React.VFC<Props> = ({
-  handleToggleSetting,
-  programs,
-  parts,
-  attendances,
-  isLoading,
-  handleUpdate,
-}) => {
-  const { programId, roles, handleChangeRadio, handleChangeRole } = useRole();
+export const Role: React.VFC<Props> = React.memo(
+  ({ handleToggleSetting, programs, parts, attendances, isLoading, handleUpdate }) => {
+    const { programId, roles, handleChangeRadio, handleChangeRole } = useRole();
 
-  if (isLoading) return <Loading />;
+    if (isLoading) return <Loading />;
 
-  return (
-    <Presentational
-      handleToggleSetting={handleToggleSetting}
-      programs={programs}
-      parts={parts}
-      attendances={attendances}
-      isLoading={isLoading}
-      handleUpdate={handleUpdate}
-      programId={programId}
-      roles={roles}
-      handleChangeRadio={handleChangeRadio}
-      handleChangeRole={handleChangeRole}
-    />
-  );
-};
+    return (
+      <Presentational
+        handleToggleSetting={handleToggleSetting}
+        programs={programs}
+        parts={parts}
+        attendances={attendances}
+        isLoading={isLoading}
+        handleUpdate={handleUpdate}
+        programId={programId}
+        roles={roles}
+        handleChangeRadio={handleChangeRadio}
+        handleChangeRole={handleChangeRole}
+      />
+    );
+  },
+);

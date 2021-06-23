@@ -7,7 +7,7 @@ import { Event } from '../../../redux/modules/event';
 type Props = {
   event: Event;
 };
-export const EventHeader: React.VFC<Props> = ({ event }) => {
+export const EventHeader: React.VFC<Props> = React.memo(({ event }) => {
   return (
     <Sectioning id="event_header">
       <Heading level={2} label={event.title} />
@@ -16,4 +16,4 @@ export const EventHeader: React.VFC<Props> = ({ event }) => {
       </div>
     </Sectioning>
   );
-};
+});

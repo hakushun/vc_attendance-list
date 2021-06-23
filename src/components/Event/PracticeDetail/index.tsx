@@ -17,32 +17,29 @@ type Props = {
     absence: Attendance[];
   };
 };
-export const PracticeDetail: React.VFC<Props> = ({
-  event,
-  practice,
-  dateId,
-  breakdownAttendances,
-}) => {
-  const { modalRef, handleTogglePracticeModal, handleKeydown } = useModal();
+export const PracticeDetail: React.VFC<Props> = React.memo(
+  ({ event, practice, dateId, breakdownAttendances }) => {
+    const { modalRef, handleTogglePracticeModal, handleKeydown } = useModal();
 
-  // TODO: memo化
-  const titleDate = getStringDate(event.dates.find((date) => date.id === dateId)?.day);
-  const titleDayOfTheWeek = getDayOfTheWeek(event.dates.find((date) => date.id === dateId)?.day);
-  const url = practice.locations.find((loc) => loc.dateId === dateId)?.url;
-  const content = practice.remarks.find((rmrk) => rmrk.dateId === dateId)?.content;
+    // TODO: memo化
+    const titleDate = getStringDate(event.dates.find((date) => date.id === dateId)?.day);
+    const titleDayOfTheWeek = getDayOfTheWeek(event.dates.find((date) => date.id === dateId)?.day);
+    const url = practice.locations.find((loc) => loc.dateId === dateId)?.url;
+    const content = practice.remarks.find((rmrk) => rmrk.dateId === dateId)?.content;
 
-  return (
-    <Presentational
-      practice={practice}
-      dateId={dateId}
-      breakdownAttendances={breakdownAttendances}
-      modalRef={modalRef}
-      handleTogglePracticeModal={handleTogglePracticeModal}
-      handleKeydown={handleKeydown}
-      titleDate={titleDate}
-      titleDayOfTheWeek={titleDayOfTheWeek}
-      url={url}
-      content={content}
-    />
-  );
-};
+    return (
+      <Presentational
+        practice={practice}
+        dateId={dateId}
+        breakdownAttendances={breakdownAttendances}
+        modalRef={modalRef}
+        handleTogglePracticeModal={handleTogglePracticeModal}
+        handleKeydown={handleKeydown}
+        titleDate={titleDate}
+        titleDayOfTheWeek={titleDayOfTheWeek}
+        url={url}
+        content={content}
+      />
+    );
+  },
+);

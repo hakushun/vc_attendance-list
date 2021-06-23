@@ -23,7 +23,7 @@ import { CovidResult } from './CovidResult';
 type Props = {
   eventId: string;
 };
-export const Event: React.VFC<Props> = ({ eventId }) => {
+export const Event: React.VFC<Props> = React.memo(({ eventId }) => {
   // domain
   const { parts, isLoading: partsIsLoading, handleUpdate: handlePartsUpdate } = useParts(eventId);
   const {
@@ -136,4 +136,4 @@ export const Event: React.VFC<Props> = ({ eventId }) => {
       )}
     </>
   );
-};
+});

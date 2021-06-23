@@ -19,33 +19,26 @@ type Props = {
   roles: RoleItem[];
   handleFetch: (_id: string) => void;
 };
-export const AttendanceTable: React.VFC<Props> = ({
-  user,
-  event,
-  attendances,
-  isLoading,
-  handleFocusPractice,
-  programs,
-  roles,
-  handleFetch,
-}) => {
-  const { handleFocusAttendance } = useAttendance();
-  const { selectedId, handleFocusProgram } = useProgram();
+export const AttendanceTable: React.VFC<Props> = React.memo(
+  ({ user, event, attendances, isLoading, handleFocusPractice, programs, roles, handleFetch }) => {
+    const { handleFocusAttendance } = useAttendance();
+    const { selectedId, handleFocusProgram } = useProgram();
 
-  if (isLoading) return <Loading />;
+    if (isLoading) return <Loading />;
 
-  return (
-    <Presentational
-      user={user}
-      event={event}
-      attendances={attendances}
-      handleFocusPractice={handleFocusPractice}
-      programs={programs}
-      roles={roles}
-      handleFetch={handleFetch}
-      handleFocusAttendance={handleFocusAttendance}
-      selectedId={selectedId}
-      handleFocusProgram={handleFocusProgram}
-    />
-  );
-};
+    return (
+      <Presentational
+        user={user}
+        event={event}
+        attendances={attendances}
+        handleFocusPractice={handleFocusPractice}
+        programs={programs}
+        roles={roles}
+        handleFetch={handleFetch}
+        handleFocusAttendance={handleFocusAttendance}
+        selectedId={selectedId}
+        handleFocusProgram={handleFocusProgram}
+      />
+    );
+  },
+);

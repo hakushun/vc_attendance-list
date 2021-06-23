@@ -17,42 +17,35 @@ type Props = {
   handleUpdate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   handleRemove: () => void;
 };
-export const AttendanceForm: React.VFC<Props> = ({
-  user,
-  event,
-  parts,
-  attendances,
-  isLoading,
-  handleCreate,
-  handleUpdate,
-  handleRemove,
-}) => {
-  const {
-    attendance,
-    handleChangeAttendance,
-    handleChangeRemark,
-    handleClickRadio,
-    handleKeyDownRadio,
-  } = useAttendance();
-  const { attendanceFormIsShown, handleToggleAttendanceForm } = useShow();
+export const AttendanceForm: React.VFC<Props> = React.memo(
+  ({ user, event, parts, attendances, isLoading, handleCreate, handleUpdate, handleRemove }) => {
+    const {
+      attendance,
+      handleChangeAttendance,
+      handleChangeRemark,
+      handleClickRadio,
+      handleKeyDownRadio,
+    } = useAttendance();
+    const { attendanceFormIsShown, handleToggleAttendanceForm } = useShow();
 
-  return (
-    <Presentational
-      user={user}
-      event={event}
-      parts={parts}
-      attendances={attendances}
-      isLoading={isLoading}
-      handleCreate={handleCreate}
-      handleUpdate={handleUpdate}
-      handleRemove={handleRemove}
-      attendance={attendance}
-      handleChangeAttendance={handleChangeAttendance}
-      handleChangeRemark={handleChangeRemark}
-      handleClickRadio={handleClickRadio}
-      handleKeyDownRadio={handleKeyDownRadio}
-      attendanceFormIsShown={attendanceFormIsShown}
-      handleToggleAttendanceForm={handleToggleAttendanceForm}
-    />
-  );
-};
+    return (
+      <Presentational
+        user={user}
+        event={event}
+        parts={parts}
+        attendances={attendances}
+        isLoading={isLoading}
+        handleCreate={handleCreate}
+        handleUpdate={handleUpdate}
+        handleRemove={handleRemove}
+        attendance={attendance}
+        handleChangeAttendance={handleChangeAttendance}
+        handleChangeRemark={handleChangeRemark}
+        handleClickRadio={handleClickRadio}
+        handleKeyDownRadio={handleKeyDownRadio}
+        attendanceFormIsShown={attendanceFormIsShown}
+        handleToggleAttendanceForm={handleToggleAttendanceForm}
+      />
+    );
+  },
+);

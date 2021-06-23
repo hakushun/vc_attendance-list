@@ -21,40 +21,42 @@ type Props = {
   rolesIsLoading: boolean;
   handleRolesUpdate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
-export const Setting: React.VFC<Props> = ({
-  event,
-  handleToggleSetting,
-  attendances,
-  parts,
-  partsIsLoading,
-  handlePartsUpdate,
-  practiceIsLoading,
-  handlePracticeUpdate,
-  programs,
-  programsIsLoading,
-  handleProgramsUpdate,
-  rolesIsLoading,
-  handleRolesUpdate,
-}) => {
-  const { tab, handleChangeSettingTab } = useTab();
+export const Setting: React.VFC<Props> = React.memo(
+  ({
+    event,
+    handleToggleSetting,
+    attendances,
+    parts,
+    partsIsLoading,
+    handlePartsUpdate,
+    practiceIsLoading,
+    handlePracticeUpdate,
+    programs,
+    programsIsLoading,
+    handleProgramsUpdate,
+    rolesIsLoading,
+    handleRolesUpdate,
+  }) => {
+    const { tab, handleChangeSettingTab } = useTab();
 
-  return (
-    <Presentational
-      event={event}
-      handleToggleSetting={handleToggleSetting}
-      attendances={attendances}
-      parts={parts}
-      partsIsLoading={partsIsLoading}
-      handlePartsUpdate={handlePartsUpdate}
-      practiceIsLoading={practiceIsLoading}
-      handlePracticeUpdate={handlePracticeUpdate}
-      programs={programs}
-      programsIsLoading={programsIsLoading}
-      handleProgramsUpdate={handleProgramsUpdate}
-      rolesIsLoading={rolesIsLoading}
-      handleRolesUpdate={handleRolesUpdate}
-      tab={tab}
-      handleChangeSettingTab={handleChangeSettingTab}
-    />
-  );
-};
+    return (
+      <Presentational
+        event={event}
+        handleToggleSetting={handleToggleSetting}
+        attendances={attendances}
+        parts={parts}
+        partsIsLoading={partsIsLoading}
+        handlePartsUpdate={handlePartsUpdate}
+        practiceIsLoading={practiceIsLoading}
+        handlePracticeUpdate={handlePracticeUpdate}
+        programs={programs}
+        programsIsLoading={programsIsLoading}
+        handleProgramsUpdate={handleProgramsUpdate}
+        rolesIsLoading={rolesIsLoading}
+        handleRolesUpdate={handleRolesUpdate}
+        tab={tab}
+        handleChangeSettingTab={handleChangeSettingTab}
+      />
+    );
+  },
+);
