@@ -1,9 +1,9 @@
 import React from 'react';
+import { useRole } from '../../../../hooks/useRole';
 import { getRoleValue } from '../../../../libs/utils/getRoleValue';
 import { Attendance } from '../../../../redux/modules/attendance';
 import { Part } from '../../../../redux/modules/part';
 import { ProgramItem } from '../../../../redux/modules/program';
-import { RoleItem } from '../../../../redux/modules/role';
 import { Heading } from '../../../uiParts/Heading';
 import { Loading } from '../../../uiParts/Loading';
 import { PrimaryButton } from '../../../uiParts/PrimaryButton';
@@ -15,10 +15,6 @@ type Props = {
   programs: ProgramItem[];
   parts: Part[];
   attendances: Attendance[];
-  programId: string;
-  roles: RoleItem[];
-  handleChangeRadio: (_e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleChangeRole: (_e: React.ChangeEvent<HTMLInputElement>) => void;
   isLoading: boolean;
   handleUpdate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
@@ -27,13 +23,11 @@ export const Role: React.VFC<Props> = ({
   programs,
   parts,
   attendances,
-  programId,
-  roles,
-  handleChangeRadio,
-  handleChangeRole,
   isLoading,
   handleUpdate,
 }) => {
+  const { programId, roles, handleChangeRadio, handleChangeRole } = useRole();
+
   if (isLoading) return <Loading />;
 
   return (
