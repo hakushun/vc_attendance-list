@@ -1,5 +1,7 @@
 import clsx from 'clsx';
 import React from 'react';
+import { useAttendance } from '../../../hooks/useAttendance';
+import { useShow } from '../../../hooks/useShow';
 import { getDayOfTheWeek } from '../../../libs/dayjs/getDayOfTheWeek';
 import { isAttendanceInvalid } from '../../../libs/utils/isAttendanceInvalid';
 import { Attendance } from '../../../redux/modules/attendance';
@@ -16,17 +18,8 @@ import styles from './index.module.scss';
 
 type Props = {
   user: Userdata;
-  attendanceFormIsShown: boolean;
-  handleToggleAttendanceForm: () => void;
   event: Event;
   parts: Part[];
-  attendance: Attendance;
-  handleChangeAttendance: (
-    _e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement | HTMLTextAreaElement>,
-  ) => void;
-  handleChangeRemark: (_e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleClickRadio: (_e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => void;
-  handleKeyDownRadio: (_e: React.KeyboardEvent<HTMLSpanElement>) => void;
   attendances: Attendance[];
   AttendanceIsLoading: boolean;
   handleCreate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
@@ -35,21 +28,22 @@ type Props = {
 };
 export const AttendanceForm: React.VFC<Props> = ({
   user,
-  attendanceFormIsShown,
-  handleToggleAttendanceForm,
   event,
   parts,
-  attendance,
-  handleChangeAttendance,
-  handleChangeRemark,
-  handleClickRadio,
-  handleKeyDownRadio,
   attendances,
   AttendanceIsLoading,
   handleCreate,
   handleUpdate,
   handleRemove,
 }) => {
+  const {
+    attendance,
+    handleChangeAttendance,
+    handleChangeRemark,
+    handleClickRadio,
+    handleKeyDownRadio,
+  } = useAttendance();
+  const { attendanceFormIsShown, handleToggleAttendanceForm } = useShow();
   return (
     <Sectioning id="attendance_form">
       {attendanceFormIsShown && (
