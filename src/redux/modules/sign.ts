@@ -3,6 +3,7 @@ import actionCreatorFactory from 'typescript-fsa';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import { asyncFactory } from 'typescript-fsa-redux-thunk';
 import {
+  resetUserPassword,
   signInWithFirebase,
   signOutWithFirebase,
   signUpWithFirebase,
@@ -16,6 +17,7 @@ export type SignForm = {
 };
 export type Sign = {
   form: SignForm;
+  resetForm: { email: string };
   isLoading: boolean;
 };
 export type AuthPayload = {
@@ -31,6 +33,7 @@ const actionCreator = actionCreatorFactory();
 const asyncActionCreator = asyncFactory<Sign>(actionCreator);
 
 export const change = actionCreator<Partial<SignForm>>('CHAGNE_FORM');
+export const changeResetForm = actionCreator<{ email: string }>('CHAGNE_RESET_FORM');
 export const signUp = asyncActionCreator<AuthPayload, Userdata, CustomError>(
   'SIGNUP_USER',
   async (payload) => {
@@ -48,12 +51,21 @@ export const signIn = asyncActionCreator<AuthPayload, Userdata, CustomError>(
 export const signOut = asyncActionCreator<void, void, CustomError>('SIGNOUT_USER', async () => {
   await signOutWithFirebase();
 });
+export const resetPassword = asyncActionCreator<{ email: string }, void, CustomError>(
+  'RESET_PASSWORD',
+  async ({ email }) => {
+    await resetUserPassword(email);
+  },
+);
 
 // initial state
 const INITIAL_STATE: Sign = {
   form: {
     email: '',
     password: '',
+  },
+  resetForm: {
+    email: '',
   },
   isLoading: false,
 };
@@ -67,17 +79,35 @@ const reducer = reducerWithInitialState(INITIAL_STATE)
       ...payload,
     },
   }))
-  .cases([signUp.async.started, signIn.async.started, signOut.async.started], (state) => ({
+  .case(changeResetForm, (state, payload) => ({
     ...state,
-    isLoading: true,
+    resetForm: payload,
   }))
-  .cases([signUp.async.done, signIn.async.done, signOut.async.done], () => ({
-    ...INITIAL_STATE,
-  }))
-  .cases([signUp.async.failed, signIn.async.failed, signOut.async.failed], (state) => ({
-    ...state,
-    isLoading: false,
-  }));
+  .cases(
+    [
+      signUp.async.started,
+      signIn.async.started,
+      signOut.async.started,
+      resetPassword.async.started,
+    ],
+    (state) => ({
+      ...state,
+      isLoading: true,
+    }),
+  )
+  .cases(
+    [signUp.async.done, signIn.async.done, signOut.async.done, resetPassword.async.done],
+    () => ({
+      ...INITIAL_STATE,
+    }),
+  )
+  .cases(
+    [signUp.async.failed, signIn.async.failed, signOut.async.failed, resetPassword.async.failed],
+    (state) => ({
+      ...state,
+      isLoading: false,
+    }),
+  );
 export default reducer;
 
 // selector
@@ -85,7 +115,10 @@ export const selectSignForm = createSelector(
   [(state: RootState) => state.app.sign.form],
   (form) => form,
 );
-
+export const selectResetForm = createSelector(
+  [(state: RootState) => state.app.sign.resetForm],
+  (resetForm) => resetForm,
+);
 export const selectIsLoading = createSelector(
   [(state: RootState) => state.app.sign.isLoading],
   (isLoading) => isLoading,
