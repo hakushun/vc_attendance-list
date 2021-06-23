@@ -3,7 +3,7 @@ import { useModal } from '../../hooks/useModal';
 import { useSign } from '../../hooks/useSign';
 import { SignIn as Presentational } from './SignIn';
 
-export const SignIn: React.VFC = () => {
+export const SignIn: React.VFC = React.memo(() => {
   const {
     form,
     resetForm,
@@ -30,4 +30,4 @@ export const SignIn: React.VFC = () => {
       handleKeydown={handleKeydown}
     />
   );
-};
+});
