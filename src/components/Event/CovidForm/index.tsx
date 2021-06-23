@@ -1,8 +1,9 @@
 import React from 'react';
 import { questions } from '../../../config/questions';
+import { useCovid } from '../../../hooks/useCovid';
+import { useShow } from '../../../hooks/useShow';
 import { getDayOfTheWeek } from '../../../libs/dayjs/getDayOfTheWeek';
 import { getStringDate } from '../../../libs/dayjs/getStringDate';
-import { Covid } from '../../../redux/modules/covid';
 import { Event } from '../../../redux/modules/event';
 import { Badge } from '../../uiParts/Badge';
 import { Heading } from '../../uiParts/Heading';
@@ -13,22 +14,12 @@ import styles from './index.module.scss';
 
 type Props = {
   event: Event;
-  covidFormIsShown: boolean;
-  handleToggleCovidForm: () => void;
-  covid: Covid;
-  handleChangeCovidDate: (_e: React.ChangeEvent<HTMLSelectElement>) => void;
-  handleChangeCovidAnswers: (_e: React.ChangeEvent<HTMLInputElement>) => void;
   handleCreate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
-export const CovidForm: React.VFC<Props> = ({
-  event,
-  covidFormIsShown,
-  handleToggleCovidForm,
-  covid,
-  handleChangeCovidDate,
-  handleChangeCovidAnswers,
-  handleCreate,
-}) => {
+export const CovidForm: React.VFC<Props> = ({ event, handleCreate }) => {
+  const { covid, handleChangeCovidDate, handleChangeCovidAnswers } = useCovid();
+  const { covidFormIsShown, handleToggleCovidForm } = useShow();
+
   return (
     <Sectioning id="covid_form">
       {covidFormIsShown ? (
