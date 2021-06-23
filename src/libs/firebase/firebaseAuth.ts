@@ -35,3 +35,11 @@ export const signOutWithFirebase = async (): Promise<void> => {
     alert(err);
   }
 };
+
+export const resetUserPassword = async (email: string): Promise<void> => {
+  try {
+    await firebase.auth().sendPasswordResetEmail(email);
+  } catch (err) {
+    alert(err);
+  }
+};
