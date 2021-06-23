@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useModal } from '../../../hooks/useModal';
 import { getDayOfTheWeek } from '../../../libs/dayjs/getDayOfTheWeek';
 import { getStringDate } from '../../../libs/dayjs/getStringDate';
@@ -21,11 +21,22 @@ export const PracticeDetail: React.VFC<Props> = React.memo(
   ({ event, practice, dateId, breakdownAttendances }) => {
     const { modalRef, handleTogglePracticeModal, handleKeydown } = useModal();
 
-    // TODO: memo化
-    const titleDate = getStringDate(event.dates.find((date) => date.id === dateId)?.day);
-    const titleDayOfTheWeek = getDayOfTheWeek(event.dates.find((date) => date.id === dateId)?.day);
-    const url = practice.locations.find((loc) => loc.dateId === dateId)?.url;
-    const content = practice.remarks.find((rmrk) => rmrk.dateId === dateId)?.content;
+    const titleDate = useMemo(
+      () => getStringDate(event.dates.find((date) => date.id === dateId)?.day),
+      [dateId, event.dates],
+    );
+    const titleDayOfTheWeek = useMemo(
+      () => getDayOfTheWeek(event.dates.find((date) => date.id === dateId)?.day),
+      [dateId, event.dates],
+    );
+    const url = useMemo(
+      () => practice.locations.find((loc) => loc.dateId === dateId)?.url,
+      [dateId, practice.locations],
+    );
+    const content = useMemo(
+      () => practice.remarks.find((rmrk) => rmrk.dateId === dateId)?.content,
+      [dateId, practice.remarks],
+    );
 
     return (
       <Presentational
