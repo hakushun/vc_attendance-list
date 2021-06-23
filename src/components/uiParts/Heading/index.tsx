@@ -5,7 +5,7 @@ type Props = {
   level: number;
   label: string;
 };
-export const Heading: React.VFC<Props> = ({ level, label }) => {
+export const Heading: React.VFC<Props> = React.memo(({ level, label }) => {
   if (level === 2) {
     return (
       <h2 className={styles.root}>
@@ -21,4 +21,4 @@ export const Heading: React.VFC<Props> = ({ level, label }) => {
     );
   }
   return null;
-};
+});

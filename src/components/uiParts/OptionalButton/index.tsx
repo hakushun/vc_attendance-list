@@ -6,10 +6,10 @@ type Props = {
   disabled: boolean;
   handleClick: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
-export const OptionalButton: React.VFC<Props> = ({ label, disabled, handleClick }) => {
+export const OptionalButton: React.VFC<Props> = React.memo(({ label, disabled, handleClick }) => {
   return (
     <button type="button" disabled={disabled} className={styles.root} onClick={handleClick}>
       {label}
     </button>
   );
-};
+});
