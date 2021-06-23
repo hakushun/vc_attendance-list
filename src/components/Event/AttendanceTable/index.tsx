@@ -1,5 +1,7 @@
 import clsx from 'clsx';
 import React from 'react';
+import { useAttendance } from '../../../hooks/useAttendance';
+import { useProgram } from '../../../hooks/useProgram';
 import { getDayOfTheWeek } from '../../../libs/dayjs/getDayOfTheWeek';
 import { convertAttendance } from '../../../libs/utils/convertAttendance';
 import { convertOccuoation } from '../../../libs/utils/convertOccupation';
@@ -23,15 +25,9 @@ import styles from './index.module.scss';
 type Props = {
   user: Userdata;
   event: Event;
-  handleFocusAttendance: (
-    _e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-    _item: Attendance,
-  ) => void;
   attendances: Attendance[];
   AttendanceIsLoading: boolean;
   handleFocusPractice: (_id: string) => void;
-  selectedId: string;
-  handleFocusProgram: (_e: React.ChangeEvent<HTMLSelectElement>) => void;
   programs: ProgramItem[];
   roles: RoleItem[];
   handleFetch: (_id: string) => void;
@@ -39,16 +35,16 @@ type Props = {
 export const AttendanceTable: React.VFC<Props> = ({
   user,
   event,
-  handleFocusAttendance,
   attendances,
   AttendanceIsLoading,
   handleFocusPractice,
-  selectedId,
-  handleFocusProgram,
   programs,
   roles,
   handleFetch,
 }) => {
+  const { handleFocusAttendance } = useAttendance();
+  const { selectedId, handleFocusProgram } = useProgram();
+
   if (AttendanceIsLoading) return <Loading />;
 
   return (
