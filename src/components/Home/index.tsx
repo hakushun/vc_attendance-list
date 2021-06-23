@@ -5,7 +5,7 @@ import { EventForm } from '../EventForm';
 import { EventList } from './EventList';
 import { useEvents } from '../../hooks/useEvents';
 
-export const Home: React.VFC = () => {
+export const Home: React.VFC = React.memo(() => {
   const { isLoading } = useUser();
   const { isLoading: eventsIsLoading, handleCreate, handleUpdate, handleRemove } = useEvents();
 
@@ -22,4 +22,4 @@ export const Home: React.VFC = () => {
       <EventList />
     </>
   );
-};
+});

@@ -8,7 +8,7 @@ import styles from './index.module.scss';
 type Props = {
   events: Event[];
 };
-export const EventList: React.VFC<Props> = ({ events }) => {
+export const EventList: React.VFC<Props> = React.memo(({ events }) => {
   return (
     <Sectioning id="event_list">
       <Heading level={2} label="イベント一覧" />
@@ -23,4 +23,4 @@ export const EventList: React.VFC<Props> = ({ events }) => {
       </ul>
     </Sectioning>
   );
-};
+});
