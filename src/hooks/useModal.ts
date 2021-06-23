@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   closeAllModal,
   selectCovidResultIsShown,
+  selectPasswordResetIsShown,
   selectPracticeModalIsShown,
   toggleCovidResult,
+  togglePasswordReset,
   togglePracticeModal,
 } from '../redux/modules/modal';
 
@@ -12,8 +14,10 @@ type Hooks = {
   modalRef: MutableRefObject<HTMLElement | null>;
   practiceModalIsShown: boolean;
   covidResultIsShown: boolean;
+  passwordResetIsShown: boolean;
   handleTogglePracticeModal: () => void;
   handleToggleCovidResult: () => void;
+  handleTogglePasswordReset: () => void;
   handleKeydown: (_e: React.KeyboardEvent<HTMLElement>) => void;
 };
 
@@ -22,6 +26,7 @@ export const useModal = (): Hooks => {
   const modalRef = useRef<HTMLElement | null>(null);
   const practiceModalIsShown = useSelector(selectPracticeModalIsShown);
   const covidResultIsShown = useSelector(selectCovidResultIsShown);
+  const passwordResetIsShown = useSelector(selectPasswordResetIsShown);
 
   const handleTogglePracticeModal = () => {
     dispatch(togglePracticeModal(!practiceModalIsShown));
@@ -29,6 +34,10 @@ export const useModal = (): Hooks => {
 
   const handleToggleCovidResult = () => {
     dispatch(toggleCovidResult(!covidResultIsShown));
+  };
+
+  const handleTogglePasswordReset = () => {
+    dispatch(togglePasswordReset(!passwordResetIsShown));
   };
 
   const getFocusableElements = (ref: React.MutableRefObject<HTMLElement | null>) => {
@@ -84,8 +93,10 @@ export const useModal = (): Hooks => {
     modalRef,
     practiceModalIsShown,
     covidResultIsShown,
+    passwordResetIsShown,
     handleTogglePracticeModal,
     handleToggleCovidResult,
+    handleTogglePasswordReset,
     handleKeydown,
   };
 };
