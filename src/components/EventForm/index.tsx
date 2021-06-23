@@ -1,10 +1,20 @@
 import React from 'react';
 import { useEvent } from '../../hooks/useEvent';
-import { useEvents } from '../../hooks/useEvents';
 import { useShow } from '../../hooks/useShow';
 import { EventForm as Presentational } from './EventForm';
 
-export const EventForm: React.VFC = () => {
+type Props = {
+  isLoading: boolean;
+  handleCreate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  handleUpdate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  handleRemove: () => void;
+};
+export const EventForm: React.VFC<Props> = ({
+  isLoading,
+  handleCreate,
+  handleUpdate,
+  handleRemove,
+}) => {
   const { eventFormIsShown, handleToggleEventForm } = useShow();
   const {
     event,
@@ -14,7 +24,6 @@ export const EventForm: React.VFC = () => {
     handleAddDateForm,
     handleDeleteDateForm,
   } = useEvent();
-  const { isLoading, handleCreate, handleUpdate, handleRemove } = useEvents();
 
   return (
     <Presentational
