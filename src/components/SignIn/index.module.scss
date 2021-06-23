@@ -55,3 +55,8 @@
   align-items: center;
   margin-top: 30px;
 }
+
+.resetButton {
+  color: mixin.$clickableColor;
+  text-decoration: underline;
+}
