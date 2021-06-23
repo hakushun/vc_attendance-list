@@ -59,7 +59,7 @@ export const useSign = (): Hooks => {
   };
   const handleResetPassword = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
-    if(!isEmail(resetForm.email)) return;
+    if (!isEmail(resetForm.email)) return;
     await dispatch(resetPassword(resetForm));
   };
   return {
