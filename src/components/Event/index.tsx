@@ -48,7 +48,7 @@ export const Event: React.VFC<Props> = ({ eventId }) => {
   } = useEvents(eventId);
   const {
     attendances,
-    isLoading: AttendanceIsLoading,
+    isLoading: attendanceIsLoading,
     breakdownAttendances,
     handleCreate: handleAttendanceCreate,
     handleUpdate: handleAttendanceUpdate,
@@ -103,7 +103,7 @@ export const Event: React.VFC<Props> = ({ eventId }) => {
         event={event}
         parts={parts}
         attendances={attendances}
-        AttendanceIsLoading={AttendanceIsLoading}
+        isLoading={attendanceIsLoading}
         handleCreate={handleAttendanceCreate}
         handleUpdate={handleAttendanceUpdate}
         handleRemove={handleAttendanceRemove}
@@ -113,7 +113,7 @@ export const Event: React.VFC<Props> = ({ eventId }) => {
         user={user}
         event={event}
         attendances={attendances}
-        AttendanceIsLoading={AttendanceIsLoading}
+        isLoading={attendanceIsLoading}
         handleFocusPractice={handleFocusPractice}
         programs={programs}
         roles={roles}
