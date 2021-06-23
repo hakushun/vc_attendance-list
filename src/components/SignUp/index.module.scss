@@ -5,13 +5,14 @@
   flex-direction: column;
   gap: 20px;
   align-items: center;
+  width: 100%;
+  max-width: 340px;
 
   > fieldset {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
-    max-width: 320px;
     border: none;
 
     > legend {
@@ -21,18 +22,21 @@
 
   .inputWrapper {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 5px;
     width: 100%;
     margin-top: 20px;
   }
 
   .label {
+    display: inline-flex;
+    gap: 5px;
+    align-items: center;
     font-weight: bold;
   }
 
   .input {
-    min-width: 230px;
+    width: 100%;
     padding: 5px;
     border: none;
     border-radius: 3px;
