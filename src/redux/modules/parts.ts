@@ -16,7 +16,7 @@ export type UpdatePayload = {
   part: Part[];
 };
 interface CustomError extends Error {
-  name: string;
+  code: string;
   message: string;
 }
 // action

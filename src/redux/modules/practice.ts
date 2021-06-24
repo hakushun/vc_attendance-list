@@ -24,7 +24,7 @@ export type UpdatePayload = {
   practice: PracticeItem;
 };
 interface CustomError extends Error {
-  name: string;
+  code: string;
   message: string;
 }
 // action

@@ -19,7 +19,7 @@ export type CrudPayload = {
   attendance: Attendance;
 };
 interface CustomError extends Error {
-  name: string;
+  code: string;
   message: string;
 }
 // action

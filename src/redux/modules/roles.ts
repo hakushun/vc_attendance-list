@@ -15,7 +15,7 @@ export type UpdatePayload = {
   roles: RoleItem[];
 };
 interface CustomError extends Error {
-  name: string;
+  code: string;
   message: string;
 }
 // action

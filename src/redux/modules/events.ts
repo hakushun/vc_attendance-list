@@ -20,7 +20,7 @@ export type CreatePayload = {
   dates: Date[];
 };
 interface CustomError extends Error {
-  name: string;
+  code: string;
   message: string;
 }
 // action

@@ -19,7 +19,7 @@ export type CreatePayload = {
   covid: Covid;
 };
 interface CustomError extends Error {
-  name: string;
+  code: string;
   message: string;
 }
 // action
