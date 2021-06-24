@@ -3,6 +3,7 @@ import attendance from './attendance';
 import attendances from './attendances';
 import covid from './covid';
 import covids from './covids';
+import dialog from './dialog';
 import event from './event';
 import events from './events';
 import locations from './locations';
@@ -44,7 +45,7 @@ const rootReducer = combineReducers({
     sign,
     user,
   }),
-  ui: combineReducers({ modal, show, tab }),
+  ui: combineReducers({ dialog, modal, show, tab }),
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
