@@ -9,17 +9,9 @@ const parts = ['Fl', 'Ob', 'Cl', 'Fg', 'Hr', 'Tp', 'Tb', 'Tuba', 'Perc', 'Vn', '
 const INITIAL_PART = parts.map((part) => ({ id: generateId(), name: part }));
 
 export const createPart = async (event: Event): Promise<void> => {
-  try {
-    await db.collection('parts').doc(event.id).set({ part: INITIAL_PART });
-  } catch (err) {
-    alert(err);
-  }
+  await db.collection('parts').doc(event.id).set({ part: INITIAL_PART });
 };
 
 export const updatePart = async ({ event, part }: UpdatePayload): Promise<void> => {
-  try {
-    await db.collection('parts').doc(event.id).set({ part }, { merge: true });
-  } catch (err) {
-    alert(err);
-  }
+  await db.collection('parts').doc(event.id).set({ part }, { merge: true });
 };

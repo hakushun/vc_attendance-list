@@ -30,7 +30,7 @@ export const fetch = asyncActionCreator<FetchPayload, Covid[], CustomError>(
   'FETCH_COVID',
   async (payload) => {
     const result = await fetchCovid(payload);
-    return result || [];
+    return result;
   },
 );
 export const create = asyncActionCreator<CreatePayload, void, CustomError>(

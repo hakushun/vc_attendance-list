@@ -10,17 +10,9 @@ export const createPractice = async (event: Event): Promise<void> => {
     plans: event.dates.map((date) => ({ eventId: event.id, dateId: date.id })),
     remarks: event.dates.map((date) => ({ eventId: event.id, dateId: date.id })),
   };
-  try {
-    await db.collection('practices').doc(event.id).set(practice);
-  } catch (err) {
-    alert(err);
-  }
+  await db.collection('practices').doc(event.id).set(practice);
 };
 
 export const updatePractice = async ({ event, practice }: UpdatePayload): Promise<void> => {
-  try {
-    await db.collection('practices').doc(event.id).set(practice, { merge: true });
-  } catch (err) {
-    alert(err);
-  }
+  await db.collection('practices').doc(event.id).set(practice, { merge: true });
 };

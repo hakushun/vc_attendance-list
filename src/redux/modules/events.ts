@@ -32,12 +32,10 @@ export const create = asyncActionCreator<CreatePayload, Event | null, CustomErro
   'CREATE_EVENT',
   async (payload) => {
     const result = await createEvent(payload);
-    if (result) {
-      await createPractice(result);
-      await createProgram(result);
-      await createPart(result);
-      await createRole(result);
-    }
+    await createPractice(result);
+    await createProgram(result);
+    await createPart(result);
+    await createRole(result);
     return result;
   },
 );
