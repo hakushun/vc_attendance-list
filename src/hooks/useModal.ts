@@ -1,5 +1,6 @@
 import { MutableRefObject, useCallback, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { handleTabDown } from '../libs/utils/handleTabDown';
 import {
   closeAllModal,
   selectCovidResultIsShown,
@@ -40,38 +41,6 @@ export const useModal = (): Hooks => {
     dispatch(togglePasswordReset(!passwordResetIsShown));
   }, [dispatch, passwordResetIsShown]);
 
-  const getFocusableElements = useCallback((ref: React.MutableRefObject<HTMLElement | null>) => {
-    const focusableElementsString =
-      'a[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), [tabindex="0"], [contenteditable]';
-    return Array.prototype.slice.call(
-      ref?.current?.querySelectorAll(focusableElementsString),
-    ) as HTMLElement[];
-  }, []);
-
-  const getNextFocusableElement = useCallback(
-    (ref: React.MutableRefObject<HTMLElement | null>, backward: boolean) => {
-      const focusable = getFocusableElements(ref);
-      const first = focusable[0];
-      const last = focusable[focusable.length - 1];
-      if (backward && document.activeElement === first) return last;
-      if (!backward && document.activeElement === last) return first;
-      return null;
-    },
-    [getFocusableElements],
-  );
-
-  const handleTabDown = useCallback(
-    (e: React.KeyboardEvent<HTMLElement>) => {
-      const backward = e.shiftKey;
-      const nextFocus = getNextFocusableElement(modalRef, backward);
-      if (nextFocus) {
-        e.preventDefault();
-        nextFocus.focus();
-      }
-    },
-    [getNextFocusableElement],
-  );
-
   const handleKeydown = useCallback(
     (e: React.KeyboardEvent<HTMLElement>) => {
       switch (e.key) {
@@ -79,13 +48,13 @@ export const useModal = (): Hooks => {
           dispatch(closeAllModal());
           break;
         case 'Tab':
-          handleTabDown(e);
+          handleTabDown(modalRef, e);
           break;
         default:
           break;
       }
     },
-    [dispatch, handleTabDown],
+    [dispatch],
   );
 
   useEffect(() => {
