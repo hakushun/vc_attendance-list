@@ -2,7 +2,8 @@
 
 .root {
   z-index: mixin.$z_modal;
-  width: clamp(350px, 90vw, 1000px);
+  width: max(40%, 350px);
+  max-width: 90vw;
   max-height: 90vh;
   padding: 20px 16px;
   overflow-y: auto;
