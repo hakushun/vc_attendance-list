@@ -22,6 +22,7 @@ type ChangeAnswerPayload = {
 // action
 const actionCreator = actionCreatorFactory();
 
+export const initiateCovid = actionCreator('INITIATE_COVID_FORM');
 export const changeCovidDate = actionCreator<ChangeDatePayload>('CHANGE_COVID_DATE');
 export const changeCovidAnswers = actionCreator<ChangeAnswerPayload>('CHANGE_COVID_ANSWERS');
 
@@ -34,6 +35,7 @@ const INITIAL_STATE: Covid = {
 
 // reducer
 const reducer = reducerWithInitialState(INITIAL_STATE)
+  .case(initiateCovid, () => ({ ...INITIAL_STATE }))
   .case(changeCovidDate, (state, payload) => ({
     ...state,
     ...payload,
