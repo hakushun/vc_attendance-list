@@ -41,6 +41,7 @@ const reducer = reducerWithInitialState(INITIAL_STATE)
   }))
   .case(subscribeRoles, (state, payload) => ({
     ...state,
+    programId: '',
     role: payload,
   }));
 export default reducer;
