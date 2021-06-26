@@ -3,7 +3,6 @@ import actionCreatorFactory from 'typescript-fsa';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import { questions } from '../../config/questions';
 import { RootState } from './reducers';
-import { toggleCovidForm } from './show';
 
 export type Covid = {
   userId: string;
@@ -42,8 +41,7 @@ const reducer = reducerWithInitialState(INITIAL_STATE)
   .case(changeCovidAnswers, (state, payload) => ({
     ...state,
     answers: { ...state.answers, ...payload },
-  }))
-  .case(toggleCovidForm, () => ({ ...INITIAL_STATE }));
+  }));
 export default reducer;
 
 // selector
