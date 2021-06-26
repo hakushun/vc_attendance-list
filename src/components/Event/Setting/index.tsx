@@ -5,10 +5,10 @@ import { Part as TypePart } from '../../../redux/modules/part';
 import { Attendance } from '../../../redux/modules/attendance';
 import { ProgramItem } from '../../../redux/modules/program';
 import { Setting as Presentational } from './Setting';
+import { useShow } from '../../../hooks/useShow';
 
 type Props = {
   event: Event;
-  handleToggleSetting: () => void;
   attendances: Attendance[];
   parts: TypePart[];
   partsIsLoading: boolean;
@@ -24,7 +24,6 @@ type Props = {
 export const Setting: React.VFC<Props> = React.memo(
   ({
     event,
-    handleToggleSetting,
     attendances,
     parts,
     partsIsLoading,
@@ -38,6 +37,9 @@ export const Setting: React.VFC<Props> = React.memo(
     handleRolesUpdate,
   }) => {
     const { tab, handleChangeSettingTab } = useTab();
+    const { settingIsShown, handleToggleSetting } = useShow();
+
+    if (!settingIsShown) return null;
 
     return (
       <Presentational

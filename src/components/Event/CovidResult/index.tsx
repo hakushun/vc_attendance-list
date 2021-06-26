@@ -11,7 +11,9 @@ type Props = {
 };
 export const CovidResult: React.VFC<Props> = React.memo(
   ({ isLoading, answerRuselt, unasweredUsers }) => {
-    const { modalRef, handleToggleCovidResult, handleKeydown } = useModal();
+    const { modalRef, covidResultIsShown, handleToggleCovidResult, handleKeydown } = useModal();
+
+    if (!covidResultIsShown) return null;
 
     return (
       <Presentational

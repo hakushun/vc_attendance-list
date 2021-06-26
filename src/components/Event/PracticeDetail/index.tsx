@@ -19,7 +19,7 @@ type Props = {
 };
 export const PracticeDetail: React.VFC<Props> = React.memo(
   ({ event, practice, dateId, breakdownAttendances }) => {
-    const { modalRef, handleTogglePracticeModal, handleKeydown } = useModal();
+    const { modalRef, practiceModalIsShown, handleTogglePracticeModal, handleKeydown } = useModal();
 
     const titleDate = useMemo(
       () => getStringDate(event.dates.find((date) => date.id === dateId)?.day),
@@ -37,6 +37,8 @@ export const PracticeDetail: React.VFC<Props> = React.memo(
       () => practice.remarks.find((rmrk) => rmrk.dateId === dateId)?.content,
       [dateId, practice.remarks],
     );
+
+    if (!practiceModalIsShown) return null;
 
     return (
       <Presentational
