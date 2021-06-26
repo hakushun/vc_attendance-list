@@ -103,6 +103,10 @@
     text-decoration: underline;
     border: 2px solid transparent;
 
+    &.textSmall {
+      font-size: mixin.rem(12);
+    }
+
     &:hover,
     &:focus-visible {
       background-color: darken(mixin.$bgColor, 20%);

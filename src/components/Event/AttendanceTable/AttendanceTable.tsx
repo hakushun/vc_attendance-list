@@ -101,14 +101,17 @@ export const AttendanceTable: React.VFC<Props> = React.memo(
                       type="button"
                       className={styles.action}
                       onClick={() => handleFocusPractice(date.id)}>
-                      {date.day}
-                      {getDayOfTheWeek(date.day)}
+                      <div>
+                        {date.day}
+                        {getDayOfTheWeek(date.day)}
+                      </div>
+                      <div>{date.time}</div>
                     </button>
                     <button
                       type="button"
-                      className={styles.action}
+                      className={clsx(styles.action, styles.textSmall)}
                       onClick={() => handleFetch(date.id)}>
-                      {date.time}
+                      コロナアンケート結果
                     </button>
                   </th>
                 ))}
