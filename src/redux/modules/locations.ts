@@ -6,9 +6,9 @@ import { RootState } from './reducers';
 
 export type Location = {
   dateId: string;
-  name1: string;
-  name2: string;
-  url: string;
+  name1?: string;
+  name2?: string;
+  url?: string;
 };
 type Locations = {
   locations: Location[];

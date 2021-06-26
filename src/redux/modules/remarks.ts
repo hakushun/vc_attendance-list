@@ -6,7 +6,7 @@ import { RootState } from './reducers';
 
 export type Remark = {
   dateId: string;
-  content: string;
+  content?: string;
 };
 export type Remarks = {
   remarks: Remark[];

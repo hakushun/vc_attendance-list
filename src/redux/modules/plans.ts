@@ -6,8 +6,8 @@ import { RootState } from './reducers';
 
 export type Plan = {
   dateId: string;
-  category: string;
-  schedule: string;
+  category?: string;
+  schedule?: string;
 };
 export type Plans = {
   plans: Plan[];
