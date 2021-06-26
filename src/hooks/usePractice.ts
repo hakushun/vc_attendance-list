@@ -14,6 +14,7 @@ import {
   update,
 } from '../redux/modules/practice';
 import { selectRemarks } from '../redux/modules/remarks';
+import { selectSettingIsShown } from '../redux/modules/show';
 
 type Hooks = {
   practice: PracticeItem;
@@ -32,6 +33,7 @@ export const usePractice = (eventId: string): Hooks => {
   const practice = useSelector(selectPractice);
   const dateId = useSelector(selectDateId);
   const isLoading = useSelector(selectIsLoading);
+  const settingIsShown = useSelector(selectSettingIsShown);
 
   const handleFocusPractice = useCallback(
     (id: string) => {
@@ -59,6 +61,11 @@ export const usePractice = (eventId: string): Hooks => {
     return () => unsubscribe();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [eventId]);
+
+  useEffect(() => {
+    dispatch(subscribePractice(practice));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[settingIsShown]);
 
   return { practice, dateId, isLoading, handleFocusPractice, handleUpdate };
 };

@@ -10,6 +10,7 @@ import {
   subscribeProgram,
   update,
 } from '../redux/modules/programs';
+import { selectSettingIsShown } from '../redux/modules/show';
 
 type Hooks = {
   programs: ProgramItem[];
@@ -23,6 +24,7 @@ export const usePrograms = (eventId: string): Hooks => {
   const program = useSelector(selectProgram);
   const programs = useSelector(selectPrograms);
   const isLoading = useSelector(selectIsLoading);
+  const settingIsShown = useSelector(selectSettingIsShown);
 
   const handleUpdate = useCallback(
     (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -44,6 +46,11 @@ export const usePrograms = (eventId: string): Hooks => {
     return () => unsubscribe();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [eventId]);
+
+  useEffect(() => {
+    dispatch(subscribeProgram(programs));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[settingIsShown]);
 
   return { programs, isLoading, handleUpdate };
 };

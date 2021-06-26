@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getInstance } from '../libs/firestore/getInstance';
 import { RoleItem, selectRole } from '../redux/modules/role';
 import { selectIsLoading, selectRoles, subscribeRoles, update } from '../redux/modules/roles';
+import { selectSettingIsShown } from '../redux/modules/show';
 
 type Hooks = {
   roles: RoleItem[];
@@ -15,6 +16,7 @@ export const useRoles = (eventId: string): Hooks => {
   const role = useSelector(selectRole);
   const roles = useSelector(selectRoles);
   const isLoading = useSelector(selectIsLoading);
+  const settingIsShown = useSelector(selectSettingIsShown);
 
   const handleUpdate = useCallback(
     (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -35,6 +37,11 @@ export const useRoles = (eventId: string): Hooks => {
     return () => unsubscribe();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [eventId]);
+
+  useEffect(() => {
+    dispatch(subscribeRoles(roles));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[settingIsShown]);
 
   return { roles, isLoading, handleUpdate };
 };

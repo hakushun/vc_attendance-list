@@ -5,6 +5,7 @@ import { isPartInvalid } from '../libs/utils/isPartInvalid';
 import { selectEvent } from '../redux/modules/event';
 import { Part, selectPart } from '../redux/modules/part';
 import { selectIsLoading, selectParts, subscribePart, update } from '../redux/modules/parts';
+import { selectSettingIsShown } from '../redux/modules/show';
 
 type Hooks = {
   parts: Part[];
@@ -18,6 +19,7 @@ export const useParts = (eventId: string): Hooks => {
   const part = useSelector(selectPart);
   const parts = useSelector(selectParts);
   const isLoading = useSelector(selectIsLoading);
+  const settingIsShown = useSelector(selectSettingIsShown);
 
   const handleUpdate = useCallback(
     (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -39,6 +41,11 @@ export const useParts = (eventId: string): Hooks => {
     return () => unsubscribe();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [eventId]);
+
+  useEffect(() => {
+    dispatch(subscribePart(parts));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[settingIsShown]);
 
   return { parts, isLoading, handleUpdate };
 };
