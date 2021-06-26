@@ -6,12 +6,14 @@ export const Dialog: React.VFC = () => {
   const { dialogRef, dialogIsOpened, dialogMessage, handleToggleDialog, handleKeydown } =
     useDialog();
 
-  return dialogIsOpened ? (
+  if (!dialogIsOpened) return null;
+
+  return (
     <Presentational
       dialogRef={dialogRef}
       dialogMessage={dialogMessage}
       handleToggleDialog={handleToggleDialog}
       handleKeydown={handleKeydown}
     />
-  ) : null;
+  );
 };
