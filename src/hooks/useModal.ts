@@ -63,7 +63,7 @@ export const useModal = (): Hooks => {
       const target = document.getElementById('attendance_table');
       target?.focus();
     };
-  }, []);
+  }, [practiceModalIsShown, covidResultIsShown, passwordResetIsShown]);
   return {
     modalRef,
     practiceModalIsShown,
