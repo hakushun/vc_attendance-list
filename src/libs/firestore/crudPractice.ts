@@ -6,9 +6,9 @@ const db = getInstance();
 
 export const createPractice = async (event: Event): Promise<void> => {
   const practice = {
-    locations: event.dates.map((date) => ({ eventId: event.id, dateId: date.id })),
-    plans: event.dates.map((date) => ({ eventId: event.id, dateId: date.id })),
-    remarks: event.dates.map((date) => ({ eventId: event.id, dateId: date.id })),
+    locations: event.dates.map((date) => ({ dateId: date.id })),
+    plans: event.dates.map((date) => ({ dateId: date.id })),
+    remarks: event.dates.map((date) => ({ dateId: date.id })),
   };
   await db.collection('practices').doc(event.id).set(practice);
 };
