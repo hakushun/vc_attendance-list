@@ -15,6 +15,7 @@ import { update as updateRoles } from './roles';
 import { update as updateParts } from './parts';
 import { update as updatePrograms } from './programs';
 import { create as createCovids } from './covids';
+import { initiateCovid } from './covid';
 
 type KeyName = 'eventForm' | 'covidForm' | 'attendanceForm' | 'setting';
 export type Show = Record<KeyName, boolean>;
@@ -72,6 +73,10 @@ const reducer = reducerWithInitialState(INITIAL_STATE)
   .case(initiateAttendance, (state) => ({
     ...state,
     attendanceForm: !state.attendanceForm,
+  }))
+  .case(initiateCovid, (state) => ({
+    ...state,
+    covidForm: !state.covidForm,
   }))
   .cases(
     [

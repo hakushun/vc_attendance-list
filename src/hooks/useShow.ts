@@ -1,6 +1,7 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { initiateAttendance } from '../redux/modules/attendance';
+import { initiateCovid } from '../redux/modules/covid';
 import { selectEvent } from '../redux/modules/event';
 import {
   selectEventFormIsShown,
@@ -8,7 +9,6 @@ import {
   selectAttendanceFormIsShown,
   selectSettingIsShown,
   toggleEventForm,
-  toggleCovidForm,
   toggleSetting,
 } from '../redux/modules/show';
 
@@ -34,8 +34,8 @@ export const useShow = (): Hooks => {
     dispatch(toggleEventForm());
   }, [dispatch]);
   const handleToggleCovidForm = useCallback(() => {
-    dispatch(toggleCovidForm(!covidFormIsShown));
-  }, [covidFormIsShown, dispatch]);
+    dispatch(initiateCovid());
+  }, [dispatch]);
   const handleToggleAttendanceForm = useCallback(() => {
     dispatch(initiateAttendance(event));
   }, [dispatch, event]);
