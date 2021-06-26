@@ -36,9 +36,9 @@ const reducer = reducerWithInitialState(INITIAL_STATE)
     ...state,
     isLoading: payload,
   }))
-  .cases([signUp.async.done, signIn.async.done], (state, payload) => ({
+  .cases([signUp.async.done, signIn.async.done], (state, { result }) => ({
     ...state,
-    ...payload,
+    user: result,
     isLoading: false,
   }))
   .case(signOut.async.done, (state) => ({
