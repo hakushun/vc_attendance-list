@@ -64,8 +64,8 @@ export const usePractice = (eventId: string): Hooks => {
 
   useEffect(() => {
     dispatch(subscribePractice(practice));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[settingIsShown]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [settingIsShown]);
 
   return { practice, dateId, isLoading, handleFocusPractice, handleUpdate };
 };

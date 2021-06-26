@@ -40,8 +40,8 @@ export const useRoles = (eventId: string): Hooks => {
 
   useEffect(() => {
     dispatch(subscribeRoles(roles));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[settingIsShown]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [settingIsShown]);
 
   return { roles, isLoading, handleUpdate };
 };

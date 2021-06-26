@@ -44,8 +44,8 @@ export const useParts = (eventId: string): Hooks => {
 
   useEffect(() => {
     dispatch(subscribePart(parts));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[settingIsShown]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [settingIsShown]);
 
   return { parts, isLoading, handleUpdate };
 };
