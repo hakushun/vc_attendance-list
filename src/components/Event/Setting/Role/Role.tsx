@@ -58,42 +58,46 @@ export const Role: React.VFC<Props> = React.memo(
                 </li>
               ))}
             </ul>
-            <fieldset className={styles.fieldset}>
-              <legend>の乗り番入力</legend>
-              <ul className={styles.list}>
-                {parts.map((part) => (
-                  <li key={part.id}>
-                    <details>
-                      <summary className={styles.summary}>{part.name}</summary>
-                      <ul className={styles.wrapper}>
-                        {attendances.map(
-                          (attendance) =>
-                            attendance.part === part.name && (
-                              <li key={attendance.userId} className={styles.inputWrapper}>
-                                <label
-                                  htmlFor={`role-${attendance.userId}`}
-                                  className={styles.label}>
-                                  {attendance.name}
-                                </label>
-                                <input
-                                  type="text"
-                                  id={`role-${attendance.userId}`}
-                                  maxLength={20}
-                                  autoComplete="off"
-                                  disabled={isLoading}
-                                  value={getRoleValue(roles, attendance.userId, programId)}
-                                  className={styles.input}
-                                  onChange={handleChangeRole}
-                                />
-                              </li>
-                            ),
-                        )}
-                      </ul>
-                    </details>
-                  </li>
-                ))}
-              </ul>
-            </fieldset>
+            {programId !== '' && (
+              <fieldset className={styles.fieldset}>
+                <legend>
+                  {programs.find((program) => program.id === programId)?.name}の乗り番入力
+                </legend>
+                <ul className={styles.list}>
+                  {parts.map((part) => (
+                    <li key={part.id}>
+                      <details>
+                        <summary className={styles.summary}>{part.name}</summary>
+                        <ul className={styles.wrapper}>
+                          {attendances.map(
+                            (attendance) =>
+                              attendance.part === part.name && (
+                                <li key={attendance.userId} className={styles.inputWrapper}>
+                                  <label
+                                    htmlFor={`role-${attendance.userId}`}
+                                    className={styles.label}>
+                                    {attendance.name}
+                                  </label>
+                                  <input
+                                    type="text"
+                                    id={`role-${attendance.userId}`}
+                                    maxLength={20}
+                                    autoComplete="off"
+                                    disabled={isLoading}
+                                    value={getRoleValue(role, attendance.userId, programId)}
+                                    className={styles.input}
+                                    onChange={handleChangeRole}
+                                  />
+                                </li>
+                              ),
+                          )}
+                        </ul>
+                      </details>
+                    </li>
+                  ))}
+                </ul>
+              </fieldset>
+            )}
           </fieldset>
           <PrimaryButton
             type="submit"
