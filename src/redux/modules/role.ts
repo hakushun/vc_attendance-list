@@ -10,7 +10,7 @@ export type RoleItem = {
 };
 export type Role = {
   programId: string;
-  roles: RoleItem[];
+  role: RoleItem[];
 };
 type ChangeRadioPayload = {
   programId: string;
@@ -24,7 +24,7 @@ export const changeRole = actionCreator<RoleItem>('CHANGE_ROLE');
 // initial state
 const INITIAL_STATE: Role = {
   programId: '',
-  roles: [],
+  role: [],
 };
 
 // reducer
@@ -35,13 +35,13 @@ const reducer = reducerWithInitialState(INITIAL_STATE)
   }))
   .case(changeRole, (state, payload) => ({
     ...state,
-    roles: state.roles.some((role) => role.userId === payload.userId)
-      ? state.roles.map((role) => (role.userId === payload.userId ? { ...role, ...payload } : role))
-      : [...state.roles, payload],
+    role: state.role.some((role) => role.userId === payload.userId)
+      ? state.role.map((role) => (role.userId === payload.userId ? { ...role, ...payload } : role))
+      : [...state.role, payload],
   }))
   .case(subscribeRoles, (state, payload) => ({
     ...state,
-    roles: payload,
+    role: payload,
   }));
 export default reducer;
 
@@ -50,7 +50,7 @@ export const selectProgramId = createSelector(
   [(state: RootState) => state.app.role.programId],
   (programId) => programId,
 );
-export const selectRoles = createSelector(
-  [(state: RootState) => state.app.role.roles],
-  (roles) => roles,
+export const selectRole = createSelector(
+  [(state: RootState) => state.app.role.role],
+  (role) => role,
 );

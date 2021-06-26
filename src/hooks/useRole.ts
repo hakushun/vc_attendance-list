@@ -5,19 +5,19 @@ import {
   changeRole,
   RoleItem,
   selectProgramId,
-  selectRoles,
+  selectRole,
 } from '../redux/modules/role';
 
 type Hooks = {
   programId: string;
-  roles: RoleItem[];
+  role: RoleItem[];
   handleChangeRadio: (_e: React.ChangeEvent<HTMLInputElement>) => void;
   handleChangeRole: (_e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 export const useRole = (): Hooks => {
   const dispatch = useDispatch();
   const programId = useSelector(selectProgramId);
-  const roles = useSelector(selectRoles);
+  const role = useSelector(selectRole);
 
   const handleChangeRadio = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,5 +34,5 @@ export const useRole = (): Hooks => {
     [dispatch, programId],
   );
 
-  return { programId, roles, handleChangeRadio, handleChangeRole };
+  return { programId, role, handleChangeRadio, handleChangeRole };
 };

@@ -16,7 +16,7 @@ type Props = {
 };
 export const Role: React.VFC<Props> = React.memo(
   ({ handleToggleSetting, programs, parts, attendances, isLoading, handleUpdate }) => {
-    const { programId, roles, handleChangeRadio, handleChangeRole } = useRole();
+    const { programId, role, handleChangeRadio, handleChangeRole } = useRole();
 
     if (isLoading) return <Loading />;
 
@@ -29,7 +29,7 @@ export const Role: React.VFC<Props> = React.memo(
         isLoading={isLoading}
         handleUpdate={handleUpdate}
         programId={programId}
-        roles={roles}
+        role={role}
         handleChangeRadio={handleChangeRadio}
         handleChangeRole={handleChangeRole}
       />

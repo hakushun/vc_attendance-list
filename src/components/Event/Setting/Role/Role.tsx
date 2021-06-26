@@ -17,7 +17,7 @@ type Props = {
   isLoading: boolean;
   handleUpdate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   programId: string;
-  roles: RoleItem[];
+  role: RoleItem[];
   handleChangeRadio: (_e: React.ChangeEvent<HTMLInputElement>) => void;
   handleChangeRole: (_e: React.ChangeEvent<HTMLInputElement>) => void;
 };
@@ -30,7 +30,7 @@ export const Role: React.VFC<Props> = React.memo(
     isLoading,
     handleUpdate,
     programId,
-    roles,
+    role,
     handleChangeRadio,
     handleChangeRole,
   }) => {
