@@ -2,8 +2,8 @@ import { RoleItem } from '../../redux/modules/role';
 
 export const getRoleValue = (roles: RoleItem[], userId: string, programId: string): string => {
   const item = roles.find((role) => role.userId === userId);
-  if (!item) return '';
+  if (!item) return '未入力';
   const role = item[programId];
-  if (!role) return '';
+  if (!role) return '未入力';
   return role;
 };

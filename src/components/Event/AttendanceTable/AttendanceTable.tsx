@@ -140,7 +140,7 @@ export const AttendanceTable: React.VFC<Props> = React.memo(
                     )}
                   </td>
                   <td className={clsx(styles.cell, styles.body)}>
-                    {getRoleValue(roles, attendance.userId, selectedId) || '未入力'}
+                    {getRoleValue(roles, attendance.userId, selectedId)}
                   </td>
                   {attendance.attendances.map((item) => (
                     <td
