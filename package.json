@@ -1,5 +1,5 @@
 {
-  "name": "template-fb-auth-with-nextjs",
+  "name": "vc_attendance-list",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -99,11 +99,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hakushun/dev_attendance-list.git"
+    "url": "git+https://github.com/hakushun/vc_attendance-list.git"
   },
   "bugs": {
-    "url": "https://github.com/hakushun/dev_attendance-list/issues"
+    "url": "https://github.com/hakushun/vc_attendance-list/issues"
   },
-  "homepage": "https://github.com/hakushun/dev_attendance-list#readme",
+  "homepage": "https://github.com/hakushun/vc_attendance-list#readme",
   "description": ""
 }
