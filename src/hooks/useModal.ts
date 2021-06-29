@@ -25,20 +25,24 @@ type Hooks = {
 export const useModal = (): Hooks => {
   const dispatch = useDispatch();
   const modalRef = useRef<HTMLElement | null>(null);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
   const practiceModalIsShown = useSelector(selectPracticeModalIsShown);
   const covidResultIsShown = useSelector(selectCovidResultIsShown);
   const passwordResetIsShown = useSelector(selectPasswordResetIsShown);
 
   const handleTogglePracticeModal = useCallback(() => {
     dispatch(togglePracticeModal(!practiceModalIsShown));
+    previousFocusRef.current?.focus();
   }, [dispatch, practiceModalIsShown]);
 
   const handleToggleCovidResult = useCallback(() => {
     dispatch(toggleCovidResult(!covidResultIsShown));
+    previousFocusRef.current?.focus();
   }, [covidResultIsShown, dispatch]);
 
   const handleTogglePasswordReset = useCallback(() => {
     dispatch(togglePasswordReset(!passwordResetIsShown));
+    previousFocusRef.current?.focus();
   }, [dispatch, passwordResetIsShown]);
 
   const handleKeydown = useCallback(
@@ -58,11 +62,8 @@ export const useModal = (): Hooks => {
   );
 
   useEffect(() => {
+    previousFocusRef.current = document.activeElement as HTMLElement;
     modalRef.current?.focus();
-    return () => {
-      const target = document.getElementById('attendance_table');
-      target?.focus();
-    };
   }, [practiceModalIsShown, covidResultIsShown, passwordResetIsShown]);
   return {
     modalRef,
