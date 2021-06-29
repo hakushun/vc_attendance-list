@@ -44,7 +44,8 @@ export const useDialog = (): Hooks => {
   useEffect(() => {
     dialogRef.current?.focus();
     return () => {
-      // TODO: focus management
+      const target = document.getElementById('main');
+      target?.focus();
     };
   }, [dialogIsOpened]);
 
