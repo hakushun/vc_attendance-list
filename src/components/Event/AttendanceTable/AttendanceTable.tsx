@@ -97,22 +97,24 @@ export const AttendanceTable: React.VFC<Props> = React.memo(
                     key={date.id}
                     className={clsx(styles.cell, styles.head, styles.medium)}
                     data-columns={`columns-${date.id}`}>
-                    <button
-                      type="button"
-                      className={styles.action}
-                      onClick={() => handleFocusPractice(date.id)}>
-                      <div>
-                        {date.day}
-                        {getDayOfTheWeek(date.day)}
-                      </div>
-                      <div>{date.time}</div>
-                    </button>
-                    <button
-                      type="button"
-                      className={clsx(styles.action, styles.textSmall)}
-                      onClick={() => handleFetch(date.id)}>
-                      コロナアンケート結果
-                    </button>
+                    <div className={styles.actionWrapper}>
+                      <button
+                        type="button"
+                        className={styles.action}
+                        onClick={() => handleFocusPractice(date.id)}>
+                        <div>
+                          {date.day}
+                          {getDayOfTheWeek(date.day)}
+                        </div>
+                        <div>{date.time}</div>
+                      </button>
+                      <button
+                        type="button"
+                        className={clsx(styles.action, styles.textSmall)}
+                        onClick={() => handleFetch(date.id)}>
+                        コロナアンケート結果
+                      </button>
+                    </div>
                   </th>
                 ))}
                 <th className={clsx(styles.cell, styles.head, styles.wide)}>コメント</th>
