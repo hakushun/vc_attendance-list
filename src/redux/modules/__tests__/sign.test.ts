@@ -14,7 +14,7 @@ import reducer, {
   signIn,
   signOut,
   signUp,
-} from '../sign';
+} from '../app/sign';
 import { initialState } from './_initialState';
 
 // async action

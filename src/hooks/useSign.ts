@@ -14,7 +14,7 @@ import {
   selectResetForm,
   changeResetForm,
   resetPassword,
-} from '../redux/modules/sign';
+} from '../redux/modules/app/sign';
 import { useRouter } from './useRouter';
 
 initFirebase();

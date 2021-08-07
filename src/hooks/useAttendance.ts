@@ -7,8 +7,8 @@ import {
   AttendanceType,
   Attendance,
   focusAttendance,
-} from '../redux/modules/attendance';
-import { selectUser } from '../redux/modules/user';
+} from '../redux/modules/app/attendance';
+import { selectUser } from '../redux/modules/app/user';
 
 type Hooks = {
   attendance: Attendance;

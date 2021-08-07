@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChangeOrderPayload } from '../../../redux/modules/part';
+import { ChangeOrderPayload } from '../../../redux/modules/app/part';
 import styles from './index.module.scss';
 
 type Props = {

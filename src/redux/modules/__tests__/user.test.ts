@@ -1,6 +1,6 @@
 /* eslint-disable no-undefined */
-import { signIn, signOut, signUp } from '../sign';
-import reducer, { auth, selectIsLoading, selectUser, setLoading } from '../user';
+import { signIn, signOut, signUp } from '../app/sign';
+import reducer, { auth, selectIsLoading, selectUser, setLoading } from '../app/user';
 import { initialState } from './_initialState';
 
 // reducer

@@ -1,4 +1,4 @@
-import { RoleItem } from '../../redux/modules/role';
+import { RoleItem } from '../../redux/modules/app/role';
 
 export const getRoleValue = (roles: RoleItem[], userId: string, programId: string): string => {
   const item = roles.find((role) => role.userId === userId);

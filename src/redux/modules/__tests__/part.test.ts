@@ -1,5 +1,11 @@
 /* eslint-disable no-undefined */
-import reducer, { addPartForm, changeOrder, changePart, deletePartForm, selectPart } from '../part';
+import reducer, {
+  addPartForm,
+  changeOrder,
+  changePart,
+  deletePartForm,
+  selectPart,
+} from '../app/part';
 import { initialState } from './_initialState';
 
 // reducer

@@ -1,11 +1,11 @@
 import React from 'react';
 import { useAttendance } from '../../../hooks/useAttendance';
 import { useProgram } from '../../../hooks/useProgram';
-import { Attendance } from '../../../redux/modules/attendance';
-import { Event } from '../../../redux/modules/event';
-import { ProgramItem } from '../../../redux/modules/program';
-import { RoleItem } from '../../../redux/modules/role';
-import { Userdata } from '../../../redux/modules/user';
+import { Attendance } from '../../../redux/modules/app/attendance';
+import { Event } from '../../../redux/modules/app/event';
+import { ProgramItem } from '../../../redux/modules/app/program';
+import { RoleItem } from '../../../redux/modules/app/role';
+import { Userdata } from '../../../redux/modules/app/user';
 import { Loading } from '../../uiParts/Loading';
 import { AttendanceTable as Presentational } from './AttendanceTable';
 

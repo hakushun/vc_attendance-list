@@ -1,4 +1,4 @@
-import { CrudPayload } from '../../redux/modules/attendances';
+import { CrudPayload } from '../../redux/modules/domain/attendances';
 import { getInstance } from './getInstance';
 
 const db = getInstance();

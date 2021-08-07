@@ -1,9 +1,9 @@
 import React from 'react';
 import { getRoleValue } from '../../../../libs/utils/getRoleValue';
-import { Attendance } from '../../../../redux/modules/attendance';
-import { Part } from '../../../../redux/modules/part';
-import { ProgramItem } from '../../../../redux/modules/program';
-import { RoleItem } from '../../../../redux/modules/role';
+import { Attendance } from '../../../../redux/modules/app/attendance';
+import { Part } from '../../../../redux/modules/app/part';
+import { ProgramItem } from '../../../../redux/modules/app/program';
+import { RoleItem } from '../../../../redux/modules/app/role';
 import { Heading } from '../../../uiParts/Heading';
 import { PrimaryButton } from '../../../uiParts/PrimaryButton';
 import { SecondaryButton } from '../../../uiParts/SecondaryButton';

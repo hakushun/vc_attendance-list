@@ -5,7 +5,7 @@ import { Heading } from '../uiParts/Heading';
 import { Sectioning } from '../uiParts/Sectioning';
 import { isSignFormInvalid } from '../../libs/utils/isSignFormInvalid';
 import { Badge } from '../uiParts/Badge';
-import { SignForm } from '../../redux/modules/sign';
+import { SignForm } from '../../redux/modules/app/sign';
 import styles from './index.module.scss';
 
 type Props = {

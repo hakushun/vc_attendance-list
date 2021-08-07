@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { NextRouter } from 'next/router';
 import React from 'react';
 import { isSuperuser } from '../../../libs/utils/isSuperuser';
-import { Userdata } from '../../../redux/modules/user';
+import { Userdata } from '../../../redux/modules/app/user';
 import { QuaternaryButton } from '../../uiParts/QuaternaryButton';
 import styles from './index.module.scss';
 

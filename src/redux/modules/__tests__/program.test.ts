@@ -6,8 +6,8 @@ import reducer, {
   focusProgram,
   selectProgram,
   selectSelectedId,
-} from '../program';
-import { subscribeProgram } from '../programs';
+} from '../app/program';
+import { subscribeProgram } from '../domain/programs';
 import { initialState } from './_initialState';
 
 // reducer

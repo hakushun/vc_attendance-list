@@ -1,5 +1,10 @@
 /* eslint-disable no-undefined */
-import reducer, { changeCovidAnswers, changeCovidDate, initiateCovid, selectCovid } from '../covid';
+import reducer, {
+  changeCovidAnswers,
+  changeCovidDate,
+  initiateCovid,
+  selectCovid,
+} from '../app/covid';
 import { initialState } from './_initialState';
 
 // reducer

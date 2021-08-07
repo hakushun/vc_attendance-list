@@ -1,6 +1,6 @@
 import React from 'react';
 import { useProgram } from '../../../../hooks/useProgram';
-import { Event } from '../../../../redux/modules/event';
+import { Event } from '../../../../redux/modules/app/event';
 import { Loading } from '../../../uiParts/Loading';
 import { Program as Presentational } from './Program';
 

@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import initFirebase from '../libs/firebase/initFirebase';
 import { mapUserData } from '../libs/utils/mapUserData';
-import { selectIsLoading, selectUser, auth, Userdata } from '../redux/modules/user';
+import { selectIsLoading, selectUser, auth, Userdata } from '../redux/modules/app/user';
 import { useRouter } from './useRouter';
 
 initFirebase();

@@ -1,5 +1,5 @@
-import { Event } from '../../redux/modules/event';
-import { CreatePayload } from '../../redux/modules/events';
+import { Event } from '../../redux/modules/app/event';
+import { CreatePayload } from '../../redux/modules/domain/events';
 import { getInstance } from './getInstance';
 
 const db = getInstance();

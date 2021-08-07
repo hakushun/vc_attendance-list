@@ -11,8 +11,12 @@ import reducer, {
   selectDetail,
   selectEvent,
   selectTitle,
-} from '../event';
-import { create as createEvent, remove as removeEvent, update as updateEvent } from '../events';
+} from '../app/event';
+import {
+  create as createEvent,
+  remove as removeEvent,
+  update as updateEvent,
+} from '../domain/events';
 import { initialState } from './_initialState';
 
 // reducer

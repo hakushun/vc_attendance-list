@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
-import { Event } from '../../../redux/modules/event';
+import { Event } from '../../../redux/modules/app/event';
 import { Heading } from '../../uiParts/Heading';
 import { Sectioning } from '../../uiParts/Sectioning';
 import styles from './index.module.scss';

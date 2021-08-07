@@ -1,5 +1,5 @@
 /* eslint-disable no-undefined */
-import reducer, { change, selectTab } from '../tab';
+import reducer, { change, selectTab } from '../ui/tab';
 import { initialState } from './_initialState';
 
 // reducer

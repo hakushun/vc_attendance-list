@@ -1,6 +1,6 @@
 /* eslint-disable no-undefined */
-import reducer, { changePlan, selectPlans } from '../plans';
-import { subscribePractice } from '../practice';
+import reducer, { changePlan, selectPlans } from '../app/plans';
+import { subscribePractice } from '../domain/practice';
 import { initialState } from './_initialState';
 
 // reducer

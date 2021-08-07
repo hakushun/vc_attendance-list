@@ -8,7 +8,7 @@ import {
   Part,
   changeOrder,
   ChangeOrderPayload,
-} from '../redux/modules/part';
+} from '../redux/modules/app/part';
 
 type Hooks = {
   part: Part[];

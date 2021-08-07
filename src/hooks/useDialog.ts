@@ -6,7 +6,7 @@ import {
   selectDialogIsOpened,
   selectDialogMessage,
   toggle,
-} from '../redux/modules/dialog';
+} from '../redux/modules/ui/dialog';
 
 type Hooks = {
   dialogRef: MutableRefObject<HTMLElement | null>;

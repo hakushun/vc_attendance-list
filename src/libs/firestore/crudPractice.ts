@@ -1,6 +1,6 @@
 import { getInstance } from './getInstance';
-import { Event } from '../../redux/modules/event';
-import { UpdatePayload } from '../../redux/modules/practice';
+import { Event } from '../../redux/modules/app/event';
+import { UpdatePayload } from '../../redux/modules/domain/practice';
 
 const db = getInstance();
 

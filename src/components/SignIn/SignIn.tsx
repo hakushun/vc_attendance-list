@@ -6,7 +6,7 @@ import { LinkButton } from '../uiParts/LinkButton';
 import { PrimaryButton } from '../uiParts/PrimaryButton';
 import { Sectioning } from '../uiParts/Sectioning';
 import { PasswordReset } from './PasswordReset';
-import { SignForm } from '../../redux/modules/sign';
+import { SignForm } from '../../redux/modules/app/sign';
 import styles from './index.module.scss';
 
 type Props = {

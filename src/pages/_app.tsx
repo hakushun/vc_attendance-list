@@ -2,13 +2,13 @@ import React, { useEffect } from 'react';
 import { AppProps } from 'next/app';
 import { useDispatch } from 'react-redux';
 import { wrapper } from '../redux/store';
-import { closeAll } from '../redux/modules/show';
+import { closeAll } from '../redux/modules/ui/show';
 import { useRouter } from '../hooks/useRouter';
 import { Layout } from '../components/Layout';
 
 import '../styles/reset.scss';
 import '../styles/global.scss';
-import { closeAllModal } from '../redux/modules/modal';
+import { closeAllModal } from '../redux/modules/ui/modal';
 
 function App({ Component, pageProps }: AppProps): React.ReactElement {
   const { router } = useRouter();

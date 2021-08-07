@@ -1,7 +1,7 @@
 import React from 'react';
 import { useCovid } from '../../../hooks/useCovid';
 import { useShow } from '../../../hooks/useShow';
-import { Event } from '../../../redux/modules/event';
+import { Event } from '../../../redux/modules/app/event';
 import { CovidForm as Presentational } from './CovidForm';
 
 type Props = {

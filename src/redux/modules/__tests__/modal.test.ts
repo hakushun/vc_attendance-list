@@ -1,5 +1,5 @@
 /* eslint-disable no-undefined */
-import { fetch } from '../covids';
+import { fetch } from '../domain/covids';
 import reducer, {
   closeAllModal,
   selectCovidResultIsShown,
@@ -8,9 +8,9 @@ import reducer, {
   toggleCovidResult,
   togglePasswordReset,
   togglePracticeModal,
-} from '../modal';
-import { focusPractice } from '../practice';
-import { resetPassword } from '../sign';
+} from '../ui/modal';
+import { focusPractice } from '../domain/practice';
+import { resetPassword } from '../app/sign';
 import { initialState } from './_initialState';
 
 // reducer

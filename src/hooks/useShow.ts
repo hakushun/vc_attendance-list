@@ -1,8 +1,8 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { initiateAttendance } from '../redux/modules/attendance';
-import { initiateCovid } from '../redux/modules/covid';
-import { selectEvent } from '../redux/modules/event';
+import { initiateAttendance } from '../redux/modules/app/attendance';
+import { initiateCovid } from '../redux/modules/app/covid';
+import { selectEvent } from '../redux/modules/app/event';
 import {
   selectEventFormIsShown,
   selectCovidFormIsShown,
@@ -10,7 +10,7 @@ import {
   selectSettingIsShown,
   toggleEventForm,
   toggleSetting,
-} from '../redux/modules/show';
+} from '../redux/modules/ui/show';
 
 type Hooks = {
   eventFormIsShown: boolean;

@@ -9,7 +9,7 @@ import {
   toggleCovidResult,
   togglePasswordReset,
   togglePracticeModal,
-} from '../redux/modules/modal';
+} from '../redux/modules/ui/modal';
 
 type Hooks = {
   modalRef: MutableRefObject<HTMLElement | null>;

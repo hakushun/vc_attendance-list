@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocations } from '../../../../hooks/useLocations';
 import { usePlans } from '../../../../hooks/usePlans';
 import { useRemarks } from '../../../../hooks/useRemarks';
-import { Event } from '../../../../redux/modules/event';
+import { Event } from '../../../../redux/modules/app/event';
 import { Loading } from '../../../uiParts/Loading';
 import { Practice as Presentational } from './Practice';
 

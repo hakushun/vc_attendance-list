@@ -1,5 +1,5 @@
-import { Event } from '../../redux/modules/event';
-import { UpdatePayload } from '../../redux/modules/roles';
+import { Event } from '../../redux/modules/app/event';
+import { UpdatePayload } from '../../redux/modules/domain/roles';
 import { getInstance } from './getInstance';
 
 const db = getInstance();

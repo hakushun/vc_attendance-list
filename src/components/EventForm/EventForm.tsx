@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import React from 'react';
 import { isEventInvaild } from '../../libs/utils/isEventInvalid';
-import { Event } from '../../redux/modules/event';
+import { Event } from '../../redux/modules/app/event';
 import { Badge } from '../uiParts/Badge';
 import { Heading } from '../uiParts/Heading';
 import { OptionalButton } from '../uiParts/OptionalButton';

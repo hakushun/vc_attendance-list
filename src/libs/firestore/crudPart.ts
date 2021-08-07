@@ -1,7 +1,7 @@
 import { getInstance } from './getInstance';
-import { Event } from '../../redux/modules/event';
+import { Event } from '../../redux/modules/app/event';
 import { generateId } from '../ulid/generateId';
-import { UpdatePayload } from '../../redux/modules/parts';
+import { UpdatePayload } from '../../redux/modules/domain/parts';
 
 const db = getInstance();
 

@@ -2,15 +2,15 @@ import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getInstance } from '../libs/firestore/getInstance';
 import { isProgramInvalid } from '../libs/utils/isProgramInvalid';
-import { selectEvent } from '../redux/modules/event';
-import { ProgramItem, selectProgram } from '../redux/modules/program';
+import { selectEvent } from '../redux/modules/app/event';
+import { ProgramItem, selectProgram } from '../redux/modules/app/program';
 import {
   selectIsLoading,
   selectPrograms,
   subscribeProgram,
   update,
-} from '../redux/modules/programs';
-import { selectSettingIsShown } from '../redux/modules/show';
+} from '../redux/modules/domain/programs';
+import { selectSettingIsShown } from '../redux/modules/ui/show';
 
 type Hooks = {
   programs: ProgramItem[];

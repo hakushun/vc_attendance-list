@@ -1,6 +1,6 @@
 /* eslint-disable no-undefined */
-import reducer, { changeRadio, changeRole, selectProgramId, selectRole } from '../role';
-import { subscribeRoles } from '../roles';
+import reducer, { changeRadio, changeRole, selectProgramId, selectRole } from '../app/role';
+import { subscribeRoles } from '../domain/roles';
 import { initialState } from './_initialState';
 
 // reducer

@@ -2,7 +2,7 @@ import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getInstance } from '../libs/firestore/getInstance';
 import { isAttendanceInvalid } from '../libs/utils/isAttendanceInvalid';
-import { Attendance, selectAttendance } from '../redux/modules/attendance';
+import { Attendance, selectAttendance } from '../redux/modules/app/attendance';
 import {
   create,
   remove,
@@ -11,7 +11,7 @@ import {
   selectIsLoading,
   subscribeAtendances,
   update,
-} from '../redux/modules/attendances';
+} from '../redux/modules/domain/attendances';
 
 type Hooks = {
   attendances: Attendance[];

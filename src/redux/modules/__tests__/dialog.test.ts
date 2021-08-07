@@ -1,18 +1,22 @@
 /* eslint-disable no-undefined */
-import reducer, { selectDialogIsOpened, selectDialogMessage, toggle } from '../dialog';
-import { resetPassword, signIn, signOut, signUp } from '../sign';
+import reducer, { selectDialogIsOpened, selectDialogMessage, toggle } from '../ui/dialog';
+import { resetPassword, signIn, signOut, signUp } from '../app/sign';
 import {
   create as createAttendance,
   CrudPayload,
   remove as removeAttendance,
   update as updateAttendance,
-} from '../attendances';
-import { create as createCovid, fetch as fetchCovid } from '../covids';
-import { create as createEvent, remove as removeEvent, update as updateEvent } from '../events';
-import { update as updatePart } from '../parts';
-import { update as updatePractice } from '../practice';
-import { update as updateProgram } from '../programs';
-import { update as updateRole } from '../roles';
+} from '../domain/attendances';
+import { create as createCovid, fetch as fetchCovid } from '../domain/covids';
+import {
+  create as createEvent,
+  remove as removeEvent,
+  update as updateEvent,
+} from '../domain/events';
+import { update as updatePart } from '../domain/parts';
+import { update as updatePractice } from '../domain/practice';
+import { update as updateProgram } from '../domain/programs';
+import { update as updateRole } from '../domain/roles';
 import { initialState } from './_initialState';
 
 // reducer

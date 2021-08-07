@@ -2,7 +2,7 @@ import React from 'react';
 import { Sectioning } from '../../uiParts/Sectioning';
 import styles from './index.module.scss';
 import { Heading } from '../../uiParts/Heading';
-import { Event } from '../../../redux/modules/event';
+import { Event } from '../../../redux/modules/app/event';
 
 type Props = {
   event: Event;

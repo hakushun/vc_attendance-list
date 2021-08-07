@@ -1,6 +1,6 @@
 /* eslint-disable no-undefined */
-import reducer, { changeLocation, selectLocations } from '../locations';
-import { subscribePractice } from '../practice';
+import reducer, { changeLocation, selectLocations } from '../app/locations';
+import { subscribePractice } from '../domain/practice';
 import { initialState } from './_initialState';
 
 // reducer

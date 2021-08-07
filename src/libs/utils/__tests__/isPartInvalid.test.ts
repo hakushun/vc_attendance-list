@@ -1,4 +1,4 @@
-import { Part } from '../../../redux/modules/part';
+import { Part } from '../../../redux/modules/app/part';
 import { isPartInvalid } from '../isPartInvalid';
 
 describe('isPartInvalid', () => {

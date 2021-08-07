@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeLocation, Location, selectLocations } from '../redux/modules/locations';
+import { changeLocation, Location, selectLocations } from '../redux/modules/app/locations';
 
 type Hooks = {
   locations: Location[];

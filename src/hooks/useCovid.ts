@@ -1,7 +1,12 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeCovidAnswers, changeCovidDate, Covid, selectCovid } from '../redux/modules/covid';
-import { selectUser } from '../redux/modules/user';
+import {
+  changeCovidAnswers,
+  changeCovidDate,
+  Covid,
+  selectCovid,
+} from '../redux/modules/app/covid';
+import { selectUser } from '../redux/modules/app/user';
 
 type Hooks = {
   covid: Covid;

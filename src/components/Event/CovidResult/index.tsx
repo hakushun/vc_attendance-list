@@ -1,7 +1,7 @@
 import React from 'react';
 import { useModal } from '../../../hooks/useModal';
-import { Attendance } from '../../../redux/modules/attendance';
-import { Covid } from '../../../redux/modules/covid';
+import { Attendance } from '../../../redux/modules/app/attendance';
+import { Covid } from '../../../redux/modules/app/covid';
 import { CovidResult as Presentational } from './CovidResult';
 
 type Props = {

@@ -1,4 +1,4 @@
-import { Occupation } from '../../redux/modules/attendance';
+import { Occupation } from '../../redux/modules/app/attendance';
 
 export const convertOccuoation = (occupation: Occupation): string => {
   if (occupation === 'working') return '社会人';

@@ -1,6 +1,6 @@
 import React, { MutableRefObject } from 'react';
-import { Attendance } from '../../../redux/modules/attendance';
-import { PracticeItem } from '../../../redux/modules/practice';
+import { Attendance } from '../../../redux/modules/app/attendance';
+import { PracticeItem } from '../../../redux/modules/domain/practice';
 import { Heading } from '../../uiParts/Heading';
 import { Modal } from '../../uiParts/Modal';
 import { SecondaryButton } from '../../uiParts/SecondaryButton';

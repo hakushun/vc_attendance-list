@@ -1,9 +1,9 @@
 import React from 'react';
-import { Event } from '../../../redux/modules/event';
+import { Event } from '../../../redux/modules/app/event';
 import { useTab } from '../../../hooks/useTab';
-import { Part as TypePart } from '../../../redux/modules/part';
-import { Attendance } from '../../../redux/modules/attendance';
-import { ProgramItem } from '../../../redux/modules/program';
+import { Part as TypePart } from '../../../redux/modules/app/part';
+import { Attendance } from '../../../redux/modules/app/attendance';
+import { ProgramItem } from '../../../redux/modules/app/program';
 import { Setting as Presentational } from './Setting';
 import { useShow } from '../../../hooks/useShow';
 

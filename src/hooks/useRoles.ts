@@ -1,9 +1,14 @@
 import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getInstance } from '../libs/firestore/getInstance';
-import { RoleItem, selectRole } from '../redux/modules/role';
-import { selectIsLoading, selectRoles, subscribeRoles, update } from '../redux/modules/roles';
-import { selectSettingIsShown } from '../redux/modules/show';
+import { RoleItem, selectRole } from '../redux/modules/app/role';
+import {
+  selectIsLoading,
+  selectRoles,
+  subscribeRoles,
+  update,
+} from '../redux/modules/domain/roles';
+import { selectSettingIsShown } from '../redux/modules/ui/show';
 
 type Hooks = {
   roles: RoleItem[];

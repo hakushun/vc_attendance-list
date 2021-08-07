@@ -11,7 +11,7 @@ import {
   focusEvent,
   initiateEvent,
   selectEvent,
-} from '../redux/modules/event';
+} from '../redux/modules/app/event';
 import { useRouter } from './useRouter';
 
 type Hooks = {

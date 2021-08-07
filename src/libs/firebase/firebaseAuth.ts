@@ -1,6 +1,6 @@
 import firebase from 'firebase/app';
-import { AuthPayload } from '../../redux/modules/sign';
-import { Userdata } from '../../redux/modules/user';
+import { AuthPayload } from '../../redux/modules/app/sign';
+import { Userdata } from '../../redux/modules/app/user';
 import { mapUserData } from '../utils/mapUserData';
 
 export const signUpWithFirebase = async ({ email, password }: AuthPayload): Promise<Userdata> => {

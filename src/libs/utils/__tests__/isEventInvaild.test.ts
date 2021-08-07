@@ -1,4 +1,4 @@
-import { Event } from '../../../redux/modules/event';
+import { Event } from '../../../redux/modules/app/event';
 import { isEventInvaild } from '../isEventInvalid';
 
 describe('isEventInvaild', () => {

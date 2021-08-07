@@ -1,6 +1,6 @@
 /* eslint-disable no-undefined */
-import { subscribePractice } from '../practice';
-import reducer, { changeRemark, selectRemarks } from '../remarks';
+import { subscribePractice } from '../domain/practice';
+import reducer, { changeRemark, selectRemarks } from '../app/remarks';
 import { initialState } from './_initialState';
 
 // reducer

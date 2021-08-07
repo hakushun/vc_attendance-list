@@ -1,8 +1,8 @@
 import React from 'react';
 import { useRole } from '../../../../hooks/useRole';
-import { Attendance } from '../../../../redux/modules/attendance';
-import { Part } from '../../../../redux/modules/part';
-import { ProgramItem } from '../../../../redux/modules/program';
+import { Attendance } from '../../../../redux/modules/app/attendance';
+import { Part } from '../../../../redux/modules/app/part';
+import { ProgramItem } from '../../../../redux/modules/app/program';
 import { Loading } from '../../../uiParts/Loading';
 import { Role as Presentational } from './Role';
 

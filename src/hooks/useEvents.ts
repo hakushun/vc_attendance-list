@@ -2,7 +2,7 @@ import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getInstance } from '../libs/firestore/getInstance';
 import { isEventInvaild } from '../libs/utils/isEventInvalid';
-import { Event, selectEvent } from '../redux/modules/event';
+import { Event, selectEvent } from '../redux/modules/app/event';
 import {
   create,
   remove,
@@ -10,7 +10,7 @@ import {
   selectIsLoading,
   subscribeEvents,
   update,
-} from '../redux/modules/events';
+} from '../redux/modules/domain/events';
 import { useRouter } from './useRouter';
 
 type Hooks = {

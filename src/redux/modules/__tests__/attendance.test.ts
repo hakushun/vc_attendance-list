@@ -7,7 +7,7 @@ import reducer, {
   focusAttendance,
   initiateAttendance,
   selectAttendance,
-} from '../attendance';
+} from '../app/attendance';
 import { initialState } from './_initialState';
 
 // reducer

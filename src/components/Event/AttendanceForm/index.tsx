@@ -1,10 +1,10 @@
 import React from 'react';
 import { useAttendance } from '../../../hooks/useAttendance';
 import { useShow } from '../../../hooks/useShow';
-import { Attendance } from '../../../redux/modules/attendance';
-import { Event } from '../../../redux/modules/event';
-import { Part } from '../../../redux/modules/part';
-import { Userdata } from '../../../redux/modules/user';
+import { Attendance } from '../../../redux/modules/app/attendance';
+import { Event } from '../../../redux/modules/app/event';
+import { Part } from '../../../redux/modules/app/part';
+import { Userdata } from '../../../redux/modules/app/user';
 import { AttendanceForm as Presentational } from './AttendanceForm';
 
 type Props = {

@@ -1,4 +1,4 @@
-import { RoleItem } from '../../../redux/modules/role';
+import { RoleItem } from '../../../redux/modules/app/role';
 import { getRoleValue } from '../getRoleValue';
 
 describe('getRoleValue', () => {

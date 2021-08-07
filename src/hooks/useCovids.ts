@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Attendance } from '../redux/modules/attendance';
-import { Covid, selectCovid } from '../redux/modules/covid';
+import { Attendance } from '../redux/modules/app/attendance';
+import { Covid, selectCovid } from '../redux/modules/app/covid';
 import {
   create,
   fetch,
@@ -9,7 +9,7 @@ import {
   selectCovids,
   selectIsLoading,
   selectUnansweredUsers,
-} from '../redux/modules/covids';
+} from '../redux/modules/domain/covids';
 
 type Hooks = {
   covids: Covid[];

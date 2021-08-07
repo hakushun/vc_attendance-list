@@ -8,7 +8,7 @@ import {
   ProgramItem,
   selectProgram,
   selectSelectedId,
-} from '../redux/modules/program';
+} from '../redux/modules/app/program';
 
 type Hooks = {
   program: ProgramItem[];

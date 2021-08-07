@@ -1,9 +1,9 @@
 import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getInstance } from '../libs/firestore/getInstance';
-import { selectEvent } from '../redux/modules/event';
-import { selectLocations } from '../redux/modules/locations';
-import { selectPlans } from '../redux/modules/plans';
+import { selectEvent } from '../redux/modules/app/event';
+import { selectLocations } from '../redux/modules/app/locations';
+import { selectPlans } from '../redux/modules/app/plans';
 import {
   focusPractice,
   PracticeItem,
@@ -12,9 +12,9 @@ import {
   selectPractice,
   subscribePractice,
   update,
-} from '../redux/modules/practice';
-import { selectRemarks } from '../redux/modules/remarks';
-import { selectSettingIsShown } from '../redux/modules/show';
+} from '../redux/modules/domain/practice';
+import { selectRemarks } from '../redux/modules/app/remarks';
+import { selectSettingIsShown } from '../redux/modules/ui/show';
 
 type Hooks = {
   practice: PracticeItem;

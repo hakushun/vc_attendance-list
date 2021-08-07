@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeRemark, Remark, selectRemarks } from '../redux/modules/remarks';
+import { changeRemark, Remark, selectRemarks } from '../redux/modules/app/remarks';
 
 type Hooks = {
   remarks: Remark[];

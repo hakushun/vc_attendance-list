@@ -1,4 +1,4 @@
-import { AttendanceType } from '../../redux/modules/attendance';
+import { AttendanceType } from '../../redux/modules/app/attendance';
 
 export const convertAttendance = (type: AttendanceType): string => {
   switch (type) {

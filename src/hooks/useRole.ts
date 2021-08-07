@@ -6,7 +6,7 @@ import {
   RoleItem,
   selectProgramId,
   selectRole,
-} from '../redux/modules/role';
+} from '../redux/modules/app/role';
 
 type Hooks = {
   programId: string;

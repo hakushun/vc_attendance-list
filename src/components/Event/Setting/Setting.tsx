@@ -6,12 +6,12 @@ import { Heading } from '../../uiParts/Heading';
 import { Program } from './Program';
 import { Part } from './Part';
 import { Role } from './Role';
-import { Event } from '../../../redux/modules/event';
-import { Part as TypePart } from '../../../redux/modules/part';
-import { Attendance } from '../../../redux/modules/attendance';
-import { ProgramItem } from '../../../redux/modules/program';
+import { Event } from '../../../redux/modules/app/event';
+import { Part as TypePart } from '../../../redux/modules/app/part';
+import { Attendance } from '../../../redux/modules/app/attendance';
+import { ProgramItem } from '../../../redux/modules/app/program';
 import styles from './index.module.scss';
-import { Tab } from '../../../redux/modules/tab';
+import { Tab } from '../../../redux/modules/ui/tab';
 
 type Props = {
   event: Event;

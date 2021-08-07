@@ -1,5 +1,5 @@
-import { Covid } from '../../redux/modules/covid';
-import { CreatePayload, FetchPayload } from '../../redux/modules/covids';
+import { Covid } from '../../redux/modules/app/covid';
+import { CreatePayload, FetchPayload } from '../../redux/modules/domain/covids';
 import { getTimestamp } from '../dayjs/getTimestap';
 import { getInstance } from './getInstance';
 

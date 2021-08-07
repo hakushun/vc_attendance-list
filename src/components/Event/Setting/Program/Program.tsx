@@ -1,7 +1,7 @@
 import React from 'react';
 import { isProgramInvalid } from '../../../../libs/utils/isProgramInvalid';
-import { Event } from '../../../../redux/modules/event';
-import { ProgramItem } from '../../../../redux/modules/program';
+import { Event } from '../../../../redux/modules/app/event';
+import { ProgramItem } from '../../../../redux/modules/app/program';
 import { Badge } from '../../../uiParts/Badge';
 import { Heading } from '../../../uiParts/Heading';
 import { PrimaryButton } from '../../../uiParts/PrimaryButton';

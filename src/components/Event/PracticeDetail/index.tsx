@@ -2,9 +2,9 @@ import React, { useMemo } from 'react';
 import { useModal } from '../../../hooks/useModal';
 import { getDayOfTheWeek } from '../../../libs/dayjs/getDayOfTheWeek';
 import { getStringDate } from '../../../libs/dayjs/getStringDate';
-import { Attendance } from '../../../redux/modules/attendance';
-import { Event } from '../../../redux/modules/event';
-import { PracticeItem } from '../../../redux/modules/practice';
+import { Attendance } from '../../../redux/modules/app/attendance';
+import { Event } from '../../../redux/modules/app/event';
+import { PracticeItem } from '../../../redux/modules/domain/practice';
 import { PracticeDetail as Presentational } from './PracticeDetail';
 
 type Props = {
