@@ -5,9 +5,9 @@ import { UpdatePayload } from '../../redux/modules/domain/practice';
 const db = getInstance();
 
 export const createPractice = async (event: Event): Promise<void> => {
-  Promise.all(
+  await Promise.all(
     event.dates.map((date) => {
-      const project = {
+      const data = {
         location: {
           name1: '',
           name2: '',
@@ -24,12 +24,7 @@ export const createPractice = async (event: Event): Promise<void> => {
           dateId: date.id,
         },
       };
-      return db
-        .collection('practices')
-        .doc(event.id)
-        .collection('practice')
-        .doc(date.id)
-        .set(project);
+      return db.collection('practices').doc(event.id).collection('practice').doc(date.id).set(data);
     }),
   );
 };
