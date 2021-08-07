@@ -35,6 +35,19 @@ export const createPractice = async (event: Event): Promise<void> => {
 };
 
 export const updatePractice = async ({ event, practice }: UpdatePayload): Promise<void> => {
-  await db.collection('practices').doc(event.id).set(practice, { merge: true });
+  await Promise.all(
+    event.dates.map((date) => {
+      const data = {
+        location: practice.locations.find((location) => location.dateId === date.id),
+        plan: practice.plans.find((plan) => plan.dateId === date.id),
+        remark: practice.remarks.find((remark) => remark.dateId === date.id),
+      };
+      return db
+        .collection('practices')
+        .doc(event.id)
+        .collection('practice')
+        .doc(date.id)
+        .set(data, { merge: true });
+    }),
+  );
 };
-
