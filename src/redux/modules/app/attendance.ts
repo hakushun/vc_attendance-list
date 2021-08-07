@@ -5,7 +5,7 @@ import { RootState } from '../reducers';
 import { Event } from './event';
 
 export type AttendanceType = 'presence' | 'undecided' | 'absence';
-type AttendanceItem = {
+export type AttendanceItem = {
   dateId: string;
   attendance: AttendanceType;
   remark: string;
