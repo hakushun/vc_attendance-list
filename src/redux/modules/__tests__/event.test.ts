@@ -347,24 +347,14 @@ describe('Reducer: event', () => {
     const action = createEvent.async.done({ params: payload, result: payload });
     const result = reducer(undefined, action);
     expect(result).toEqual({
-      id: 'ynwbWy11Lws3O9wFyWdg',
-      title: 'sample concert',
-      detail: 'This is a sample concert.',
+      id: '',
+      title: '',
+      detail: '',
       dates: [
         {
+          id: result.dates[0].id,
+          day: result.dates[0].day,
           time: '13:00~17:00',
-          id: '01F937G4BYBXW1QRV8BYH1VX9Z',
-          day: '2021-06-26',
-        },
-        {
-          time: '13:00~17:00',
-          day: '2021-06-27',
-          id: '01F937GTKXDPW3BD3T6KYZBY9N',
-        },
-        {
-          time: '13:00~17:00',
-          id: '01F937GV9SP8WNQFTAYC3K1YSQ',
-          day: '2021-06-28',
         },
       ],
     });
