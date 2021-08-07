@@ -64,12 +64,13 @@ export const Event: React.VFC<Props> = React.memo(({ eventId }) => {
   const { isLoading, user } = useUser();
   const { event } = useEvent(targetEvent);
 
+  if (!targetEvent) return null;
   if (isLoading) return <Loading />;
 
   return (
     <>
       <Setting
-        event={event}
+        event={targetEvent}
         attendances={attendances}
         parts={parts}
         partsIsLoading={partsIsLoading}
@@ -91,7 +92,7 @@ export const Event: React.VFC<Props> = React.memo(({ eventId }) => {
       <EventHeader event={event} />
       <AttendanceForm
         user={user}
-        event={event}
+        event={targetEvent}
         parts={parts}
         attendances={attendances}
         isLoading={attendanceIsLoading}
@@ -99,10 +100,10 @@ export const Event: React.VFC<Props> = React.memo(({ eventId }) => {
         handleUpdate={handleAttendanceUpdate}
         handleRemove={handleAttendanceRemove}
       />
-      <CovidForm event={event} handleCreate={handleCovidCreate} />
+      <CovidForm event={targetEvent} handleCreate={handleCovidCreate} />
       <AttendanceTable
         user={user}
-        event={event}
+        event={targetEvent}
         attendances={attendances}
         isLoading={attendanceIsLoading}
         handleFocusPractice={handleFocusPractice}
@@ -111,7 +112,7 @@ export const Event: React.VFC<Props> = React.memo(({ eventId }) => {
         handleFetch={handleFetch}
       />
       <PracticeDetail
-        event={event}
+        event={targetEvent}
         practice={practice}
         dateId={dateId}
         breakdownAttendances={breakdownAttendances}
