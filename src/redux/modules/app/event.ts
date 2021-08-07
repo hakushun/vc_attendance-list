@@ -90,13 +90,13 @@ const reducer = reducerWithInitialState(INITIAL_STATE)
   .case(focusEvent, (_state, payload) => ({
     ...payload,
   }))
-  .cases([createEvent.async.done, updateEvent.async.done], (state, { result }) => ({
-    ...state,
-    ...result,
-  }))
-  .case(removeEvent.async.done, () => ({
+  .cases([createEvent.async.done, removeEvent.async.done], () => ({
     ...INITIAL_STATE,
     dates: [generateNewDate()],
+  }))
+  .case(updateEvent.async.done, (state, { result }) => ({
+    ...state,
+    ...result,
   }));
 export default reducer;
 
