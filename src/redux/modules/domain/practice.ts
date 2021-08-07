@@ -2,12 +2,12 @@ import { createSelector } from 'reselect';
 import actionCreatorFactory from 'typescript-fsa';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import { asyncFactory } from 'typescript-fsa-redux-thunk';
-import { Location } from './locations';
-import { Plan } from './plans';
-import { Remark } from './remarks';
-import { RootState } from './reducers';
-import { updatePractice } from '../../libs/firestore/crudPractice';
-import { Event } from './event';
+import { Location } from '../app/locations';
+import { Plan } from '../app/plans';
+import { Remark } from '../app/remarks';
+import { RootState } from '../reducers';
+import { updatePractice } from '../../../libs/firestore/crudPractice';
+import { Event } from '../app/event';
 
 export type PracticeItem = {
   locations: Location[];

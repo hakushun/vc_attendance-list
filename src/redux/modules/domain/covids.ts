@@ -2,9 +2,9 @@ import { createSelector } from 'reselect';
 import actionCreatorFactory from 'typescript-fsa';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import { asyncFactory } from 'typescript-fsa-redux-thunk';
-import { createCovid, fetchCovid } from '../../libs/firestore/curdCovid';
-import { Covid } from './covid';
-import { RootState } from './reducers';
+import { createCovid, fetchCovid } from '../../../libs/firestore/curdCovid';
+import { Covid } from '../app/covid';
+import { RootState } from '../reducers';
 
 type Covids = {
   covids: Covid[];

@@ -1,8 +1,8 @@
 import { createSelector } from 'reselect';
 import actionCreatorFactory from 'typescript-fsa';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
-import { RootState } from './reducers';
-import { subscribeRoles } from './roles';
+import { RootState } from '../reducers';
+import { subscribeRoles } from '../domain/roles';
 
 export type RoleItem = {
   userId: string;

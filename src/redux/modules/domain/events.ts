@@ -2,13 +2,13 @@ import { createSelector } from 'reselect';
 import actionCreatorFactory from 'typescript-fsa';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import { asyncFactory } from 'typescript-fsa-redux-thunk';
-import { RootState } from './reducers';
-import { Event, Date } from './event';
-import { createEvent, removeEvent, updateEvent } from '../../libs/firestore/crudEvent';
-import { createPractice } from '../../libs/firestore/crudPractice';
-import { createProgram } from '../../libs/firestore/crudProgram';
-import { createPart } from '../../libs/firestore/crudPart';
-import { createRole } from '../../libs/firestore/crudRole';
+import { RootState } from '../reducers';
+import { Event, Date } from '../app/event';
+import { createEvent, removeEvent, updateEvent } from '../../../libs/firestore/crudEvent';
+import { createPractice } from '../../../libs/firestore/crudPractice';
+import { createProgram } from '../../../libs/firestore/crudProgram';
+import { createPart } from '../../../libs/firestore/crudPart';
+import { createRole } from '../../../libs/firestore/crudRole';
 
 export type Events = {
   events: Event[];

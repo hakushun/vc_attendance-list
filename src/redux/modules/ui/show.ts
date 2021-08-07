@@ -1,21 +1,25 @@
 import { createSelector } from 'reselect';
 import actionCreatorFactory from 'typescript-fsa';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
-import { Event } from './event';
+import { Event } from '../app/event';
 import {
   create as createAttendance,
   remove as removeAttendance,
   update as updateAttendance,
-} from './attendances';
-import { create as createEvent, remove as removeEvent, update as updateEvent } from './events';
-import { RootState } from './reducers';
-import { focusAttendance, initiateAttendance } from './attendance';
-import { update as updatePractice } from './practice';
-import { update as updateRoles } from './roles';
-import { update as updateParts } from './parts';
-import { update as updatePrograms } from './programs';
-import { create as createCovids } from './covids';
-import { initiateCovid } from './covid';
+} from '../domain/attendances';
+import {
+  create as createEvent,
+  remove as removeEvent,
+  update as updateEvent,
+} from '../domain/events';
+import { RootState } from '../reducers';
+import { focusAttendance, initiateAttendance } from '../app/attendance';
+import { update as updatePractice } from '../domain/practice';
+import { update as updateRoles } from '../domain/roles';
+import { update as updateParts } from '../domain/parts';
+import { update as updatePrograms } from '../domain/programs';
+import { create as createCovids } from '../domain/covids';
+import { initiateCovid } from '../app/covid';
 
 type KeyName = 'eventForm' | 'covidForm' | 'attendanceForm' | 'setting';
 export type Show = Record<KeyName, boolean>;

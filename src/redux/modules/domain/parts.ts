@@ -2,18 +2,18 @@ import { createSelector } from 'reselect';
 import actionCreatorFactory from 'typescript-fsa';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import { asyncFactory } from 'typescript-fsa-redux-thunk';
-import { RootState } from './reducers';
-import { ProgramItem } from './program';
-import { updateProgram } from '../../libs/firestore/crudProgram';
-import { Event } from './event';
+import { RootState } from '../reducers';
+import { Part } from '../app/part';
+import { updatePart } from '../../../libs/firestore/crudPart';
+import { Event } from '../app/event';
 
-export type Programs = {
-  programs: ProgramItem[];
+export type Parts = {
+  parts: Part[];
   isLoading: boolean;
 };
 export type UpdatePayload = {
   event: Event;
-  program: ProgramItem[];
+  part: Part[];
 };
 interface CustomError extends Error {
   code: string;
@@ -21,27 +21,27 @@ interface CustomError extends Error {
 }
 // action
 const actionCreator = actionCreatorFactory();
-const asyncActionCreator = asyncFactory<Programs>(actionCreator);
+const asyncActionCreator = asyncFactory<Parts>(actionCreator);
 
-export const subscribeProgram = actionCreator<ProgramItem[]>('SUBSCRIBE_PROGRAM');
+export const subscribePart = actionCreator<Part[]>('SUBSCRIBE_PART');
 export const update = asyncActionCreator<UpdatePayload, void, CustomError>(
-  'UPDATE_PROGRAM',
+  'UPDATE_PART',
   async (payload) => {
-    await updateProgram(payload);
+    await updatePart(payload);
   },
 );
 
 // initial state
-const INITIAL_STATE: Programs = {
-  programs: [],
+const INITIAL_STATE: Parts = {
+  parts: [],
   isLoading: false,
 };
 
 // reducer
 const reducer = reducerWithInitialState(INITIAL_STATE)
-  .case(subscribeProgram, (state, payload) => ({
+  .case(subscribePart, (state, payload) => ({
     ...state,
-    programs: [...payload],
+    parts: [...payload],
   }))
   .case(update.async.started, (state) => ({
     ...state,
@@ -58,11 +58,11 @@ const reducer = reducerWithInitialState(INITIAL_STATE)
 export default reducer;
 
 // selector
-export const selectPrograms = createSelector(
-  [(state: RootState) => state.domain.programs.programs],
-  (programs) => programs,
+export const selectParts = createSelector(
+  [(state: RootState) => state.domain.parts.parts],
+  (parts) => parts,
 );
 export const selectIsLoading = createSelector(
-  [(state: RootState) => state.domain.programs.isLoading],
+  [(state: RootState) => state.domain.parts.isLoading],
   (isLoading) => isLoading,
 );

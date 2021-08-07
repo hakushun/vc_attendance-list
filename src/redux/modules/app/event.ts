@@ -1,10 +1,14 @@
 import { createSelector } from 'reselect';
 import actionCreatorFactory from 'typescript-fsa';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
-import { getStringDate } from '../../libs/dayjs/getStringDate';
-import { generateId } from '../../libs/ulid/generateId';
-import { create as createEvent, remove as removeEvent, update as updateEvent } from './events';
-import { RootState } from './reducers';
+import { getStringDate } from '../../../libs/dayjs/getStringDate';
+import { generateId } from '../../../libs/ulid/generateId';
+import {
+  create as createEvent,
+  remove as removeEvent,
+  update as updateEvent,
+} from '../domain/events';
+import { RootState } from '../reducers';
 
 export type Date = {
   id: string;

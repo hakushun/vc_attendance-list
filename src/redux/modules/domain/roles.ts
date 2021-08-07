@@ -2,18 +2,17 @@ import { createSelector } from 'reselect';
 import actionCreatorFactory from 'typescript-fsa';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import { asyncFactory } from 'typescript-fsa-redux-thunk';
-import { RootState } from './reducers';
-import { Part } from './part';
-import { updatePart } from '../../libs/firestore/crudPart';
-import { Event } from './event';
+import { updateRole } from '../../../libs/firestore/crudRole';
+import { RootState } from '../reducers';
+import { RoleItem } from '../app/role';
 
-export type Parts = {
-  parts: Part[];
+export type Roles = {
+  roles: RoleItem[];
   isLoading: boolean;
 };
 export type UpdatePayload = {
-  event: Event;
-  part: Part[];
+  eventId: string;
+  roles: RoleItem[];
 };
 interface CustomError extends Error {
   code: string;
@@ -21,27 +20,26 @@ interface CustomError extends Error {
 }
 // action
 const actionCreator = actionCreatorFactory();
-const asyncActionCreator = asyncFactory<Parts>(actionCreator);
+const asyncActionCreator = asyncFactory<Roles>(actionCreator);
 
-export const subscribePart = actionCreator<Part[]>('SUBSCRIBE_PART');
+export const subscribeRoles = actionCreator<RoleItem[]>('SUBSCRIBE_ROLES');
 export const update = asyncActionCreator<UpdatePayload, void, CustomError>(
-  'UPDATE_PART',
+  'UPDATE_ROLE',
   async (payload) => {
-    await updatePart(payload);
+    await updateRole(payload);
   },
 );
-
 // initial state
-const INITIAL_STATE: Parts = {
-  parts: [],
+const INITIAL_STATE: Roles = {
+  roles: [],
   isLoading: false,
 };
 
 // reducer
 const reducer = reducerWithInitialState(INITIAL_STATE)
-  .case(subscribePart, (state, payload) => ({
+  .case(subscribeRoles, (state, payload) => ({
     ...state,
-    parts: [...payload],
+    roles: payload,
   }))
   .case(update.async.started, (state) => ({
     ...state,
@@ -58,11 +56,11 @@ const reducer = reducerWithInitialState(INITIAL_STATE)
 export default reducer;
 
 // selector
-export const selectParts = createSelector(
-  [(state: RootState) => state.domain.parts.parts],
-  (parts) => parts,
+export const selectRoles = createSelector(
+  [(state: RootState) => state.domain.roles.roles],
+  (roles) => roles,
 );
 export const selectIsLoading = createSelector(
-  [(state: RootState) => state.domain.parts.isLoading],
+  [(state: RootState) => state.domain.roles.isLoading],
   (isLoading) => isLoading,
 );

@@ -1,9 +1,9 @@
 import { createSelector } from 'reselect';
 import actionCreatorFactory from 'typescript-fsa';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
-import { generateId } from '../../libs/ulid/generateId';
-import { subscribeProgram } from './programs';
-import { RootState } from './reducers';
+import { generateId } from '../../../libs/ulid/generateId';
+import { subscribeProgram } from '../domain/programs';
+import { RootState } from '../reducers';
 
 export type ProgramItem = {
   id: string;

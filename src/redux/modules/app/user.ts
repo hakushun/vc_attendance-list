@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import actionCreatorFactory from 'typescript-fsa';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
-import { RootState } from './reducers';
+import { RootState } from '../reducers';
 import { signIn, signOut, signUp } from './sign';
 
 export type Userdata = {

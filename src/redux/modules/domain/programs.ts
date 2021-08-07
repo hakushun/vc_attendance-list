@@ -2,17 +2,18 @@ import { createSelector } from 'reselect';
 import actionCreatorFactory from 'typescript-fsa';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import { asyncFactory } from 'typescript-fsa-redux-thunk';
-import { updateRole } from '../../libs/firestore/crudRole';
-import { RootState } from './reducers';
-import { RoleItem } from './role';
+import { RootState } from '../reducers';
+import { ProgramItem } from '../app/program';
+import { updateProgram } from '../../../libs/firestore/crudProgram';
+import { Event } from '../app/event';
 
-export type Roles = {
-  roles: RoleItem[];
+export type Programs = {
+  programs: ProgramItem[];
   isLoading: boolean;
 };
 export type UpdatePayload = {
-  eventId: string;
-  roles: RoleItem[];
+  event: Event;
+  program: ProgramItem[];
 };
 interface CustomError extends Error {
   code: string;
@@ -20,26 +21,27 @@ interface CustomError extends Error {
 }
 // action
 const actionCreator = actionCreatorFactory();
-const asyncActionCreator = asyncFactory<Roles>(actionCreator);
+const asyncActionCreator = asyncFactory<Programs>(actionCreator);
 
-export const subscribeRoles = actionCreator<RoleItem[]>('SUBSCRIBE_ROLES');
+export const subscribeProgram = actionCreator<ProgramItem[]>('SUBSCRIBE_PROGRAM');
 export const update = asyncActionCreator<UpdatePayload, void, CustomError>(
-  'UPDATE_ROLE',
+  'UPDATE_PROGRAM',
   async (payload) => {
-    await updateRole(payload);
+    await updateProgram(payload);
   },
 );
+
 // initial state
-const INITIAL_STATE: Roles = {
-  roles: [],
+const INITIAL_STATE: Programs = {
+  programs: [],
   isLoading: false,
 };
 
 // reducer
 const reducer = reducerWithInitialState(INITIAL_STATE)
-  .case(subscribeRoles, (state, payload) => ({
+  .case(subscribeProgram, (state, payload) => ({
     ...state,
-    roles: payload,
+    programs: [...payload],
   }))
   .case(update.async.started, (state) => ({
     ...state,
@@ -56,11 +58,11 @@ const reducer = reducerWithInitialState(INITIAL_STATE)
 export default reducer;
 
 // selector
-export const selectRoles = createSelector(
-  [(state: RootState) => state.domain.roles.roles],
-  (roles) => roles,
+export const selectPrograms = createSelector(
+  [(state: RootState) => state.domain.programs.programs],
+  (programs) => programs,
 );
 export const selectIsLoading = createSelector(
-  [(state: RootState) => state.domain.roles.isLoading],
+  [(state: RootState) => state.domain.programs.isLoading],
   (isLoading) => isLoading,
 );

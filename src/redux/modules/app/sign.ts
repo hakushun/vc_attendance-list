@@ -7,8 +7,8 @@ import {
   signInWithFirebase,
   signOutWithFirebase,
   signUpWithFirebase,
-} from '../../libs/firebase/firebaseAuth';
-import { RootState } from './reducers';
+} from '../../../libs/firebase/firebaseAuth';
+import { RootState } from '../reducers';
 import { Userdata } from './user';
 
 export type SignForm = {

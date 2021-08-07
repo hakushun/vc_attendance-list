@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import actionCreatorFactory from 'typescript-fsa';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
-import { RootState } from './reducers';
+import { RootState } from '../reducers';
 
 export type Value = 'practice' | 'program' | 'role' | 'part';
 export type Tab = {

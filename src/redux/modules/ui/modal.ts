@@ -1,10 +1,10 @@
 import { createSelector } from 'reselect';
 import actionCreatorFactory from 'typescript-fsa';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
-import { fetch } from './covids';
-import { focusPractice } from './practice';
-import { RootState } from './reducers';
-import { resetPassword } from './sign';
+import { fetch } from '../domain/covids';
+import { focusPractice } from '../domain/practice';
+import { RootState } from '../reducers';
+import { resetPassword } from '../app/sign';
 
 type KeyName = 'practice' | 'covidResult' | 'passwordReset';
 export type Modal = Record<KeyName, boolean>;

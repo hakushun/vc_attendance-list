@@ -1,8 +1,8 @@
 import { createSelector } from 'reselect';
 import actionCreatorFactory from 'typescript-fsa';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
-import { questions } from '../../config/questions';
-import { RootState } from './reducers';
+import { questions } from '../../../config/questions';
+import { RootState } from '../reducers';
 
 export type Covid = {
   userId: string;
