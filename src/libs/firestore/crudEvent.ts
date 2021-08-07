@@ -20,6 +20,22 @@ export const createEvent = async (event: CreatePayload): Promise<Event> => {
 
 export const updateEvent = async (event: Event): Promise<Event> => {
   await db.collection('events').doc(event.id).set(event, { merge: true });
+  // 追加になった日時に紐づくpracticeを作成
+  await Promise.all(
+    event.dates.map((date) => {
+      const practice = {
+        location: { dateId: date.id },
+        plan: { dateId: date.id },
+        remark: { dateId: date.id },
+      };
+      return db
+        .collection('practices')
+        .doc(event.id)
+        .collection('practice')
+        .doc(date.id)
+        .set(practice, { merge: true });
+    }),
+  );
   return fetchEvent(event.id!);
 };
 
