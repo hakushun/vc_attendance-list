@@ -2,7 +2,8 @@ import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { initiateAttendance } from '../redux/modules/app/attendance';
 import { initiateCovid } from '../redux/modules/app/covid';
-import { selectEvent } from '../redux/modules/app/event';
+import { focusEvent, selectEvent } from '../redux/modules/app/event';
+import { selectEvents } from '../redux/modules/domain/events';
 import {
   selectEventFormIsShown,
   selectCovidFormIsShown,
@@ -25,14 +26,16 @@ type Hooks = {
 export const useShow = (): Hooks => {
   const dispatch = useDispatch();
   const event = useSelector(selectEvent);
+  const events = useSelector(selectEvents);
   const eventFormIsShown = useSelector(selectEventFormIsShown);
   const covidFormIsShown = useSelector(selectCovidFormIsShown);
   const attendanceFormIsShown = useSelector(selectAttendanceFormIsShown);
   const settingIsShown = useSelector(selectSettingIsShown);
 
   const handleToggleEventForm = useCallback(() => {
+    event.id && dispatch(focusEvent(events.find((item) => item.id === event.id)!));
     dispatch(toggleEventForm());
-  }, [dispatch]);
+  }, [dispatch, events, event]);
   const handleToggleCovidForm = useCallback(() => {
     dispatch(initiateCovid());
   }, [dispatch]);
