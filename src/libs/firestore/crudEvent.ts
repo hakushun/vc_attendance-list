@@ -26,7 +26,11 @@ export const updateEvent = async (event: Event): Promise<Event> => {
 export const removeEvent = async (event: Event): Promise<void> => {
   await db.collection('events').doc(event.id).delete();
   await db.collection('parts').doc(event.id).delete();
-  await db.collection('practices').doc(event.id).delete();
+  await Promise.all(
+    event.dates.map((date) =>
+      db.collection('practices').doc(event.id).collection('practice').doc(date.id).delete(),
+    ),
+  );
   await db.collection('programs').doc(event.id).delete();
   await db.collection('roles').doc(event.id).delete();
 };
