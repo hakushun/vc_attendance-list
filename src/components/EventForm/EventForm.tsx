@@ -129,20 +129,18 @@ export const EventForm: React.VFC<Props> = React.memo(
                       </li>
                     ))}
                   </ul>
-                  {!event.id && (
-                    <div className={styles.action}>
-                      <TernaryButton
-                        label="追加"
-                        disabled={isLoading}
-                        handleClick={handleAddDateForm}
-                      />
-                      <TernaryButton
-                        label="削除"
-                        disabled={isLoading}
-                        handleClick={handleDeleteDateForm}
-                      />
-                    </div>
-                  )}
+                  <div className={styles.action}>
+                    <TernaryButton
+                      label="追加"
+                      disabled={isLoading}
+                      handleClick={handleAddDateForm}
+                    />
+                    <TernaryButton
+                      label="削除"
+                      disabled={isLoading}
+                      handleClick={handleDeleteDateForm}
+                    />
+                  </div>
                 </fieldset>
               </div>
             </fieldset>
