@@ -13,7 +13,7 @@ import {
   subscribePractice,
   update,
 } from '../redux/modules/domain/practice';
-import { Remark, Remarks, selectRemarks } from '../redux/modules/app/remarks';
+import { Remark, selectRemarks } from '../redux/modules/app/remarks';
 import { selectSettingIsShown } from '../redux/modules/ui/show';
 
 type Hooks = {
