@@ -40,24 +40,28 @@ export const Role: React.VFC<Props> = React.memo(
         <form className={styles.form}>
           <fieldset className={styles.fieldset}>
             <legend>プログラムの選択</legend>
-            <ul role="radiogroup" aria-required className={styles.list}>
-              {programs.map((program) => (
-                <li key={program.id} className={styles.radioWrapper}>
-                  <input
-                    type="radio"
-                    id={`role-${program.id}`}
-                    name="role_program"
-                    value={program.id}
-                    disabled={isLoading}
-                    className={styles.radio}
-                    onChange={handleChangeRadio}
-                  />
-                  <label htmlFor={`role-${program.id}`} className={styles.radioLabel}>
-                    {program.name}
-                  </label>
-                </li>
-              ))}
-            </ul>
+            {programs.length === 0 ? (
+              <div>先にプログラムを登録して下さい</div>
+            ) : (
+              <ul role="radiogroup" aria-required className={styles.list}>
+                {programs.map((program) => (
+                  <li key={program.id} className={styles.radioWrapper}>
+                    <input
+                      type="radio"
+                      id={`role-${program.id}`}
+                      name="role_program"
+                      value={program.id}
+                      disabled={isLoading}
+                      className={styles.radio}
+                      onChange={handleChangeRadio}
+                    />
+                    <label htmlFor={`role-${program.id}`} className={styles.radioLabel}>
+                      {program.name}
+                    </label>
+                  </li>
+                ))}
+              </ul>
+            )}
             {programId !== '' && (
               <fieldset className={styles.fieldset}>
                 <legend>
