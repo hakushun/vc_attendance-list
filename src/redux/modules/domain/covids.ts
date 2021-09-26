@@ -3,6 +3,7 @@ import actionCreatorFactory from 'typescript-fsa';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import { asyncFactory } from 'typescript-fsa-redux-thunk';
 import { createCovid, fetchCovid } from '../../../libs/firestore/curdCovid';
+import { Attendance } from '../app/attendance';
 import { Covid } from '../app/covid';
 import { RootState } from '../reducers';
 
@@ -99,7 +100,16 @@ export const selectUnansweredUsers = createSelector(
   [
     (state: RootState) => state.domain.covids.covids,
     (state: RootState) => state.domain.attendances.attendances,
+    (state: RootState) => state.domain.parts.parts,
   ],
-  (covids, attendances) =>
-    attendances.filter((attendance) => !covids.some((covid) => covid.userId === attendance.userId)),
+  (covids, attendances, parts) =>
+    parts.reduce<Attendance[]>((acc, current) => {
+      const filtered = attendances.filter(
+        (attendance) =>
+          current.name === attendance.part &&
+          !covids.some((covid) => covid.userId === attendance.userId),
+      );
+      acc.push(...filtered);
+      return acc;
+    }, []),
 );
