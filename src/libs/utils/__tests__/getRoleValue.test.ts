@@ -7,7 +7,7 @@ describe('getRoleValue', () => {
 
   it('未入力のパターン', () => {
     const roles: RoleItem[] = [];
-    const result = '未入力';
+    const result = '';
     expect(result).toEqual(getRoleValue(roles, userId, programId));
   });
 
