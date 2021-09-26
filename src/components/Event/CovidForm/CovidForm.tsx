@@ -13,6 +13,7 @@ import styles from './index.module.scss';
 
 type Props = {
   event: Event;
+  isLoading: boolean;
   handleCreate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   covid: Covid;
   handleChangeCovidDate: (_e: React.ChangeEvent<HTMLSelectElement>) => void;
@@ -23,6 +24,7 @@ type Props = {
 export const CovidForm: React.VFC<Props> = React.memo(
   ({
     event,
+    isLoading,
     handleCreate,
     covid,
     handleChangeCovidDate,
@@ -109,12 +111,12 @@ export const CovidForm: React.VFC<Props> = React.memo(
             <PrimaryButton
               type="submit"
               label="回答の登録"
-              disabled={false}
+              disabled={isLoading || !covid.dateId}
               handleClick={handleCreate}
             />
             <SecondaryButton
               label="キャンセル"
-              disabled={false}
+              disabled={isLoading}
               handleClick={handleToggleCovidForm}
             />
           </form>
@@ -122,7 +124,7 @@ export const CovidForm: React.VFC<Props> = React.memo(
           <PrimaryButton
             type="button"
             label="コロナアンケート"
-            disabled={false}
+            disabled={isLoading}
             handleClick={handleToggleCovidForm}
           />
         )}

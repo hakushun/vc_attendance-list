@@ -6,15 +6,17 @@ import { CovidForm as Presentational } from './CovidForm';
 
 type Props = {
   event: Event;
+  isLoading: boolean;
   handleCreate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
-export const CovidForm: React.VFC<Props> = React.memo(({ event, handleCreate }) => {
+export const CovidForm: React.VFC<Props> = React.memo(({ event, isLoading, handleCreate }) => {
   const { covid, handleChangeCovidDate, handleChangeCovidAnswers } = useCovid();
   const { covidFormIsShown, handleToggleCovidForm } = useShow();
 
   return (
     <Presentational
       event={event}
+      isLoading={isLoading}
       handleCreate={handleCreate}
       covid={covid}
       handleChangeCovidDate={handleChangeCovidDate}
