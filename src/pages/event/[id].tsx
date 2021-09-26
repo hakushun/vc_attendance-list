@@ -1,16 +1,16 @@
-import { GetServerSideProps, NextPage } from 'next';
+import { NextPage } from 'next';
 import React from 'react';
 import { Event } from '../../components/Event';
+import { Loading } from '../../components/uiParts/Loading';
+import { useRouter } from '../../hooks/useRouter';
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { id } = context.query;
-  return { props: { id } };
-};
-type Props = {
-  id: string;
-};
-const EventPage: NextPage<Props> = ({ id }) => {
-  return <Event eventId={typeof id === 'string' ? id : ''} />;
+const EventPage: NextPage = () => {
+  const { router } = useRouter();
+  const eventId = router.query.id;
+
+  if (typeof eventId !== 'string') return <Loading />;
+
+  return <Event eventId={eventId} />;
 };
 
 export default EventPage;
