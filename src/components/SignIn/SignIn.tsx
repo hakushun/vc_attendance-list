@@ -89,7 +89,7 @@ export const SignIn: React.VFC<Props> = React.memo(
           />
         </form>
         <div className={styles.wrapper}>
-          既に登録済みの方は下記よりログインください
+          未登録の方は下記より利用登録をしてください
           <LinkButton href="/signup" label="Sign Upフォームへ" />
         </div>
         <div className={styles.wrapper}>
