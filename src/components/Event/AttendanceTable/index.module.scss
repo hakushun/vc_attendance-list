@@ -21,6 +21,7 @@
   .thead {
     position: sticky;
     top: 0;
+    z-index: mixin.$z_thead;
   }
 
   .select {
@@ -34,11 +35,14 @@
     min-width: 120px;
     text-align: center;
 
+    &.controller {
+      background-color: mixin.$bgColor;
+    }
+
     &.head {
       padding: 3px 4px;
       font-weight: bold;
       background-color: mixin.$primaryColor;
-      border: 1px solid mixin.$primaryColor;
     }
 
     &.body {

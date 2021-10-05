@@ -59,13 +59,13 @@ export const AttendanceTable: React.VFC<Props> = React.memo(
           <table id="xlsx_table" className={styles.table}>
             <thead className={styles.thead}>
               <tr>
-                <td className={clsx(styles.cell, styles.narrow, styles.button)}>
+                <td className={clsx(styles.cell, styles.controller, styles.narrow, styles.button)}>
                   <OptionalButton label="export" disabled={false} handleClick={exportToExcel} />
                 </td>
-                <td className={clsx(styles.cell, styles.button)}>
+                <td className={clsx(styles.cell, styles.controller, styles.button)}>
                   <TernaryButton label="全列表示" disabled={false} handleClick={showAllColumns} />
                 </td>
-                <td className={styles.cell}>
+                <td className={clsx(styles.cell, styles.controller)}>
                   <select
                     name="role_program"
                     value={selectedId}
@@ -82,11 +82,13 @@ export const AttendanceTable: React.VFC<Props> = React.memo(
                 {event.dates.map((date) => (
                   <td
                     key={date.id}
-                    className={clsx(styles.cell, styles.button)}
+                    className={clsx(styles.cell, styles.controller, styles.button)}
                     data-columns={`columns-${date.id}`}>
                     <TernaryButton label="列の非表示" disabled={false} handleClick={hideColumns} />
                   </td>
                 ))}
+                <td className={clsx(styles.cell, styles.controller, styles.wide)}> </td>
+                <td className={clsx(styles.cell, styles.controller, styles.narrow)}> </td>
               </tr>
               <tr>
                 <th className={clsx(styles.cell, styles.head, styles.narrow)}>パート</th>
