@@ -14,7 +14,7 @@
   .wrapper {
     max-width: min(1000px, 100%);
     max-height: 60vh;
-    padding: 5px;
+    padding: 0 5px;
     overflow: auto;
   }
 
@@ -26,6 +26,7 @@
   .thead {
     position: sticky;
     top: 0;
+    z-index: mixin.$z_thead;
   }
 
   .cell {
