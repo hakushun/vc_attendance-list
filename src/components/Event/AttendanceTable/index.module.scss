@@ -72,6 +72,7 @@
     position: absolute;
     bottom: 100%;
     left: 0;
+    z-index: mixin.$z_remark;
     width: max-content;
     min-width: 135px;
     max-width: 300px;
