@@ -28,7 +28,10 @@ export const CovidResult: React.VFC<Props> = React.memo(
     handleKeydown,
   }) => {
     return (
-      <Modal modalRef={modalRef} handleKeydown={handleKeydown}>
+      <Modal
+        modalRef={modalRef}
+        handleToggle={handleToggleCovidResult}
+        handleKeydown={handleKeydown}>
         <div className={styles.root}>
           <Heading level={3} label="コロナアンケート回答結果" />
           {isLoading ? (

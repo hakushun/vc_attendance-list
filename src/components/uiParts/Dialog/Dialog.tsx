@@ -17,7 +17,7 @@ export const Dialog: React.VFC<Props> = ({
   handleKeydown,
 }) => {
   return (
-    <Modal modalRef={dialogRef} handleKeydown={handleKeydown}>
+    <Modal modalRef={dialogRef} handleToggle={handleToggleDialog} handleKeydown={handleKeydown}>
       <div className={styles.root}>
         <div className={styles.title}>{dialogMessage.title}</div>
         <div>{dialogMessage.description}</div>

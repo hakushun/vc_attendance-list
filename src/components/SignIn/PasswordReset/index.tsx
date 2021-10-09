@@ -27,7 +27,10 @@ export const PasswordReset: React.VFC<Props> = React.memo(
     handleResetPassword,
   }) => {
     return (
-      <Modal modalRef={modalRef} handleKeydown={handleKeydown}>
+      <Modal
+        modalRef={modalRef}
+        handleToggle={handleTogglePasswordReset}
+        handleKeydown={handleKeydown}>
         <form className={styles.form}>
           <fieldset>
             <legend>

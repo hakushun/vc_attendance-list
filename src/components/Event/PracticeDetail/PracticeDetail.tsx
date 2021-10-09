@@ -37,7 +37,10 @@ export const PracticeDetail: React.VFC<Props> = React.memo(
     content,
   }) => {
     return (
-      <Modal modalRef={modalRef} handleKeydown={handleKeydown}>
+      <Modal
+        modalRef={modalRef}
+        handleToggle={handleTogglePracticeModal}
+        handleKeydown={handleKeydown}>
         <div className={styles.root}>
           <Heading level={3} label={`${titleDate}${titleDayOfTheWeek}の詳細`} />
           <dl className={styles.list}>
