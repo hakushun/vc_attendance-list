@@ -1,0 +1,14 @@
+@use '../../../styles/mixin' as mixin;
+
+.root {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  display: flex;
+  border-radius: 3px;
+
+  &:hover,
+  &:focus-visible {
+    background-color: mixin.$primaryColor;
+  }
+}
