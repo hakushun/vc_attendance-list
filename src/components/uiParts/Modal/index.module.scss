@@ -1,6 +1,7 @@
 @use '../../../styles/mixin' as mixin;
 
 .root {
+  position: relative;
   z-index: mixin.$z_modal;
   width: max(40%, 350px);
   max-width: 90vw;
