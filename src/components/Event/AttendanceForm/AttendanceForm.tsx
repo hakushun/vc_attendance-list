@@ -30,6 +30,7 @@ type Props = {
   handleChangeRemark: (_e: React.ChangeEvent<HTMLInputElement>) => void;
   handleClickRadio: (_e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => void;
   handleKeyDownRadio: (_e: React.KeyboardEvent<HTMLSpanElement>) => void;
+  attendanceRef: React.MutableRefObject<HTMLHeadingElement | null>;
   attendanceFormIsShown: boolean;
   handleToggleAttendanceForm: () => void;
 };
@@ -48,6 +49,7 @@ export const AttendanceForm: React.VFC<Props> = React.memo(
     handleChangeRemark,
     handleClickRadio,
     handleKeyDownRadio,
+    attendanceRef,
     attendanceFormIsShown,
     handleToggleAttendanceForm,
   }) => {
@@ -57,7 +59,7 @@ export const AttendanceForm: React.VFC<Props> = React.memo(
           <form className={styles.form}>
             <fieldset className={styles.fieldset}>
               <legend>
-                <Heading level={3} label="出欠登録フォーム" />
+                <Heading level={3} label="出欠登録フォーム" ref={attendanceRef} />
               </legend>
               <div className={styles.remark}>
                 遅刻早退の場合は○を選択の上、

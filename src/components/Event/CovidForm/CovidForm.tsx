@@ -18,6 +18,7 @@ type Props = {
   covid: Covid;
   handleChangeCovidDate: (_e: React.ChangeEvent<HTMLSelectElement>) => void;
   handleChangeCovidAnswers: (_e: React.ChangeEvent<HTMLInputElement>) => void;
+  covidRef: React.MutableRefObject<HTMLHeadingElement | null>;
   covidFormIsShown: boolean;
   handleToggleCovidForm: () => void;
 };
@@ -29,6 +30,7 @@ export const CovidForm: React.VFC<Props> = React.memo(
     covid,
     handleChangeCovidDate,
     handleChangeCovidAnswers,
+    covidRef,
     covidFormIsShown,
     handleToggleCovidForm,
   }) => {
@@ -38,7 +40,7 @@ export const CovidForm: React.VFC<Props> = React.memo(
           <form className={styles.form}>
             <fieldset className={styles.fieldset}>
               <legend>
-                <Heading level={3} label="コロナアンケート" />
+                <Heading level={3} label="コロナアンケート" ref={covidRef} />
               </legend>
               <div className={styles.remark}>
                 出欠作成後に回答してください

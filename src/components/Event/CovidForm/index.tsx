@@ -11,7 +11,7 @@ type Props = {
 };
 export const CovidForm: React.VFC<Props> = React.memo(({ event, isLoading, handleCreate }) => {
   const { covid, handleChangeCovidDate, handleChangeCovidAnswers } = useCovid();
-  const { covidFormIsShown, handleToggleCovidForm } = useShow();
+  const { covidRef, covidFormIsShown, handleToggleCovidForm } = useShow();
 
   return (
     <Presentational
@@ -21,6 +21,7 @@ export const CovidForm: React.VFC<Props> = React.memo(({ event, isLoading, handl
       covid={covid}
       handleChangeCovidDate={handleChangeCovidDate}
       handleChangeCovidAnswers={handleChangeCovidAnswers}
+      covidRef={covidRef}
       covidFormIsShown={covidFormIsShown}
       handleToggleCovidForm={handleToggleCovidForm}
     />

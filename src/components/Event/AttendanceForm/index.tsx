@@ -26,7 +26,7 @@ export const AttendanceForm: React.VFC<Props> = React.memo(
       handleClickRadio,
       handleKeyDownRadio,
     } = useAttendance();
-    const { attendanceFormIsShown, handleToggleAttendanceForm } = useShow();
+    const { attendanceRef, attendanceFormIsShown, handleToggleAttendanceForm } = useShow();
 
     return (
       <Presentational
@@ -43,6 +43,7 @@ export const AttendanceForm: React.VFC<Props> = React.memo(
         handleChangeRemark={handleChangeRemark}
         handleClickRadio={handleClickRadio}
         handleKeyDownRadio={handleKeyDownRadio}
+        attendanceRef={attendanceRef}
         attendanceFormIsShown={attendanceFormIsShown}
         handleToggleAttendanceForm={handleToggleAttendanceForm}
       />
