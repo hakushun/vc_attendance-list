@@ -10,6 +10,7 @@ import { RootState } from '../reducers';
 type Covids = {
   covids: Covid[];
   isLoading: boolean;
+  selectedDateId: string;
 };
 export type FetchPayload = {
   eventId: string;
@@ -44,13 +45,15 @@ export const create = asyncActionCreator<CreatePayload, void, CustomError>(
 const INITIAL_STATE: Covids = {
   covids: [],
   isLoading: false,
+  selectedDateId: '',
 };
 
 // reducer
 const reducer = reducerWithInitialState(INITIAL_STATE)
-  .case(fetch.async.started, (state) => ({
+  .case(fetch.async.started, (state, payload) => ({
     ...state,
     isLoading: true,
+    selectedDateId: payload.dateId,
   }))
   .case(fetch.async.done, (state, { result }) => ({
     ...state,
@@ -99,14 +102,18 @@ export const selectAnswerResult = createSelector(
 export const selectUnansweredUsers = createSelector(
   [
     (state: RootState) => state.domain.covids.covids,
+    (state: RootState) => state.domain.covids.selectedDateId,
     (state: RootState) => state.domain.attendances.attendances,
     (state: RootState) => state.domain.parts.parts,
   ],
-  (covids, attendances, parts) =>
+  (covids, selectedDateId, attendances, parts) =>
     parts.reduce<Attendance[]>((acc, current) => {
       const filtered = attendances.filter(
         (attendance) =>
           current.name === attendance.part &&
+          attendance.attendances.find(
+            (att) => att.dateId === selectedDateId && att.attendance !== 'absence',
+          ) &&
           !covids.some((covid) => covid.userId === attendance.userId),
       );
       acc.push(...filtered);
