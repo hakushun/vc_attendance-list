@@ -3,6 +3,7 @@
 .root {
   position: relative;
   z-index: mixin.$z_modal;
+  min-width: 375px;
   max-width: 90vw;
   max-height: 85vh;
   padding: 20px 16px;
