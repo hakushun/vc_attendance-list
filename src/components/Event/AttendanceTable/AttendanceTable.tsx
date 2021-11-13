@@ -65,20 +65,7 @@ export const AttendanceTable: React.VFC<Props> = React.memo(
                 <td className={clsx(styles.cell, styles.controller, styles.button)}>
                   <TernaryButton label="全列表示" disabled={false} handleClick={showAllColumns} />
                 </td>
-                <td className={clsx(styles.cell, styles.controller)}>
-                  <select
-                    name="role_program"
-                    value={selectedId}
-                    className={styles.select}
-                    onChange={handleFocusProgram}>
-                    <option value="">選択して下さい</option>
-                    {programs.map((program) => (
-                      <option key={program.id} value={program.id}>
-                        {program.name}
-                      </option>
-                    ))}
-                  </select>
-                </td>
+                <td className={clsx(styles.cell, styles.controller)} />
                 {event.dates.map((date) => (
                   <td
                     key={date.id}
@@ -87,13 +74,26 @@ export const AttendanceTable: React.VFC<Props> = React.memo(
                     <TernaryButton label="列の非表示" disabled={false} handleClick={hideColumns} />
                   </td>
                 ))}
-                <td className={clsx(styles.cell, styles.controller, styles.wide)}> </td>
-                <td className={clsx(styles.cell, styles.controller, styles.narrow)}> </td>
+                <td className={clsx(styles.cell, styles.controller, styles.wide)} />
+                <td className={clsx(styles.cell, styles.controller, styles.narrow)} />
               </tr>
               <tr>
                 <th className={clsx(styles.cell, styles.head, styles.narrow)}>パート</th>
                 <th className={clsx(styles.cell, styles.head)}>名前</th>
-                <th className={clsx(styles.cell, styles.head)}>乗り番</th>
+                <th className={clsx(styles.cell, styles.head)}>
+                  <select
+                    name="role_program"
+                    value={selectedId}
+                    className={styles.select}
+                    onChange={handleFocusProgram}>
+                    <option value="">乗り番</option>
+                    {programs.map((program) => (
+                      <option key={program.id} value={program.id}>
+                        {program.name}
+                      </option>
+                    ))}
+                  </select>
+                </th>
                 {event.dates.map((date) => (
                   <th
                     key={date.id}
