@@ -62,7 +62,7 @@ export const AttendanceForm: React.VFC<Props> = React.memo(
                 <Heading level={3} label="出欠登録フォーム" ref={attendanceRef} />
               </legend>
               <div className={styles.remark}>
-                遅刻早退の場合は○を選択の上、
+                遅刻早退の場合は△を選択の上、
                 <br />
                 遅刻早退欄にコメントを記入ください
               </div>
