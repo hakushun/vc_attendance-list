@@ -89,7 +89,7 @@ export const CovidForm: React.VFC<Props> = React.memo(
                           onChange={handleChangeCovidAnswers}
                         />
                         <label htmlFor={`${question.id}-no`} className={styles.radioLabel}>
-                          いいえ
+                          {question.no}
                         </label>
                       </div>
                       <div className={styles.radioWrapper}>
@@ -102,7 +102,7 @@ export const CovidForm: React.VFC<Props> = React.memo(
                           onChange={handleChangeCovidAnswers}
                         />
                         <label htmlFor={`${question.id}-yes`} className={styles.radioLabel}>
-                          はい
+                          {question.yes}
                         </label>
                       </div>
                     </div>
