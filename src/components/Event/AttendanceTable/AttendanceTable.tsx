@@ -70,7 +70,7 @@ export const AttendanceTable: React.VFC<Props> = React.memo(
                   <td
                     key={date.id}
                     className={clsx(styles.cell, styles.controller, styles.button)}
-                    data-columns={`columns-${date.id}`}>
+                    data-columns={date.id}>
                     <TernaryButton label="列の非表示" disabled={false} handleClick={hideColumns} />
                   </td>
                 ))}
@@ -98,7 +98,7 @@ export const AttendanceTable: React.VFC<Props> = React.memo(
                   <th
                     key={date.id}
                     className={clsx(styles.cell, styles.head, styles.medium)}
-                    data-columns={`columns-${date.id}`}>
+                    data-columns={date.id}>
                     <div className={styles.actionWrapper}>
                       <button
                         type="button"
@@ -150,7 +150,7 @@ export const AttendanceTable: React.VFC<Props> = React.memo(
                     <td
                       key={item.dateId}
                       className={clsx(styles.cell, styles.body, styles.medium)}
-                      data-columns={`columns-${item.dateId}`}>
+                      data-columns={item.dateId}>
                       {item.remark ? (
                         <>
                           <button

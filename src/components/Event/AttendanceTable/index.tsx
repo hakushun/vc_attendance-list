@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useAttendance } from '../../../hooks/useAttendance';
 import { useProgram } from '../../../hooks/useProgram';
 import { Attendance } from '../../../redux/modules/app/attendance';
@@ -23,6 +23,21 @@ export const AttendanceTable: React.VFC<Props> = React.memo(
   ({ user, event, attendances, isLoading, handleFocusPractice, programs, roles, handleFetch }) => {
     const { handleFocusAttendance } = useAttendance();
     const { selectedId, handleFocusProgram } = useProgram();
+
+    // 過去日の出欠は非表示にする
+    useEffect(() => {
+      const targetIds = event.dates.filter((date) => new Date(date.day) < new Date());
+      const targetCells = targetIds.reduce<HTMLElement[]>((acc, current) => {
+        const cells = Array.from<HTMLElement>(
+          document.querySelectorAll(`[data-columns="${current.id}"]`),
+        );
+        acc.push(...cells);
+        return acc;
+      }, []);
+      targetCells.forEach((target) => {
+        target.classList.add('isHidden');
+      });
+    }, [attendances, event.dates]);
 
     if (isLoading) return <Loading />;
 
