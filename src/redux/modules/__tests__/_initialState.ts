@@ -69,6 +69,7 @@ export const initialState: RootState = {
         },
       ],
       isLoading: false,
+      selectedDateId: '',
     },
     events: {
       events: [
