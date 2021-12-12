@@ -53,11 +53,11 @@ describe('Reducer: attendance', () => {
         {
           dateId: '01F937G4BYBXW1QRV8BYH1VX9Z',
           remark: '',
-          attendance: 'presence',
+          attendance: 'absence',
         },
         {
           dateId: '01F937GTKXDPW3BD3T6KYZBY9N',
-          attendance: 'presence',
+          attendance: 'absence',
           remark: '',
         },
       ],
