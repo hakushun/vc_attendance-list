@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useAttendance } from '../../../hooks/useAttendance';
 import { useProgram } from '../../../hooks/useProgram';
+import { isBefore } from '../../../libs/dayjs/isBefore';
 import { Attendance } from '../../../redux/modules/app/attendance';
 import { Event } from '../../../redux/modules/app/event';
 import { ProgramItem } from '../../../redux/modules/app/program';
@@ -26,7 +27,7 @@ export const AttendanceTable: React.VFC<Props> = React.memo(
 
     // 過去日の出欠は非表示にする
     useEffect(() => {
-      const targetIds = event.dates.filter((date) => new Date(date.day) < new Date());
+      const targetIds = event.dates.filter((date) => isBefore(date.day));
       const targetCells = targetIds.reduce<HTMLElement[]>((acc, current) => {
         const cells = Array.from<HTMLElement>(
           document.querySelectorAll(`[data-columns="${current.id}"]`),
