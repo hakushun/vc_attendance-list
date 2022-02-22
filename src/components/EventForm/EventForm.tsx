@@ -4,7 +4,7 @@ import { isEventInvaild } from '../../libs/utils/isEventInvalid';
 import { Event } from '../../redux/modules/app/event';
 import { Badge } from '../uiParts/Badge';
 import { Heading } from '../uiParts/Heading';
-import { OptionalButton } from '../uiParts/OptionalButton';
+// import { OptionalButton } from '../uiParts/OptionalButton';
 import { PrimaryButton } from '../uiParts/PrimaryButton';
 import { SecondaryButton } from '../uiParts/SecondaryButton';
 import { Sectioning } from '../uiParts/Sectioning';
@@ -38,7 +38,7 @@ export const EventForm: React.VFC<Props> = React.memo(
     isLoading,
     handleCreate,
     handleUpdate,
-    handleRemove,
+    // handleRemove,
   }) => {
     return (
       <Sectioning id="event_form">
@@ -155,13 +155,13 @@ export const EventForm: React.VFC<Props> = React.memo(
               disabled={isLoading}
               handleClick={handleToggleEventForm}
             />
-            {event.id && (
+            {/* {event.id && (
               <OptionalButton
                 label={`${event.title}の削除`}
                 disabled={isLoading}
                 handleClick={handleRemove}
               />
-            )}
+            )} */}
           </form>
         )}
       </Sectioning>
