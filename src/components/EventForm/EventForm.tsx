@@ -1,7 +1,9 @@
 import clsx from 'clsx';
 import React from 'react';
+import { adminuser } from '../../config/adminuser';
 import { isEventInvaild } from '../../libs/utils/isEventInvalid';
 import { Event } from '../../redux/modules/app/event';
+import { Userdata } from '../../redux/modules/app/user';
 import { Badge } from '../uiParts/Badge';
 import { Heading } from '../uiParts/Heading';
 // import { OptionalButton } from '../uiParts/OptionalButton';
@@ -24,6 +26,7 @@ type Props = {
   handleCreate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   handleUpdate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   handleRemove: () => void;
+  user: Userdata;
 };
 export const EventForm: React.VFC<Props> = React.memo(
   ({
@@ -39,6 +42,7 @@ export const EventForm: React.VFC<Props> = React.memo(
     handleCreate,
     handleUpdate,
     // handleRemove,
+    user,
   }) => {
     return (
       <Sectioning id="event_form">
@@ -129,18 +133,20 @@ export const EventForm: React.VFC<Props> = React.memo(
                       </li>
                     ))}
                   </ul>
-                  <div className={styles.action}>
-                    <TernaryButton
-                      label="追加"
-                      disabled={isLoading}
-                      handleClick={handleAddDateForm}
-                    />
-                    <TernaryButton
-                      label="削除"
-                      disabled={isLoading}
-                      handleClick={handleDeleteDateForm}
-                    />
-                  </div>
+                  {(!event.id || (event.id && user?.id === adminuser)) && (
+                    <div className={styles.action}>
+                      <TernaryButton
+                        label="追加"
+                        disabled={isLoading}
+                        handleClick={handleAddDateForm}
+                      />
+                      <TernaryButton
+                        label="削除"
+                        disabled={isLoading}
+                        handleClick={handleDeleteDateForm}
+                      />
+                    </div>
+                  )}
                 </fieldset>
               </div>
             </fieldset>

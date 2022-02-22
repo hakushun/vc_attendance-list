@@ -1,6 +1,7 @@
 import React from 'react';
 import { useEvent } from '../../hooks/useEvent';
 import { useShow } from '../../hooks/useShow';
+import { useUser } from '../../hooks/useUser';
 import { EventForm as Presentational } from './EventForm';
 
 type Props = {
@@ -11,6 +12,7 @@ type Props = {
 };
 export const EventForm: React.VFC<Props> = React.memo(
   ({ isLoading, handleCreate, handleUpdate, handleRemove }) => {
+    const { user } = useUser();
     const { eventFormIsShown, handleToggleEventForm } = useShow();
     const {
       event,
@@ -35,6 +37,7 @@ export const EventForm: React.VFC<Props> = React.memo(
         handleCreate={handleCreate}
         handleUpdate={handleUpdate}
         handleRemove={handleRemove}
+        user={user}
       />
     );
   },
