@@ -32,15 +32,13 @@ export const Header: React.VFC<Props> = React.memo(
                   </li>
                 )}
                 {router.pathname === '/event/[id]' && isSuperuser(user) && (
-                  <>
-                    <li>
-                      <QuaternaryButton label="イベント編集" handleClick={handleToggleEventForm} />
-                    </li>
-                    <li>
-                      <QuaternaryButton label="設定" handleClick={handleToggleSetting} />
-                    </li>
-                  </>
+                  <li>
+                    <QuaternaryButton label="イベント編集" handleClick={handleToggleEventForm} />
+                  </li>
                 )}
+                <li>
+                  <QuaternaryButton label="設定" handleClick={handleToggleSetting} />
+                </li>
                 <li>
                   <QuaternaryButton label="Logout" handleClick={handleSignOut} />
                 </li>
