@@ -87,10 +87,28 @@
     display: flex;
     gap: 20px;
     align-items: center;
+    width: 100%;
     margin-top: 10px;
   }
 
+  .radiogroupInner {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+  }
+
+  .radioRow {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+
   .radio {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     min-width: 40px;
     min-height: 35px;
     cursor: pointer;
@@ -104,10 +122,6 @@
 
     &.circle {
       background-image: url('/icon/circle.svg');
-    }
-
-    &.triangle {
-      background-image: url('/icon/triangle.svg');
     }
 
     &.cross {

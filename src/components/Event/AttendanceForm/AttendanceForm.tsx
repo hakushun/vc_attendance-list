@@ -144,64 +144,106 @@ export const AttendanceForm: React.VFC<Props> = React.memo(
                         aria-labelledby={`attendance_group-${date.id}`}
                         className={styles.radiogroup}>
                         <Badge type="required" />
-                        <span
-                          role="radio"
-                          id={`presence-${date.id}`}
-                          aria-checked={
-                            attendance.attendances.find((item) => item.dateId === date.id)
-                              ?.attendance === 'presence'
-                          }
-                          aria-label="出席"
-                          tabIndex={
-                            attendance.attendances.find((item) => item.dateId === date.id)
-                              ?.attendance === 'presence'
-                              ? 0
-                              : -1
-                          }
-                          className={clsx(styles.radio, styles.circle)}
-                          onClick={handleClickRadio}
-                          onKeyDown={handleKeyDownRadio}
-                        />
-                        <span
-                          role="radio"
-                          id={`undecided-${date.id}`}
-                          aria-checked={
-                            attendance.attendances.find((item) => item.dateId === date.id)
-                              ?.attendance === 'undecided'
-                          }
-                          aria-label="未定"
-                          tabIndex={
-                            attendance.attendances.find((item) => item.dateId === date.id)
-                              ?.attendance === 'undecided'
-                              ? 0
-                              : -1
-                          }
-                          className={clsx(styles.radio, styles.triangle)}
-                          onClick={handleClickRadio}
-                          onKeyDown={handleKeyDownRadio}
-                        />
-                        <span
-                          role="radio"
-                          id={`absence-${date.id}`}
-                          aria-checked={
-                            attendance.attendances.find((item) => item.dateId === date.id)
-                              ?.attendance === 'absence'
-                          }
-                          aria-label="欠席"
-                          tabIndex={
-                            attendance.attendances.find((item) => item.dateId === date.id)
-                              ?.attendance === 'absence'
-                              ? 0
-                              : -1
-                          }
-                          className={clsx(styles.radio, styles.cross)}
-                          onClick={handleClickRadio}
-                          onKeyDown={handleKeyDownRadio}
-                        />
+                        <div className={styles.radiogroupInner}>
+                          <div className={styles.radioRow}>
+                            <span
+                              role="radio"
+                              id={`presence-${date.id}`}
+                              aria-checked={
+                                attendance.attendances.find((item) => item.dateId === date.id)
+                                  ?.attendance === 'presence'
+                              }
+                              aria-label="出席"
+                              tabIndex={
+                                attendance.attendances.find((item) => item.dateId === date.id)
+                                  ?.attendance === 'presence'
+                                  ? 0
+                                  : -1
+                              }
+                              className={clsx(styles.radio, styles.circle)}
+                              onClick={handleClickRadio}
+                              onKeyDown={handleKeyDownRadio}
+                            />
+                            <span
+                              role="radio"
+                              id={`absence-${date.id}`}
+                              aria-checked={
+                                attendance.attendances.find((item) => item.dateId === date.id)
+                                  ?.attendance === 'absence'
+                              }
+                              aria-label="欠席"
+                              tabIndex={
+                                attendance.attendances.find((item) => item.dateId === date.id)
+                                  ?.attendance === 'absence'
+                                  ? 0
+                                  : -1
+                              }
+                              className={clsx(styles.radio, styles.cross)}
+                              onClick={handleClickRadio}
+                              onKeyDown={handleKeyDownRadio}
+                            />
+                          </div>
+                          <div className={styles.radioRow}>
+                            <span
+                              role="radio"
+                              id={`late-${date.id}`}
+                              aria-checked={
+                                attendance.attendances.find((item) => item.dateId === date.id)
+                                  ?.attendance === 'late'
+                              }
+                              tabIndex={
+                                attendance.attendances.find((item) => item.dateId === date.id)
+                                  ?.attendance === 'late'
+                                  ? 0
+                                  : -1
+                              }
+                              className={clsx(styles.radio)}
+                              onClick={handleClickRadio}
+                              onKeyDown={handleKeyDownRadio}>
+                              遅刻
+                            </span>
+                            <span
+                              role="radio"
+                              id={`leaving_early-${date.id}`}
+                              aria-checked={
+                                attendance.attendances.find((item) => item.dateId === date.id)
+                                  ?.attendance === 'leaving_early'
+                              }
+                              tabIndex={
+                                attendance.attendances.find((item) => item.dateId === date.id)
+                                  ?.attendance === 'leaving_early'
+                                  ? 0
+                                  : -1
+                              }
+                              className={clsx(styles.radio)}
+                              onClick={handleClickRadio}
+                              onKeyDown={handleKeyDownRadio}>
+                              早退
+                            </span>
+                            <span
+                              role="radio"
+                              id={`undecided-${date.id}`}
+                              aria-checked={
+                                attendance.attendances.find((item) => item.dateId === date.id)
+                                  ?.attendance === 'undecided'
+                              }
+                              tabIndex={
+                                attendance.attendances.find((item) => item.dateId === date.id)
+                                  ?.attendance === 'undecided'
+                                  ? 0
+                                  : -1
+                              }
+                              className={clsx(styles.radio)}
+                              onClick={handleClickRadio}
+                              onKeyDown={handleKeyDownRadio}>
+                              未定
+                            </span>
+                          </div>
+                        </div>
                       </div>
                       <div className={styles.inputWrapper}>
                         <label htmlFor={`attendance_remark-${date.id}`} className={styles.label}>
-                          遅刻早退
+                          遅刻早退未定
                           <Badge type="optional" />
                         </label>
                         <input
