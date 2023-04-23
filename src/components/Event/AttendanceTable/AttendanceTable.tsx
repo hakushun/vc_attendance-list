@@ -53,7 +53,6 @@ export const AttendanceTable: React.VFC<Props> = React.memo(
         <ul className={styles.remarks}>
           <li>※出欠作成後の編集は、名前を選択してください</li>
           <li>※練習場所・内容の確認は、日付を選択してください</li>
-          <li>※遅刻早退コメントの確認は、〇△×を選択してください</li>
         </ul>
         <div className={styles.wrapper}>
           <table id="xlsx_table" className={styles.table}>
