@@ -102,6 +102,14 @@ export const selectBreakdownAttendances = createSelector(
         (item) => item.dateId === dateId && item.attendance === 'presence',
       ),
     );
+    const late = attendances.filter((attendance) =>
+      attendance.attendances.some((item) => item.dateId === dateId && item.attendance === 'late'),
+    );
+    const leavingEarly = attendances.filter((attendance) =>
+      attendance.attendances.some(
+        (item) => item.dateId === dateId && item.attendance === 'leavingEarly',
+      ),
+    );
     const undecided = attendances.filter((attendance) =>
       attendance.attendances.some(
         (item) => item.dateId === dateId && item.attendance === 'undecided',
@@ -112,6 +120,6 @@ export const selectBreakdownAttendances = createSelector(
         (item) => item.dateId === dateId && item.attendance === 'absence',
       ),
     );
-    return { presence, undecided, absence };
+    return { presence, late, leavingEarly, undecided, absence };
   },
 );
