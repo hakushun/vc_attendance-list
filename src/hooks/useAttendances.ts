@@ -18,6 +18,8 @@ type Hooks = {
   isLoading: boolean;
   breakdownAttendances: {
     presence: Attendance[];
+    late: Attendance[];
+    leavingEarly: Attendance[];
     undecided: Attendance[];
     absence: Attendance[];
   };
