@@ -4,7 +4,7 @@ import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import { RootState } from '../reducers';
 import { Date as typeDate, Event } from './event';
 
-export type AttendanceType = 'presence' | 'undecided' | 'absence';
+export type AttendanceType = 'presence' | 'late' | 'leaving_early' | 'undecided' | 'absence';
 export type AttendanceItem = {
   dateId: string;
   attendance: AttendanceType;
