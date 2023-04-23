@@ -11,9 +11,9 @@ describe('convertAttendance', () => {
     expect(result).toEqual(convertAttendance('late'));
   });
 
-  it('type: leaving_early', () => {
+  it('type: leavingEarly', () => {
     const result = '早退';
-    expect(result).toEqual(convertAttendance('leaving_early'));
+    expect(result).toEqual(convertAttendance('leavingEarly'));
   });
 
   it('type: undecided', () => {

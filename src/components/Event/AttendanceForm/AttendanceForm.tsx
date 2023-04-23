@@ -204,14 +204,14 @@ export const AttendanceForm: React.VFC<Props> = React.memo(
                             </span>
                             <span
                               role="radio"
-                              id={`leaving_early-${date.id}`}
+                              id={`leavingEarly-${date.id}`}
                               aria-checked={
                                 attendance.attendances.find((item) => item.dateId === date.id)
-                                  ?.attendance === 'leaving_early'
+                                  ?.attendance === 'leavingEarly'
                               }
                               tabIndex={
                                 attendance.attendances.find((item) => item.dateId === date.id)
-                                  ?.attendance === 'leaving_early'
+                                  ?.attendance === 'leavingEarly'
                                   ? 0
                                   : -1
                               }

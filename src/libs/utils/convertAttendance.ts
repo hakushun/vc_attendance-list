@@ -6,7 +6,7 @@ export const convertAttendance = (type: AttendanceType): string => {
       return '○';
     case 'late':
       return '遅刻';
-    case 'leaving_early':
+    case 'leavingEarly':
       return '早退';
     case 'undecided':
       return '未定';
