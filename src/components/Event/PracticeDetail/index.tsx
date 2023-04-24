@@ -13,6 +13,8 @@ type Props = {
   dateId: string;
   breakdownAttendances: {
     presence: Attendance[];
+    late: Attendance[];
+    leavingEarly: Attendance[];
     undecided: Attendance[];
     absence: Attendance[];
   };
