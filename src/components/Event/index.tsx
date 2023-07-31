@@ -14,9 +14,6 @@ import { useParts } from '../../hooks/useParts';
 import { usePractice } from '../../hooks/usePractice';
 import { usePrograms } from '../../hooks/usePrograms';
 import { useRoles } from '../../hooks/useRoles';
-import { CovidForm } from './CovidForm';
-import { useCovids } from '../../hooks/useCovids';
-import { CovidResult } from './CovidResult';
 
 type Props = {
   eventId: string;
@@ -52,14 +49,6 @@ export const Event: React.VFC<Props> = React.memo(({ eventId }) => {
     handleUpdate: handleAttendanceUpdate,
     handleRemove: handleAttendanceRemove,
   } = useAttendances(eventId);
-  const {
-    isLoading: covidsIsLoading,
-    answerRuselt,
-    unasweredUsers,
-    handleFetch,
-    handleCreate: handleCovidCreate,
-  } = useCovids(eventId);
-
   // app
   const { isLoading, user } = useUser();
   const { event } = useEvent(targetEvent);
@@ -100,7 +89,6 @@ export const Event: React.VFC<Props> = React.memo(({ eventId }) => {
         handleUpdate={handleAttendanceUpdate}
         handleRemove={handleAttendanceRemove}
       />
-      <CovidForm event={targetEvent} isLoading={covidsIsLoading} handleCreate={handleCovidCreate} />
       <AttendanceTable
         user={user}
         event={targetEvent}
@@ -109,18 +97,12 @@ export const Event: React.VFC<Props> = React.memo(({ eventId }) => {
         handleFocusPractice={handleFocusPractice}
         programs={programs}
         roles={roles}
-        handleFetch={handleFetch}
       />
       <PracticeDetail
         event={targetEvent}
         practice={practice}
         dateId={dateId}
         breakdownAttendances={breakdownAttendances}
-      />
-      <CovidResult
-        isLoading={covidsIsLoading}
-        answerRuselt={answerRuselt}
-        unasweredUsers={unasweredUsers}
       />
     </>
   );

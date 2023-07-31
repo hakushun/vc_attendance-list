@@ -26,7 +26,6 @@ type Props = {
   handleFocusPractice: (_id: string) => void;
   programs: ProgramItem[];
   roles: RoleItem[];
-  handleFetch: (_id: string) => void;
   handleFocusAttendance: (
     _e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     _item: Attendance,
@@ -42,7 +41,6 @@ export const AttendanceTable: React.VFC<Props> = React.memo(
     handleFocusPractice,
     programs,
     roles,
-    handleFetch,
     handleFocusAttendance,
     selectedId,
     handleFocusProgram,
@@ -108,12 +106,6 @@ export const AttendanceTable: React.VFC<Props> = React.memo(
                           {getDayOfTheWeek(date.day)}
                         </div>
                         <div>{date.time}</div>
-                      </button>
-                      <button
-                        type="button"
-                        className={clsx(styles.action, styles.textSmall)}
-                        onClick={() => handleFetch(date.id)}>
-                        コロナアンケート結果
                       </button>
                     </div>
                   </th>
