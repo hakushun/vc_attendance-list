@@ -7,7 +7,6 @@ import {
   remove as removeAttendance,
   update as updateAttendance,
 } from '../domain/attendances';
-import { create as createCovid, fetch as fetchCovid } from '../domain/covids';
 import {
   create as createEvent,
   remove as removeEvent,
@@ -40,19 +39,6 @@ describe('Reducer: dialog', () => {
       attendances: [],
       comment: '',
     },
-  };
-  const fetchCovidPayload = {
-    eventId: '',
-    dateId: '',
-  };
-  const createCovidPayload = {
-    eventId: '',
-    covid: {
-      userId: '',
-      dateId: '',
-      answers: {},
-    },
-    timestamp: 0,
   };
   const createEventPayload = {
     title: '',
@@ -176,28 +162,6 @@ describe('Reducer: dialog', () => {
   });
   it('Action: removeAttendance.async.failed', () => {
     const action = removeAttendance.async.failed({ params: attendancePayload, error });
-    const result = reducer(undefined, action);
-    expect(result).toEqual({
-      isOpened: true,
-      message: {
-        title: 'Invalid',
-        description: 'This is a critical error.',
-      },
-    });
-  });
-  it('Action: fetchCovid.async.failed', () => {
-    const action = fetchCovid.async.failed({ params: fetchCovidPayload, error });
-    const result = reducer(undefined, action);
-    expect(result).toEqual({
-      isOpened: true,
-      message: {
-        title: 'Invalid',
-        description: 'This is a critical error.',
-      },
-    });
-  });
-  it('Action: createCovid.async.failed', () => {
-    const action = createCovid.async.failed({ params: createCovidPayload, error });
     const result = reducer(undefined, action);
     expect(result).toEqual({
       isOpened: true,

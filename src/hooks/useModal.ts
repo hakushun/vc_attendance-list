@@ -3,10 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { handleTabDown } from '../libs/utils/handleTabDown';
 import {
   closeAllModal,
-  selectCovidResultIsShown,
   selectPasswordResetIsShown,
   selectPracticeModalIsShown,
-  toggleCovidResult,
   togglePasswordReset,
   togglePracticeModal,
 } from '../redux/modules/ui/modal';
@@ -14,10 +12,8 @@ import {
 type Hooks = {
   modalRef: MutableRefObject<HTMLElement | null>;
   practiceModalIsShown: boolean;
-  covidResultIsShown: boolean;
   passwordResetIsShown: boolean;
   handleTogglePracticeModal: () => void;
-  handleToggleCovidResult: () => void;
   handleTogglePasswordReset: () => void;
   handleKeydown: (_e: React.KeyboardEvent<HTMLElement>) => void;
 };
@@ -27,18 +23,12 @@ export const useModal = (): Hooks => {
   const modalRef = useRef<HTMLElement | null>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
   const practiceModalIsShown = useSelector(selectPracticeModalIsShown);
-  const covidResultIsShown = useSelector(selectCovidResultIsShown);
   const passwordResetIsShown = useSelector(selectPasswordResetIsShown);
 
   const handleTogglePracticeModal = useCallback(() => {
     dispatch(togglePracticeModal(!practiceModalIsShown));
     previousFocusRef.current?.focus();
   }, [dispatch, practiceModalIsShown]);
-
-  const handleToggleCovidResult = useCallback(() => {
-    dispatch(toggleCovidResult(!covidResultIsShown));
-    previousFocusRef.current?.focus();
-  }, [covidResultIsShown, dispatch]);
 
   const handleTogglePasswordReset = useCallback(() => {
     dispatch(togglePasswordReset(!passwordResetIsShown));
@@ -64,14 +54,12 @@ export const useModal = (): Hooks => {
   useEffect(() => {
     previousFocusRef.current = document.activeElement as HTMLElement;
     modalRef.current?.focus();
-  }, [practiceModalIsShown, covidResultIsShown, passwordResetIsShown]);
+  }, [practiceModalIsShown, passwordResetIsShown]);
   return {
     modalRef,
     practiceModalIsShown,
-    covidResultIsShown,
     passwordResetIsShown,
     handleTogglePracticeModal,
-    handleToggleCovidResult,
     handleTogglePasswordReset,
     handleKeydown,
   };

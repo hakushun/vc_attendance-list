@@ -8,7 +8,6 @@ import {
   remove as removeAttendance,
   update as updateAttendance,
 } from '../domain/attendances';
-import { create as createCovid, fetch as fetchCovid } from '../domain/covids';
 import {
   create as createEvent,
   remove as removeEvent,
@@ -68,14 +67,6 @@ const reducer = reducerWithInitialState(INITIAL_STATE)
       },
     }),
   )
-  .cases([fetchCovid.async.failed, createCovid.async.failed], (state, { error }) => ({
-    ...state,
-    isOpened: true,
-    message: {
-      title: error.code,
-      description: error.message,
-    },
-  }))
   .cases(
     [createEvent.async.failed, updateEvent.async.failed, removeEvent.async.failed],
     (state, { error }) => ({

@@ -55,22 +55,6 @@ export const initialState: RootState = {
       ],
       isLoading: false,
     },
-    covids: {
-      covids: [
-        {
-          timestamp: 1624680005244,
-          userId: 'gWGFZShxTVZieKGPDTGELbC8Ser2',
-          answers: {
-            covid_q1: 'no',
-            covid_q2: 'no',
-            covid_q0: 'no',
-          },
-          dateId: '01F937G4BYBXW1QRV8BYH1VX9Z',
-        },
-      ],
-      isLoading: false,
-      selectedDateId: '',
-    },
     events: {
       events: [
         {
@@ -296,15 +280,6 @@ export const initialState: RootState = {
       ],
       comment: '',
     },
-    covid: {
-      dateId: '01F937GTKXDPW3BD3T6KYZBY9N',
-      userId: 'AnT5kMzmdJbgexROAlSoHP0KEC12',
-      answers: {
-        covid_q0: 'no',
-        covid_q1: 'no',
-        covid_q2: 'no',
-      },
-    },
     event: {
       id: 'ynwbWy11Lws3O9wFyWdg',
       dates: [
@@ -482,12 +457,10 @@ export const initialState: RootState = {
     },
     modal: {
       practice: false,
-      covidResult: false,
       passwordReset: false,
     },
     show: {
       eventForm: false,
-      covidForm: false,
       attendanceForm: false,
       setting: false,
     },

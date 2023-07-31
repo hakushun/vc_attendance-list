@@ -18,10 +18,9 @@ type Props = {
   handleFocusPractice: (_id: string) => void;
   programs: ProgramItem[];
   roles: RoleItem[];
-  handleFetch: (_id: string) => void;
 };
 export const AttendanceTable: React.VFC<Props> = React.memo(
-  ({ user, event, attendances, isLoading, handleFocusPractice, programs, roles, handleFetch }) => {
+  ({ user, event, attendances, isLoading, handleFocusPractice, programs, roles }) => {
     const { handleFocusAttendance } = useAttendance();
     const { selectedId, handleFocusProgram } = useProgram();
 
@@ -50,7 +49,6 @@ export const AttendanceTable: React.VFC<Props> = React.memo(
         handleFocusPractice={handleFocusPractice}
         programs={programs}
         roles={roles}
-        handleFetch={handleFetch}
         handleFocusAttendance={handleFocusAttendance}
         selectedId={selectedId}
         handleFocusProgram={handleFocusProgram}
