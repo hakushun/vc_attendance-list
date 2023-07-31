@@ -2,11 +2,9 @@
 import reducer, {
   closeAll,
   selectAttendanceFormIsShown,
-  selectCovidFormIsShown,
   selectEventFormIsShown,
   selectSettingIsShown,
   toggleAttendanceForm,
-  toggleCovidForm,
   toggleEventForm,
   toggleSetting,
 } from '../ui/show';
@@ -21,12 +19,10 @@ import {
   update as updateEvent,
 } from '../domain/events';
 import { Attendance, focusAttendance, initiateAttendance } from '../app/attendance';
-import { create as createCovid } from '../domain/covids';
 import { update as updatePart } from '../domain/parts';
 import { update as updatePractice } from '../domain/practice';
 import { update as updateProgram } from '../domain/programs';
 import { update as updateRole } from '../domain/roles';
-import { initiateCovid } from '../app/covid';
 import { initialState } from './_initialState';
 
 // reducer
@@ -58,15 +54,6 @@ describe('Reducer: show', () => {
   const removeEventPayload = { ...event };
   const focusAttendancePayload = { ...attendance };
   const initiateAttendancePaylaod = { ...event };
-  const createCovidPayload = {
-    eventId: '',
-    covid: {
-      userId: '',
-      dateId: '',
-      answers: {},
-    },
-    timestamp: 0,
-  };
   const updatePartPayload = {
     event,
     part: [],
@@ -102,16 +89,6 @@ describe('Reducer: show', () => {
     expect(result).toEqual({
       eventForm: true,
       covidForm: false,
-      attendanceForm: false,
-      setting: false,
-    });
-  });
-  it('Action: toggleCovidForm', () => {
-    const action = toggleCovidForm(true);
-    const result = reducer(undefined, action);
-    expect(result).toEqual({
-      eventForm: false,
-      covidForm: true,
       attendanceForm: false,
       setting: false,
     });
@@ -226,16 +203,6 @@ describe('Reducer: show', () => {
       setting: false,
     });
   });
-  it('Action: initiateCovid', () => {
-    const action = initiateCovid();
-    const result = reducer(undefined, action);
-    expect(result).toEqual({
-      eventForm: false,
-      covidForm: true,
-      attendanceForm: false,
-      setting: false,
-    });
-  });
   it('Action: updatePractice.async.done', () => {
     const action = updatePractice.async.done({ params: updatePracticePayload, result: null });
     const result = reducer(undefined, action);
@@ -276,16 +243,6 @@ describe('Reducer: show', () => {
       setting: false,
     });
   });
-  it('Action: createCovid.async.done', () => {
-    const action = createCovid.async.done({ params: createCovidPayload, result: null });
-    const result = reducer(undefined, action);
-    expect(result).toEqual({
-      eventForm: false,
-      covidForm: false,
-      attendanceForm: false,
-      setting: false,
-    });
-  });
 });
 
 // selector
@@ -293,10 +250,6 @@ describe('Selector: show', () => {
   it('selectEventFormIsShown', () => {
     const result = false;
     expect(result).toEqual(selectEventFormIsShown(initialState));
-  });
-  it('selectCovidFormIsShown', () => {
-    const result = false;
-    expect(result).toEqual(selectCovidFormIsShown(initialState));
   });
   it('selectAttendanceFormIsShown', () => {
     const result = false;
