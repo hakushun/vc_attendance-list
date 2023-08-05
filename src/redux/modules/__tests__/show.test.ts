@@ -72,7 +72,10 @@ describe('Reducer: show', () => {
   };
   const updateRolePayload = {
     eventId: '',
-    roles: [],
+    role: {
+      userId: '',
+    },
+    userId: '',
   };
   it('Initial state', () => {
     const result = reducer(undefined, { type: '' });
