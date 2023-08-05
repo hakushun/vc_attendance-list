@@ -12,7 +12,8 @@ export type Roles = {
 };
 export type UpdatePayload = {
   eventId: string;
-  roles: RoleItem[];
+  userId: string;
+  role: RoleItem;
 };
 interface CustomError extends Error {
   code: string;
@@ -22,7 +23,7 @@ interface CustomError extends Error {
 const actionCreator = actionCreatorFactory();
 const asyncActionCreator = asyncFactory<Roles>(actionCreator);
 
-export const subscribeRoles = actionCreator<RoleItem[]>('SUBSCRIBE_ROLES');
+export const subscribeRoles = actionCreator<{ [userId: string]: RoleItem }>('SUBSCRIBE_ROLES');
 export const update = asyncActionCreator<UpdatePayload, void, CustomError>(
   'UPDATE_ROLE',
   async (payload) => {
@@ -39,7 +40,7 @@ const INITIAL_STATE: Roles = {
 const reducer = reducerWithInitialState(INITIAL_STATE)
   .case(subscribeRoles, (state, payload) => ({
     ...state,
-    roles: payload,
+    roles: Object.entries(payload).map(([, value]) => value),
   }))
   .case(update.async.started, (state) => ({
     ...state,

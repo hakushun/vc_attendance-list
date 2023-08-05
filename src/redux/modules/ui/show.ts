@@ -25,7 +25,6 @@ export type Show = Record<KeyName, boolean>;
 // action
 const actionCreator = actionCreatorFactory();
 export const toggleEventForm = actionCreator<void | Event>('TOGGLE_EVENT_FORM');
-export const toggleAttendanceForm = actionCreator<boolean>('TOGGLE_ATTENDANCE_FORM');
 export const toggleSetting = actionCreator<boolean>('TOGGLE_SETTING');
 export const closeAll = actionCreator('CLOSE_ALL');
 
@@ -41,10 +40,6 @@ const reducer = reducerWithInitialState(INITIAL_STATE)
   .case(toggleEventForm, (state) => ({
     ...state,
     eventForm: !state.eventForm,
-  }))
-  .case(toggleAttendanceForm, (state, payload) => ({
-    ...state,
-    attendanceForm: payload,
   }))
   .case(toggleSetting, (state, payload) => ({
     ...state,

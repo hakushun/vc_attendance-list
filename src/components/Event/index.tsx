@@ -33,7 +33,7 @@ export const Event: React.VFC<Props> = React.memo(({ eventId }) => {
     isLoading: programsIsLoading,
     handleUpdate: handleProgramsUpdate,
   } = usePrograms(eventId);
-  const { roles, isLoading: rolesIsLoading, handleUpdate: handleRolesUpdate } = useRoles(eventId);
+  const { roles } = useRoles(eventId);
   const {
     targetEvent,
     isLoading: eventsIsLoading,
@@ -60,17 +60,12 @@ export const Event: React.VFC<Props> = React.memo(({ eventId }) => {
     <>
       <Setting
         event={targetEvent}
-        attendances={attendances}
-        parts={parts}
         partsIsLoading={partsIsLoading}
         handlePartsUpdate={handlePartsUpdate}
         practiceIsLoading={practiceIsLoading}
         handlePracticeUpdate={handlePracticeUpdate}
-        programs={programs}
         programsIsLoading={programsIsLoading}
         handleProgramsUpdate={handleProgramsUpdate}
-        rolesIsLoading={rolesIsLoading}
-        handleRolesUpdate={handleRolesUpdate}
       />
       <EventForm
         isLoading={eventsIsLoading}
@@ -83,6 +78,7 @@ export const Event: React.VFC<Props> = React.memo(({ eventId }) => {
         user={user}
         event={targetEvent}
         parts={parts}
+        programs={programs}
         attendances={attendances}
         isLoading={attendanceIsLoading}
         handleCreate={handleAttendanceCreate}

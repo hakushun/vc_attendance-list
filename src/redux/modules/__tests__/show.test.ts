@@ -4,7 +4,6 @@ import reducer, {
   selectAttendanceFormIsShown,
   selectEventFormIsShown,
   selectSettingIsShown,
-  toggleAttendanceForm,
   toggleEventForm,
   toggleSetting,
 } from '../ui/show';
@@ -72,13 +71,15 @@ describe('Reducer: show', () => {
   };
   const updateRolePayload = {
     eventId: '',
-    roles: [],
+    role: {
+      userId: '',
+    },
+    userId: '',
   };
   it('Initial state', () => {
     const result = reducer(undefined, { type: '' });
     expect(result).toEqual({
       eventForm: false,
-      covidForm: false,
       attendanceForm: false,
       setting: false,
     });
@@ -88,18 +89,7 @@ describe('Reducer: show', () => {
     const result = reducer(undefined, action);
     expect(result).toEqual({
       eventForm: true,
-      covidForm: false,
       attendanceForm: false,
-      setting: false,
-    });
-  });
-  it('Action: toggleAttendanceForm', () => {
-    const action = toggleAttendanceForm(true);
-    const result = reducer(undefined, action);
-    expect(result).toEqual({
-      eventForm: false,
-      covidForm: false,
-      attendanceForm: true,
       setting: false,
     });
   });
@@ -108,7 +98,6 @@ describe('Reducer: show', () => {
     const result = reducer(undefined, action);
     expect(result).toEqual({
       eventForm: false,
-      covidForm: false,
       attendanceForm: false,
       setting: true,
     });
@@ -118,7 +107,6 @@ describe('Reducer: show', () => {
     const result = reducer(undefined, action);
     expect(result).toEqual({
       eventForm: false,
-      covidForm: false,
       attendanceForm: false,
       setting: false,
     });
@@ -128,7 +116,6 @@ describe('Reducer: show', () => {
     const result = reducer(undefined, action);
     expect(result).toEqual({
       eventForm: false,
-      covidForm: false,
       attendanceForm: false,
       setting: false,
     });
@@ -138,7 +125,6 @@ describe('Reducer: show', () => {
     const result = reducer(undefined, action);
     expect(result).toEqual({
       eventForm: false,
-      covidForm: false,
       attendanceForm: false,
       setting: false,
     });
@@ -148,7 +134,6 @@ describe('Reducer: show', () => {
     const result = reducer(undefined, action);
     expect(result).toEqual({
       eventForm: false,
-      covidForm: false,
       attendanceForm: false,
       setting: false,
     });
@@ -158,7 +143,6 @@ describe('Reducer: show', () => {
     const result = reducer(undefined, action);
     expect(result).toEqual({
       eventForm: false,
-      covidForm: false,
       attendanceForm: false,
       setting: false,
     });
@@ -168,7 +152,6 @@ describe('Reducer: show', () => {
     const result = reducer(undefined, action);
     expect(result).toEqual({
       eventForm: false,
-      covidForm: false,
       attendanceForm: false,
       setting: false,
     });
@@ -178,7 +161,6 @@ describe('Reducer: show', () => {
     const result = reducer(undefined, action);
     expect(result).toEqual({
       eventForm: false,
-      covidForm: false,
       attendanceForm: false,
       setting: false,
     });
@@ -188,7 +170,6 @@ describe('Reducer: show', () => {
     const result = reducer(undefined, action);
     expect(result).toEqual({
       eventForm: false,
-      covidForm: false,
       attendanceForm: true,
       setting: false,
     });
@@ -198,7 +179,6 @@ describe('Reducer: show', () => {
     const result = reducer(undefined, action);
     expect(result).toEqual({
       eventForm: false,
-      covidForm: false,
       attendanceForm: true,
       setting: false,
     });
@@ -208,7 +188,6 @@ describe('Reducer: show', () => {
     const result = reducer(undefined, action);
     expect(result).toEqual({
       eventForm: false,
-      covidForm: false,
       attendanceForm: false,
       setting: false,
     });
@@ -218,7 +197,6 @@ describe('Reducer: show', () => {
     const result = reducer(undefined, action);
     expect(result).toEqual({
       eventForm: false,
-      covidForm: false,
       attendanceForm: false,
       setting: false,
     });
@@ -228,7 +206,6 @@ describe('Reducer: show', () => {
     const result = reducer(undefined, action);
     expect(result).toEqual({
       eventForm: false,
-      covidForm: false,
       attendanceForm: false,
       setting: false,
     });
@@ -238,7 +215,6 @@ describe('Reducer: show', () => {
     const result = reducer(undefined, action);
     expect(result).toEqual({
       eventForm: false,
-      covidForm: false,
       attendanceForm: false,
       setting: false,
     });

@@ -415,19 +415,9 @@ export const initialState: RootState = {
       ],
     },
     role: {
-      programId: '01F937NXKS2YDN1M98MZ9G1JWB',
-      role: [
-        {
-          userId: 'gWGFZShxTVZieKGPDTGELbC8Ser2',
-          '01F937NXKS2YDN1M98MZ9G1JWB': '降り番',
-          '01F937NK2V8K2W2F6QC9PKJZRP': '乗り番',
-        },
-        {
-          userId: 'AnT5kMzmdJbgexROAlSoHP0KEC12',
-          '01F937NK2V8K2W2F6QC9PKJZRP': '降り番',
-          '01F937NXKS2YDN1M98MZ9G1JWB': '乗り番',
-        },
-      ],
+      userId: 'gWGFZShxTVZieKGPDTGELbC8Ser2',
+      '01F937NXKS2YDN1M98MZ9G1JWB': '降り番',
+      '01F937NK2V8K2W2F6QC9PKJZRP': '乗り番',
     },
     sign: {
       form: {

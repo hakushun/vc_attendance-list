@@ -5,28 +5,19 @@ import { Sectioning } from '../../uiParts/Sectioning';
 import { Heading } from '../../uiParts/Heading';
 import { Program } from './Program';
 import { Part } from './Part';
-import { Role } from './Role';
 import { Event } from '../../../redux/modules/app/event';
-import { Part as TypePart } from '../../../redux/modules/app/part';
-import { Attendance } from '../../../redux/modules/app/attendance';
-import { ProgramItem } from '../../../redux/modules/app/program';
-import styles from './index.module.scss';
 import { Tab } from '../../../redux/modules/ui/tab';
+import styles from './index.module.scss';
 
 type Props = {
   event: Event;
   handleToggleSetting: () => void;
-  attendances: Attendance[];
-  parts: TypePart[];
   partsIsLoading: boolean;
   handlePartsUpdate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   practiceIsLoading: boolean;
   handlePracticeUpdate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-  programs: ProgramItem[];
   programsIsLoading: boolean;
   handleProgramsUpdate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-  rolesIsLoading: boolean;
-  handleRolesUpdate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   tab: Tab;
   handleChangeSettingTab: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
@@ -34,17 +25,12 @@ export const Setting: React.VFC<Props> = React.memo(
   ({
     event,
     handleToggleSetting,
-    attendances,
-    parts,
     partsIsLoading,
     handlePartsUpdate,
     practiceIsLoading,
     handlePracticeUpdate,
-    programs,
     programsIsLoading,
     handleProgramsUpdate,
-    rolesIsLoading,
-    handleRolesUpdate,
     tab,
     handleChangeSettingTab,
   }) => {
@@ -73,15 +59,6 @@ export const Setting: React.VFC<Props> = React.memo(
             </button>
             <button
               role="tab"
-              aria-controls="role"
-              aria-selected={tab.setting === 'role'}
-              type="button"
-              className={clsx(styles.tab, tab.setting === 'role' && styles.selected)}
-              onClick={handleChangeSettingTab}>
-              乗り番
-            </button>
-            <button
-              role="tab"
               aria-controls="part"
               aria-selected={tab.setting === 'part'}
               type="button"
@@ -105,16 +82,6 @@ export const Setting: React.VFC<Props> = React.memo(
                 handleToggleSetting={handleToggleSetting}
                 isLoading={programsIsLoading}
                 handleUpdate={handleProgramsUpdate}
-              />
-            )}
-            {tab.setting === 'role' && (
-              <Role
-                handleToggleSetting={handleToggleSetting}
-                programs={programs}
-                parts={parts}
-                attendances={attendances}
-                isLoading={rolesIsLoading}
-                handleUpdate={handleRolesUpdate}
               />
             )}
             {tab.setting === 'part' && (

@@ -6,6 +6,7 @@ import { Attendance } from '../../../redux/modules/app/attendance';
 import { Event } from '../../../redux/modules/app/event';
 import { Part } from '../../../redux/modules/app/part';
 import { Userdata } from '../../../redux/modules/app/user';
+import { ProgramItem } from '../../../redux/modules/app/program';
 import { Badge } from '../../uiParts/Badge';
 import { Heading } from '../../uiParts/Heading';
 import { OptionalButton } from '../../uiParts/OptionalButton';
@@ -13,11 +14,13 @@ import { PrimaryButton } from '../../uiParts/PrimaryButton';
 import { SecondaryButton } from '../../uiParts/SecondaryButton';
 import { Sectioning } from '../../uiParts/Sectioning';
 import styles from './index.module.scss';
+import { RoleItem } from '../../../redux/modules/app/role';
 
 type Props = {
   user: Userdata;
   event: Event;
   parts: Part[];
+  programs: ProgramItem[];
   attendances: Attendance[];
   isLoading: boolean;
   handleCreate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
@@ -30,6 +33,8 @@ type Props = {
   handleChangeRemark: (_e: React.ChangeEvent<HTMLInputElement>) => void;
   handleClickRadio: (_e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => void;
   handleKeyDownRadio: (_e: React.KeyboardEvent<HTMLSpanElement>) => void;
+  role: RoleItem;
+  handleChangeRole: (_e: React.ChangeEvent<HTMLInputElement>) => void;
   attendanceRef: React.MutableRefObject<HTMLHeadingElement | null>;
   attendanceFormIsShown: boolean;
   handleToggleAttendanceForm: () => void;
@@ -39,6 +44,7 @@ export const AttendanceForm: React.VFC<Props> = React.memo(
     user,
     event,
     parts,
+    programs,
     attendances,
     isLoading,
     handleCreate,
@@ -49,6 +55,8 @@ export const AttendanceForm: React.VFC<Props> = React.memo(
     handleChangeRemark,
     handleClickRadio,
     handleKeyDownRadio,
+    role,
+    handleChangeRole,
     attendanceRef,
     attendanceFormIsShown,
     handleToggleAttendanceForm,
@@ -280,6 +288,30 @@ export const AttendanceForm: React.VFC<Props> = React.memo(
                   onChange={handleChangeAttendance}
                 />
               </div>
+              {programs.length > 0 && (
+                <fieldset className={styles.fieldset}>
+                  <legend>
+                    <Heading level={4} label="乗り番" />
+                  </legend>
+                  <ul className={styles.list}>
+                    {programs.map((program) => (
+                      <li key={program.id} className={styles.programItem}>
+                        <label htmlFor={program.id} className={styles.label}>
+                          {program.name}
+                        </label>
+                        <input
+                          type="text"
+                          name={program.id}
+                          id={program.id}
+                          value={role[program.id] ?? ''}
+                          onChange={handleChangeRole}
+                          className={clsx(styles.input, styles.text)}
+                        />
+                      </li>
+                    ))}
+                  </ul>
+                </fieldset>
+              )}
             </fieldset>
             <PrimaryButton
               type="submit"

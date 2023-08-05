@@ -2,56 +2,43 @@ import { createSelector } from 'reselect';
 import actionCreatorFactory from 'typescript-fsa';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import { RootState } from '../reducers';
-import { subscribeRoles } from '../domain/roles';
+import { initiateAttendance } from './attendance';
+import { remove } from '../domain/attendances';
+import { signOut } from './sign';
 
 export type RoleItem = {
   userId: string;
   [programId: string]: string;
 };
-export type Role = {
-  programId: string;
-  role: RoleItem[];
-};
-type ChangeRadioPayload = {
-  programId: string;
-};
 // action
 const actionCreator = actionCreatorFactory();
 
-export const changeRadio = actionCreator<ChangeRadioPayload>('CHANGE_RADIO');
 export const changeRole = actionCreator<RoleItem>('CHANGE_ROLE');
 
 // initial state
-const INITIAL_STATE: Role = {
-  programId: '',
-  role: [],
-};
+const INITIAL_STATE = {};
 
 // reducer
 const reducer = reducerWithInitialState(INITIAL_STATE)
-  .case(changeRadio, (state, payload) => ({
+  .case(changeRole, (state, payload) => ({
     ...state,
     ...payload,
   }))
-  .case(changeRole, (state, payload) => ({
-    ...state,
-    role: state.role.some((role) => role.userId === payload.userId)
-      ? state.role.map((role) => (role.userId === payload.userId ? { ...role, ...payload } : role))
-      : [...state.role, payload],
-  }))
-  .case(subscribeRoles, (state, payload) => ({
-    ...state,
-    programId: '',
-    role: payload,
+  .cases([initiateAttendance, remove.async.done, signOut.async.done], () => ({
+    ...INITIAL_STATE,
   }));
 export default reducer;
 
 // selector
-export const selectProgramId = createSelector(
-  [(state: RootState) => state.app.role.programId],
-  (programId) => programId,
-);
 export const selectRole = createSelector(
-  [(state: RootState) => state.app.role.role],
-  (role) => role,
+  [
+    (state: RootState) => state.domain.roles.roles,
+    (state: RootState) => state.app.user.user,
+    (state: RootState) => state.app.role,
+  ],
+  (roles, user, role) => ({
+    userId: '',
+    ...roles.find((item) => item.userId === user?.id),
+    ...role,
+  }),
 );

@@ -1,4 +1,5 @@
 import { CrudPayload } from '../../redux/modules/domain/attendances';
+import { removeRole } from './crudRole';
 import { getInstance } from './getInstance';
 
 const db = getInstance();
@@ -28,4 +29,5 @@ export const removeAttendance = async ({ eventId, attendance }: CrudPayload): Pr
     .collection('attendance')
     .doc(attendance.userId)
     .delete();
+  await removeRole({ eventId, userId: attendance.userId });
 };

@@ -18,6 +18,10 @@
       margin: 0 auto;
       text-align: center;
     }
+
+    &:not(:first-child) {
+      margin-top: 20px;
+    }
   }
 
   .remark {
@@ -146,5 +150,11 @@
         background-color: mixin.$whiteColor;
       }
     }
+  }
+
+  .programItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }
