@@ -6,9 +6,7 @@ import { initialState } from './_initialState';
 describe('Reducer: role', () => {
   it('Initial state', () => {
     const result = reducer(undefined, { type: '' });
-    expect(result).toEqual({
-      userId: '',
-    });
+    expect(result).toEqual({});
   });
   it('Action: changeRole', () => {
     const state = {

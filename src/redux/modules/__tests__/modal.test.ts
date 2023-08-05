@@ -16,7 +16,6 @@ describe('Reducer: modal', () => {
     const result = reducer(undefined, { type: '' });
     expect(result).toEqual({
       practice: false,
-      covidResult: false,
       passwordReset: false,
     });
   });
@@ -26,7 +25,6 @@ describe('Reducer: modal', () => {
     const result = reducer(undefined, action);
     expect(result).toEqual({
       practice: true,
-      covidResult: false,
       passwordReset: false,
     });
   });
@@ -35,7 +33,6 @@ describe('Reducer: modal', () => {
     const result = reducer(undefined, action);
     expect(result).toEqual({
       practice: false,
-      covidResult: false,
       passwordReset: true,
     });
   });
@@ -44,7 +41,6 @@ describe('Reducer: modal', () => {
     const result = reducer(undefined, action);
     expect(result).toEqual({
       practice: false,
-      covidResult: false,
       passwordReset: false,
     });
   });
@@ -53,7 +49,6 @@ describe('Reducer: modal', () => {
     const result = reducer(undefined, action);
     expect(result).toEqual({
       practice: true,
-      covidResult: false,
       passwordReset: false,
     });
   });
@@ -62,7 +57,6 @@ describe('Reducer: modal', () => {
     const result = reducer(undefined, action);
     expect(result).toEqual({
       practice: false,
-      covidResult: false,
       passwordReset: false,
     });
   });
