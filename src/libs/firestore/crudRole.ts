@@ -14,3 +14,16 @@ export const updateRole = async ({ eventId, userId, role }: UpdatePayload): Prom
     .doc(eventId)
     .set({ [userId]: role }, { merge: true });
 };
+
+export const removeRole = async ({
+  eventId,
+  userId,
+}: {
+  eventId: string;
+  userId: string;
+}): Promise<void> => {
+  await db
+    .collection('roles')
+    .doc(eventId)
+    .set({ [userId]: {} }, { merge: true });
+};
