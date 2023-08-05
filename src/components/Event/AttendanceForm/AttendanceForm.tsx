@@ -6,6 +6,7 @@ import { Attendance } from '../../../redux/modules/app/attendance';
 import { Event } from '../../../redux/modules/app/event';
 import { Part } from '../../../redux/modules/app/part';
 import { Userdata } from '../../../redux/modules/app/user';
+import { ProgramItem } from '../../../redux/modules/app/program';
 import { Badge } from '../../uiParts/Badge';
 import { Heading } from '../../uiParts/Heading';
 import { OptionalButton } from '../../uiParts/OptionalButton';
@@ -18,6 +19,7 @@ type Props = {
   user: Userdata;
   event: Event;
   parts: Part[];
+  programs: ProgramItem[];
   attendances: Attendance[];
   isLoading: boolean;
   handleCreate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
@@ -39,6 +41,7 @@ export const AttendanceForm: React.VFC<Props> = React.memo(
     user,
     event,
     parts,
+    programs,
     attendances,
     isLoading,
     handleCreate,
@@ -280,6 +283,29 @@ export const AttendanceForm: React.VFC<Props> = React.memo(
                   onChange={handleChangeAttendance}
                 />
               </div>
+              {programs.length > 0 && (
+                <fieldset className={styles.fieldset}>
+                  <legend>
+                    <Heading level={4} label="乗り番" />
+                  </legend>
+                  <ul className={styles.list}>
+                    {programs.map((program) => (
+                      // TODO: stateの接続
+                      <li key={program.id} className={styles.programItem}>
+                        <label htmlFor={program.id} className={styles.label}>
+                          {program.name}
+                        </label>
+                        <input
+                          type="text"
+                          name={program.id}
+                          id={program.id}
+                          className={clsx(styles.input, styles.text)}
+                        />
+                      </li>
+                    ))}
+                  </ul>
+                </fieldset>
+              )}
             </fieldset>
             <PrimaryButton
               type="submit"

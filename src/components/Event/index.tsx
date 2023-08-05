@@ -78,6 +78,7 @@ export const Event: React.VFC<Props> = React.memo(({ eventId }) => {
         user={user}
         event={targetEvent}
         parts={parts}
+        programs={programs}
         attendances={attendances}
         isLoading={attendanceIsLoading}
         handleCreate={handleAttendanceCreate}
