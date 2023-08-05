@@ -12,6 +12,9 @@ import {
   subscribeAtendances,
   update,
 } from '../redux/modules/domain/attendances';
+import { update as updateRoles } from '../redux/modules/domain/roles';
+import { selectRole } from '../redux/modules/app/role';
+import { selectUser } from '../redux/modules/app/user';
 
 type Hooks = {
   attendances: Attendance[];
@@ -30,6 +33,8 @@ type Hooks = {
 export const useAttendances = (eventId: string): Hooks => {
   const db = getInstance();
   const dispatch = useDispatch();
+  const user = useSelector(selectUser);
+  const role = useSelector(selectRole);
   const attendance = useSelector(selectAttendance);
   const attendances = useSelector(selectAttendances);
   const isLoading = useSelector(selectIsLoading);
@@ -38,19 +43,21 @@ export const useAttendances = (eventId: string): Hooks => {
   const handleCreate = useCallback(
     (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       e.preventDefault();
-      if (!eventId || isAttendanceInvalid(attendance)) return;
+      if (!eventId || isAttendanceInvalid(attendance) || !user) return;
       dispatch(create({ eventId, attendance }));
+      dispatch(updateRoles({ eventId, role, userId: user.id }));
     },
-    [attendance, dispatch, eventId],
+    [attendance, dispatch, eventId, role, user],
   );
 
   const handleUpdate = useCallback(
     (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       e.preventDefault();
-      if (!eventId || isAttendanceInvalid(attendance)) return;
+      if (!eventId || isAttendanceInvalid(attendance) || !user) return;
       dispatch(update({ eventId, attendance }));
+      dispatch(updateRoles({ eventId, role, userId: user.id }));
     },
-    [attendance, dispatch, eventId],
+    [attendance, dispatch, eventId, role, user],
   );
 
   const handleRemove = useCallback(() => {

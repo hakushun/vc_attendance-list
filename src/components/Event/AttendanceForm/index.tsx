@@ -7,6 +7,7 @@ import { Part } from '../../../redux/modules/app/part';
 import { Userdata } from '../../../redux/modules/app/user';
 import { ProgramItem } from '../../../redux/modules/app/program';
 import { AttendanceForm as Presentational } from './AttendanceForm';
+import { useRole } from '../../../hooks/useRole';
 
 type Props = {
   user: Userdata;
@@ -38,6 +39,7 @@ export const AttendanceForm: React.VFC<Props> = React.memo(
       handleClickRadio,
       handleKeyDownRadio,
     } = useAttendance();
+    const { role, handleChangeRole } = useRole();
     const { attendanceRef, attendanceFormIsShown, handleToggleAttendanceForm } = useShow();
 
     return (
@@ -56,6 +58,8 @@ export const AttendanceForm: React.VFC<Props> = React.memo(
         handleChangeRemark={handleChangeRemark}
         handleClickRadio={handleClickRadio}
         handleKeyDownRadio={handleKeyDownRadio}
+        role={role}
+        handleChangeRole={handleChangeRole}
         attendanceRef={attendanceRef}
         attendanceFormIsShown={attendanceFormIsShown}
         handleToggleAttendanceForm={handleToggleAttendanceForm}

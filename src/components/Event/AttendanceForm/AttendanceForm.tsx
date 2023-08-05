@@ -14,6 +14,7 @@ import { PrimaryButton } from '../../uiParts/PrimaryButton';
 import { SecondaryButton } from '../../uiParts/SecondaryButton';
 import { Sectioning } from '../../uiParts/Sectioning';
 import styles from './index.module.scss';
+import { RoleItem } from '../../../redux/modules/app/role';
 
 type Props = {
   user: Userdata;
@@ -32,6 +33,8 @@ type Props = {
   handleChangeRemark: (_e: React.ChangeEvent<HTMLInputElement>) => void;
   handleClickRadio: (_e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => void;
   handleKeyDownRadio: (_e: React.KeyboardEvent<HTMLSpanElement>) => void;
+  role: RoleItem;
+  handleChangeRole: (_e: React.ChangeEvent<HTMLInputElement>) => void;
   attendanceRef: React.MutableRefObject<HTMLHeadingElement | null>;
   attendanceFormIsShown: boolean;
   handleToggleAttendanceForm: () => void;
@@ -52,6 +55,8 @@ export const AttendanceForm: React.VFC<Props> = React.memo(
     handleChangeRemark,
     handleClickRadio,
     handleKeyDownRadio,
+    role,
+    handleChangeRole,
     attendanceRef,
     attendanceFormIsShown,
     handleToggleAttendanceForm,
@@ -290,7 +295,6 @@ export const AttendanceForm: React.VFC<Props> = React.memo(
                   </legend>
                   <ul className={styles.list}>
                     {programs.map((program) => (
-                      // TODO: stateの接続
                       <li key={program.id} className={styles.programItem}>
                         <label htmlFor={program.id} className={styles.label}>
                           {program.name}
@@ -299,6 +303,8 @@ export const AttendanceForm: React.VFC<Props> = React.memo(
                           type="text"
                           name={program.id}
                           id={program.id}
+                          value={role[program.id] ?? ''}
+                          onChange={handleChangeRole}
                           className={clsx(styles.input, styles.text)}
                         />
                       </li>

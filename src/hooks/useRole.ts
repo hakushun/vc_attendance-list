@@ -1,38 +1,25 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  changeRadio,
-  changeRole,
-  RoleItem,
-  selectProgramId,
-  selectRole,
-} from '../redux/modules/app/role';
+import { changeRole, RoleItem, selectRole } from '../redux/modules/app/role';
+import { selectUser } from '../redux/modules/app/user';
 
 type Hooks = {
-  programId: string;
-  role: RoleItem[];
-  handleChangeRadio: (_e: React.ChangeEvent<HTMLInputElement>) => void;
+  role: RoleItem;
   handleChangeRole: (_e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 export const useRole = (): Hooks => {
   const dispatch = useDispatch();
-  const programId = useSelector(selectProgramId);
   const role = useSelector(selectRole);
-
-  const handleChangeRadio = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      dispatch(changeRadio({ programId: e.target.value }));
-    },
-    [dispatch],
-  );
+  const user = useSelector(selectUser);
 
   const handleChangeRole = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      const userId = e.target.id.split('-')[1];
-      dispatch(changeRole({ userId, [programId]: e.target.value }));
+      if (!user) return;
+      const programId = e.target.id;
+      dispatch(changeRole({ userId: user.id, [programId]: e.target.value }));
     },
-    [dispatch, programId],
+    [dispatch, user],
   );
 
-  return { programId, role, handleChangeRadio, handleChangeRole };
+  return { role, handleChangeRole };
 };
