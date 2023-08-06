@@ -70,9 +70,7 @@ export const AttendanceForm: React.VFC<Props> = React.memo(
                 <Heading level={3} label="出欠登録フォーム" ref={attendanceRef} />
               </legend>
               <div className={styles.remark}>
-                遅刻・早退・未定の場合は、
-                <br />
-                遅刻早退未定欄にコメントを記入ください
+                遅刻・早退・未定の場合は、 遅刻・早退・未定詳細欄にコメントを記入ください
               </div>
               <div className={styles.inputWrapper}>
                 <label htmlFor="attendance_occupation" className={styles.label}>
@@ -251,7 +249,7 @@ export const AttendanceForm: React.VFC<Props> = React.memo(
                       </div>
                       <div className={styles.inputWrapper}>
                         <label htmlFor={`attendance_remark-${date.id}`} className={styles.label}>
-                          遅刻早退未定
+                          遅刻・早退・未定詳細
                           <Badge type="optional" />
                         </label>
                         <input
@@ -275,7 +273,7 @@ export const AttendanceForm: React.VFC<Props> = React.memo(
               </ul>
               <div className={styles.inputWrapper}>
                 <label htmlFor="attendance_comment" className={styles.label}>
-                  コメント
+                  その他コメント
                   <Badge type="optional" />
                 </label>
                 <textarea
@@ -291,7 +289,7 @@ export const AttendanceForm: React.VFC<Props> = React.memo(
               {programs.length > 0 && (
                 <fieldset className={styles.fieldset}>
                   <legend>
-                    <Heading level={4} label="乗り番" />
+                    <Heading level={4} label="各曲パート(1st,2ndなど) ※管打楽器は必須" />
                   </legend>
                   <ul className={styles.list}>
                     {programs.map((program) => (
