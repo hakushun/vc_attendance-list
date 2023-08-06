@@ -10,19 +10,19 @@ export const Heading = React.memo(
     switch (level) {
       case 2:
         return (
-          <h2 className={styles.root} ref={ref} tabIndex={-1}>
+          <h2 className={styles.main} ref={ref} tabIndex={-1}>
             <span>{label}</span>
           </h2>
         );
       case 3:
         return (
-          <h3 className={styles.root} ref={ref} tabIndex={-1}>
+          <h3 className={styles.main} ref={ref} tabIndex={-1}>
             <span>{label}</span>
           </h3>
         );
       case 4:
         return (
-          <h4 className={styles.root} ref={ref} tabIndex={-1}>
+          <h4 className={styles.sub} ref={ref} tabIndex={-1}>
             <span>{label}</span>
           </h4>
         );
