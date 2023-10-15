@@ -32,6 +32,7 @@ type Props = {
   ) => void;
   selectedId: string;
   handleFocusProgram: (_e: React.ChangeEvent<HTMLSelectElement>) => void;
+  downloadCalendar: () => Promise<void>;
 };
 export const AttendanceTable: React.VFC<Props> = React.memo(
   ({
@@ -44,6 +45,7 @@ export const AttendanceTable: React.VFC<Props> = React.memo(
     handleFocusAttendance,
     selectedId,
     handleFocusProgram,
+    downloadCalendar,
   }) => {
     return (
       <Sectioning id="attendance_table">
@@ -57,12 +59,14 @@ export const AttendanceTable: React.VFC<Props> = React.memo(
             <thead className={styles.thead}>
               <tr>
                 <td className={clsx(styles.cell, styles.controller, styles.narrow, styles.button)}>
-                  <OptionalButton label="export" disabled={false} handleClick={exportToExcel} />
+                  <OptionalButton label="to csv" disabled={false} handleClick={exportToExcel} />
+                </td>
+                <td className={clsx(styles.cell, styles.controller, styles.button)}>
+                  <OptionalButton label="to ics" disabled={false} handleClick={downloadCalendar} />
                 </td>
                 <td className={clsx(styles.cell, styles.controller, styles.button)}>
                   <TernaryButton label="全列表示" disabled={false} handleClick={showAllColumns} />
                 </td>
-                <td className={clsx(styles.cell, styles.controller)} />
                 {event.dates.map((date) => (
                   <td
                     key={date.id}

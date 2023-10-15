@@ -9,6 +9,7 @@ import { RoleItem } from '../../../redux/modules/app/role';
 import { Userdata } from '../../../redux/modules/app/user';
 import { Loading } from '../../uiParts/Loading';
 import { AttendanceTable as Presentational } from './AttendanceTable';
+import { useCalendar } from '../../../hooks/useCalendar';
 
 type Props = {
   user: Userdata;
@@ -21,6 +22,7 @@ type Props = {
 };
 export const AttendanceTable: React.VFC<Props> = React.memo(
   ({ user, event, attendances, isLoading, handleFocusPractice, programs, roles }) => {
+    const { downloadCalendar } = useCalendar(event);
     const { handleFocusAttendance } = useAttendance();
     const { selectedId, handleFocusProgram } = useProgram();
 
@@ -52,6 +54,7 @@ export const AttendanceTable: React.VFC<Props> = React.memo(
         handleFocusAttendance={handleFocusAttendance}
         selectedId={selectedId}
         handleFocusProgram={handleFocusProgram}
+        downloadCalendar={downloadCalendar}
       />
     );
   },
