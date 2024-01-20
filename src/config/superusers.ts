@@ -13,6 +13,8 @@ export const superusers = [
   // 会場係
   'FZTKPQYDHmUO2XroWXBqlpRnF7c2',
   'FAzishZA9dbk7viEoeYyaYYJ4tE3',
+  'Pp6wdIRBLKaHtHR7DZdkxDqdVns1',
+  'hEsfZfgOD2ahfjAPcYIeBmyZAsS2',
   // 管理者
   'gWGFZShxTVZieKGPDTGELbC8Ser2',
 ];
