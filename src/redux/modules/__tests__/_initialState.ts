@@ -5,7 +5,7 @@ export const initialState: RootState = {
     attendances: {
       attendances: [
         {
-          occupation: 'extra',
+          occupation: 'working',
           attendances: [
             {
               dateId: '01F937G4BYBXW1QRV8BYH1VX9Z',
@@ -258,7 +258,7 @@ export const initialState: RootState = {
   app: {
     attendance: {
       userId: 'AnT5kMzmdJbgexROAlSoHP0KEC12',
-      occupation: 'extra',
+      occupation: 'working',
       name: 'sample user2',
       part: 'Hr',
       attendances: [
