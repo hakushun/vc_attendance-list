@@ -4,7 +4,7 @@ import { isAttendanceInvalid } from '../isAttendanceInvalid';
 describe('isAttendanceInvalid', () => {
   const baseAttendance: Attendance = {
     userId: 'AnT5kMzmdJbgexROAlSoHP0KEC12',
-    occupation: 'extra',
+    occupation: 'working',
     name: 'sample user2',
     part: 'Hr',
     attendances: [

@@ -11,11 +11,6 @@ describe('convertOccuoation', () => {
     expect(result).toEqual(convertOccuoation('student'));
   });
 
-  it('occupation: extra', () => {
-    const result = 'エキストラ';
-    expect(result).toEqual(convertOccuoation('extra'));
-  });
-
   it('occupation: empty', () => {
     const result = '';
     expect(result).toEqual(convertOccuoation(''));

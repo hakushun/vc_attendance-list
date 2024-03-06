@@ -175,7 +175,7 @@ describe('Selector: attendance', () => {
   it('selectAttendance', () => {
     const result = {
       userId: 'AnT5kMzmdJbgexROAlSoHP0KEC12',
-      occupation: 'extra',
+      occupation: 'working',
       name: 'sample user2',
       part: 'Hr',
       attendances: [
