@@ -7,6 +7,7 @@ import { Event } from '../../../redux/modules/app/event';
 import { Part } from '../../../redux/modules/app/part';
 import { Userdata } from '../../../redux/modules/app/user';
 import { ProgramItem } from '../../../redux/modules/app/program';
+import { PracticeItem } from '../../../redux/modules/domain/practice';
 import { Badge } from '../../uiParts/Badge';
 import { Heading } from '../../uiParts/Heading';
 import { OptionalButton } from '../../uiParts/OptionalButton';
@@ -22,6 +23,7 @@ type Props = {
   parts: Part[];
   programs: ProgramItem[];
   attendances: Attendance[];
+  practice: PracticeItem;
   isLoading: boolean;
   handleCreate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   handleUpdate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
@@ -46,6 +48,7 @@ export const AttendanceForm: React.VFC<Props> = React.memo(
     parts,
     programs,
     attendances,
+    practice,
     isLoading,
     handleCreate,
     handleUpdate,
@@ -140,7 +143,8 @@ export const AttendanceForm: React.VFC<Props> = React.memo(
                       <legend id={`attendance_group-${date.id}`}>
                         <span className={styles.label}>
                           {date.day}
-                          {getDayOfTheWeek(date.day)} {date.time}
+                          {getDayOfTheWeek(date.day)} {date.time}[
+                          {practice.plans.find((plan) => plan.dateId === date.id)?.category}]
                         </span>
                       </legend>
                       <div

@@ -80,6 +80,7 @@ export const Event: React.VFC<Props> = React.memo(({ eventId }) => {
         parts={parts}
         programs={programs}
         attendances={attendances}
+        practice={practice}
         isLoading={attendanceIsLoading}
         handleCreate={handleAttendanceCreate}
         handleUpdate={handleAttendanceUpdate}
@@ -93,6 +94,7 @@ export const Event: React.VFC<Props> = React.memo(({ eventId }) => {
         handleFocusPractice={handleFocusPractice}
         programs={programs}
         roles={roles}
+        practice={practice}
       />
       <PracticeDetail
         event={targetEvent}
