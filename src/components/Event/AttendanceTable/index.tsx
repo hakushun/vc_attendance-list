@@ -7,6 +7,7 @@ import { Event } from '../../../redux/modules/app/event';
 import { ProgramItem } from '../../../redux/modules/app/program';
 import { RoleItem } from '../../../redux/modules/app/role';
 import { Userdata } from '../../../redux/modules/app/user';
+import { PracticeItem } from '../../../redux/modules/domain/practice';
 import { Loading } from '../../uiParts/Loading';
 import { AttendanceTable as Presentational } from './AttendanceTable';
 
@@ -18,9 +19,10 @@ type Props = {
   handleFocusPractice: (_id: string) => void;
   programs: ProgramItem[];
   roles: RoleItem[];
+  practice: PracticeItem;
 };
 export const AttendanceTable: React.VFC<Props> = React.memo(
-  ({ user, event, attendances, isLoading, handleFocusPractice, programs, roles }) => {
+  ({ user, event, attendances, isLoading, handleFocusPractice, programs, roles, practice }) => {
     const { handleFocusAttendance } = useAttendance();
     const { selectedId, handleFocusProgram } = useProgram();
 
@@ -49,6 +51,7 @@ export const AttendanceTable: React.VFC<Props> = React.memo(
         handleFocusPractice={handleFocusPractice}
         programs={programs}
         roles={roles}
+        practice={practice}
         handleFocusAttendance={handleFocusAttendance}
         selectedId={selectedId}
         handleFocusProgram={handleFocusProgram}

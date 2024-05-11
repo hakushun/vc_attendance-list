@@ -13,6 +13,7 @@ import { Event } from '../../../redux/modules/app/event';
 import { ProgramItem } from '../../../redux/modules/app/program';
 import { RoleItem } from '../../../redux/modules/app/role';
 import { Userdata } from '../../../redux/modules/app/user';
+import { PracticeItem } from '../../../redux/modules/domain/practice';
 import { Heading } from '../../uiParts/Heading';
 import { OptionalButton } from '../../uiParts/OptionalButton';
 import { Sectioning } from '../../uiParts/Sectioning';
@@ -26,6 +27,7 @@ type Props = {
   handleFocusPractice: (_id: string) => void;
   programs: ProgramItem[];
   roles: RoleItem[];
+  practice: PracticeItem;
   handleFocusAttendance: (
     _e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     _item: Attendance,
@@ -41,6 +43,7 @@ export const AttendanceTable: React.VFC<Props> = React.memo(
     handleFocusPractice,
     programs,
     roles,
+    practice,
     handleFocusAttendance,
     selectedId,
     handleFocusProgram,
@@ -106,6 +109,9 @@ export const AttendanceTable: React.VFC<Props> = React.memo(
                           {getDayOfTheWeek(date.day)}
                         </div>
                         <div>{date.time}</div>
+                        <div>
+                          {practice.plans.find((plan) => plan.dateId === date.id)?.category}
+                        </div>
                       </button>
                     </div>
                   </th>

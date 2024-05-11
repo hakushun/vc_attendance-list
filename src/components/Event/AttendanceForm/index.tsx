@@ -6,6 +6,7 @@ import { Event } from '../../../redux/modules/app/event';
 import { Part } from '../../../redux/modules/app/part';
 import { Userdata } from '../../../redux/modules/app/user';
 import { ProgramItem } from '../../../redux/modules/app/program';
+import { PracticeItem } from '../../../redux/modules/domain/practice';
 import { AttendanceForm as Presentational } from './AttendanceForm';
 import { useRole } from '../../../hooks/useRole';
 
@@ -15,6 +16,7 @@ type Props = {
   parts: Part[];
   programs: ProgramItem[];
   attendances: Attendance[];
+  practice: PracticeItem;
   isLoading: boolean;
   handleCreate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   handleUpdate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
@@ -27,6 +29,7 @@ export const AttendanceForm: React.VFC<Props> = React.memo(
     parts,
     programs,
     attendances,
+    practice,
     isLoading,
     handleCreate,
     handleUpdate,
@@ -49,6 +52,7 @@ export const AttendanceForm: React.VFC<Props> = React.memo(
         parts={parts}
         programs={programs}
         attendances={attendances}
+        practice={practice}
         isLoading={isLoading}
         handleCreate={handleCreate}
         handleUpdate={handleUpdate}
