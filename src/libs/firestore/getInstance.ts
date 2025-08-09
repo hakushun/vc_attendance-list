@@ -1,8 +1,5 @@
-import firebase from 'firebase/app';
-import initFirebase from '../firebase/initFirebase';
+import { db } from '../firebase/initFirebase';
 
-export const getInstance = (): firebase.firestore.Firestore => {
-  initFirebase();
-  const db = firebase.firestore();
+export const getInstance = () => {
   return db;
 };

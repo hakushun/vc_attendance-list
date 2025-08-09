@@ -1,12 +1,15 @@
-import firebase from 'firebase/app';
+import { onAuthStateChanged } from 'firebase/auth';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import initFirebase from '../libs/firebase/initFirebase';
+import { auth } from '../libs/firebase/initFirebase';
 import { mapUserData } from '../libs/utils/mapUserData';
-import { selectIsLoading, selectUser, auth, Userdata } from '../redux/modules/app/user';
+import {
+  selectIsLoading,
+  selectUser,
+  auth as authAction,
+  Userdata,
+} from '../redux/modules/app/user';
 import { useRouter } from './useRouter';
-
-initFirebase();
 
 type Hooks = {
   user: Userdata;
@@ -19,11 +22,11 @@ export const useUser = (): Hooks => {
   const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
-    const cancelAuthListener = firebase.auth().onIdTokenChanged(async (usr) => {
+    const cancelAuthListener = onAuthStateChanged(auth, async (usr) => {
       if (usr) {
-        dispatch(auth(mapUserData(usr)));
+        dispatch(authAction(mapUserData(usr)));
       } else {
-        dispatch(auth(null));
+        dispatch(authAction(null));
         router.pathname !== '/signup' && router.push('/login');
       }
     });
