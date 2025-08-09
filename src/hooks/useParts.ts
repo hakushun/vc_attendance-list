@@ -1,5 +1,6 @@
 import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { doc, onSnapshot } from 'firebase/firestore';
 import { getInstance } from '../libs/firestore/getInstance';
 import { isPartInvalid } from '../libs/utils/isPartInvalid';
 import { selectEvent } from '../redux/modules/app/event';
@@ -31,13 +32,10 @@ export const useParts = (eventId: string): Hooks => {
   );
 
   useEffect(() => {
-    const unsubscribe = db
-      .collection('parts')
-      .doc(eventId)
-      .onSnapshot((snapshot) => {
-        const data = snapshot.data() as { part: Part[] } | undefined;
-        data && dispatch(subscribePart(data.part));
-      });
+    const unsubscribe = onSnapshot(doc(db, 'parts', eventId), (snapshot) => {
+      const data = snapshot.data() as { part: Part[] } | undefined;
+      data && dispatch(subscribePart(data.part));
+    });
     return () => unsubscribe();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [eventId]);

@@ -1,5 +1,6 @@
 import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { collection, onSnapshot } from 'firebase/firestore';
 import { getInstance } from '../libs/firestore/getInstance';
 import { selectEvent } from '../redux/modules/app/event';
 import { Location, selectLocations } from '../redux/modules/app/locations';
@@ -51,23 +52,19 @@ export const usePractice = (eventId: string): Hooks => {
   );
 
   useEffect(() => {
-    const unsubscribe = db
-      .collection('practices')
-      .doc(eventId)
-      .collection('practice')
-      .onSnapshot((snapshot) => {
-        const locationItems: Location[] = [];
-        const planItems: Plan[] = [];
-        const remarkItems: Remark[] = [];
-        snapshot.forEach((doc) => {
-          locationItems.push(doc.data()?.location as Location);
-          planItems.push(doc.data()?.plan as Plan);
-          remarkItems.push(doc.data()?.remark as Remark);
-        });
-        dispatch(
-          subscribePractice({ locations: locationItems, plans: planItems, remarks: remarkItems }),
-        );
+    const unsubscribe = onSnapshot(collection(db, 'practices', eventId, 'practice'), (snapshot) => {
+      const locationItems: Location[] = [];
+      const planItems: Plan[] = [];
+      const remarkItems: Remark[] = [];
+      snapshot.forEach((doc) => {
+        locationItems.push(doc.data()?.location as Location);
+        planItems.push(doc.data()?.plan as Plan);
+        remarkItems.push(doc.data()?.remark as Remark);
       });
+      dispatch(
+        subscribePractice({ locations: locationItems, plans: planItems, remarks: remarkItems }),
+      );
+    });
     return () => unsubscribe();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [eventId]);
