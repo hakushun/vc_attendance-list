@@ -1,4 +1,4 @@
-import { doc, getDoc, setDoc, deleteDoc, collection, getDocs, updateDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc, deleteDoc, collection, getDocs } from 'firebase/firestore';
 import { Attendance, AttendanceItem } from '../../redux/modules/app/attendance';
 import { Event } from '../../redux/modules/app/event';
 import { CreatePayload } from '../../redux/modules/domain/events';
@@ -45,7 +45,7 @@ const generateNewAttendances = (event: Event, attendances: Attendance[]) => {
 
 export const updateEvent = async (event: Event): Promise<Event> => {
   const docRef = doc(db, 'events', event.id);
-  await updateDoc(docRef, event);
+  await setDoc(docRef, event, { merge: true });
 
   // 追加になった日時に紐づくpracticeを作成
   await Promise.all(
