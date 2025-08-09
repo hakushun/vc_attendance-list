@@ -40,12 +40,18 @@ export const Practice: React.VFC<Props> = React.memo(
         <Heading level={3} label="練習予定 登録フォーム" />
         <form className={styles.form}>
           <fieldset className={styles.fieldset}>
-            <legend>{event.title}の練習予定</legend>
+            <legend>
+              {event.title}
+              の練習予定
+            </legend>
             <ul className={styles.list}>
               {event.dates.map((date) => (
                 <li key={date.id}>
                   <details>
-                    <summary className={styles.summary}>{date.day}の予定</summary>
+                    <summary className={styles.summary}>
+                      {date.day}
+                      の予定
+                    </summary>
                     <div className={styles.wrapper}>
                       <div className={styles.inputWrapper}>
                         <label htmlFor={`name1-${date.id}`} className={styles.label}>
