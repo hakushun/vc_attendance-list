@@ -91,11 +91,26 @@ export const PracticeDetail: React.VFC<Props> = React.memo(
             <div className={styles.item}>
               <dt className={styles.term}>出欠</dt>
               <dd className={styles.definition}>
-                <div>○：{breakdownAttendances.presence.length}</div>
-                <div>遅刻：{breakdownAttendances.late.length}</div>
-                <div>早退：{breakdownAttendances.leavingEarly.length}</div>
-                <div>未定：{breakdownAttendances.undecided.length}</div>
-                <div>×：{breakdownAttendances.absence.length}</div>
+                <div>
+                  ○：
+                  {breakdownAttendances.presence.length}
+                </div>
+                <div>
+                  遅刻：
+                  {breakdownAttendances.late.length}
+                </div>
+                <div>
+                  早退：
+                  {breakdownAttendances.leavingEarly.length}
+                </div>
+                <div>
+                  未定：
+                  {breakdownAttendances.undecided.length}
+                </div>
+                <div>
+                  ×：
+                  {breakdownAttendances.absence.length}
+                </div>
               </dd>
             </div>
           </dl>

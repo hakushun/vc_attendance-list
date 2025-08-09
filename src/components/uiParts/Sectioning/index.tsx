@@ -3,6 +3,7 @@ import styles from './index.module.scss';
 
 type Props = {
   id: string;
+  children: React.ReactNode;
 };
 export const Sectioning: React.FC<Props> = React.memo(({ id, children }) => {
   return (

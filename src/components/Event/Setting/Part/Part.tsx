@@ -44,7 +44,8 @@ export const Part: React.VFC<Props> = React.memo(
             {part.map((item, index) => (
               <li key={item.id} className={styles.inputWrapper}>
                 <label htmlFor="" className={styles.label}>
-                  パート{index + 1}
+                  パート
+                  {index + 1}
                 </label>
                 <input
                   type="text"

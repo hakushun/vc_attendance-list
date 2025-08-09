@@ -7,6 +7,7 @@ type Props = {
   modalRef: React.MutableRefObject<HTMLElement | null>;
   handleToggle: () => void;
   handleKeydown: (_e: React.KeyboardEvent<HTMLElement>) => void;
+  children: React.ReactNode;
 };
 export const Modal: React.FC<Props> = React.memo(
   ({ modalRef, handleToggle, handleKeydown, children }) => {

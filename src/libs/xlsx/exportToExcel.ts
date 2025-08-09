@@ -1,4 +1,4 @@
-import XLSX from 'xlsx';
+import * as XLSX from 'xlsx';
 
 export const exportToExcel = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
   const target = e.currentTarget.closest('table');

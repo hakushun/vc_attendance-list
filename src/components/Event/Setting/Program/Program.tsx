@@ -35,13 +35,18 @@ export const Program: React.VFC<Props> = React.memo(
         <Heading level={3} label="プログラム 登録フォーム" />
         <form className={styles.form}>
           <fieldset className={styles.fieldset}>
-            <legend>{event.title}のプログラム登録</legend>
+            <legend>
+              {event.title}
+              のプログラム登録
+            </legend>
             <ul className={styles.list}>
               {program.map((item, index) => (
                 <li key={item.id}>
                   <div className={styles.inputWrapper}>
                     <label htmlFor={`program-${item.id}`} className={styles.label}>
-                      曲目{index + 1}:
+                      曲目
+                      {index + 1}
+                      :
                       <Badge type="required" />
                     </label>
                     <input
