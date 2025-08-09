@@ -2,7 +2,12 @@
 import { AnyAction, Middleware } from 'redux';
 import configureMockStore, { MockStore } from 'redux-mock-store';
 import thunk, { ThunkDispatch } from 'redux-thunk';
-import * as module from '../../../libs/firebase/firebaseAuth';
+import {
+  signUpWithFirebase,
+  signInWithFirebase,
+  signOutWithFirebase,
+  resetUserPassword,
+} from '../../../libs/firebase/firebaseAuth';
 import reducer, {
   change,
   changeResetForm,
@@ -16,6 +21,14 @@ import reducer, {
   signUp,
 } from '../app/sign';
 import { initialState } from './_initialState';
+
+// Mock Firebase functions
+jest.mock('../../../libs/firebase/firebaseAuth', () => ({
+  signUpWithFirebase: jest.fn(),
+  signInWithFirebase: jest.fn(),
+  signOutWithFirebase: jest.fn(),
+  resetUserPassword: jest.fn(),
+}));
 
 // async action
 describe('Async action: sign', () => {
@@ -47,9 +60,7 @@ describe('Async action: sign', () => {
       id: '123456789',
       email: 'sample@sample.com',
     };
-    jest
-      .spyOn(module, 'signUpWithFirebase')
-      .mockImplementationOnce(async () => Promise.resolve(userdata));
+    (signUpWithFirebase as jest.Mock).mockImplementationOnce(async () => Promise.resolve(userdata));
     const payload = {
       email: 'sample@sample.com',
       password: '123456',
@@ -66,9 +77,7 @@ describe('Async action: sign', () => {
       id: '123456789',
       email: 'sample@sample.com',
     };
-    jest
-      .spyOn(module, 'signInWithFirebase')
-      .mockImplementationOnce(async () => Promise.resolve(userdata));
+    (signInWithFirebase as jest.Mock).mockImplementationOnce(async () => Promise.resolve(userdata));
     const payload = {
       email: 'sample@sample.com',
       password: '123456',
@@ -81,7 +90,7 @@ describe('Async action: sign', () => {
     expect(mockStore.getActions()).toEqual(expectedActions);
   });
   it('signOut: success', async () => {
-    jest.spyOn(module, 'signOutWithFirebase').mockImplementationOnce(async () => Promise.resolve());
+    (signOutWithFirebase as jest.Mock).mockImplementationOnce(async () => Promise.resolve());
     const expectedActions = [
       signOut.async.started(),
       signOut.async.done({ params: undefined, result: undefined }),
@@ -90,7 +99,7 @@ describe('Async action: sign', () => {
     expect(mockStore.getActions()).toEqual(expectedActions);
   });
   it('resetPassword: success', async () => {
-    jest.spyOn(module, 'resetUserPassword').mockImplementationOnce(async () => Promise.resolve());
+    (resetUserPassword as jest.Mock).mockImplementationOnce(async () => Promise.resolve());
     const payload = {
       email: 'sample@sample.com',
     };
