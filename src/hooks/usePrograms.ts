@@ -1,5 +1,6 @@
 import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { doc, onSnapshot } from 'firebase/firestore';
 import { getInstance } from '../libs/firestore/getInstance';
 import { isProgramInvalid } from '../libs/utils/isProgramInvalid';
 import { selectEvent } from '../redux/modules/app/event';
@@ -36,13 +37,10 @@ export const usePrograms = (eventId: string): Hooks => {
   );
 
   useEffect(() => {
-    const unsubscribe = db
-      .collection('programs')
-      .doc(eventId)
-      .onSnapshot((snapshot) => {
-        const data = snapshot.data() as { program: ProgramItem[] } | undefined;
-        data && dispatch(subscribeProgram(data.program));
-      });
+    const unsubscribe = onSnapshot(doc(db, 'programs', eventId), (snapshot) => {
+      const data = snapshot.data() as { program: ProgramItem[] } | undefined;
+      data && dispatch(subscribeProgram(data.program));
+    });
     return () => unsubscribe();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [eventId]);

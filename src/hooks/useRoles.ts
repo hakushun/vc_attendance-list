@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { doc, onSnapshot } from 'firebase/firestore';
 import { getInstance } from '../libs/firestore/getInstance';
 import { RoleItem } from '../redux/modules/app/role';
 import { selectIsLoading, selectRoles, subscribeRoles } from '../redux/modules/domain/roles';
@@ -15,14 +16,11 @@ export const useRoles = (eventId: string): Hooks => {
   const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
-    const unsubscribe = db
-      .collection('roles')
-      .doc(eventId)
-      .onSnapshot((snapshot) => {
-        const data = snapshot.data() as { [userId: string]: RoleItem } | undefined;
-        if (!data) return;
-        dispatch(subscribeRoles(data));
-      });
+    const unsubscribe = onSnapshot(doc(db, 'roles', eventId), (snapshot) => {
+      const data = snapshot.data() as { [userId: string]: RoleItem } | undefined;
+      if (!data) return;
+      dispatch(subscribeRoles(data));
+    });
     return () => unsubscribe();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [eventId]);

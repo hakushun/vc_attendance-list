@@ -1,5 +1,6 @@
 import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { collection, onSnapshot } from 'firebase/firestore';
 import { getInstance } from '../libs/firestore/getInstance';
 import { isAttendanceInvalid } from '../libs/utils/isAttendanceInvalid';
 import { Attendance, selectAttendance } from '../redux/modules/app/attendance';
@@ -65,15 +66,14 @@ export const useAttendances = (eventId: string): Hooks => {
   }, [attendance, dispatch, eventId]);
 
   useEffect(() => {
-    const unsubscribe = db
-      .collection('attendances')
-      .doc(eventId)
-      .collection('attendance')
-      .onSnapshot((snapshot) => {
+    const unsubscribe = onSnapshot(
+      collection(db, 'attendances', eventId, 'attendance'),
+      (snapshot) => {
         const items: Attendance[] = [];
-        snapshot.forEach((doc) => items.push(doc.data() as Attendance));
+        snapshot.forEach((docSnapshot) => items.push(docSnapshot.data() as Attendance));
         dispatch(subscribeAtendances(items));
-      });
+      },
+    );
     return () => unsubscribe();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [eventId]);

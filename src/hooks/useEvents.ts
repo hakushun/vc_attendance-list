@@ -1,5 +1,6 @@
 import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { collection, onSnapshot } from 'firebase/firestore';
 import { getInstance } from '../libs/firestore/getInstance';
 import { isEventInvaild } from '../libs/utils/isEventInvalid';
 import { Event, selectEvent } from '../redux/modules/app/event';
@@ -55,7 +56,7 @@ export const useEvents = (eventId?: string): Hooks => {
   }, [dispatch, event, router]);
 
   useEffect(() => {
-    const unsubscribe = db.collection('events').onSnapshot((snapshot) => {
+    const unsubscribe = onSnapshot(collection(db, 'events'), (snapshot) => {
       const items: Event[] = [];
       snapshot.forEach((doc) => items.push(doc.data() as Event));
       dispatch(subscribeEvents(items));

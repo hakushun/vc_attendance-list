@@ -1,4 +1,6 @@
-export interface FirebaseUser extends Partial<firebase.default.User> {
+import { User } from 'firebase/auth';
+
+export interface FirebaseUser extends Partial<User> {
   uid: string;
   email: string | null;
 }

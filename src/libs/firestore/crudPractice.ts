@@ -1,3 +1,4 @@
+import { doc, setDoc } from 'firebase/firestore';
 import { getInstance } from './getInstance';
 import { Event } from '../../redux/modules/app/event';
 import { UpdatePayload } from '../../redux/modules/domain/practice';
@@ -24,7 +25,8 @@ export const createPractice = async (event: Event): Promise<void> => {
           dateId: date.id,
         },
       };
-      return db.collection('practices').doc(event.id).collection('practice').doc(date.id).set(data);
+      const docRef = doc(db, 'practices', event.id, 'practice', date.id);
+      return setDoc(docRef, data);
     }),
   );
 };
@@ -37,12 +39,8 @@ export const updatePractice = async ({ event, practice }: UpdatePayload): Promis
         plan: practice.plans.find((plan) => plan.dateId === date.id),
         remark: practice.remarks.find((remark) => remark.dateId === date.id),
       };
-      return db
-        .collection('practices')
-        .doc(event.id)
-        .collection('practice')
-        .doc(date.id)
-        .set(data, { merge: true });
+      const docRef = doc(db, 'practices', event.id, 'practice', date.id);
+      return setDoc(docRef, data, { merge: true });
     }),
   );
 };
