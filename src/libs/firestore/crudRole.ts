@@ -7,7 +7,7 @@ const db = getInstance();
 
 export const createRole = async (event: Event): Promise<void> => {
   const docRef = doc(db, 'roles', event.id);
-  await setDoc(docRef, {});
+  await setDoc(docRef, {}, { merge: true });
 };
 
 export const updateRole = async ({ eventId, userId, role }: UpdatePayload): Promise<void> => {
