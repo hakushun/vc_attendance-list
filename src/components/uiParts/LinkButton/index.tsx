@@ -8,8 +8,8 @@ type Props = {
 };
 export const LinkButton: React.VFC<Props> = React.memo(({ href, label }) => {
   return (
-    <Link href={href}>
-      <a className={styles.root}>{label}</a>
+    <Link href={href} className={styles.root}>
+      {label}
     </Link>
   );
 });

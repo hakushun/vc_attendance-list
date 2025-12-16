@@ -15,8 +15,8 @@ export const EventList: React.VFC<Props> = React.memo(({ events }) => {
       <ul className={styles.list}>
         {events.map((event) => (
           <li key={event.id}>
-            <Link href={`/event/${event.id}`}>
-              <a className={styles.link}>{event.title}</a>
+            <Link href={`/event/${event.id}`} className={styles.link}>
+              {event.title}
             </Link>
           </li>
         ))}

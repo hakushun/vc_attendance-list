@@ -18,10 +18,8 @@ export const Header: React.VFC<Props> = React.memo(
     return (
       <header className={styles.root}>
         <div className={styles.inner}>
-          <Link href="/">
-            <a>
-              <h1 className={styles.title}>出欠さん</h1>
-            </a>
+          <Link href="/" className={styles.title}>
+            <h1 className={styles.title}>出欠さん</h1>
           </Link>
           {user && (
             <nav className={styles.nav}>
