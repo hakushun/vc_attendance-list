@@ -84,7 +84,7 @@
     "dayjs": "^1.11.13",
     "firebase": "^12.1.0",
     "firebase-admin": "^13.4.0",
-    "next": "^14.2.31",
+    "next": "14.2.35",
     "next-pwa": "^5.6.0",
     "next-redux-wrapper": "^7.0.5",
     "react": "^18.3.1",
