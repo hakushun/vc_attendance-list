@@ -2,8 +2,8 @@ import { createSelector } from 'reselect';
 import actionCreatorFactory from 'typescript-fsa';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import { asyncFactory } from 'typescript-fsa-redux-thunk';
-import { RootState } from '../reducers';
-import { Attendance } from '../app/attendance';
+import type { RootState } from '../reducers';
+import type { Attendance } from '../app/attendance';
 import {
   createAttendance,
   removeAttendance,

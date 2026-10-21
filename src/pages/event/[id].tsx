@@ -1,5 +1,4 @@
-import { NextPage } from 'next';
-import React from 'react';
+import { type NextPage } from 'next';
 import { Event } from '../../components/Event';
 import { Loading } from '../../components/uiParts/Loading';
 import { useRouter } from '../../hooks/useRouter';

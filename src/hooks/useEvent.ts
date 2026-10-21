@@ -1,13 +1,13 @@
 import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getStringDate } from '../libs/dayjs/getStringDate';
+import type { Event } from '../redux/modules/app/event';
 import {
   addDateForm,
   changeDay,
   changeText,
   changeTime,
   deleteDateForm,
-  Event,
   focusEvent,
   initiateEvent,
   selectEvent,

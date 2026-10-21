@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import { useDialog } from '../../../hooks/useDialog';
 import { Dialog as Presentational } from './Dialog';
 

@@ -2,10 +2,10 @@ import { createSelector } from 'reselect';
 import actionCreatorFactory from 'typescript-fsa';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import { asyncFactory } from 'typescript-fsa-redux-thunk';
-import { RootState } from '../reducers';
-import { Part } from '../app/part';
+import type { RootState } from '../reducers';
+import type { Part } from '../app/part';
 import { updatePart } from '../../../libs/firestore/crudPart';
-import { Event } from '../app/event';
+import type { Event } from '../app/event';
 
 export type Parts = {
   parts: Part[];

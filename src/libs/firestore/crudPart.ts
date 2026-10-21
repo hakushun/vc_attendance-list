@@ -1,8 +1,8 @@
 import { doc, setDoc } from 'firebase/firestore';
 import { getInstance } from './getInstance';
-import { Event } from '../../redux/modules/app/event';
+import type { Event } from '../../redux/modules/app/event';
 import { generateId } from '../ulid/generateId';
-import { UpdatePayload } from '../../redux/modules/domain/parts';
+import type { UpdatePayload } from '../../redux/modules/domain/parts';
 
 const db = getInstance();
 

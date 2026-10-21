@@ -8,7 +8,7 @@ import {
   remove as removeEvent,
   update as updateEvent,
 } from '../domain/events';
-import { RootState } from '../reducers';
+import type { RootState } from '../reducers';
 
 export type Date = {
   id: string;

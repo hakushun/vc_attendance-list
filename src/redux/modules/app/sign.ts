@@ -8,8 +8,8 @@ import {
   signOutWithFirebase,
   signUpWithFirebase,
 } from '../../../libs/firebase/firebaseAuth';
-import { RootState } from '../reducers';
-import { Userdata } from './user';
+import type { RootState } from '../reducers';
+import type { Userdata } from './user';
 
 export type SignForm = {
   email: string;

@@ -1,4 +1,4 @@
-import { Event } from '../../redux/modules/app/event';
+import type { Event } from '../../redux/modules/app/event';
 
 export const isEventInvaild = (event: Event): boolean => {
   return (

@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import initFirebase from '../libs/firebase/initFirebase';
 import { isEmail } from '../libs/utils/isEmail';
 import { isSignFormInvalid } from '../libs/utils/isSignFormInvalid';
+import type { SignForm } from '../redux/modules/app/sign';
 import {
   signUp,
   signIn,
   signOut,
   selectIsLoading,
   selectSignForm,
-  SignForm,
   change,
   selectResetForm,
   changeResetForm,

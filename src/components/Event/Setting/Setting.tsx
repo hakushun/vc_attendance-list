@@ -5,8 +5,8 @@ import { Sectioning } from '../../uiParts/Sectioning';
 import { Heading } from '../../uiParts/Heading';
 import { Program } from './Program';
 import { Part } from './Part';
-import { Event } from '../../../redux/modules/app/event';
-import { Tab } from '../../../redux/modules/ui/tab';
+import type { Event } from '../../../redux/modules/app/event';
+import type { Tab } from '../../../redux/modules/ui/tab';
 import styles from './index.module.scss';
 
 type Props = {

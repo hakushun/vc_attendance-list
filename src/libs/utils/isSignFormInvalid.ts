@@ -1,4 +1,4 @@
-import { SignForm } from '../../redux/modules/app/sign';
+import type { SignForm } from '../../redux/modules/app/sign';
 import { isEmail } from './isEmail';
 
 export const isSignFormInvalid = (value: SignForm): boolean => {

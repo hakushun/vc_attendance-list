@@ -1,7 +1,7 @@
 import { doc, getDoc, setDoc, deleteDoc, collection, getDocs } from 'firebase/firestore';
-import { Attendance, AttendanceItem } from '../../redux/modules/app/attendance';
-import { Event } from '../../redux/modules/app/event';
-import { CreatePayload } from '../../redux/modules/domain/events';
+import type { Attendance, AttendanceItem } from '../../redux/modules/app/attendance';
+import type { Event } from '../../redux/modules/app/event';
+import type { CreatePayload } from '../../redux/modules/domain/events';
 import { getInstance } from './getInstance';
 
 const db = getInstance();

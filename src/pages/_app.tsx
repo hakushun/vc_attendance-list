@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
-import { AppProps } from 'next/app';
+import type React from 'react';
+import { useEffect } from 'react';
+import type { AppProps } from 'next/app';
 import { useDispatch } from 'react-redux';
 import { wrapper } from '../redux/store';
 import { closeAll } from '../redux/modules/ui/show';

@@ -2,12 +2,12 @@ import React, { useEffect } from 'react';
 import { useAttendance } from '../../../hooks/useAttendance';
 import { useProgram } from '../../../hooks/useProgram';
 import { isBefore } from '../../../libs/dayjs/isBefore';
-import { Attendance } from '../../../redux/modules/app/attendance';
-import { Event } from '../../../redux/modules/app/event';
-import { ProgramItem } from '../../../redux/modules/app/program';
-import { RoleItem } from '../../../redux/modules/app/role';
-import { Userdata } from '../../../redux/modules/app/user';
-import { PracticeItem } from '../../../redux/modules/domain/practice';
+import type { Attendance } from '../../../redux/modules/app/attendance';
+import type { Event } from '../../../redux/modules/app/event';
+import type { ProgramItem } from '../../../redux/modules/app/program';
+import type { RoleItem } from '../../../redux/modules/app/role';
+import type { Userdata } from '../../../redux/modules/app/user';
+import type { PracticeItem } from '../../../redux/modules/domain/practice';
 import { Loading } from '../../uiParts/Loading';
 import { AttendanceTable as Presentational } from './AttendanceTable';
 

@@ -3,7 +3,7 @@ import actionCreatorFactory from 'typescript-fsa';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import { generateId } from '../../../libs/ulid/generateId';
 import { subscribePart } from '../domain/parts';
-import { RootState } from '../reducers';
+import type { RootState } from '../reducers';
 
 export type Part = {
   id: string;

@@ -1,9 +1,9 @@
 import clsx from 'clsx';
 import React from 'react';
-import { Event } from '../../../../redux/modules/app/event';
-import { Location } from '../../../../redux/modules/app/locations';
-import { Plan } from '../../../../redux/modules/app/plans';
-import { Remark } from '../../../../redux/modules/app/remarks';
+import type { Event } from '../../../../redux/modules/app/event';
+import type { Location } from '../../../../redux/modules/app/locations';
+import type { Plan } from '../../../../redux/modules/app/plans';
+import type { Remark } from '../../../../redux/modules/app/remarks';
 import { Badge } from '../../../uiParts/Badge';
 import { Heading } from '../../../uiParts/Heading';
 import { PrimaryButton } from '../../../uiParts/PrimaryButton';

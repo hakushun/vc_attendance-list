@@ -3,12 +3,8 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { auth } from '../libs/firebase/initFirebase';
 import { mapUserData } from '../libs/utils/mapUserData';
-import {
-  selectIsLoading,
-  selectUser,
-  auth as authAction,
-  Userdata,
-} from '../redux/modules/app/user';
+import type { Userdata } from '../redux/modules/app/user';
+import { selectIsLoading, selectUser, auth as authAction } from '../redux/modules/app/user';
 import { useRouter } from './useRouter';
 
 type Hooks = {

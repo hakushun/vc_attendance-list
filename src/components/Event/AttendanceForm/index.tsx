@@ -1,12 +1,12 @@
 import React from 'react';
 import { useAttendance } from '../../../hooks/useAttendance';
 import { useShow } from '../../../hooks/useShow';
-import { Attendance } from '../../../redux/modules/app/attendance';
-import { Event } from '../../../redux/modules/app/event';
-import { Part } from '../../../redux/modules/app/part';
-import { Userdata } from '../../../redux/modules/app/user';
-import { ProgramItem } from '../../../redux/modules/app/program';
-import { PracticeItem } from '../../../redux/modules/domain/practice';
+import type { Attendance } from '../../../redux/modules/app/attendance';
+import type { Event } from '../../../redux/modules/app/event';
+import type { Part } from '../../../redux/modules/app/part';
+import type { Userdata } from '../../../redux/modules/app/user';
+import type { ProgramItem } from '../../../redux/modules/app/program';
+import type { PracticeItem } from '../../../redux/modules/domain/practice';
 import { AttendanceForm as Presentational } from './AttendanceForm';
 import { useRole } from '../../../hooks/useRole';
 

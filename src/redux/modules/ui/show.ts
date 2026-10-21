@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import actionCreatorFactory from 'typescript-fsa';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
-import { Event } from '../app/event';
+import type { Event } from '../app/event';
 import {
   create as createAttendance,
   remove as removeAttendance,
@@ -12,7 +12,7 @@ import {
   remove as removeEvent,
   update as updateEvent,
 } from '../domain/events';
-import { RootState } from '../reducers';
+import type { RootState } from '../reducers';
 import { focusAttendance, initiateAttendance } from '../app/attendance';
 import { update as updatePractice } from '../domain/practice';
 import { update as updateRoles } from '../domain/roles';

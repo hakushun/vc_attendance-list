@@ -3,7 +3,7 @@ This is an application to take attendance specialized in orchestra and brassband
 
 ## Setup
 
-Node.js 22 以上が必要。
+Node.js 22.22.1 以上が必要。
 
 ```sh
 npm ci
