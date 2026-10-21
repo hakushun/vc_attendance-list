@@ -6,10 +6,6 @@ const withPWA = require('next-pwa')({
 });
 
 module.exports = withPWA({
-  experimental: {
-    // Node.js 22の新機能を活用
-    serverComponentsExternalPackages: ['firebase-admin'],
-  },
   // パフォーマンス最適化
   swcMinify: true,
   compress: true,
