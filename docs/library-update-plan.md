@@ -93,6 +93,8 @@
   - sass の非推奨警告は出なかった（`@import` は使っておらず、非推奨の関数は Step 1 で置き換え済み）。CSS の差分は `calc(100% / 3)` が計算済みの値になった 1 箇所のみ
   - firebase 12.15.0 以降で全ページの初回 JS が gzip で約 58 kB 増える（217 kB → 275 kB）。`@firebase/firestore` 4.16.0 で追加された `re2js`（Pipeline 機能用）が tree-shaking されずに取り込まれるため。PWA のキャッシュで 2 回目以降の影響は小さく、固定すると今後の更新が遅れるため 12.19 を採用した
   - xlsx 0.20.3 で `/event/[id]` の JS が約 14 kB 増えた
+  - xlsx は差し替えのため、マージ前に Vercel Preview で Excel 出力の手動確認を行う（PR #15 のチェックリストで管理）
+  - xlsx は CDN の URL 指定になり `npm update` などで追従しないため、手動の更新手順を README に記載した
   - firebase 経由の `@grpc/grpc-js` の脆弱性（GHSA-m9gg-hp2v-232j, GHSA-f596-whhp-79r4）は、最新の `@firebase/firestore` でも `~1.9.0` に固定されているため解消できない。どちらもサーバー側の機能に関するもので、ブラウザから Firestore を使うこのアプリには当てはまらないため許容する
 
 ### Step 3: 開発ツールの刷新
