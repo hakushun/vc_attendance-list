@@ -13,7 +13,6 @@ export const Modal: React.FC<Props> = React.memo(
   ({ modalRef, handleToggle, handleKeydown, children }) => {
     return (
       <Overlay>
-        {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
         <section
           role="dialog"
           aria-modal="true"

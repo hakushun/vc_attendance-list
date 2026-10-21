@@ -1,6 +1,7 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeRole, RoleItem, selectRole } from '../redux/modules/app/role';
+import type { RoleItem } from '../redux/modules/app/role';
+import { changeRole, selectRole } from '../redux/modules/app/role';
 import { selectUser } from '../redux/modules/app/user';
 
 type Hooks = {

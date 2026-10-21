@@ -1,11 +1,11 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import type { ProgramItem } from '../redux/modules/app/program';
 import {
   addProgramForm,
   changeProgram,
   deleteProgramForm,
   focusProgram,
-  ProgramItem,
   selectProgram,
   selectSelectedId,
 } from '../redux/modules/app/program';

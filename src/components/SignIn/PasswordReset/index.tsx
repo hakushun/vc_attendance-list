@@ -1,4 +1,5 @@
-import React, { MutableRefObject } from 'react';
+import type { MutableRefObject } from 'react';
+import React from 'react';
 import { isEmail } from '../../../libs/utils/isEmail';
 import { Badge } from '../../uiParts/Badge';
 import { Heading } from '../../uiParts/Heading';

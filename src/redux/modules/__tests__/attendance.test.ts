@@ -1,7 +1,6 @@
 /* eslint-disable no-undefined */
+import type { Attendance, AttendanceType } from '../app/attendance';
 import reducer, {
-  Attendance,
-  AttendanceType,
   changeAttendance,
   changeAttendanceItem,
   focusAttendance,

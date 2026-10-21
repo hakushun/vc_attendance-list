@@ -1,13 +1,16 @@
 /* eslint-disable no-undefined */
-import { AnyAction, Middleware } from 'redux';
-import configureMockStore, { MockStore } from 'redux-mock-store';
-import thunk, { ThunkDispatch } from 'redux-thunk';
+import type { AnyAction, Middleware } from 'redux';
+import type { MockStore } from 'redux-mock-store';
+import configureMockStore from 'redux-mock-store';
+import type { ThunkDispatch } from 'redux-thunk';
+import thunk from 'redux-thunk';
 import {
   signUpWithFirebase,
   signInWithFirebase,
   signOutWithFirebase,
   resetUserPassword,
 } from '../../../libs/firebase/firebaseAuth';
+import type { Sign } from '../app/sign';
 import reducer, {
   change,
   changeResetForm,
@@ -15,7 +18,6 @@ import reducer, {
   selectIsLoading,
   selectResetForm,
   selectSignForm,
-  Sign,
   signIn,
   signOut,
   signUp,

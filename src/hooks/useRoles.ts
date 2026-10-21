@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { doc, onSnapshot } from 'firebase/firestore';
 import { getInstance } from '../libs/firestore/getInstance';
-import { RoleItem } from '../redux/modules/app/role';
+import type { RoleItem } from '../redux/modules/app/role';
 import { selectIsLoading, selectRoles, subscribeRoles } from '../redux/modules/domain/roles';
 
 type Hooks = {

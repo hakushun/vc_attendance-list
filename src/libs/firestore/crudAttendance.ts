@@ -1,5 +1,5 @@
 import { doc, setDoc, deleteDoc } from 'firebase/firestore';
-import { CrudPayload } from '../../redux/modules/domain/attendances';
+import type { CrudPayload } from '../../redux/modules/domain/attendances';
 import { removeRole } from './crudRole';
 import { getInstance } from './getInstance';
 

@@ -1,4 +1,5 @@
-import { MutableRefObject, useCallback, useEffect, useRef } from 'react';
+import type { MutableRefObject } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { handleTabDown } from '../libs/utils/handleTabDown';
 import {

@@ -4,7 +4,8 @@ import { doc, onSnapshot } from 'firebase/firestore';
 import { getInstance } from '../libs/firestore/getInstance';
 import { isProgramInvalid } from '../libs/utils/isProgramInvalid';
 import { selectEvent } from '../redux/modules/app/event';
-import { ProgramItem, selectProgram } from '../redux/modules/app/program';
+import type { ProgramItem } from '../redux/modules/app/program';
+import { selectProgram } from '../redux/modules/app/program';
 import {
   selectIsLoading,
   selectPrograms,

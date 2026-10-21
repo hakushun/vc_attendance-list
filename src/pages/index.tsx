@@ -1,5 +1,4 @@
-import { NextPage } from 'next';
-import React from 'react';
+import { type NextPage } from 'next';
 import { Home } from '../components/Home';
 
 const index: NextPage = () => <Home />;

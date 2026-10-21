@@ -1,6 +1,7 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { change, selectTab, Tab, Value } from '../redux/modules/ui/tab';
+import type { Tab, Value } from '../redux/modules/ui/tab';
+import { change, selectTab } from '../redux/modules/ui/tab';
 
 type CustomHooks = () => {
   tab: Tab;

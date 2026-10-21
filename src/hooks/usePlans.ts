@@ -1,6 +1,7 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { changePlan, Plan, selectPlans } from '../redux/modules/app/plans';
+import type { Plan } from '../redux/modules/app/plans';
+import { changePlan, selectPlans } from '../redux/modules/app/plans';
 
 type Hooks = {
   plans: Plan[];

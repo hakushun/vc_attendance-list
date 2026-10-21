@@ -1,4 +1,5 @@
-import { applyMiddleware, createStore, Middleware, Store } from 'redux';
+import type { Middleware, Store } from 'redux';
+import { applyMiddleware, createStore } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { createWrapper } from 'next-redux-wrapper';
 import { composeWithDevTools } from 'redux-devtools-extension';

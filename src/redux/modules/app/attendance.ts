@@ -1,8 +1,8 @@
 import { createSelector } from 'reselect';
 import actionCreatorFactory from 'typescript-fsa';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
-import { RootState } from '../reducers';
-import { Date as typeDate, Event } from './event';
+import type { RootState } from '../reducers';
+import type { Date as typeDate, Event } from './event';
 
 export type AttendanceType = 'presence' | 'late' | 'leavingEarly' | 'undecided' | 'absence';
 export type AttendanceItem = {

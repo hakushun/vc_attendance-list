@@ -5,8 +5,8 @@ import {
   sendPasswordResetEmail,
 } from 'firebase/auth';
 import { auth } from './initFirebase';
-import { AuthPayload } from '../../redux/modules/app/sign';
-import { Userdata } from '../../redux/modules/app/user';
+import type { AuthPayload } from '../../redux/modules/app/sign';
+import type { Userdata } from '../../redux/modules/app/user';
 import { mapUserData } from '../utils/mapUserData';
 
 export const signUpWithFirebase = async ({ email, password }: AuthPayload): Promise<Userdata> => {

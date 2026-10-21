@@ -1,4 +1,4 @@
-import { Attendance } from '../../redux/modules/app/attendance';
+import type { Attendance } from '../../redux/modules/app/attendance';
 
 export const isAttendanceInvalid = (attendance: Attendance): boolean => {
   return (

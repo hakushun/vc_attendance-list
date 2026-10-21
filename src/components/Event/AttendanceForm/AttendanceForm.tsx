@@ -2,12 +2,12 @@ import clsx from 'clsx';
 import React from 'react';
 import { getDayOfTheWeek } from '../../../libs/dayjs/getDayOfTheWeek';
 import { isAttendanceInvalid } from '../../../libs/utils/isAttendanceInvalid';
-import { Attendance } from '../../../redux/modules/app/attendance';
-import { Event } from '../../../redux/modules/app/event';
-import { Part } from '../../../redux/modules/app/part';
-import { Userdata } from '../../../redux/modules/app/user';
-import { ProgramItem } from '../../../redux/modules/app/program';
-import { PracticeItem } from '../../../redux/modules/domain/practice';
+import type { Attendance } from '../../../redux/modules/app/attendance';
+import type { Event } from '../../../redux/modules/app/event';
+import type { Part } from '../../../redux/modules/app/part';
+import type { Userdata } from '../../../redux/modules/app/user';
+import type { ProgramItem } from '../../../redux/modules/app/program';
+import type { PracticeItem } from '../../../redux/modules/domain/practice';
 import { Badge } from '../../uiParts/Badge';
 import { Heading } from '../../uiParts/Heading';
 import { OptionalButton } from '../../uiParts/OptionalButton';
@@ -15,7 +15,7 @@ import { PrimaryButton } from '../../uiParts/PrimaryButton';
 import { SecondaryButton } from '../../uiParts/SecondaryButton';
 import { Sectioning } from '../../uiParts/Sectioning';
 import styles from './index.module.scss';
-import { RoleItem } from '../../../redux/modules/app/role';
+import type { RoleItem } from '../../../redux/modules/app/role';
 
 type Props = {
   user: Userdata;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Event } from '../../../redux/modules/app/event';
+import type { Event } from '../../../redux/modules/app/event';
 import { useTab } from '../../../hooks/useTab';
 import { Setting as Presentational } from './Setting';
 import { useShow } from '../../../hooks/useShow';

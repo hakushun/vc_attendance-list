@@ -1,4 +1,5 @@
-import { NextRouter, useRouter as useNextRouter } from 'next/router';
+import type { NextRouter } from 'next/router';
+import { useRouter as useNextRouter } from 'next/router';
 
 type Hooks = {
   router: NextRouter;

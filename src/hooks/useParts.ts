@@ -4,7 +4,8 @@ import { doc, onSnapshot } from 'firebase/firestore';
 import { getInstance } from '../libs/firestore/getInstance';
 import { isPartInvalid } from '../libs/utils/isPartInvalid';
 import { selectEvent } from '../redux/modules/app/event';
-import { Part, selectPart } from '../redux/modules/app/part';
+import type { Part } from '../redux/modules/app/part';
+import { selectPart } from '../redux/modules/app/part';
 import { selectIsLoading, selectParts, subscribePart, update } from '../redux/modules/domain/parts';
 import { selectSettingIsShown } from '../redux/modules/ui/show';
 

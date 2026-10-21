@@ -1,6 +1,6 @@
 import React from 'react';
 import { isPartInvalid } from '../../../../libs/utils/isPartInvalid';
-import { Part as TypePart, ChangeOrderPayload } from '../../../../redux/modules/app/part';
+import type { Part as TypePart, ChangeOrderPayload } from '../../../../redux/modules/app/part';
 import { Heading } from '../../../uiParts/Heading';
 import { MiniButton } from '../../../uiParts/MiniButton';
 import { PrimaryButton } from '../../../uiParts/PrimaryButton';

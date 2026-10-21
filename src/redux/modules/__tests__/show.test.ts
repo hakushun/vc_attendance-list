@@ -17,7 +17,8 @@ import {
   remove as removeEvent,
   update as updateEvent,
 } from '../domain/events';
-import { Attendance, focusAttendance, initiateAttendance } from '../app/attendance';
+import type { Attendance } from '../app/attendance';
+import { focusAttendance, initiateAttendance } from '../app/attendance';
 import { update as updatePart } from '../domain/parts';
 import { update as updatePractice } from '../domain/practice';
 import { update as updateProgram } from '../domain/programs';

@@ -3,18 +3,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import { collection, onSnapshot } from 'firebase/firestore';
 import { getInstance } from '../libs/firestore/getInstance';
 import { selectEvent } from '../redux/modules/app/event';
-import { Location, selectLocations } from '../redux/modules/app/locations';
-import { Plan, selectPlans } from '../redux/modules/app/plans';
+import type { Location } from '../redux/modules/app/locations';
+import { selectLocations } from '../redux/modules/app/locations';
+import type { Plan } from '../redux/modules/app/plans';
+import { selectPlans } from '../redux/modules/app/plans';
+import type { PracticeItem } from '../redux/modules/domain/practice';
 import {
   focusPractice,
-  PracticeItem,
   selectDateId,
   selectIsLoading,
   selectPractice,
   subscribePractice,
   update,
 } from '../redux/modules/domain/practice';
-import { Remark, selectRemarks } from '../redux/modules/app/remarks';
+import type { Remark } from '../redux/modules/app/remarks';
+import { selectRemarks } from '../redux/modules/app/remarks';
 import { selectSettingIsShown } from '../redux/modules/ui/show';
 
 type Hooks = {

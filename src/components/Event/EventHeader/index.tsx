@@ -3,7 +3,7 @@ import { Sectioning } from '../../uiParts/Sectioning';
 import styles from './index.module.scss';
 import { Heading } from '../../uiParts/Heading';
 import { StringWithUrl } from '../../uiParts/StringWithUrl';
-import { Event } from '../../../redux/modules/app/event';
+import type { Event } from '../../../redux/modules/app/event';
 
 type Props = {
   event: Event;

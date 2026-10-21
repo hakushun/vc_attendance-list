@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import actionCreatorFactory from 'typescript-fsa';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
-import { RootState } from '../reducers';
+import type { RootState } from '../reducers';
 import { initiateAttendance } from './attendance';
 import { remove } from '../domain/attendances';
 import { signOut } from './sign';

@@ -1,11 +1,10 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import type { AttendanceType, Attendance } from '../redux/modules/app/attendance';
 import {
   selectAttendance,
   changeAttendance,
   changeAttendanceItem,
-  AttendanceType,
-  Attendance,
   focusAttendance,
 } from '../redux/modules/app/attendance';
 import { selectUser } from '../redux/modules/app/user';

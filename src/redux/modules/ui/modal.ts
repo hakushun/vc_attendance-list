@@ -2,7 +2,7 @@ import { createSelector } from 'reselect';
 import actionCreatorFactory from 'typescript-fsa';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import { focusPractice } from '../domain/practice';
-import { RootState } from '../reducers';
+import type { RootState } from '../reducers';
 import { resetPassword } from '../app/sign';
 
 type KeyName = 'practice' | 'passwordReset';

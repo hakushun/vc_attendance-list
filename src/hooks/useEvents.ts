@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { collection, onSnapshot } from 'firebase/firestore';
 import { getInstance } from '../libs/firestore/getInstance';
 import { isEventInvaild } from '../libs/utils/isEventInvalid';
-import { Event, selectEvent } from '../redux/modules/app/event';
+import type { Event } from '../redux/modules/app/event';
+import { selectEvent } from '../redux/modules/app/event';
 import {
   create,
   remove,

@@ -1,5 +1,6 @@
-import React, { MutableRefObject } from 'react';
-import { Message } from '../../../redux/modules/ui/dialog';
+import type { MutableRefObject } from 'react';
+import type React from 'react';
+import type { Message } from '../../../redux/modules/ui/dialog';
 import { Modal } from '../Modal';
 import { SecondaryButton } from '../SecondaryButton';
 import styles from './index.module.scss';

@@ -1,4 +1,5 @@
-import { MutableRefObject, useCallback, useEffect, useRef } from 'react';
+import type { MutableRefObject } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { initiateAttendance } from '../redux/modules/app/attendance';
 import { focusEvent, selectEvent } from '../redux/modules/app/event';

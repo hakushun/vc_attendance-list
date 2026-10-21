@@ -2,10 +2,10 @@ import { createSelector } from 'reselect';
 import actionCreatorFactory from 'typescript-fsa';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import { asyncFactory } from 'typescript-fsa-redux-thunk';
-import { RootState } from '../reducers';
-import { ProgramItem } from '../app/program';
+import type { RootState } from '../reducers';
+import type { ProgramItem } from '../app/program';
 import { updateProgram } from '../../../libs/firestore/crudProgram';
-import { Event } from '../app/event';
+import type { Event } from '../app/event';
 
 export type Programs = {
   programs: ProgramItem[];

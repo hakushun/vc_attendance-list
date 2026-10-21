@@ -1,9 +1,9 @@
 /* eslint-disable no-undefined */
 import reducer, { selectDialogIsOpened, selectDialogMessage, toggle } from '../ui/dialog';
 import { resetPassword, signIn, signOut, signUp } from '../app/sign';
+import type { CrudPayload } from '../domain/attendances';
 import {
   create as createAttendance,
-  CrudPayload,
   remove as removeAttendance,
   update as updateAttendance,
 } from '../domain/attendances';

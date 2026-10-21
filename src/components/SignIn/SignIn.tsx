@@ -1,4 +1,5 @@
-import React, { MutableRefObject } from 'react';
+import type { MutableRefObject } from 'react';
+import React from 'react';
 import { isSignFormInvalid } from '../../libs/utils/isSignFormInvalid';
 import { Badge } from '../uiParts/Badge';
 import { Heading } from '../uiParts/Heading';
@@ -6,7 +7,7 @@ import { LinkButton } from '../uiParts/LinkButton';
 import { PrimaryButton } from '../uiParts/PrimaryButton';
 import { Sectioning } from '../uiParts/Sectioning';
 import { PasswordReset } from './PasswordReset';
-import { SignForm } from '../../redux/modules/app/sign';
+import type { SignForm } from '../../redux/modules/app/sign';
 import styles from './index.module.scss';
 
 type Props = {

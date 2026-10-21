@@ -1,4 +1,4 @@
-import { User } from 'firebase/auth';
+import type { User } from 'firebase/auth';
 
 export interface FirebaseUser extends Partial<User> {
   uid: string;

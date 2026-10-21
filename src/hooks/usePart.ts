@@ -1,13 +1,12 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import type { Part, ChangeOrderPayload } from '../redux/modules/app/part';
 import {
   selectPart,
   changePart,
   addPartForm,
   deletePartForm,
-  Part,
   changeOrder,
-  ChangeOrderPayload,
 } from '../redux/modules/app/part';
 
 type Hooks = {

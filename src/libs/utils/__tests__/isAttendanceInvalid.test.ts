@@ -1,4 +1,4 @@
-import { Attendance, Occupation } from '../../../redux/modules/app/attendance';
+import type { Attendance, Occupation } from '../../../redux/modules/app/attendance';
 import { isAttendanceInvalid } from '../isAttendanceInvalid';
 
 describe('isAttendanceInvalid', () => {

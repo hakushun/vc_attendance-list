@@ -3,8 +3,8 @@ import actionCreatorFactory from 'typescript-fsa';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import { asyncFactory } from 'typescript-fsa-redux-thunk';
 import { updateRole } from '../../../libs/firestore/crudRole';
-import { RootState } from '../reducers';
-import { RoleItem } from '../app/role';
+import type { RootState } from '../reducers';
+import type { RoleItem } from '../app/role';
 
 export type Roles = {
   roles: RoleItem[];

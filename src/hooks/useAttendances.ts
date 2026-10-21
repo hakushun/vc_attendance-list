@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { collection, onSnapshot } from 'firebase/firestore';
 import { getInstance } from '../libs/firestore/getInstance';
 import { isAttendanceInvalid } from '../libs/utils/isAttendanceInvalid';
-import { Attendance, selectAttendance } from '../redux/modules/app/attendance';
+import type { Attendance } from '../redux/modules/app/attendance';
+import { selectAttendance } from '../redux/modules/app/attendance';
 import {
   create,
   remove,
