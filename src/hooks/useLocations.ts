@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from './useAppDispatch';
 import type { Location } from '../redux/modules/app/locations';
 import { changeLocation, selectLocations } from '../redux/modules/app/locations';
 
@@ -8,7 +9,7 @@ type Hooks = {
   handleChangeLocations: (_e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 export const useLocations = (): Hooks => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const locations = useSelector(selectLocations);
 
   const handleChangeLocations = useCallback(

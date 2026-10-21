@@ -131,6 +131,12 @@
 - `@types/react-redux` / `@types/redux-mock-store` は不要になれば削除（react-redux 9 は型同梱）
 - `typescript-fsa` / `typescript-fsa-reducers` / `typescript-fsa-redux-thunk` は peer 範囲（`redux >=4`, `redux-thunk >=2.3`）内のため据え置き。型エラーが出た場合のみ対処
 - `redux-mock-store` が redux 5 / thunk 3 で動作するかをテストで確認
+- 実施結果
+  - react-redux 9 の `useDispatch()` は既定で `UnknownAction` しか受け付けず、typescript-fsa のアクションと thunk の dispatch がすべて型エラーになった。thunk 対応の `AppDispatch` 型と `useAppDispatch`（`src/hooks/useAppDispatch.ts`）を追加し、`useDispatch()` の呼び出し 21 箇所を置き換えた
+  - 各モジュールの thunk は `asyncFactory<スライスの型>` で作られているが、実際の `getState` はルートの state を返す。`RootState` に直そうとすると `RootState` が reducer の型から作られているため型が循環するので、`AppDispatch` の state 型を `any` にして合わせた（`getState` はどの thunk も使っていない）
+  - `@types/redux-mock-store` が redux 4 に依存しており、テストで redux 5 の型と食い違うため、`overrides` で redux 5 を使わせた
+  - `next-redux-wrapper` を外した後も、`useSelector` を使う全ページがサーバー側で正常にレンダリングされることを `next start` で確認した
+  - reselect 5 は、値をそのまま返すだけのセレクター（`(events) => events` の形）に対して開発時に警告を出す。動作には影響せず本番では出ないため今回は対応しない。セレクターを `createSelector` を使わない単純な関数に置き換える対応を後続の課題とする
 
 ### Step 5: Next 15 → React 19 → Next 16 + Serwist
 

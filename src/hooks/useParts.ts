@@ -1,5 +1,6 @@
 import { useCallback, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from './useAppDispatch';
 import { doc, onSnapshot } from 'firebase/firestore';
 import { getInstance } from '../libs/firestore/getInstance';
 import { isPartInvalid } from '../libs/utils/isPartInvalid';
@@ -16,7 +17,7 @@ type Hooks = {
 };
 export const useParts = (eventId: string): Hooks => {
   const db = getInstance();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const event = useSelector(selectEvent);
   const part = useSelector(selectPart);
   const parts = useSelector(selectParts);

@@ -1,6 +1,7 @@
 import type { MutableRefObject } from 'react';
 import { useCallback, useEffect, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from './useAppDispatch';
 import { handleTabDown } from '../libs/utils/handleTabDown';
 import type { Message } from '../redux/modules/ui/dialog';
 import { selectDialogIsOpened, selectDialogMessage, toggle } from '../redux/modules/ui/dialog';
@@ -13,7 +14,7 @@ type Hooks = {
   handleKeydown: (_e: React.KeyboardEvent<HTMLElement>) => void;
 };
 export const useDialog = (): Hooks => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const dialogRef = useRef<HTMLElement | null>(null);
   const dialogIsOpened = useSelector(selectDialogIsOpened);
   const dialogMessage = useSelector(selectDialogMessage);

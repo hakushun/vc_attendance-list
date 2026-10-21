@@ -1,5 +1,6 @@
 import { useCallback, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from './useAppDispatch';
 import { collection, onSnapshot } from 'firebase/firestore';
 import { getInstance } from '../libs/firestore/getInstance';
 import { selectEvent } from '../redux/modules/app/event';
@@ -29,7 +30,7 @@ type Hooks = {
 };
 export const usePractice = (eventId: string): Hooks => {
   const db = getInstance();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const event = useSelector(selectEvent);
   const locations = useSelector(selectLocations);
   const plans = useSelector(selectPlans);

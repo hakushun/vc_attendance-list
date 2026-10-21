@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from './useAppDispatch';
 import type { Remark } from '../redux/modules/app/remarks';
 import { changeRemark, selectRemarks } from '../redux/modules/app/remarks';
 
@@ -8,7 +9,7 @@ type Hooks = {
   handleChangeRemarks: (_e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 };
 export const useRemarks = (): Hooks => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const remarks = useSelector(selectRemarks);
 
   const handleChangeRemarks = useCallback(

@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from './useAppDispatch';
 import type { AttendanceType, Attendance } from '../redux/modules/app/attendance';
 import {
   selectAttendance,
@@ -23,7 +24,7 @@ type Hooks = {
   ) => void;
 };
 export const useAttendance = (): Hooks => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const user = useSelector(selectUser);
   const attendance = useSelector(selectAttendance);
 

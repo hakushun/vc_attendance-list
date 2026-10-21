@@ -1,6 +1,7 @@
 import { onAuthStateChanged } from 'firebase/auth';
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from './useAppDispatch';
 import { auth } from '../libs/firebase/initFirebase';
 import { mapUserData } from '../libs/utils/mapUserData';
 import type { Userdata } from '../redux/modules/app/user';
@@ -12,7 +13,7 @@ type Hooks = {
   isLoading: boolean;
 };
 export const useUser = (): Hooks => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { router } = useRouter();
   const user = useSelector(selectUser);
   const isLoading = useSelector(selectIsLoading);
