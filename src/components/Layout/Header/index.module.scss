@@ -17,7 +17,7 @@
     font-weight: bold;
     color: mixin.$mainTextColor;
 
-    @include mixin.mq() {
+    @include mixin.mq {
       font-size: mixin.rem(22);
     }
   }

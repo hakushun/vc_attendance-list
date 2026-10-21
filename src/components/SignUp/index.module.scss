@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use '../../styles/mixin' as mixin;
 
 .form {
@@ -46,7 +47,7 @@
     }
 
     &:invalid {
-      background-color: lighten(mixin.$vividColor, 40%);
+      background-color: color.adjust(mixin.$vividColor, $lightness: 40%);
       border: 1px solid mixin.$vividColor;
     }
   }

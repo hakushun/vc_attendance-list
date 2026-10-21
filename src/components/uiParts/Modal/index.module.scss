@@ -8,8 +8,8 @@
   max-height: 85vh;
   padding: 20px 16px;
   overflow-y: auto;
+  outline: none;
   background-color: mixin.$bgColor;
   border: 3px solid mixin.$primaryColor;
   border-radius: 5px;
-  outline: none;
 }

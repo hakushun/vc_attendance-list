@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use '../../../styles/mixin' as mixin;
 
 .list {
@@ -10,16 +11,16 @@
     max-width: 100%;
     padding: 0 5px;
     overflow: hidden;
+    text-overflow: ellipsis;
     color: mixin.$clickableColor;
     text-align: left;
-    text-decoration: underline;
-    text-overflow: ellipsis;
     white-space: nowrap;
+    text-decoration: underline;
     border: 2px solid mixin.$bgColor;
 
     &:hover,
     &:focus-visible {
-      background-color: darken(mixin.$bgColor, 20%);
+      background-color: color.adjust(mixin.$bgColor, $lightness: -20%);
       border: 2px solid mixin.$mainTextColor;
       border-radius: 3px;
     }

@@ -7,7 +7,7 @@
   background-color: mixin.$primaryColor;
   border: 3px solid mixin.$primaryColor;
   border-radius: 3px;
-  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 3px 3px 0 rgb(0 0 0 / 50%);
 
   &:hover,
   &:focus-visible {
@@ -25,7 +25,7 @@
     border: 3px solid mixin.$disabledColor;
   }
 
-  @include mixin.mq() {
+  @include mixin.mq {
     padding: 2px 5px;
     font-size: mixin.rem(14);
   }

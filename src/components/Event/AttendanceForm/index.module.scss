@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use '../../../styles/mixin' as mixin;
 
 .form {
@@ -44,7 +45,7 @@
     border-radius: 3px;
 
     &:invalid {
-      background-color: lighten(mixin.$vividColor, 40%);
+      background-color: color.adjust(mixin.$vividColor, $lightness: 40%);
       border: 1px solid mixin.$vividColor;
     }
   }
@@ -82,7 +83,7 @@
     }
 
     &:invalid {
-      background-color: lighten(mixin.$vividColor, 40%);
+      background-color: color.adjust(mixin.$vividColor, $lightness: 40%);
       border: 1px solid mixin.$vividColor;
     }
   }
@@ -116,13 +117,13 @@
     min-width: 40px;
     min-height: 35px;
     cursor: pointer;
-    background-color: lighten(mixin.$ternaryColor, 30%);
+    background-color: color.adjust(mixin.$ternaryColor, $lightness: 30%);
     background-repeat: no-repeat;
     background-position: center;
     background-size: 80%;
-    border: 2px solid lighten(mixin.$ternaryColor, 30%);
+    border: 2px solid color.adjust(mixin.$ternaryColor, $lightness: 30%);
     border-radius: 10px;
-    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.5);
+    box-shadow: 0 3px 3px 0 rgb(0 0 0 / 50%);
 
     &.circle {
       background-image: url('/icon/circle.svg');
