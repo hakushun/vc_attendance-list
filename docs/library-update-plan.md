@@ -113,11 +113,11 @@
 - 実施結果
   - ESLint は 10 ではなく 9 系にした。`eslint-plugin-react` と `eslint-plugin-import` の peerDependencies が ESLint 9 までのため
   - `react-hooks` 7 の React Compiler 系ルールでは新しいエラーは出なかった
-  - 旧設定の `import/no-cycle` は TypeScript 用のパーサー・リゾルバー設定がなく、`.ts` / `.tsx` の循環参照を一度も検出できていなかった。`importPlugin.flatConfigs.typescript` を使うよう直したところ 75 件を検出した
+  - 旧設定はコードの解析自体には `@typescript-eslint/parser` を使っていたが、eslint-plugin-import 側の設定（`import/parsers` と `import/resolver` の TypeScript 拡張子の対応付け）が無かったため、`import/no-cycle` は `.ts` / `.tsx` の循環参照を一度も検出できていなかった。`importPlugin.flatConfigs.typescript` を使うよう直したところ 75 件を検出した
     - すべて「各 Redux モジュールが `reducers.ts` から型の `RootState` などを import し、`reducers.ts` が各モジュールを import する」形の、型だけの循環だった（実行時の循環は無い）
     - `@typescript-eslint/consistent-type-imports`（`import type` に分ける形）を常設し、自動修正で型の import を `import type` に揃えて解消した
   - 新しい JSX ランタイムで不要になった `import React from 'react'` と、削除したプラグインのルールを参照する `eslint-disable` コメントを削除した
-  - lint-staged 17 は Node.js 22.22.1 以上を要求する。`engines` は `>=22.0.0` のままにしている（Vercel のビルドには影響しない開発時のみの依存のため）
+  - lint-staged 17 は Node.js 22.22.1 以上を要求するため、`engines` と README の要件を `>=22.22.1` に引き上げた（Vercel は 22 系の最新パッチでビルドするため本番への影響は無い）
 
 ### Step 4: Redux 周りの更新（React 18 のまま）
 
