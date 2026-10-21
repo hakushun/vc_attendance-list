@@ -1,6 +1,7 @@
 import type { MutableRefObject } from 'react';
 import { useCallback, useEffect, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from './useAppDispatch';
 import { initiateAttendance } from '../redux/modules/app/attendance';
 import { focusEvent, selectEvent } from '../redux/modules/app/event';
 import { selectEvents } from '../redux/modules/domain/events';
@@ -23,7 +24,7 @@ type Hooks = {
   handleToggleSetting: () => void;
 };
 export const useShow = (): Hooks => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const attendanceRef = useRef<HTMLHeadingElement | null>(null);
   const covidRef = useRef<HTMLHeadingElement | null>(null);
   const event = useSelector(selectEvent);

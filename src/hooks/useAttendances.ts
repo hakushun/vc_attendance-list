@@ -1,5 +1,6 @@
 import { useCallback, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from './useAppDispatch';
 import { collection, onSnapshot } from 'firebase/firestore';
 import { getInstance } from '../libs/firestore/getInstance';
 import { isAttendanceInvalid } from '../libs/utils/isAttendanceInvalid';
@@ -34,7 +35,7 @@ type Hooks = {
 };
 export const useAttendances = (eventId: string): Hooks => {
   const db = getInstance();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const user = useSelector(selectUser);
   const role = useSelector(selectRole);
   const attendance = useSelector(selectAttendance);

@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from './useAppDispatch';
 import initFirebase from '../libs/firebase/initFirebase';
 import { isEmail } from '../libs/utils/isEmail';
 import { isSignFormInvalid } from '../libs/utils/isSignFormInvalid';
@@ -31,7 +32,7 @@ type Hooks = {
   handleResetPassword: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => Promise<void>;
 };
 export const useSign = (): Hooks => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { router } = useRouter();
   const form = useSelector(selectSignForm);
   const resetForm = useSelector(selectResetForm);

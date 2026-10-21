@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from './useAppDispatch';
 import type { ProgramItem } from '../redux/modules/app/program';
 import {
   addProgramForm,
@@ -19,7 +20,7 @@ type Hooks = {
   handleFocusProgram: (_e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 export const useProgram = (): Hooks => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const program = useSelector(selectProgram);
   const selectedId = useSelector(selectSelectedId);
 

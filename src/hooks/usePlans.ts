@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from './useAppDispatch';
 import type { Plan } from '../redux/modules/app/plans';
 import { changePlan, selectPlans } from '../redux/modules/app/plans';
 
@@ -8,7 +9,7 @@ type Hooks = {
   handleChangePlans: (_e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 };
 export const usePlans = (): Hooks => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const plans = useSelector(selectPlans);
 
   const handleChangePlans = useCallback(

@@ -1,9 +1,9 @@
 /* eslint-disable no-undefined */
-import type { AnyAction, Middleware } from 'redux';
+import type { AnyAction } from 'redux';
 import type { MockStore } from 'redux-mock-store';
 import configureMockStore from 'redux-mock-store';
 import type { ThunkDispatch } from 'redux-thunk';
-import thunk from 'redux-thunk';
+import { thunk } from 'redux-thunk';
 import {
   signUpWithFirebase,
   signInWithFirebase,
@@ -38,13 +38,11 @@ describe('Async action: sign', () => {
     dispatch: ThunkDispatch<Sign, Sign, AnyAction>;
   }
   type StoreType = MockStore<Sign> & Ext;
-  let middleware: Middleware[] = [];
   let createMockStore: (_: Sign) => StoreType;
   let mockStore: StoreType;
 
   beforeEach(() => {
-    middleware = [thunk];
-    createMockStore = configureMockStore(middleware);
+    createMockStore = configureMockStore([thunk]);
     mockStore = createMockStore({
       form: {
         email: '',

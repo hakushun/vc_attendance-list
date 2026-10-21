@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from './useAppDispatch';
 import type { Part, ChangeOrderPayload } from '../redux/modules/app/part';
 import {
   selectPart,
@@ -17,7 +18,7 @@ type Hooks = {
   handleChangeOrder: (_: ChangeOrderPayload) => void;
 };
 export const usePart = (): Hooks => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const part = useSelector(selectPart);
 
   const handleChange = useCallback(

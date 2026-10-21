@@ -1,5 +1,6 @@
 import { useCallback, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from './useAppDispatch';
 import { getStringDate } from '../libs/dayjs/getStringDate';
 import type { Event } from '../redux/modules/app/event';
 import {
@@ -24,7 +25,7 @@ type Hooks = {
   handleFocusEvent: (_value: Event) => void;
 };
 export const useEvent = (initialState?: Event): Hooks => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { router } = useRouter();
   const event = useSelector(selectEvent);
 

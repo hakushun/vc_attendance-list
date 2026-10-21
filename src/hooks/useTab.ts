@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from './useAppDispatch';
 import type { Tab, Value } from '../redux/modules/ui/tab';
 import { change, selectTab } from '../redux/modules/ui/tab';
 
@@ -8,7 +9,7 @@ type CustomHooks = () => {
   handleChangeSettingTab: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
 export const useTab: CustomHooks = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const tab = useSelector(selectTab);
 
   const handleChangeSettingTab = useCallback(

@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from './useAppDispatch';
 import { doc, onSnapshot } from 'firebase/firestore';
 import { getInstance } from '../libs/firestore/getInstance';
 import type { RoleItem } from '../redux/modules/app/role';
@@ -11,7 +12,7 @@ type Hooks = {
 };
 export const useRoles = (eventId: string): Hooks => {
   const db = getInstance();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const roles = useSelector(selectRoles);
   const isLoading = useSelector(selectIsLoading);
 

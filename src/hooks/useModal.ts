@@ -1,6 +1,7 @@
 import type { MutableRefObject } from 'react';
 import { useCallback, useEffect, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from './useAppDispatch';
 import { handleTabDown } from '../libs/utils/handleTabDown';
 import {
   closeAllModal,
@@ -20,7 +21,7 @@ type Hooks = {
 };
 
 export const useModal = (): Hooks => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const modalRef = useRef<HTMLElement | null>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
   const practiceModalIsShown = useSelector(selectPracticeModalIsShown);
