@@ -41,7 +41,7 @@
 | `next@14.2.35`（critical） | Next 16 系へのメジャーアップ |
 | `next-pwa@5.6.0`（workbox 等の high 多数） | Serwist へ移行 |
 | `xlsx@0.18.5`（npm 上に修正版なし） | SheetJS 公式 CDN の tarball（0.20.x）へ差し替え |
-| `firebase-admin@13`（推移的依存） | 未使用のため削除 |
+| `firebase-admin@13`（直接依存。脆弱性は `@google-cloud/firestore` などの推移的依存に含まれる） | 未使用のため削除 |
 | その他推移的依存（protobufjs, websocket-driver 等） | `npm audit fix`（非破壊）で解消 |
 
 ### 3.4 不要な依存
@@ -136,7 +136,7 @@ Next のメジャーは 1 つずつ上げる（15 で動作確認 → 16）。PR
   - ビルドがデフォルトで Turbopack になる
   - `router.events`（`_app.tsx`）は Pages Router で引き続き利用可能なことを確認
 - `next-pwa` → Serwist
-  - `@serwist/next` + `serwist` を導入し、`src/app/sw.ts` 相当の Service Worker エントリを作成
+  - `@serwist/next` + `serwist` を導入し、`src/sw.ts` に Service Worker のエントリを作成（Pages Router のため `src/app/` は使わない）
   - `next-pwa/cache` の `runtimeCaching` は `@serwist/next/worker` の `defaultCache` で置き換える
   - 開発時無効化（`disable: process.env.NODE_ENV === 'development'`）を維持
   - Turbopack ビルドと Serwist の対応状況を導入時点で確認し、未対応なら `next build --webpack` を使う
