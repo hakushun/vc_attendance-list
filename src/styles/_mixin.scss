@@ -1,4 +1,5 @@
 @use 'sass:map';
+@use 'sass:math';
 
 $mainTextColor: #333;
 $bgColor: #ffedcc;
@@ -23,7 +24,7 @@ $z_remark: 11;
 $z_modal: 100;
 
 @function rem($px) {
-  @return ($px / 16) * 1rem;
+  @return math.div($px, 16) * 1rem;
 }
 
 $breakpoints: (
