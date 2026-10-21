@@ -79,13 +79,3 @@ jest.mock('firebase/firestore', () => ({
   orderBy: jest.fn(),
   limit: jest.fn(),
 }));
-
-// Mock Firebase Admin
-jest.mock('firebase-admin', () => ({
-  initializeApp: jest.fn(),
-  getApps: jest.fn(() => []),
-  apps: [],
-  credential: {
-    cert: jest.fn(),
-  },
-}));

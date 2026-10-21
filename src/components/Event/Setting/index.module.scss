@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use '../../../styles/mixin' as mixin;
 
 .wrapper {
@@ -24,8 +25,8 @@
     background-color: mixin.$primaryColor;
   }
 
-  @include mixin.mq() {
-    padding: 10px 10px;
+  @include mixin.mq {
+    padding: 10px;
     font-size: mixin.rem(14);
   }
 }
@@ -36,6 +37,6 @@
   gap: 20px;
   min-width: 350px;
   padding: 20px 10px;
-  background-color: darken(mixin.$bgColor, 10%);
+  background-color: color.adjust(mixin.$bgColor, $lightness: -10%);
   border-radius: 3px;
 }

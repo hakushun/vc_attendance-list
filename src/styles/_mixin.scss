@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 $mainTextColor: #333;
 $bgColor: #ffedcc;
 $headerBgColor: #ffb833;
@@ -32,7 +34,7 @@ $breakpoints: (
 
 // メディアクエリ
 @mixin mq($breakpoint: md) {
-  @media #{map-get($breakpoints, $breakpoint)} {
+  @media #{map.get($breakpoints, $breakpoint)} {
     @content;
   }
 }

@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use '../../../styles/mixin' as mixin;
 
 .remarks {
@@ -89,7 +90,6 @@
       content: '';
       background-color: mixin.$ternaryColor;
       border-bottom: 3px solid mixin.$ternaryColor;
-      border-bottom: 3px solid mixin.$ternaryColor;
       transform: rotate(45deg);
     }
 
@@ -116,7 +116,7 @@
 
     &:hover,
     &:focus-visible {
-      background-color: darken(mixin.$bgColor, 20%);
+      background-color: color.adjust(mixin.$bgColor, $lightness: -20%);
       border: 2px solid mixin.$mainTextColor;
       border-radius: 3px;
     }

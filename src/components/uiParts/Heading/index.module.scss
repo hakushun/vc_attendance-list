@@ -5,7 +5,7 @@
   font-weight: bold;
   text-align: center;
 
-  @include mixin.mq() {
+  @include mixin.mq {
     font-size: mixin.rem(18);
   }
 

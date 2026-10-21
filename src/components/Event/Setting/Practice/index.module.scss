@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use '../../../../styles/mixin' as mixin;
 
 .form {
@@ -29,13 +30,13 @@
   }
 
   .summary {
-    padding: 5px 5px;
+    padding: 5px;
     font-weight: bold;
     cursor: pointer;
 
     &:hover,
     &:focus-visible {
-      background-color: darken(mixin.$bgColor, 30%);
+      background-color: color.adjust(mixin.$bgColor, $lightness: -30%);
       border-radius: 3px;
     }
   }
@@ -45,7 +46,7 @@
     flex-direction: column;
     gap: 10px;
     padding: 10px 20px;
-    background-color: darken(mixin.$bgColor, 20%);
+    background-color: color.adjust(mixin.$bgColor, $lightness: -20%);
     border-radius: 3px;
   }
 
@@ -75,7 +76,7 @@
     }
 
     &:invalid {
-      background-color: lighten(mixin.$vividColor, 40%);
+      background-color: color.adjust(mixin.$vividColor, $lightness: 40%);
       border: 1px solid mixin.$vividColor;
     }
   }
