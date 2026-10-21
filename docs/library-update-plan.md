@@ -110,6 +110,14 @@
 - jest 29 → 30、`@types/jest` 30、`ts-jest` を jest 30 対応版へ（`jest-environment-jsdom` とバージョンを揃える）
 - `@types/node` を 22 系へ（`engines` に合わせる）
 - `typescript` は 5.9 系の最新に留める
+- 実施結果
+  - ESLint は 10 ではなく 9 系にした。`eslint-plugin-react` と `eslint-plugin-import` の peerDependencies が ESLint 9 までのため
+  - `react-hooks` 7 の React Compiler 系ルールでは新しいエラーは出なかった
+  - 旧設定の `import/no-cycle` は TypeScript 用のパーサー・リゾルバー設定がなく、`.ts` / `.tsx` の循環参照を一度も検出できていなかった。`importPlugin.flatConfigs.typescript` を使うよう直したところ 75 件を検出した
+    - すべて「各 Redux モジュールが `reducers.ts` から型の `RootState` などを import し、`reducers.ts` が各モジュールを import する」形の、型だけの循環だった（実行時の循環は無い）
+    - `@typescript-eslint/consistent-type-imports`（`import type` に分ける形）を常設し、自動修正で型の import を `import type` に揃えて解消した
+  - 新しい JSX ランタイムで不要になった `import React from 'react'` と、削除したプラグインのルールを参照する `eslint-disable` コメントを削除した
+  - lint-staged 17 は Node.js 22.22.1 以上を要求する。`engines` は `>=22.0.0` のままにしている（Vercel のビルドには影響しない開発時のみの依存のため）
 
 ### Step 4: Redux 周りの更新（React 18 のまま）
 
