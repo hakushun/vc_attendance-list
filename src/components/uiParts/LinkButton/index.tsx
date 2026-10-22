@@ -6,7 +6,7 @@ type Props = {
   href: string;
   label: string;
 };
-export const LinkButton: React.VFC<Props> = React.memo(({ href, label }) => {
+export const LinkButton: React.FC<Props> = React.memo(({ href, label }) => {
   return (
     <Link href={href} className={styles.root}>
       {label}

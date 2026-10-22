@@ -18,7 +18,7 @@ type Props = {
   handleDeletePartForm: () => void;
   handleChangeOrder: (_: ChangeOrderPayload) => void;
 };
-export const Part: React.VFC<Props> = React.memo(
+export const Part: React.FC<Props> = React.memo(
   ({
     handleToggleSetting,
     isLoading,

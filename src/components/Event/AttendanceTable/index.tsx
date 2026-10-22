@@ -21,7 +21,7 @@ type Props = {
   roles: RoleItem[];
   practice: PracticeItem;
 };
-export const AttendanceTable: React.VFC<Props> = React.memo(
+export const AttendanceTable: React.FC<Props> = React.memo(
   ({ user, event, attendances, isLoading, handleFocusPractice, programs, roles, practice }) => {
     const { handleFocusAttendance } = useAttendance();
     const { selectedId, handleFocusProgram } = useProgram();

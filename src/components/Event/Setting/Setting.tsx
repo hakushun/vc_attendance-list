@@ -21,7 +21,7 @@ type Props = {
   tab: Tab;
   handleChangeSettingTab: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
-export const Setting: React.VFC<Props> = React.memo(
+export const Setting: React.FC<Props> = React.memo(
   ({
     event,
     handleToggleSetting,

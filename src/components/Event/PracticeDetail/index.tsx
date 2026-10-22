@@ -19,7 +19,7 @@ type Props = {
     absence: Attendance[];
   };
 };
-export const PracticeDetail: React.VFC<Props> = React.memo(
+export const PracticeDetail: React.FC<Props> = React.memo(
   ({ event, practice, dateId, breakdownAttendances }) => {
     const { modalRef, practiceModalIsShown, handleTogglePracticeModal, handleKeydown } = useModal();
 

@@ -2,7 +2,7 @@ import type React from 'react';
 import { useDialog } from '../../../hooks/useDialog';
 import { Dialog as Presentational } from './Dialog';
 
-export const Dialog: React.VFC = () => {
+export const Dialog: React.FC = () => {
   const { dialogRef, dialogIsOpened, dialogMessage, handleToggleDialog, handleKeydown } =
     useDialog();
 

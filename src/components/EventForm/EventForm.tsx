@@ -28,7 +28,7 @@ type Props = {
   handleRemove: () => void;
   user: Userdata;
 };
-export const EventForm: React.VFC<Props> = React.memo(
+export const EventForm: React.FC<Props> = React.memo(
   ({
     eventFormIsShown,
     handleToggleEventForm,

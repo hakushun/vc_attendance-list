@@ -22,7 +22,7 @@ type Props = {
   handleUpdate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   handleRemove: () => void;
 };
-export const AttendanceForm: React.VFC<Props> = React.memo(
+export const AttendanceForm: React.FC<Props> = React.memo(
   ({
     user,
     event,

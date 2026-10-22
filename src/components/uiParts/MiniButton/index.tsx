@@ -9,7 +9,7 @@ type Props = {
   disabled: boolean;
   handleClick: (_: ChangeOrderPayload) => void;
 };
-export const MiniButton: React.VFC<Props> = React.memo(
+export const MiniButton: React.FC<Props> = React.memo(
   ({ label, index, order, disabled, handleClick }) => {
     return (
       <button

@@ -18,7 +18,7 @@ import { useRoles } from '../../hooks/useRoles';
 type Props = {
   eventId: string;
 };
-export const Event: React.VFC<Props> = React.memo(({ eventId }) => {
+export const Event: React.FC<Props> = React.memo(({ eventId }) => {
   // domain
   const { parts, isLoading: partsIsLoading, handleUpdate: handlePartsUpdate } = useParts(eventId);
   const {

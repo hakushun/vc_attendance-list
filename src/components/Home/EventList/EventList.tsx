@@ -8,7 +8,7 @@ import styles from './index.module.scss';
 type Props = {
   events: Event[];
 };
-export const EventList: React.VFC<Props> = React.memo(({ events }) => {
+export const EventList: React.FC<Props> = React.memo(({ events }) => {
   return (
     <Sectioning id="event_list">
       <Heading level={2} label="イベント一覧" />

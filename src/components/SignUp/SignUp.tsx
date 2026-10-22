@@ -14,7 +14,7 @@ type Props = {
   handleChange: (_e: React.ChangeEvent<HTMLInputElement>) => void;
   handleSignUp: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => Promise<void>;
 };
-export const SignUp: React.VFC<Props> = React.memo(
+export const SignUp: React.FC<Props> = React.memo(
   ({ form, isLoading, handleChange, handleSignUp }) => {
     return (
       <Sectioning id="signup_form">

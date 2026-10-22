@@ -8,7 +8,7 @@ import type { Event } from '../../../redux/modules/app/event';
 type Props = {
   event: Event;
 };
-export const EventHeader: React.VFC<Props> = React.memo(({ event }) => {
+export const EventHeader: React.FC<Props> = React.memo(({ event }) => {
   return (
     <Sectioning id="event_header">
       <Heading level={2} label={event.title} />

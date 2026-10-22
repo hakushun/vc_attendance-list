@@ -5,7 +5,7 @@ import styles from './index.module.scss';
 type Props = {
   type: 'required' | 'optional';
 };
-export const Badge: React.VFC<Props> = React.memo(({ type }) => {
+export const Badge: React.FC<Props> = React.memo(({ type }) => {
   if (type === 'required') {
     return <span className={clsx(styles.root, styles.required)}>必須</span>;
   }

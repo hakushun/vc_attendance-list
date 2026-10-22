@@ -22,7 +22,7 @@ type Props = {
   remarks: Remark[];
   handleChangeRemarks: (_e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 };
-export const Practice: React.VFC<Props> = React.memo(
+export const Practice: React.FC<Props> = React.memo(
   ({
     event,
     handleToggleSetting,

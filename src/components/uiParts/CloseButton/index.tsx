@@ -4,7 +4,7 @@ import styles from './index.module.scss';
 type Props = {
   handleToggle: () => void;
 };
-export const CloseButton: React.VFC<Props> = ({ handleToggle }) => {
+export const CloseButton: React.FC<Props> = ({ handleToggle }) => {
   return (
     <button type="button" className={styles.root} onClick={handleToggle}>
       <svg
