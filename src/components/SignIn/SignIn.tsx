@@ -23,7 +23,7 @@ type Props = {
   handleTogglePasswordReset: () => void;
   handleKeydown: (_e: React.KeyboardEvent<HTMLElement>) => void;
 };
-export const SignIn: React.VFC<Props> = React.memo(
+export const SignIn: React.FC<Props> = React.memo(
   ({
     form,
     resetForm,

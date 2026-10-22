@@ -3,7 +3,7 @@ import React from 'react';
 type Props = {
   content: string;
 };
-export const StringWithUrl: React.VFC<Props> = React.memo(({ content }) => {
+export const StringWithUrl: React.FC<Props> = React.memo(({ content }) => {
   const regexp = /(https?:\/\/[\x21-\x7e]+)/g;
 
   return (

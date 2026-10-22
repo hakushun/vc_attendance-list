@@ -10,7 +10,7 @@ type Props = {
   handleUpdate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   handleRemove: () => void;
 };
-export const EventForm: React.VFC<Props> = React.memo(
+export const EventForm: React.FC<Props> = React.memo(
   ({ isLoading, handleCreate, handleUpdate, handleRemove }) => {
     const { user } = useUser();
     const { eventFormIsShown, handleToggleEventForm } = useShow();

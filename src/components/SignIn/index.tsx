@@ -3,7 +3,7 @@ import { useModal } from '../../hooks/useModal';
 import { useSign } from '../../hooks/useSign';
 import { SignIn as Presentational } from './SignIn';
 
-export const SignIn: React.VFC = React.memo(() => {
+export const SignIn: React.FC = React.memo(() => {
   const {
     form,
     resetForm,

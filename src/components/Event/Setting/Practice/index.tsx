@@ -12,7 +12,7 @@ type Props = {
   isLoading: boolean;
   handleUpdate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
-export const Practice: React.VFC<Props> = React.memo(
+export const Practice: React.FC<Props> = React.memo(
   ({ event, handleToggleSetting, isLoading, handleUpdate }) => {
     const { locations, handleChangeLocations } = useLocations();
     const { plans, handleChangePlans } = usePlans();

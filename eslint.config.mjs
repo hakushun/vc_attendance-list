@@ -18,7 +18,7 @@ export default defineConfig(
   react.configs.flat['jsx-runtime'],
   reactHooks.configs.flat.recommended,
   importPlugin.flatConfigs.typescript,
-  nextPlugin.flatConfig.recommended,
+  nextPlugin.configs.recommended,
   {
     files: ['src/**/*.{ts,tsx}'],
     languageOptions: {

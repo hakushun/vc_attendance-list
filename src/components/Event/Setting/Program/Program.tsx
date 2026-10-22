@@ -19,7 +19,7 @@ type Props = {
   handleAddProgramForm: () => void;
   handleDeleteProgramForm: () => void;
 };
-export const Program: React.VFC<Props> = React.memo(
+export const Program: React.FC<Props> = React.memo(
   ({
     event,
     handleToggleSetting,

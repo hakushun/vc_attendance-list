@@ -26,7 +26,7 @@ type Props = {
   url: string | undefined;
   content: string | undefined;
 };
-export const PracticeDetail: React.VFC<Props> = React.memo(
+export const PracticeDetail: React.FC<Props> = React.memo(
   ({
     practice,
     dateId,

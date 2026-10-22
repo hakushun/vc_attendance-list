@@ -13,7 +13,7 @@ type Props = {
   handleToggleEventForm: () => void;
   handleToggleSetting: () => void;
 };
-export const Header: React.VFC<Props> = React.memo(
+export const Header: React.FC<Props> = React.memo(
   ({ router, user, handleSignOut, handleToggleEventForm, handleToggleSetting }) => {
     return (
       <header className={styles.root}>

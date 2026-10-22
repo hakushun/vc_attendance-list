@@ -1,6 +1,7 @@
 import type React from 'react';
 import { useEffect, useState } from 'react';
 import type { AppProps } from 'next/app';
+import { SerwistProvider } from '@serwist/next/react';
 import { Provider } from 'react-redux';
 import { useAppDispatch } from '../hooks/useAppDispatch';
 import { initStore } from '../redux/store';
@@ -46,9 +47,11 @@ function App(props: AppProps): React.ReactElement {
   const [store] = useState(initStore);
 
   return (
-    <Provider store={store}>
-      <AppContent {...props} />
-    </Provider>
+    <SerwistProvider swUrl="/sw.js" disable={process.env.NODE_ENV === 'development'}>
+      <Provider store={store}>
+        <AppContent {...props} />
+      </Provider>
+    </SerwistProvider>
   );
 }
 

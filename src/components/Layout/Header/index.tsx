@@ -5,7 +5,7 @@ import { useSign } from '../../../hooks/useSign';
 import { useUser } from '../../../hooks/useUser';
 import { Header as Presentational } from './Header';
 
-export const Header: React.VFC = React.memo(() => {
+export const Header: React.FC = React.memo(() => {
   const { router } = useRouter();
   const { user } = useUser();
   const { handleSignOut } = useSign();

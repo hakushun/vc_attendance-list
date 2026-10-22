@@ -17,7 +17,7 @@ type Props = {
   handleKeydown: (_e: React.KeyboardEvent<HTMLElement>) => void;
   handleResetPassword: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => Promise<void>;
 };
-export const PasswordReset: React.VFC<Props> = React.memo(
+export const PasswordReset: React.FC<Props> = React.memo(
   ({
     resetForm,
     isLoading,

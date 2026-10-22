@@ -8,7 +8,7 @@ type Props = {
   isLoading: boolean;
   handleUpdate: (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
-export const Part: React.VFC<Props> = React.memo(
+export const Part: React.FC<Props> = React.memo(
   ({ handleToggleSetting, isLoading, handleUpdate }) => {
     const { part, handleChange, handleAddPartForm, handleDeletePartForm, handleChangeOrder } =
       usePart();

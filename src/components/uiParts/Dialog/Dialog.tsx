@@ -11,7 +11,7 @@ type Props = {
   handleToggleDialog: () => void;
   handleKeydown: (_e: React.KeyboardEvent<HTMLElement>) => void;
 };
-export const Dialog: React.VFC<Props> = ({
+export const Dialog: React.FC<Props> = ({
   dialogRef,
   dialogMessage,
   handleToggleDialog,

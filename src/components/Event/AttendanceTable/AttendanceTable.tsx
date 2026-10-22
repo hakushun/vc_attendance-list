@@ -35,7 +35,7 @@ type Props = {
   selectedId: string;
   handleFocusProgram: (_e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
-export const AttendanceTable: React.VFC<Props> = React.memo(
+export const AttendanceTable: React.FC<Props> = React.memo(
   ({
     user,
     event,
