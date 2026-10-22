@@ -172,7 +172,7 @@ Next のメジャーは 1 つずつ上げる（15 で動作確認 → 16）。PR
   - `public/sw.js` / `public/workbox-*.js` / `public/pwa` など生成物の扱いを整理し、生成物は `.gitignore` に追加する
   - `public/manifest.json` は維持
 - 実施結果
-  - React 19: codemod で `React.VFC` を `React.FC` に、グローバルの `JSX` を `react` からの import に置き換えた（44 ファイル）
+  - React 19: codemod で `React.VFC` を `React.FC` に、グローバルの `JSX` を `react` からの import に置き換えた（43 ファイル）
   - Next 16 は 16.4.2 に固定。ビルド時に `tsconfig.json` の `jsx` が `react-jsx` に自動で書き換えられた
   - `@next/eslint-plugin-next` 16 で設定の export が `flatConfig` から `configs` に変わったため追従した
   - Serwist は、Next 16 の Turbopack と Pages Router の両方に対応するため configurator mode を採用した
@@ -181,7 +181,7 @@ Next のメジャーは 1 つずつ上げる（15 で動作確認 → 16）。PR
     - configurator mode は `next build` の後に `serwist build` で Service Worker を別にビルドする方式で、どちらにも依存しない。`npm run build` を `next build && serwist build serwist.config.mjs` にした
   - `precachePrerendered: false` にして、next-pwa と同じく HTML は precache しない。precache の対象は next-pwa のときと同じ（Next の静的ファイルと `public/` 配下）
   - next-pwa（Workbox）の precache はキャッシュ名の接頭辞が異なり Serwist では削除されないため、`src/sw.ts` の activate で `workbox-precache` で始まるキャッシュを削除するようにした
-  - 生成物の扱いを整理した: `public/sw.js`・`public/workbox-*.js` を削除して `.gitignore` に追加。あわせて、ビルドや `next dev` のたびに書き換わる `next-env.d.ts` と `tsconfig.tsbuildinfo` も管理対象から外した（`tsconfig.json` の `include` は `src` のみで、無くても typecheck は通る）
+  - 生成物の扱いを整理した: Serwist が生成する `public/sw.js` を管理対象から外し、`.gitignore` に `public/sw*` を追加。next-pwa の生成物だった `public/workbox-*.js` は Serwist では生成されないため、削除のみ行った。あわせて、ビルドや `next dev` のたびに書き換わる `next-env.d.ts` と `tsconfig.tsbuildinfo` も管理対象から外した（`tsconfig.json` の `include` は `src` のみで、無くても typecheck は通る）
   - 壊れていた `export` スクリプト（Next 14 で廃止された `next export` を呼んでいた）を削除した
   - ブラウザ（headless Chrome）で次を確認した
     - `/sw.js` が登録・有効化され、ページを制御している
