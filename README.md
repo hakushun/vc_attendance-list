@@ -24,7 +24,7 @@ Service Worker は [Serwist](https://serwist.pages.dev/) で `src/sw.ts` から�
 
 `xlsx`（SheetJS）は npm 上の配布が 0.18.5 で止まっており、修正版は SheetJS 公式 CDN でのみ配布されている。
 そのため `package.json` では CDN の tarball の URL を直接指定している。
-`npm update` や `npm audit fix` では新しいバージョンに追従しないので、次の手順で手動で更新する。
+`npm update` や `npm audit fix`、Dependabot では新しいバージョンに追従しないので、次の手順で手動で更新する。
 
 1. [SheetJS CDN](https://cdn.sheetjs.com/) とリリースノートで最新版とセキュリティ修正の有無を確認する
 2. `npm install --save https://cdn.sheetjs.com/xlsx-<version>/xlsx-<version>.tgz` を実行する
