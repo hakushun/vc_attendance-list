@@ -14,6 +14,12 @@ npm run dev
 `.env.example` はダミー値のため、`next build` は通るが Firebase には接続できない。
 `NEXT_PUBLIC_ADMIN_USER_ID` には管理者の Firebase Auth UID を設定する。設定しないと、既存イベントの日程の追加・削除ができない。
 
+## PWA（Service Worker）
+
+Service Worker は [Serwist](https://serwist.pages.dev/) で `src/sw.ts` からビルドする。
+`npm run build` は `next build` の後に `serwist build` を実行し、`public/sw.js` を生成する（生成物のため git の管理対象外）。
+`npm run dev` では Service Worker を登録しない。
+
 ## xlsx の更新
 
 `xlsx`（SheetJS）は npm 上の配布が 0.18.5 で止まっており、修正版は SheetJS 公式 CDN でのみ配布されている。
