@@ -6,6 +6,7 @@ import { Heading } from '../../uiParts/Heading';
 import { Modal } from '../../uiParts/Modal';
 import { SecondaryButton } from '../../uiParts/SecondaryButton';
 import { StringWithUrl } from '../../uiParts/StringWithUrl';
+import { isHttpUrl } from '../../../libs/utils/isHttpUrl';
 import styles from './index.module.scss';
 
 type Props = {
@@ -62,13 +63,14 @@ export const PracticeDetail: React.FC<Props> = React.memo(
             <div className={styles.item}>
               <dt className={styles.term}>URL</dt>
               <dd className={styles.definition}>
-                {url ? (
+                {!url && '未入力'}
+                {url && isHttpUrl(url) && (
                   <a href={url} target="_blank" rel="noopener noreferrer">
                     {url}
                   </a>
-                ) : (
-                  '未入力'
                 )}
+                {/* http(s) 以外は javascript: などを href に入れないよう、リンクにせず文字列として表示する */}
+                {url && !isHttpUrl(url) && url}
               </dd>
             </div>
             <div className={styles.item}>
