@@ -148,6 +148,14 @@ Next のメジャーは 1 つずつ上げる（15 で動作確認 → 16）。PR
 - `next.config.js`: `swcMinify` を削除（廃止）、`experimental.serverComponentsExternalPackages` は Step 1 で削除済み
 - `.babelrc` を削除し SWC に切り替え
 - `next-pwa` は Next 15 + webpack で動作する見込みのため一旦維持（動かなければ 5b の Serwist 移行を前倒し）
+- 実施結果
+  - Next 15 向けの codemod はどれも App Router・middleware・`next/font` などが対象で、このリポジトリで使っている API は無かったため実行していない
+  - `next` はこれまでどおりバージョンを固定（`15.5.28`）。`npm audit` 上の `next` の深刻度は critical から moderate に下がった
+  - `.babelrc` の削除に伴い、Next が内蔵している Babel とは別に入れていた `@babel/core` も削除した
+  - `.babelrc` は `targets: { node: '22' }` でブラウザ向けのコードもほぼ変換していなかった。SWC に切り替えたことで Next の既定のブラウザ対象に合わせて変換されるようになり、`/event/[id]` の JS が約 11 kB 増えた（118 kB → 129 kB）。古いブラウザでも動くようになる側の変化のため許容する
+  - Next 15 では、Next 14 では表示されていなかった Sass の `/` 除算の非推奨警告が出た。`rem()` 関数を `math.div` に置き換えた
+  - Next 15 のビルドが「ESLint 設定に Next.js プラグインが無い」と警告するため、`@next/eslint-plugin-next` の recommended を追加した（新しい違反は無し）
+  - `next start` で全ページと `/sw.js`・`/manifest.json` が HTTP 200 を返すことを確認した（next-pwa のビルドで Service Worker が生成されていることまで）。ブラウザでの Service Worker の登録と、ログイン・イベント作成・出欠入力・Excel 出力などの画面操作は、マージ前に Vercel Preview で手動確認する（PR #18 のチェックリストで管理）
 
 **5b: React 19 + Next 16 + Serwist**
 
