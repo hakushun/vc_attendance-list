@@ -33,6 +33,10 @@ yarn-error.log*
 # vercel
 .vercel
 
+# TypeScript (next build / next dev と tsc が生成する)
+next-env.d.ts
+*.tsbuildinfo
+
 # Serwist
 public/sw*
 public/swe-worker*
