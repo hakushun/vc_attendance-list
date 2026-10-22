@@ -30,4 +30,4 @@ Service Worker は [Serwist](https://serwist.pages.dev/) で `src/sw.ts` から�
 2. `npm install --save https://cdn.sheetjs.com/xlsx-<version>/xlsx-<version>.tgz` を実行する
 3. イベント画面から Excel 出力ができることを確認する
 
-URL で指定した依存は `npm audit` の検査対象にもならないため、`xlsx` の脆弱性は SheetJS 側の情報で確認する必要がある。
+`npm audit` は URL で指定した依存もバージョンで検査するため、`xlsx` に既知の脆弱性があれば警告が出る（0.20.3 は既知の脆弱性の修正版のため警告は出ない）。ただし新しいバージョンへの更新は自動では行われないため、SheetJS 側のリリースも定期的に確認する。
