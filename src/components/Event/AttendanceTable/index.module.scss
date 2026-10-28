@@ -10,14 +10,15 @@
 .wrapper {
   max-width: min(1000px, 100%);
   max-height: 80vh;
-  padding: 0 5px;
   margin-top: 20px;
   overflow: auto;
 }
 
+// collapse のままだと sticky セルの罫線がスクロールで流れて消えるため、separate にして罫線は各セルの右・下で引く
 .table {
   position: relative;
   font-size: mixin.rem(14);
+  border-collapse: separate;
 
   .thead {
     position: sticky;
@@ -49,7 +50,37 @@
     &.body {
       position: relative;
       padding: 10px 4px;
-      border: 1px solid mixin.$mainTextColor;
+      border-color: mixin.$mainTextColor;
+      border-style: solid;
+      border-width: 0 1px 1px 0;
+    }
+
+    &.stickyPart,
+    &.stickyName {
+      position: sticky;
+      z-index: 1;
+    }
+
+    // 名前列の left を固定値にするため、パート列は中身に関わらず幅を固定する
+    &.stickyPart {
+      left: 0;
+      width: 80px;
+      max-width: 80px;
+      overflow-wrap: anywhere;
+    }
+
+    &.stickyName {
+      left: 80px;
+    }
+
+    // 背景が透明だと横スクロールした列が透けて見えるため、固定列の本体セルにだけ背景色を付ける
+    &.body.stickyPart,
+    &.body.stickyName {
+      background-color: mixin.$bgColor;
+    }
+
+    &.body.stickyPart {
+      border-left-width: 1px;
     }
 
     &.narrow {
@@ -67,6 +98,16 @@
     &.button {
       padding: 5px 0;
     }
+  }
+
+  tbody tr:first-child .body {
+    border-top-width: 1px;
+  }
+
+  // 固定列は自身の背景色が tr の .highlight を覆うため、ハイライト色を直接当てる（stylelint が :global を許可しないため属性セレクタで指定）
+  tr[class~='highlight'] .body.stickyPart,
+  tr[class~='highlight'] .body.stickyName {
+    background-color: mixin.$whiteColor;
   }
 
   .remark {

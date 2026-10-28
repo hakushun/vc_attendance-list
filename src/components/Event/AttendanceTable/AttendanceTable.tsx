@@ -59,10 +59,23 @@ export const AttendanceTable: React.FC<Props> = React.memo(
           <table id="xlsx_table" className={styles.table}>
             <thead className={styles.thead}>
               <tr>
-                <td className={clsx(styles.cell, styles.controller, styles.narrow, styles.button)}>
+                <td
+                  className={clsx(
+                    styles.cell,
+                    styles.controller,
+                    styles.narrow,
+                    styles.button,
+                    styles.stickyPart,
+                  )}>
                   <OptionalButton label="export" disabled={false} handleClick={exportToExcel} />
                 </td>
-                <td className={clsx(styles.cell, styles.controller, styles.button)}>
+                <td
+                  className={clsx(
+                    styles.cell,
+                    styles.controller,
+                    styles.button,
+                    styles.stickyName,
+                  )}>
                   <TernaryButton label="全列表示" disabled={false} handleClick={showAllColumns} />
                 </td>
                 <td className={clsx(styles.cell, styles.controller)} />
@@ -78,8 +91,10 @@ export const AttendanceTable: React.FC<Props> = React.memo(
                 <td className={clsx(styles.cell, styles.controller, styles.narrow)} />
               </tr>
               <tr>
-                <th className={clsx(styles.cell, styles.head, styles.narrow)}>パート</th>
-                <th className={clsx(styles.cell, styles.head)}>名前</th>
+                <th className={clsx(styles.cell, styles.head, styles.narrow, styles.stickyPart)}>
+                  パート
+                </th>
+                <th className={clsx(styles.cell, styles.head, styles.stickyName)}>名前</th>
                 <th className={clsx(styles.cell, styles.head)}>
                   <select
                     name="role_program"
@@ -125,10 +140,10 @@ export const AttendanceTable: React.FC<Props> = React.memo(
                 <tr
                   key={attendance.userId}
                   onClick={(e) => e.currentTarget.classList.toggle('highlight')}>
-                  <td className={clsx(styles.cell, styles.body, styles.narrow)}>
+                  <td className={clsx(styles.cell, styles.body, styles.narrow, styles.stickyPart)}>
                     {attendance.part}
                   </td>
-                  <td className={clsx(styles.cell, styles.body)}>
+                  <td className={clsx(styles.cell, styles.body, styles.stickyName)}>
                     {user?.id === attendance.userId ? (
                       <button
                         type="button"
