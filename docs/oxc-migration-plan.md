@@ -46,7 +46,7 @@
 | `no-undef-init` | 廃止。`let a = undefined` は `no-undefined` で検出される。当初は `unicorn/no-useless-undefined` に置き換えたが、関数の引数の `undefined` も自動修正で消し、型エラーになるコードを作るためやめた |
 | `react/prefer-stateless-function` | `react/prefer-function-component` に置き換える。`_document.tsx` が違反になるため関数コンポーネントに書き換える |
 | `no-invalid-this` | 廃止。tsconfig の `strict: true`（`noImplicitThis`）で TypeScript が検出する |
-| `import/no-extraneous-dependencies` | 廃止。oxlint に未実装 |
+| `import/no-extraneous-dependencies` | 廃止。oxlint に未実装。移行後に knip（`npm run lint:knip`）を入れ、`package.json` に無い依存の import を検出するようにした |
 | `no-undef` | 廃止。oxlint では開発中（nursery）のルールで、TypeScript が検出する |
 | `no-dupe-args` / `no-octal` | 廃止。ES Modules は strict mode のため構文エラーになる |
 | `react/prop-types` / `react/jsx-uses-vars` / `react/no-deprecated` | 廃止。現在も `react/prop-types` は off。他の 2 つは `no-unused-vars` と TypeScript が代わりに検出する |
