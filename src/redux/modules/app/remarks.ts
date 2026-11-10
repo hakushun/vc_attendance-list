@@ -8,7 +8,7 @@ export type Remark = {
   dateId: string;
   content?: string;
 };
-export type Remarks = {
+type Remarks = {
   remarks: Remark[];
 };
 type ChangePayload = Partial<Remark>;

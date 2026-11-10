@@ -8,7 +8,7 @@ export type Userdata = {
   id: string;
   email: string;
 } | null;
-export type User = {
+type User = {
   user: Userdata;
   isLoading: boolean;
 };
