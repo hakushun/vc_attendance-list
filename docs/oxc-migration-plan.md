@@ -14,7 +14,7 @@
 |---|---|
 | lint | ESLint を oxlint に置き換える。既存のルールは `@oxlint/migrate` で変換し、変換できないものは 4 章のとおり代替する |
 | フォーマット | Prettier を oxfmt に置き換える。設定は `oxfmt --migrate=prettier` で変換する |
-| 型情報を使う lint | `oxlint-tsgolint` を入れて `--type-aware` で実行する。`consistent-return` の代替に必要なため |
+| 型情報を使う lint | `oxlint-tsgolint` を入れ、`.oxlintrc.json` の `options.typeAware` で有効にする。`consistent-return` の代替に必要なため |
 | `import/no-extraneous-dependencies` | oxlint に未実装のため廃止する |
 | `src/pages/_document.tsx` | クラスコンポーネントを関数コンポーネントに書き換える。`react/prefer-function-component` の違反になるため |
 | stylelint | 対象外。oxlint / oxfmt は SCSS を扱わないため、現状のまま残す |
@@ -51,6 +51,8 @@
 | `no-dupe-args` / `no-octal` | 廃止。ES Modules は strict mode のため構文エラーになる |
 | `react/prop-types` / `react/jsx-uses-vars` / `react/no-deprecated` | 廃止。現在も `react/prop-types` は off。他の 2 つは `no-unused-vars` と TypeScript が代わりに検出する |
 | `react-hooks/config` / `react-hooks/gating` | 廃止。React Compiler のオプション用のルールで、このリポジトリでは使っていない |
+| `react-hooks/component-hook-factories` | 廃止。oxlint に未実装 |
+| `react/require-render-return` | 廃止。oxlint では開発中（nursery）のルール。クラスコンポーネントは `react/prefer-function-component` で禁止しているため影響しない |
 | `@next/next/no-location-assign-relative-destination` | 廃止。oxlint に未実装。`location` への代入は使っていない |
 
 `settings.react.version`（`detect`）は変換されない。oxlint には自動判定が無く、バージョンを書くと React の更新のたびに実際のバージョンとずれるため、設定しない（設定の有無で lint の結果が変わらないことを確認した）。
@@ -127,6 +129,6 @@ PR は 1 本とし、次の単位でコミットを分ける。
 
 | リスク | 対策 |
 |---|---|
-| oxfmt のバージョンアップでフォーマット結果が変わる | パッチ更新のみに固定する。マイナー更新の Dependabot PR では `oxfmt --check` の差分を確認してからマージする |
+| oxfmt のバージョンアップでフォーマット結果が変わる | パッチ更新のみに固定し、Dependabot のグループから外して単独の PR にする。マイナー更新の PR では `oxfmt --check` の差分を確認してからマージする |
 | `@oxlint/migrate` の変換漏れで、ルールが黙って無効になる（`import/no-cycle` で実際に起きた） | 独自に設定しているルールは、6 章のように違反するコードを一時的に作って検出されることを確かめる |
-| `oxlint-tsgolint` が TypeScript のバージョンに追従できない | 型情報を使うルールは `typescript/consistent-return` だけのため、問題が出たら `--type-aware` を外してこのルールだけ諦める |
+| `oxlint-tsgolint` が TypeScript のバージョンに追従できない | 型情報を使うルールは `typescript/consistent-return` だけのため、問題が出たら `.oxlintrc.json` の `options.typeAware` を `false` にし、`typescript/consistent-return` を削除してこのルールだけ諦める |
