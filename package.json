@@ -56,7 +56,7 @@
     "stylelint-config-standard-scss": "^17.0.0",
     "stylelint-order": "^8.1.2",
     "ts-jest": "^29.4.15",
-    "typescript": "^5.9.3"
+    "typescript": "^7.0.2"
   },
   "dependencies": {
     "@serwist/next": "^9.5.13",
