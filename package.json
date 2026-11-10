@@ -10,9 +10,9 @@
     "build": "next build && serwist build serwist.config.mjs",
     "start": "next start",
     "typecheck": "tsc -p . --noEmit",
-    "lint": "npm run typecheck && npm run lint:eslint && npm run lint:prettier && npm run lint:stylelint",
-    "lint:eslint": "eslint --fix './src/**/*.{ts,tsx}'",
-    "lint:prettier": "prettier --write './src/**/*.{ts,tsx}'",
+    "lint": "npm run typecheck && npm run lint:oxlint && npm run lint:oxfmt && npm run lint:stylelint",
+    "lint:oxlint": "oxlint --fix src",
+    "lint:oxfmt": "oxfmt 'src/**/*.{ts,tsx}'",
     "lint:stylelint": "stylelint --fix './src/**/*.{css,scss}'",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -22,8 +22,8 @@
   },
   "lint-staged": {
     "src/**/*.{ts,tsx}": [
-      "eslint --fix",
-      "prettier --write"
+      "oxlint --fix",
+      "oxfmt"
     ],
     "src/**/*.{css,scss}": [
       "stylelint --fix"
@@ -33,8 +33,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@eslint/js": "^9.39.5",
-    "@next/eslint-plugin-next": "16.4.2",
     "@serwist/cli": "^9.5.13",
     "@testing-library/jest-dom": "^7.0.1",
     "@types/jest": "^30.0.0",
@@ -43,17 +41,13 @@
     "@types/react-dom": "^19.3.0",
     "@types/redux-mock-store": "^1.5.0",
     "esbuild": "^0.28.2",
-    "eslint": "^9.39.5",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-import": "^2.32.0",
-    "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-react-hooks": "^7.1.1",
-    "globals": "^17.13.0",
     "husky": "^9.1.7",
     "jest": "^30.5.2",
     "jest-environment-jsdom": "^30.5.2",
     "lint-staged": "^17.6.0",
-    "prettier": "^3.9.10",
+    "oxfmt": "~0.78.0",
+    "oxlint": "^1.93.0",
+    "oxlint-tsgolint": "^7.0.2006",
     "redux-mock-store": "^1.5.5",
     "sass": "^1.106.1",
     "serwist": "^9.5.13",
@@ -62,8 +56,7 @@
     "stylelint-config-standard-scss": "^17.0.0",
     "stylelint-order": "^8.1.2",
     "ts-jest": "^29.4.15",
-    "typescript": "^5.9.3",
-    "typescript-eslint": "^8.72.0"
+    "typescript": "^5.9.3"
   },
   "dependencies": {
     "@serwist/next": "^9.5.13",
