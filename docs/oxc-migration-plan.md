@@ -63,7 +63,7 @@ PR は 1 本とし、次の単位でコミットを分ける。
 
 - `class MyDocument extends Document` を、`Html` / `Head` / `Main` / `NextScript` を返す関数コンポーネントに書き換える
 - 出力する HTML は変えない。`<title>` や `<meta>` が `<Head>` の外にある構造（`no-title-in-document-head` の警告の原因）も、今回は直さない
-- 確認: 書き換えの前後で `next build && next start` の HTML の `<head>` が同じであること
+- 確認: 書き換えの前後で HTML の `<head>` が同じであること
 
 ### Step 2: oxlint / oxfmt を導入し、ESLint / Prettier を削除する
 
@@ -79,10 +79,10 @@ PR は 1 本とし、次の単位でコミットを分ける。
 - `.oxfmtrc.json`: `npx oxfmt --migrate=prettier` で作る
 - 削除するファイル: `eslint.config.mjs`, `.prettierrc`
 - `package.json`
-  - `lint:eslint` → `lint:oxlint`: `oxlint --type-aware --fix src`
-  - `lint:prettier` → `lint:oxfmt`: `oxfmt src`
+  - `lint:eslint` → `lint:oxlint`: `oxlint --fix src`（型情報は `.oxlintrc.json` の `options.typeAware` で有効にする）
+  - `lint:prettier` → `lint:oxfmt`: `oxfmt 'src/**/*.{ts,tsx}'`
   - `lint` から呼ぶスクリプト名を変える
-  - lint-staged: `src/**/*.{ts,tsx}` を `oxlint --type-aware --fix` と `oxfmt` にする
+  - lint-staged: `src/**/*.{ts,tsx}` を `oxlint --fix` と `oxfmt` にする
 - 完了条件: 6 章の確認がすべて通る
 
 ### Step 3: ドキュメント
@@ -90,12 +90,27 @@ PR は 1 本とし、次の単位でコミットを分ける。
 - README に lint / フォーマットのツールについての記述があれば更新する
 - この計画書に実施結果を追記する
 
+### 実施結果
+
+- `_document.tsx`
+  - 書き換えの前後でローカルの `next build` を比べる予定だったが、Firebase の環境変数ファイルを読めない環境だったためやめた。Vercel Preview と本番で `<head>` の HTML を比べて確認する
+- oxlint
+  - `@oxlint/migrate` は、試したときと違って `import` プラグインを `overrides` 側の `plugins` に出力した。この場合も `import/no-cycle` は効かなかったので、トップレベルの `plugins` に移した
+  - 型情報を使う設定は、コマンドの `--type-aware` ではなく `.oxlintrc.json` の `options.typeAware` で有効にした（`@oxlint/migrate --type-aware` が出力したもの）。lint-staged を含め、どこから実行しても同じルールが動くようにするため
+  - jest のグローバル変数の `overrides` は `@oxlint/migrate` が引き継いだため、手で足す必要はなかった
+  - 違反するコードを一時的に作り、次のルールが検出されることを確認した: `import/no-cycle`, `typescript/consistent-return`, `unicorn/no-useless-undefined`, `no-undefined`, `no-shadow`, `typescript/consistent-type-imports`, `react-hooks/rules-of-hooks`, `react-hooks/exhaustive-deps`
+  - 既存の `eslint-disable` コメント（`react-hooks/exhaustive-deps`, `no-undefined`, `no-useless-escape`）は書き換えずに残した。テストファイルのコメントを外すと `no-undefined` が検出されることから、コメントが効いていることを確認した
+- oxfmt
+  - `oxfmt src` とディレクトリを渡すと SCSS も整形対象になり、1 ファイルに差分が出た。SCSS は stylelint に任せているため、Prettier と同じく `'src/**/*.{ts,tsx}'` に絞った
+- lint-staged: ファイルを変更してステージし、`oxlint --fix`（`let` → `const`）と `oxfmt` が適用されることを確認した
+- README には lint / フォーマットについての記述がなかったため、変更していない
+
 ## 6. 検証方法
 
 | 種別 | 内容 |
 |---|---|
 | 自動 | `npm run typecheck` / `npm test` / `npm run lint:oxlint` / `npm run lint:stylelint` が成功する |
-| 自動 | `npx oxfmt --check src` が差分なし（コードのフォーマットが変わっていない） |
+| 自動 | `npx oxfmt --check 'src/**/*.{ts,tsx}'` が差分なし（コードのフォーマットが変わっていない） |
 | 自動 | Vercel の Preview ビルドが成功する |
 | 手動 | 循環参照するファイルを一時的に作り、`import/no-cycle` で検出されることを確認する |
 | 手動 | `return;` と `return 値;` が混在する関数を一時的に作り、`typescript/consistent-return` で検出されることを確認する |
