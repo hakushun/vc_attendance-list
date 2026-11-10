@@ -13,6 +13,7 @@
     "lint:oxlint": "oxlint --fix src",
     "lint:oxfmt": "oxfmt 'src/**/*.{ts,tsx}'",
     "lint:knip": "knip",
+    "lint:knip:deps": "knip --include unlisted,unresolved",
     "lint:stylelint": "stylelint --fix './src/**/*.{css,scss}'",
     "test": "jest",
     "test:watch": "jest --watch",
