@@ -43,7 +43,7 @@
 | 現在のルール | 対応 |
 |---|---|
 | `consistent-return`（`treatUndefinedAsUnspecified: true`） | `typescript/consistent-return` に置き換える（型情報が必要） |
-| `no-undef-init` | `unicorn/no-useless-undefined` に置き換える |
+| `no-undef-init` | 廃止。`let a = undefined` は `no-undefined` で検出される。当初は `unicorn/no-useless-undefined` に置き換えたが、関数の引数の `undefined` も自動修正で消し、型エラーになるコードを作るためやめた |
 | `react/prefer-stateless-function` | `react/prefer-function-component` に置き換える。`_document.tsx` が違反になるため関数コンポーネントに書き換える |
 | `no-invalid-this` | 廃止。tsconfig の `strict: true`（`noImplicitThis`）で TypeScript が検出する |
 | `import/no-extraneous-dependencies` | 廃止。oxlint に未実装 |
@@ -97,7 +97,7 @@ PR は 1 本とし、次の単位でコミットを分ける。
   - `@oxlint/migrate` は、試したときと違って `import` プラグインを `overrides` 側の `plugins` に出力した。この場合も `import/no-cycle` は効かなかったので、トップレベルの `plugins` に移した
   - 型情報を使う設定は、コマンドの `--type-aware` ではなく `.oxlintrc.json` の `options.typeAware` で有効にした（`@oxlint/migrate --type-aware` が出力したもの）。lint-staged を含め、どこから実行しても同じルールが動くようにするため
   - jest のグローバル変数の `overrides` は `@oxlint/migrate` が引き継いだため、手で足す必要はなかった
-  - 違反するコードを一時的に作り、次のルールが検出されることを確認した: `import/no-cycle`, `typescript/consistent-return`, `unicorn/no-useless-undefined`, `no-undefined`, `no-shadow`, `typescript/consistent-type-imports`, `react-hooks/rules-of-hooks`, `react-hooks/exhaustive-deps`
+  - 違反するコードを一時的に作り、次のルールが検出されることを確認した: `import/no-cycle`, `typescript/consistent-return`, `no-undefined`, `no-shadow`, `typescript/consistent-type-imports`, `react-hooks/rules-of-hooks`, `react-hooks/exhaustive-deps`
   - 既存の `eslint-disable` コメント（`react-hooks/exhaustive-deps`, `no-undefined`, `no-useless-escape`）は書き換えずに残した。テストファイルのコメントを外すと `no-undefined` が検出されることから、コメントが効いていることを確認した
 - oxfmt
   - `oxfmt src` とディレクトリを渡すと SCSS も整形対象になり、1 ファイルに差分が出た。SCSS は stylelint に任せているため、Prettier と同じく `'src/**/*.{ts,tsx}'` に絞った

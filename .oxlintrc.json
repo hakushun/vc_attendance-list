@@ -4,7 +4,6 @@
     "typescript",
     "react",
     "nextjs",
-    "unicorn",
     "import"
   ],
   "categories": {
@@ -242,13 +241,13 @@
           }
         ],
         "typescript/no-explicit-any": "off",
+        // RootState などの型を値の import で書くと import/no-cycle に循環として検出されるため、型は import type に揃える
         "typescript/consistent-type-imports": [
           "error",
           {
             "fixStyle": "separate-type-imports"
           }
         ],
-        "unicorn/no-useless-undefined": "error",
         "react/prefer-function-component": "error"
       },
       "env": {
