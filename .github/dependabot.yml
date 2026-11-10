@@ -25,5 +25,7 @@ updates:
           - minor
           - patch
         # oxfmt は 0.x でマイナー更新でもフォーマット結果が変わり得るため、グループに混ぜず単独の PR にして差分を確認できるようにする
+        # knip もマイナー更新で検出内容が変わり得るため、lint が落ちたときに原因を切り分けられるよう単独の PR にする
         exclude-patterns:
           - oxfmt
+          - knip
