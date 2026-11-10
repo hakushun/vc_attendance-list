@@ -20,7 +20,7 @@ import { update as updateParts } from '../domain/parts';
 import { update as updatePrograms } from '../domain/programs';
 
 type KeyName = 'eventForm' | 'attendanceForm' | 'setting';
-export type Show = Record<KeyName, boolean>;
+type Show = Record<KeyName, boolean>;
 
 // action
 const actionCreator = actionCreatorFactory();

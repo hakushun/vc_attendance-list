@@ -1,1 +1,3 @@
 npx lint-staged
+# 未使用 export まで見ると作業途中のコミットが止まるため、hook では package.json に無い依存の検出だけに絞る
+npm run lint:knip:deps

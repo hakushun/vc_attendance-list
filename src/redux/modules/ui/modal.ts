@@ -6,7 +6,7 @@ import type { RootState } from '../reducers';
 import { resetPassword } from '../app/sign';
 
 type KeyName = 'practice' | 'passwordReset';
-export type Modal = Record<KeyName, boolean>;
+type Modal = Record<KeyName, boolean>;
 
 // action
 const actionCreator = actionCreatorFactory();

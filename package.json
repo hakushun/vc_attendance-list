@@ -1,7 +1,6 @@
 {
   "name": "vc_attendance-list",
   "version": "2.0.0",
-  "main": "index.js",
   "engines": {
     "node": ">=22.22.1"
   },
@@ -10,9 +9,11 @@
     "build": "next build && serwist build serwist.config.mjs",
     "start": "next start",
     "typecheck": "tsc -p . --noEmit",
-    "lint": "npm run typecheck && npm run lint:oxlint && npm run lint:oxfmt && npm run lint:stylelint",
+    "lint": "npm run typecheck && npm run lint:oxlint && npm run lint:oxfmt && npm run lint:knip && npm run lint:stylelint",
     "lint:oxlint": "oxlint --fix src",
     "lint:oxfmt": "oxfmt 'src/**/*.{ts,tsx}'",
+    "lint:knip": "knip",
+    "lint:knip:deps": "knip --include unlisted,unresolved",
     "lint:stylelint": "stylelint --fix './src/**/*.{css,scss}'",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -44,6 +45,7 @@
     "husky": "^9.1.7",
     "jest": "^30.5.2",
     "jest-environment-jsdom": "^30.5.2",
+    "knip": "^6.44.2",
     "lint-staged": "^17.6.0",
     "oxfmt": "~0.78.0",
     "oxlint": "^1.93.0",

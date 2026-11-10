@@ -9,7 +9,7 @@ export type Plan = {
   category?: string;
   schedule?: string;
 };
-export type Plans = {
+type Plans = {
   plans: Plan[];
 };
 type ChangePayload = Partial<Plan>;

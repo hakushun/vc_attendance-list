@@ -6,7 +6,7 @@ import { getInstance } from './getInstance';
 
 const db = getInstance();
 
-export const fetchEvent = async (id: string): Promise<Event> => {
+const fetchEvent = async (id: string): Promise<Event> => {
   const docRef = doc(db, 'events', id);
   const docSnap = await getDoc(docRef);
   return docSnap.data() as Event;
