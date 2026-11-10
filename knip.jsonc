@@ -1,0 +1,6 @@
+{
+  "$schema": "./node_modules/knip/schema-jsonc.json",
+  // serwist.config.mjs と src/sw.ts は `serwist build` の CLI から読み込まれ、import 経由では辿れない。
+  // entry に入れないと src/sw.ts が未使用ファイルと報告され、消すと Service Worker のビルドが壊れる
+  "entry": ["serwist.config.mjs", "src/sw.ts"],
+}
