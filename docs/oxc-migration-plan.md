@@ -53,7 +53,7 @@
 | `react-hooks/config` / `react-hooks/gating` | 廃止。React Compiler のオプション用のルールで、このリポジトリでは使っていない |
 | `@next/next/no-location-assign-relative-destination` | 廃止。oxlint に未実装。`location` への代入は使っていない |
 
-`settings.react.version`（`detect`）は変換されないため、`.oxlintrc.json` の `settings.react.version` に React のバージョンを書く。
+`settings.react.version`（`detect`）は変換されない。oxlint には自動判定が無く、バージョンを書くと React の更新のたびに実際のバージョンとずれるため、設定しない（設定の有無で lint の結果が変わらないことを確認した）。
 
 ## 5. 実施ステップ
 
@@ -74,7 +74,6 @@ PR は 1 本とし、次の単位でコミットを分ける。
   - `npx @oxlint/migrate --type-aware eslint.config.mjs` の出力をもとに作る
   - `plugins` に `import` を追加する
   - 4 章の置き換えを反映する
-  - `settings.react.version` を追加する
   - `src/**/__tests__/**` と `src/setupTests.ts` の jest のグローバル変数を、`overrides` の `env` で引き継ぐ
 - `.oxfmtrc.json`: `npx oxfmt --migrate=prettier` で作る
 - 削除するファイル: `eslint.config.mjs`, `.prettierrc`

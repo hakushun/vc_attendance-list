@@ -265,10 +265,5 @@
         "jest": true
       }
     }
-  ],
-  "settings": {
-    "react": {
-      "version": "19.3.1"
-    }
-  }
+  ]
 }
